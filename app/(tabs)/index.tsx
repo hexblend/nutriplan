@@ -5,7 +5,7 @@ import { View } from 'react-native';
 
 export default function TabOneScreen() {
   return (
-    <View className="flex-1 items-center justify-center bg-red-500 dark:bg-blue-500">
+    <View className="flex-1 items-center justify-center">
       <Text className="text-xl">Tab One</Text>
       <Text className="text-xl">Tab One</Text>
       <View className="h-1 w-[80%] bg-gray-200 my-4" />
