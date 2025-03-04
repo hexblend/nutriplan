@@ -6,9 +6,9 @@ import * as SplashScreen from 'expo-splash-screen';
 import { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../assets/styles/global.css';
-import { NAV_THEME } from '~/lib/constants';
+import { NAV_THEME } from '@/lib/constants';
 import React from 'react';
-import { useColorScheme } from '~/components/ui/useColorScheme';
+import { useColorScheme } from '@/components/ui/useColorScheme';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,

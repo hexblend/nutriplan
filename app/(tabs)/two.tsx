@@ -1,4 +1,4 @@
-import { Text } from '~/components/ui/Text';
+import { Text } from '@/components/ui/text';
 import { View } from 'react-native';
 
 export default function TabTwoScreen() {
