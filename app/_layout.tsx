@@ -28,7 +28,9 @@ SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
 	const [loaded, error] = useFonts({
-		SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
+		Silka: require('../assets/fonts/silka-regular.ttf'),
+		SilkaMedium: require('../assets/fonts/silka-medium.ttf'),
+		SilkaBold: require('../assets/fonts/silka-bold.ttf'),
 		...FontAwesome.font,
 	});
 

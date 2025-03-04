@@ -1,7 +1,7 @@
 import React from 'react';
 import { ExternalLink } from './ExternalLink';
-import { MonoText } from './StyledText';
-import { Text, View } from './Themed';
+import { View } from '@/components/ui/View';
+import { Text } from '@/components/ui/Text';
 import Colors from '@/constants/Colors';
 
 export default function EditScreenInfo({ path }: { path: string }) {
@@ -21,7 +21,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
 					darkColor="rgba(255,255,255,0.05)"
 					lightColor="rgba(0,0,0,0.05)"
 				>
-					<MonoText>{path}</MonoText>
+					<Text>{path}</Text>
 				</View>
 
 				<Text

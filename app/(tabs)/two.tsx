@@ -1,5 +1,6 @@
 import EditScreenInfo from '@/components/EditScreenInfo';
-import { Text, View } from '@/components/Themed';
+import { View } from '@/components/ui/View';
+import { Text } from '@/components/ui/Text';
 
 export default function TabTwoScreen() {
 	return (
