@@ -20,7 +20,7 @@ module.exports = [
   // Main configuration for the project
   eslint.configs.recommended,
   {
-    files: ['**/*.ts', '**/*.tsx', '**/*.d.ts'],
+    files: ['**/*.ts', '**/*.tsx'],
     plugins: {
       '@typescript-eslint': tseslint,
       'react-hooks': reactHooks,
@@ -36,6 +36,9 @@ module.exports = [
           jsx: true,
         },
       },
+      globals: {
+        console: 'readonly',
+      },
     },
     rules: {
       ...tseslint.rules,
@@ -44,7 +47,7 @@ module.exports = [
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
       '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
-      'no-console': ['warn', { allow: ['warn', 'error'] }],
+      'no-console': 'off', // Allow console usage in development
       'react-native/no-unused-styles': 'warn',
       'react-native/split-platform-components': 'warn',
       'react-native/no-inline-styles': 'warn',
@@ -52,5 +55,13 @@ module.exports = [
       'react-native/no-raw-text': ['warn', { skip: ['Text'] }],
     },
     ...prettier,
+  },
+  // Special configuration for .d.ts files
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+    },
   },
 ];
