@@ -1,3 +1,64 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+	.dark {
+		--primary-950: #010b13;
+		--background: #02141e; /* primary-900 */
+		--foreground: #ffffff;
+		--card: #072337; /* primary-500 */
+		--card-foreground: #ffffff;
+		--popover: #02141e; /* primary-900 */
+		--popover-foreground: #ffffff;
+		--primary: #072337; /* primary-500 */
+		--primary-foreground: #ffffff;
+		--secondary: #561010; /* secondary-800 */
+		--secondary-foreground: #ffffff;
+		--muted: #09283f; /* primary 800 */
+		--muted-foreground: #5c5c5c;
+		--accent: #0b1d2e; /* primary-700 */
+		--accent-foreground: #ffffff;
+		--accent-secondary: #a41515; /* secondary-500 */
+		--accent-secondary-foreground: #ffffff;
+		--destructive: #d51a1a; /* secondary-300 */
+		--destructive-foreground: #ffffff;
+		--border: #1f3e52; /* primary-400 */
+		--input: #1f3e52; /* primary-400 */
+		--ring: #1f3e52; /* primary-400 */
+		--primary-300: #80afca;
+		--primary-350: #65a5ff;
+		--radius: 0.5rem;
+		--secondary-200: #ff4747;
+		--secondary-900: #210202;
+	}
+	:root {
+		--primary-950: #010b13;
+		--background: #02141e; /* primary-900 */
+		--foreground: #ffffff;
+		--card: #072337; /* primary-500 */
+		--card-foreground: #ffffff;
+		--popover: #02141e; /* primary-900 */
+		--popover-foreground: #ffffff;
+		--primary: #072337; /* primary-500 */
+		--primary-foreground: #ffffff;
+		--secondary: #561010; /* secondary-800 */
+		--secondary-foreground: #ffffff;
+		--muted: #09283f; /* primary 800 */
+		--muted-foreground: #5c5c5c;
+		--accent: #0b1d2e; /* primary-700 */
+		--accent-foreground: #ffffff;
+		--accent-secondary: #a41515; /* secondary-500 */
+		--accent-secondary-foreground: #ffffff;
+		--destructive: #d51a1a; /* secondary-300 */
+		--destructive-foreground: #ffffff;
+		--border: #1f3e52; /* primary-400 */
+		--input: #1f3e52; /* primary-400 */
+		--ring: #1f3e52; /* primary-400 */
+		--primary-300: #80afca;
+		--primary-350: #65a5ff;
+		--radius: 0.5rem;
+		--secondary-200: #ff4747;
+		--secondary-900: #210202;
+	}
+}

@@ -1,34 +1,21 @@
 import React from 'react';
 import { ExternalLink } from './ExternalLink';
-import { View } from '@/components/ui/View';
 import { Text } from '@/components/ui/Text';
-import Colors from '@/constants/Colors';
+import { View } from 'react-native';
 
 export default function EditScreenInfo({ path }: { path: string }) {
 	return (
 		<View>
 			<View className="items-center mx-12">
-				<Text
-					className="text-base leading-6 text-center"
-					lightColor="rgba(0,0,0,0.8)"
-					darkColor="rgba(255,255,255,0.8)"
-				>
+				<Text className="text-base leading-6 text-center">
 					Open up the code for this screen:
 				</Text>
 
-				<View
-					className="rounded px-1 my-2"
-					darkColor="rgba(255,255,255,0.05)"
-					lightColor="rgba(0,0,0,0.05)"
-				>
+				<View className="rounded px-1 my-2">
 					<Text>{path}</Text>
 				</View>
 
-				<Text
-					className="text-base leading-6 text-center"
-					lightColor="rgba(0,0,0,0.8)"
-					darkColor="rgba(255,255,255,0.8)"
-				>
+				<Text className="text-base leading-6 text-center">
 					Change any of the text, save the file, and your app will
 					automatically update.
 				</Text>
@@ -39,10 +26,7 @@ export default function EditScreenInfo({ path }: { path: string }) {
 					className="py-4"
 					href="https://docs.expo.io/get-started/create-a-new-app/#opening-the-app-on-your-phonetablet"
 				>
-					<Text
-						className="text-center"
-						lightColor={Colors.light.tint}
-					>
+					<Text className="text-center">
 						Tap here if your app doesn't automatically update after
 						making changes
 					</Text>
