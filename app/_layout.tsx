@@ -25,8 +25,10 @@ export {
   ErrorBoundary,
 } from 'expo-router';
 
+const isLoggedIn = false;
+
 export const unstable_settings = {
-  initialRouteName: '(onboarding)',
+  initialRouteName: isLoggedIn ? '(main)' : '(onboarding)',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -65,9 +67,10 @@ export default function RootLayout() {
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style="light" />
       <Stack>
+        <Stack.Screen redirect name="index" /> {/* Workaround to go to onboarding */}
         <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
-        <Stack.Screen name="(main)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
+        <Stack.Screen name="(main)" options={{ headerShown: false }} />
       </Stack>
     </ThemeProvider>
   );
