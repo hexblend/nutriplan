@@ -5,7 +5,7 @@ export default function OnboardingLayout() {
     <Stack
       screenOptions={{
         headerStyle: {
-          backgroundColor: '#f4511e',
+          backgroundColor: 'transparent',
         },
         headerTintColor: '#fff',
         headerTitleStyle: {
@@ -13,7 +13,7 @@ export default function OnboardingLayout() {
         },
       }}
     >
-      <Stack.Screen name="index" />
+      <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="hello" />
     </Stack>
   );

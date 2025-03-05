@@ -3,8 +3,8 @@ import { View } from 'react-native';
 
 export default function TabTwoScreen() {
   return (
-    <View className="flex-1 items-center justify-center">
-      <Text className="text-xl font-bold">Tab Two</Text>
+    <View className="flex-1 p-4 bg-background">
+      <Text className="text-2xl font-bold mb-6 text-foreground">Profile</Text>
     </View>
   );
 }

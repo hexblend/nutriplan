@@ -17,6 +17,18 @@ module.exports = [
       },
     },
   },
+  // Configuration for Node.js config files
+  {
+    files: ['*.config.js'],
+    languageOptions: {
+      sourceType: 'commonjs',
+      globals: {
+        require: 'readonly',
+        module: 'readonly',
+        __dirname: 'readonly',
+      },
+    },
+  },
   // Main configuration for the project
   eslint.configs.recommended,
   {
