@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
+import { colors } from '@/lib/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Link, useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -80,7 +81,29 @@ export default function OnboardingMainScreen() {
             popularCountries={['RO', 'US', 'GB']}
             allowZeroAfterCallingCode={false}
             defaultCountry="RO"
-            language="ro"
+            language="en"
+            phoneInputStyles={{
+              container: {
+                backgroundColor: colors.primary[500],
+                borderColor: colors.primary[400],
+              },
+              flagContainer: {
+                backgroundColor: colors.primary[700],
+              },
+            }}
+            modalStyles={{
+              modal: {
+                backgroundColor: colors.primary[900],
+              },
+              searchInput: {
+                borderColor: colors.primary[400],
+                backgroundColor: colors.primary[500],
+              },
+              countryButton: {
+                borderColor: colors.primary[400],
+                backgroundColor: colors.primary[500],
+              },
+            }}
           />
         )}
       />
