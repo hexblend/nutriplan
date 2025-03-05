@@ -9,6 +9,7 @@ import '../assets/styles/global.css';
 import { NAV_THEME } from '@/lib/constants';
 import React from 'react';
 import { useColorScheme } from '@/components/ui/useColorScheme';
+import { StatusBar } from 'expo-status-bar';
 
 const LIGHT_THEME: Theme = {
   ...DefaultTheme,
@@ -63,6 +64,7 @@ export default function RootLayout() {
 
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
+      <StatusBar style="light" />
       <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
