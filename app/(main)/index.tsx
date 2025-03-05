@@ -6,6 +6,7 @@ import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import * as z from 'zod';
 import { ControlledInput } from '@/components/ui/form/ControlledInput';
+import { Link } from 'expo-router';
 
 const formSchema = z.object({
   email: z.string().email({ message: 'Please enter a valid email address' }),
@@ -42,9 +43,16 @@ export default function TabOneScreen() {
         autoCapitalize="none"
         error={errors.email?.message}
       />
+
       <Button className="mt-6" onPress={handleSubmit(onSubmit)} variant="default">
         <Text>Submit</Text>
       </Button>
+
+      <Link href="/(onboarding)" asChild className="mt-8">
+        <Button>
+          <Text>Go to onboarding</Text>
+        </Button>
+      </Link>
     </View>
   );
 }
