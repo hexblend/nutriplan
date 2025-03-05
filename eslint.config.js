@@ -6,17 +6,6 @@ const prettier = require('eslint-config-prettier');
 const reactNative = require('eslint-plugin-react-native');
 
 module.exports = [
-  // Configuration for the config file itself
-  {
-    files: ['eslint.config.js'],
-    languageOptions: {
-      sourceType: 'commonjs',
-      globals: {
-        require: 'readonly',
-        module: 'readonly',
-      },
-    },
-  },
   // Configuration for Node.js config files
   {
     files: ['*.config.js'],
@@ -58,7 +47,10 @@ module.exports = [
       ...reactNative.rules,
       'react-hooks/rules-of-hooks': 'error',
       'react-hooks/exhaustive-deps': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': [
+        'warn',
+        { argsIgnorePattern: '^_' },
+      ],
       'no-console': 'off', // Allow console usage in development
       'react-native/no-unused-styles': 'warn',
       'react-native/split-platform-components': 'warn',

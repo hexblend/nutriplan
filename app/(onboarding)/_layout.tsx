@@ -14,7 +14,7 @@ export default function OnboardingLayout() {
       }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="hello" />
+      <Stack.Screen name="otp" />
     </Stack>
   );
 }
