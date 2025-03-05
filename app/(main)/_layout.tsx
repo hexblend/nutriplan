@@ -13,7 +13,7 @@ function TabBarIcon(props: {
   return <FontAwesome size={20} className="mb-0.5" {...props} />;
 }
 
-export default function TabLayout() {
+export default function MainLayout() {
   return (
     <Tabs
       screenOptions={{
