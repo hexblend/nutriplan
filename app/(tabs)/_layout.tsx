@@ -10,7 +10,7 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>['name'];
   color: string;
 }) {
-  return <FontAwesome size={28} className="-mb-1" {...props} />;
+  return <FontAwesome size={20} className="mb-0.5" {...props} />;
 }
 
 export default function TabLayout() {
@@ -21,14 +21,20 @@ export default function TabLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
-        headerBackground: () => <View style={{ backgroundColor: 'transparent', height: 100 }} />,
+        headerBackground: () => <View className="bg-transparent h-[100px]" />,
+        tabBarBackground: () => (
+          <View className="bg-transparent h-[100px] border-t border-gray-700" />
+        ),
+        tabBarStyle: {
+          paddingTop: 2,
+        },
       }}
     >
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Tab One',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Your clients',
+          tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -51,8 +57,8 @@ export default function TabLayout() {
       <Tabs.Screen
         name="two"
         options={{
-          title: 'Tab Two',
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          title: 'Profile',
+          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
         }}
       />
     </Tabs>
