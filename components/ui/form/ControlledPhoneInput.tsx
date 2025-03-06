@@ -53,6 +53,10 @@ export default function ControlledPhoneInput<T extends FieldValues>({
             defaultCountry={appLanguage === 'en' ? 'US' : 'RO'}
             language={appLanguage as ILanguage}
             phoneInputStyles={{
+              input: {
+                fontFamily: 'Silka',
+                fontSize: 15,
+              },
               container: {
                 backgroundColor: colors.primary[500],
                 borderColor: colors.primary[400],
@@ -60,6 +64,10 @@ export default function ControlledPhoneInput<T extends FieldValues>({
               flagContainer: {
                 backgroundColor: colors.primary[900],
                 paddingHorizontal: 12,
+              },
+              callingCode: {
+                fontFamily: 'Silka',
+                fontSize: 16,
               },
             }}
             modalStyles={{
@@ -69,10 +77,20 @@ export default function ControlledPhoneInput<T extends FieldValues>({
               searchInput: {
                 borderColor: colors.primary[400],
                 backgroundColor: colors.primary[500],
+                fontFamily: 'Silka',
+                fontSize: 15,
+              },
+              sectionTitle: {
+                fontFamily: 'Silka',
+                color: '#aaa',
               },
               countryButton: {
-                borderColor: colors.primary[400],
-                backgroundColor: colors.primary[500],
+                borderColor: colors.primary[700],
+                backgroundColor: colors.primary[700],
+              },
+              countryName: {
+                fontSize: 15,
+                fontFamily: 'Silka',
               },
             }}
           />
