@@ -2,7 +2,7 @@ import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Link, useRouter } from 'expo-router';
+import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { Alert, View } from 'react-native';
@@ -115,11 +115,23 @@ export default function OnboardingMainScreen() {
       >
         <Text>Submit</Text>
       </Button>
-      <Link asChild href="/(onboarding)/otp">
-        <Button variant="default">
-          <Text>OTP</Text>
-        </Button>
-      </Link>
+      {/* <Link asChild href="/(onboarding)/otp"> */}
+      <Button variant="secondary" size="full" model="classic" className="mt-12">
+        <Text>OTP</Text>
+      </Button>
+
+      <Button variant="ghost" className="mt-4">
+        <Text>OTP</Text>
+      </Button>
+
+      <Button variant="tertiary" className="mt-4">
+        <Text>OTP</Text>
+      </Button>
+
+      <Button variant="success" className="mt-4">
+        <Text>OTP</Text>
+      </Button>
+      {/* </Link> */}
     </View>
   );
 }
