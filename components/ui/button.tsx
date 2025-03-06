@@ -55,7 +55,7 @@ const buttonTextVariants = cva('text-sm text-foreground', {
     size: {
       default: 'text-base',
       sm: 'text-sm',
-      full: 'text-base',
+      full: 'text-lg font-bold tracking-wider',
       lg: 'text-lg',
     },
   },

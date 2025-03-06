@@ -4,5 +4,5 @@ export const commonEN = {
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
-  submit: 'Trimite',
+  submit: 'TrimitE',
 };

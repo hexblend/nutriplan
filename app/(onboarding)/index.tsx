@@ -80,7 +80,7 @@ export default function OnboardingMainScreen() {
             className="mb-6"
           />
           <Button onPress={handleSubmit(onSubmit)} variant="default">
-            <Text>{t.t('common.submit')}</Text>
+            <Text className="uppercase">{t.t('common.submit')}</Text>
           </Button>
         </PageFooter>
       }
