@@ -1,12 +1,16 @@
-import React from 'react';
-import { View, Text } from 'react-native';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { cn } from '@/lib/utils';
+import React from 'react';
+import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import { View } from 'react-native';
+import { Error } from '../error';
 import { Input } from '../input';
 import { Label } from '../label';
 
 interface ControlledInputProps<T extends FieldValues>
-  extends Omit<React.ComponentPropsWithRef<typeof Input>, 'value' | 'onChangeText'> {
+  extends Omit<
+    React.ComponentPropsWithRef<typeof Input>,
+    'value' | 'onChangeText'
+  > {
   control: Control<T>;
   name: Path<T>;
   label?: string;
@@ -24,7 +28,7 @@ export function ControlledInput<T extends FieldValues>({
 }: ControlledInputProps<T>) {
   return (
     <View className="w-full space-y-2">
-      {label && <Label className="mb-2">{label}</Label>}
+      {label && <Label>{label}</Label>}
       <Controller
         control={control}
         name={name}
@@ -38,7 +42,7 @@ export function ControlledInput<T extends FieldValues>({
           />
         )}
       />
-      {error && <Text className="text-sm text-destructive">{error}</Text>}
+      {error && <Error>{error}</Error>}
     </View>
   );
 }
