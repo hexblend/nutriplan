@@ -1,4 +1,5 @@
 import { colors } from '@/lib/constants';
+import * as Haptics from 'expo-haptics';
 import { Dispatch, SetStateAction } from 'react';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { View } from 'react-native';
@@ -36,9 +37,13 @@ export default function ControlledPhoneInput<T extends FieldValues>({
             value={value}
             onChangePhoneNumber={onChange}
             selectedCountry={selectedCountry}
-            onChangeSelectedCountry={(country) => setSelectedCountry(country)}
+            customMask={['### ### #### ####', '##### ####']}
+            onChangeSelectedCountry={(country) => {
+              Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+              setSelectedCountry(country);
+            }}
             theme="dark"
-            modalHeight="80%"
+            modalHeight="60%"
             popularCountries={['RO', 'US', 'GB']}
             allowZeroAfterCallingCode={false}
             defaultCountry="RO"
@@ -49,7 +54,8 @@ export default function ControlledPhoneInput<T extends FieldValues>({
                 borderColor: colors.primary[400],
               },
               flagContainer: {
-                backgroundColor: colors.primary[700],
+                backgroundColor: colors.primary[900],
+                paddingHorizontal: 12,
               },
             }}
             modalStyles={{

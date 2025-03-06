@@ -3,8 +3,9 @@ import { TextClassContext } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 import type { Feather } from '@expo/vector-icons';
 import { cva, type VariantProps } from 'class-variance-authority';
+import * as Haptics from 'expo-haptics';
 import React, { useRef } from 'react';
-import { Animated, Easing, Pressable, Vibration, View } from 'react-native';
+import { Animated, Easing, Pressable, View } from 'react-native';
 
 const buttonVariants = cva(
   'group flex items-center justify-center rounded-md',
@@ -116,7 +117,7 @@ const Button = React.forwardRef<
     const scale = useRef(new Animated.Value(1)).current;
 
     const handlePressIn = () => {
-      Vibration.vibrate(50);
+      Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
       Animated.parallel([
         Animated.timing(translateY, {
           toValue: 4,

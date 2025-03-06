@@ -76,7 +76,7 @@ export default function OnboardingMainScreen() {
             setSelectedCountry={setSelectedCountry}
             control={control}
             name="phone"
-            className="mb-4"
+            className="mb-6"
           />
           <Button onPress={handleSubmit(onSubmit)} variant="default">
             <Text>Submit</Text>

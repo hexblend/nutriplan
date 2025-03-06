@@ -13,10 +13,10 @@ export default function PageFooter({ className, children }: PageFooterProps) {
   return (
     <View
       className={cn(
-        'rounded-t-lg border-t border-transparent px-4 pt-4',
+        'mx-0.5 rounded-t-2xl border-t border-transparent px-4 pt-4',
         className
       )}
-      style={{ paddingBottom: insets.bottom + 8 }}
+      style={{ paddingBottom: insets.bottom + 10 }}
     >
       {children}
     </View>
