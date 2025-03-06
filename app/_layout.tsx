@@ -71,8 +71,7 @@ export default function RootLayout() {
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style="light" />
       <Stack>
-        <Stack.Screen redirect name="index" />{' '}
-        {/* Workaround to go to onboarding */}
+        <Stack.Screen redirect name="index" />
         <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         <Stack.Screen name="(main)" options={{ headerShown: false }} />

@@ -71,7 +71,9 @@ export default function OnboardingMainScreen() {
     <PageWrapper
       footer={
         <PageFooter>
-          <Text className="text-black">Hello</Text>
+          <Button onPress={handleSubmit(onSubmit)} variant="default">
+            <Text>Submit</Text>
+          </Button>
         </PageFooter>
       }
     >
@@ -116,30 +118,16 @@ export default function OnboardingMainScreen() {
         )}
       />
 
-      <Button
-        className="mt-6"
-        onPress={handleSubmit(onSubmit)}
-        variant="default"
-      >
-        <Text>Submit</Text>
-      </Button>
-      {/* <Link asChild href="/(onboarding)/otp"> */}
-      <Button variant="secondary" size="full" model="classic" className="mt-12">
-        <Text>OTP</Text>
-      </Button>
-
-      <Button variant="ghost" className="mt-4">
-        <Text>OTP</Text>
-      </Button>
-
-      <Button variant="tertiary" className="mt-4">
-        <Text>OTP</Text>
-      </Button>
-
-      <Button variant="success" className="mt-4">
-        <Text>OTP</Text>
-      </Button>
-      {/* </Link> */}
+      {/* <Link asChild href="/(onboarding)/otp">
+        <Button
+          variant="secondary"
+          size="full"
+          model="classic"
+          className="mt-12"
+        >
+          <Text>OTP</Text>
+        </Button>
+      </Link> */}
     </PageWrapper>
   );
 }

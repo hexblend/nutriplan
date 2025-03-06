@@ -4,7 +4,7 @@ import { cn } from '@/lib/utils';
 import type { Feather } from '@expo/vector-icons';
 import { cva, type VariantProps } from 'class-variance-authority';
 import React, { useRef } from 'react';
-import { Animated, Easing, Pressable, View } from 'react-native';
+import { Animated, Easing, Pressable, Vibration, View } from 'react-native';
 
 const buttonVariants = cva(
   'group flex items-center justify-center rounded-md',
@@ -40,7 +40,7 @@ const buttonVariants = cva(
   }
 );
 
-const buttonTextVariants = cva('text-sm font-bold text-foreground', {
+const buttonTextVariants = cva('text-sm text-foreground', {
   variants: {
     variant: {
       default: 'text-white',
@@ -116,6 +116,7 @@ const Button = React.forwardRef<
     const scale = useRef(new Animated.Value(1)).current;
 
     const handlePressIn = () => {
+      Vibration.vibrate(50);
       Animated.parallel([
         Animated.timing(translateY, {
           toValue: 4,
