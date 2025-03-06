@@ -1,9 +1,13 @@
 import { colors } from '@/lib/constants';
+import { t } from '@/lib/translations';
 import * as Haptics from 'expo-haptics';
 import { Dispatch, SetStateAction } from 'react';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
 import { View } from 'react-native';
-import PhoneInput, { ICountry } from 'react-native-international-phone-number';
+import PhoneInput, {
+  ICountry,
+  ILanguage,
+} from 'react-native-international-phone-number';
 import { Error } from '../error';
 import { Label } from '../label';
 
@@ -46,8 +50,8 @@ export default function ControlledPhoneInput<T extends FieldValues>({
             modalHeight="60%"
             popularCountries={['RO', 'US', 'GB']}
             allowZeroAfterCallingCode={false}
-            defaultCountry="RO"
-            language="en"
+            defaultCountry={t.locale === 'en' ? 'US' : 'RO'}
+            language={t.locale as ILanguage}
             phoneInputStyles={{
               container: {
                 backgroundColor: colors.primary[500],

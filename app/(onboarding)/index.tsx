@@ -3,6 +3,7 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import ControlledPhoneInput from '@/components/ui/form/ControlledPhoneInput';
 import { Text } from '@/components/ui/text';
+import { t } from '@/lib/translations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -84,7 +85,7 @@ export default function OnboardingMainScreen() {
         </PageFooter>
       }
     >
-      <Text>Hello</Text>
+      <Text>{t.t('welcome')}</Text>
     </PageWrapper>
   );
 }
