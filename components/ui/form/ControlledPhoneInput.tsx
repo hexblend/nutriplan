@@ -1,5 +1,5 @@
+import { appLanguage } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
-import { t } from '@/lib/translations';
 import * as Haptics from 'expo-haptics';
 import { Dispatch, SetStateAction } from 'react';
 import { Control, Controller, FieldValues, Path } from 'react-hook-form';
@@ -50,8 +50,8 @@ export default function ControlledPhoneInput<T extends FieldValues>({
             modalHeight="60%"
             popularCountries={['RO', 'US', 'GB']}
             allowZeroAfterCallingCode={false}
-            defaultCountry={t.locale === 'en' ? 'US' : 'RO'}
-            language={t.locale as ILanguage}
+            defaultCountry={appLanguage === 'en' ? 'US' : 'RO'}
+            language={appLanguage as ILanguage}
             phoneInputStyles={{
               container: {
                 backgroundColor: colors.primary[500],

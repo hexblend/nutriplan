@@ -3,7 +3,7 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import ControlledPhoneInput from '@/components/ui/form/ControlledPhoneInput';
 import { Text } from '@/components/ui/text';
-import { t } from '@/lib/translations';
+import { t } from '@/i18n/translations';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
@@ -80,12 +80,12 @@ export default function OnboardingMainScreen() {
             className="mb-6"
           />
           <Button onPress={handleSubmit(onSubmit)} variant="default">
-            <Text>Submit</Text>
+            <Text>{t.t('common.submit')}</Text>
           </Button>
         </PageFooter>
       }
     >
-      <Text>{t.t('welcome')}</Text>
+      <Text>{t.t('common.welcome')}</Text>
     </PageWrapper>
   );
 }
