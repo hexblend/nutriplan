@@ -13,8 +13,8 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-blue-500',
         secondary: 'bg-white',
+        tertiary: 'bg-accent',
         ghost: 'bg-transparent',
-        tertiary: 'bg-accent', // Changed from accent
         success: 'bg-green-500',
         warning: 'bg-amber-600',
         danger: 'bg-destructive',
@@ -29,7 +29,7 @@ const buttonVariants = cva(
         default: 'h-12 px-5 py-3',
         sm: 'h-9 px-3 py-2',
         lg: 'h-14 px-8 py-4',
-        full: 'w-full h-12 py-3 px-5 w-full',
+        full: 'h-12',
       },
     },
     defaultVariants: {
@@ -45,8 +45,8 @@ const buttonTextVariants = cva('text-sm font-bold text-foreground', {
     variant: {
       default: 'text-white',
       secondary: 'text-blue-500',
+      tertiary: 'text-accent-foreground',
       ghost: 'text-blue-500',
-      tertiary: 'text-accent-foreground', // Changed from accent
       success: 'text-white',
       warning: 'text-white',
       danger: 'text-destructive-foreground',
@@ -104,7 +104,7 @@ const Button = React.forwardRef<
       className,
       variant,
       model,
-      size,
+      size = 'full',
       icon,
       iconPosition = 'left',
       children,
@@ -150,7 +150,7 @@ const Button = React.forwardRef<
     };
 
     return (
-      <View className="relative">
+      <View className={cn('relative', size === 'full' && 'w-full')}>
         <View
           className={cn(
             buttonBottomVariants({ variant, model }),

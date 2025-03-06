@@ -1,3 +1,5 @@
+import PageFooter from '@/components/layout/PageFooter';
+import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
@@ -5,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { Controller, useForm } from 'react-hook-form';
-import { Alert, View } from 'react-native';
+import { Alert } from 'react-native';
 import PhoneInput, {
   ICountry,
   isValidPhoneNumber,
@@ -66,7 +68,13 @@ export default function OnboardingMainScreen() {
   };
 
   return (
-    <View className="flex-1 items-center justify-center px-4">
+    <PageWrapper
+      footer={
+        <PageFooter>
+          <Text className="text-black">Hello</Text>
+        </PageFooter>
+      }
+    >
       <Controller
         name="phone"
         control={control}
@@ -132,6 +140,6 @@ export default function OnboardingMainScreen() {
         <Text>OTP</Text>
       </Button>
       {/* </Link> */}
-    </View>
+    </PageWrapper>
   );
 }
