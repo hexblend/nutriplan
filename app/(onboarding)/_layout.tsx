@@ -14,8 +14,8 @@ export default function OnboardingLayout() {
       }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
-      <Stack.Screen name="(no-account)" />
-      <Stack.Screen name="(account)" />
+      <Stack.Screen name="(no-account)" options={{ headerShown: false }} />
+      <Stack.Screen name="(account)" options={{ headerShown: false }} />
     </Stack>
   );
 }

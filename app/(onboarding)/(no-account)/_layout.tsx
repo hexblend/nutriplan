@@ -21,7 +21,7 @@ export default function OnboardingNoAccountLayout() {
       <Stack.Screen name="phone" />
       <Stack.Screen name="otp" />
       <Stack.Screen name="password" />
-      <Stack.Screen name="pshysical" />
+      <Stack.Screen name="physical" />
       <Stack.Screen name="age" />
       <Stack.Screen name="restrictions" />
       <Stack.Screen name="challenge" />

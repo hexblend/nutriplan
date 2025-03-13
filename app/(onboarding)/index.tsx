@@ -6,33 +6,29 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { useRouter } from 'expo-router';
+import { Link } from 'expo-router';
 import React from 'react';
 import { ImageBackground, View, useWindowDimensions } from 'react-native';
 
 export default function OnboardingMainScreen() {
-  const router = useRouter();
   const { height } = useWindowDimensions();
 
   return (
     <PageWrapper
       footer={
         <PageFooter className="bg-transparent">
-          <Button
-            onPress={() => router.push('/(onboarding)/(no-account)')}
-            variant="default"
-          >
-            <Text className="uppercase">{t.t('common.getStarted')}</Text>
-          </Button>
-          <Button
-            onPress={() => router.push('/(onboarding)/(account)')}
-            variant="secondary"
-            className="mt-4"
-          >
-            <Text className="uppercase">
-              {t.t('common.alreadyHaveAccount')}
-            </Text>
-          </Button>
+          <Link href="/(onboarding)/(no-account)" asChild>
+            <Button variant="default">
+              <Text className="uppercase">{t.t('common.getStarted')}</Text>
+            </Button>
+          </Link>
+          <Link href="/(onboarding)/(account)" asChild>
+            <Button variant="secondary" className="mt-4">
+              <Text className="uppercase">
+                {t.t('common.alreadyHaveAccount')}
+              </Text>
+            </Button>
+          </Link>
         </PageFooter>
       }
       className="px-0"
