@@ -23,7 +23,7 @@ export default function QuickQuestionsScreen() {
       toValue: 1,
       useNativeDriver: true,
       tension: 50,
-      delay: 600,
+      delay: 1000,
       friction: 7,
     }).start();
 
@@ -32,7 +32,7 @@ export default function QuickQuestionsScreen() {
       Animated.timing(logoBumpAnim, {
         toValue: 1.3,
         duration: 250,
-        delay: 250,
+        delay: 500,
         useNativeDriver: true,
       }),
       Animated.timing(logoBumpAnim, {
@@ -44,7 +44,7 @@ export default function QuickQuestionsScreen() {
 
     const timer = setTimeout(() => {
       setReady(true);
-    }, 1200);
+    }, 1500);
     return () => clearTimeout(timer);
   }, []);
 
@@ -80,7 +80,7 @@ export default function QuickQuestionsScreen() {
           }}
         >
           <Text className="rounded-md border border-border p-4">
-            Just 7 quick questions before we start your first meal plan!
+            {t.t('auth.quickQuestions')}
           </Text>
           <SpeechCaret width={30} height={30} style={{ marginTop: -9 }} />
         </Animated.View>

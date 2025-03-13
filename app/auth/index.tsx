@@ -19,13 +19,13 @@ export default function OnboardingMainScreen() {
         <PageFooter className="bg-transparent">
           <Link href="/auth/(no-account)/questions" asChild>
             <Button variant="default">
-              <Text className="uppercase">{t.t('common.getStarted')}</Text>
+              <Text className="uppercase">{t.t('auth.getStarted')}</Text>
             </Button>
           </Link>
           <Link href="/auth/(account)/login" asChild>
             <Button variant="secondary" className="mt-4">
               <Text className="uppercase">
-                {t.t('common.alreadyHaveAccount')}
+                {t.t('auth.alreadyHaveAccount')}
               </Text>
             </Button>
           </Link>
@@ -42,7 +42,7 @@ export default function OnboardingMainScreen() {
             <Logo width={100} height={100} />
           </View>
           <LogoText width={264} height={30} />
-          <Text className="mt-3 font-light">{t.t('common.motto')}</Text>
+          <Text className="mt-3 font-light">{t.t('auth.motto')}</Text>
         </View>
       </ImageBackground>
     </PageWrapper>
