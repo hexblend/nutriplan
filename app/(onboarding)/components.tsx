@@ -1,4 +1,3 @@
-import backgroundImage from '@/assets/images/bgOverlay.jpg';
 import LogoText from '@/assets/images/svg/logo-text.svg';
 import Logo from '@/assets/images/svg/logo.svg';
 import PageFooter from '@/components/layout/PageFooter';
@@ -11,7 +10,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Alert, ImageBackground } from 'react-native';
+import { Alert } from 'react-native';
 import {
   ICountry,
   isValidPhoneNumber,
@@ -89,13 +88,9 @@ export default function OnboardingMainScreen() {
         </PageFooter>
       }
     >
-      <ImageBackground
-        source={backgroundImage}
-        style={{ width: '100%', height: 1000 }}
-      >
-        <Logo width={50} height={50} />
-        <LogoText width={264} height={30} />
-      </ImageBackground>
+      <Text>{t.t('common.welcome')}</Text>
+      <Logo width={50} height={50} />
+      <LogoText width={264} height={30} />
     </PageWrapper>
   );
 }

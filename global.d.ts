@@ -10,3 +10,8 @@ declare global {
     debug(...data: any[]): void;
   }
 }
+
+declare module '*.jpg' {
+  const content: any;
+  export default content;
+}
