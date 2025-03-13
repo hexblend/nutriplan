@@ -1,3 +1,4 @@
+import Logo from '@/assets/images/logo.svg';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
@@ -86,6 +87,7 @@ export default function OnboardingMainScreen() {
       }
     >
       <Text>{t.t('common.welcome')}</Text>
+      <Logo width={134} height={134} />
     </PageWrapper>
   );
 }
