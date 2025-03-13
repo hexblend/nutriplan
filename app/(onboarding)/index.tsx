@@ -39,9 +39,9 @@ export default function OnboardingMainScreen() {
     >
       <ImageBackground
         source={backgroundImage}
-        style={{ width: '100%', height }}
+        style={{ width: '100%', height: height - 250 }}
       >
-        <View className="-mt-64 flex-1 items-center justify-center">
+        <View className="-mt-8 flex-1 items-center justify-center">
           <View className="mb-8">
             <Logo width={120} height={120} />
           </View>
