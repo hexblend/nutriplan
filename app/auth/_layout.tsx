@@ -28,6 +28,11 @@ export default function OnboardingLayout() {
       />
 
       <Stack.Screen
+        name="(no-account)/progress"
+        options={{ headerShown: false }}
+      />
+
+      <Stack.Screen
         name="(no-account)/name"
         options={{
           headerTitle: '',

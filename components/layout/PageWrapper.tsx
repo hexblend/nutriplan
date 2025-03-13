@@ -6,19 +6,24 @@ interface PageWrapperProps {
   className?: string;
   children?: JSX.Element | JSX.Element[];
   footer?: JSX.Element;
+  header?: JSX.Element;
 }
 
 export default function PageWrapper({
   className,
   children,
   footer,
+  header,
 }: PageWrapperProps) {
   return (
-    <View className="flex-1">
-      <SafeAreaView className="flex-1">
-        <ScrollView className={cn('px-4', className)}>{children}</ScrollView>
-      </SafeAreaView>
-      {footer && footer}
-    </View>
+    <>
+      {header && header}
+      <View className="flex-1">
+        <SafeAreaView className="flex-1">
+          <ScrollView className={cn('px-4', className)}>{children}</ScrollView>
+        </SafeAreaView>
+        {footer && footer}
+      </View>
+    </>
   );
 }

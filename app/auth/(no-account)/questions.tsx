@@ -52,7 +52,7 @@ export default function QuickQuestionsScreen() {
     <PageWrapper
       footer={
         <PageFooter>
-          <Link href="/auth/name" asChild>
+          <Link href="/auth/progress" asChild>
             <Button variant="default" className="mt-4" disabled={!ready}>
               <Text
                 className={cn(
