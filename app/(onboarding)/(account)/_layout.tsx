@@ -1,18 +1,9 @@
 import { Stack } from 'expo-router';
+import { defaultStackProps } from '../_layout';
 
 export default function OnboardingAccountLayout() {
   return (
-    <Stack
-      screenOptions={{
-        headerStyle: {
-          backgroundColor: 'transparent',
-        },
-        headerTintColor: '#fff',
-        headerTitleStyle: {
-          fontWeight: 'bold',
-        },
-      }}
-    >
+    <Stack {...(defaultStackProps as any)}>
       <Stack.Screen name="index" />
       <Stack.Screen name="forgot-password" />
       <Stack.Screen name="otp" />
