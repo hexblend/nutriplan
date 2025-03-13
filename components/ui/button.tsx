@@ -125,12 +125,6 @@ const Button = React.forwardRef<
           easing: Easing.out(Easing.ease),
           useNativeDriver: true,
         }),
-        Animated.timing(scale, {
-          toValue: 0.98,
-          duration: 100,
-          easing: Easing.out(Easing.ease),
-          useNativeDriver: true,
-        }),
       ]).start();
     };
 
@@ -138,12 +132,6 @@ const Button = React.forwardRef<
       Animated.parallel([
         Animated.timing(translateY, {
           toValue: 0,
-          duration: 150,
-          easing: Easing.out(Easing.back(1.5)),
-          useNativeDriver: true,
-        }),
-        Animated.timing(scale, {
-          toValue: 1,
           duration: 150,
           easing: Easing.out(Easing.back(1.5)),
           useNativeDriver: true,

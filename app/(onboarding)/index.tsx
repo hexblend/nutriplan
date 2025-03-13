@@ -38,8 +38,8 @@ export default function OnboardingMainScreen() {
         style={{ width: '100%', height: height - 250 }}
       >
         <View className="-mt-8 flex-1 items-center justify-center">
-          <View className="mb-8">
-            <Logo width={120} height={120} />
+          <View className="mb-10">
+            <Logo width={100} height={100} />
           </View>
           <LogoText width={264} height={30} />
           <Text className="mt-3 font-light">{t.t('common.motto')}</Text>
