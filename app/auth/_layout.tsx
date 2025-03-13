@@ -20,7 +20,11 @@ export default function OnboardingLayout() {
 
       <Stack.Screen
         name="(no-account)/questions"
-        options={{ headerTitle: '', headerBackTitle: t.t('common.back') }}
+        options={{
+          headerTitle: '',
+          headerBackTitle: t.t('common.back'),
+          headerShadowVisible: false,
+        }}
       />
       <Stack.Screen name="(no-account)/name" />
       <Stack.Screen name="(no-account)/goal" />
