@@ -1,5 +1,6 @@
 export const commonEN = {
   welcome: 'Welcome',
+  back: 'Back',
   continue: 'Continue',
   motto: 'Change your life. Forever.',
   getStarted: 'Get Started',
@@ -7,6 +8,7 @@ export const commonEN = {
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
+  back: 'Înapoi',
   continue: 'Continuă',
   motto: 'Schimba-ți viața. Pentru totdeauna.',
   getStarted: 'Începe',

@@ -67,7 +67,7 @@ export default function OnboardingMainScreen() {
     // }
     // console.log('SUCCESS', userData);
     setLoading(false);
-    router.push('/(onboarding)/otp');
+    router.push('/auth/(common)/otp');
   };
 
   return (

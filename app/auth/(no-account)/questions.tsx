@@ -36,7 +36,7 @@ export default function QuickQuestionsScreen() {
         useNativeDriver: true,
       }),
       Animated.timing(logoBumpAnim, {
-        toValue: 1, // Scale back down to 1x
+        toValue: 1,
         duration: 250,
         useNativeDriver: true,
       }),
@@ -52,7 +52,7 @@ export default function QuickQuestionsScreen() {
     <PageWrapper
       footer={
         <PageFooter>
-          <Link href="/(onboarding)/(no-account)/name" asChild>
+          <Link href="/auth/name" asChild>
             <Button variant="default" className="mt-4" disabled={!ready}>
               <Text
                 className={cn(

@@ -32,7 +32,7 @@ export {
 const isLoggedIn = false;
 
 export const unstable_settings = {
-  initialRouteName: isLoggedIn ? '(main)' : '(onboarding)',
+  initialRouteName: isLoggedIn ? '(main)' : 'auth',
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
@@ -72,7 +72,7 @@ export default function RootLayout() {
       <StatusBar style="light" />
       <Stack>
         <Stack.Screen redirect name="index" />
-        <Stack.Screen name="(onboarding)" options={{ headerShown: false }} />
+        <Stack.Screen name="auth" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
         <Stack.Screen name="(main)" options={{ headerShown: false }} />
       </Stack>
