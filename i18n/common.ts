@@ -1,8 +1,12 @@
 export const commonEN = {
   welcome: 'Welcome',
-  submit: 'Submit',
+  motto: 'Change your life. Forever.',
+  getStarted: 'Get Started',
+  alreadyHaveAccount: 'I already have an account',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
-  submit: 'TrimitE',
+  motto: 'Schimba-ți viața. Pentru totdeauna.',
+  getStarted: 'Începe',
+  alreadyHaveAccount: 'Am deja un cont',
 };

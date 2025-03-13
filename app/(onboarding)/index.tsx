@@ -22,14 +22,16 @@ export default function OnboardingMainScreen() {
             onPress={() => router.push('/(onboarding)/otp')}
             variant="default"
           >
-            <Text className="uppercase">{t.t('common.submit')}</Text>
+            <Text className="uppercase">{t.t('common.getStarted')}</Text>
           </Button>
           <Button
             onPress={() => router.push('/(onboarding)/otp')}
             variant="secondary"
             className="mt-4"
           >
-            <Text className="uppercase">I already have an account</Text>
+            <Text className="uppercase">
+              {t.t('common.alreadyHaveAccount')}
+            </Text>
           </Button>
         </PageFooter>
       }
@@ -44,7 +46,7 @@ export default function OnboardingMainScreen() {
             <Logo width={120} height={120} />
           </View>
           <LogoText width={264} height={30} />
-          <Text className="mt-3 font-light">Change your life. Forever.</Text>
+          <Text className="mt-3 font-light">{t.t('common.motto')}</Text>
         </View>
       </ImageBackground>
     </PageWrapper>
