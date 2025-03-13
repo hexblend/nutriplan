@@ -15,7 +15,8 @@ const Text = React.forwardRef<TextRef, SlottableTextProps>(
         className={cn(
           'text-xl tracking-wide text-foreground web:select-text',
           textClass,
-          className
+          className,
+          props.disabled ? 'opacity-50' : ''
         )}
         style={{ fontFamily: 'Silka' }}
         ref={ref}

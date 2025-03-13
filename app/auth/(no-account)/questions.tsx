@@ -54,12 +54,7 @@ export default function QuickQuestionsScreen() {
         <PageFooter>
           <Link href="/auth/progress" asChild>
             <Button variant="default" className="mt-4" disabled={!ready}>
-              <Text
-                className={cn(
-                  'uppercase',
-                  ready ? 'text-white' : 'text-gray-500'
-                )}
-              >
+              <Text className={cn('uppercase')} disabled={!ready}>
                 {t.t('common.continue')}
               </Text>
             </Button>

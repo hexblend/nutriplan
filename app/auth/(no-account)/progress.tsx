@@ -34,7 +34,7 @@ export const screenFlow = {
   age: { next: 'restrictions', progress: 70 },
   restrictions: { next: 'diseaze', progress: 80 },
   diseaze: { next: 'challenge', progress: 90 },
-  challenge: { next: 'login', progress: 100 },
+  challenge: { next: undefined, progress: 100 },
 } as const;
 type ScreenName = keyof typeof screenFlow;
 
@@ -61,7 +61,10 @@ export default function ProgressScreen() {
 
   const handleContinuePress = () => {
     setIsForward(true);
-    setCurrentScreen(screenFlow[currentScreen].next as ScreenName);
+    const nextScreen = screenFlow[currentScreen].next as ScreenName;
+    if (nextScreen) {
+      setCurrentScreen(screenFlow[currentScreen].next as ScreenName);
+    }
   };
 
   const handleBackPress = () => {
@@ -85,8 +88,17 @@ export default function ProgressScreen() {
       }
       footer={
         <PageFooter className="bg-transparent">
-          <Button variant="default" onPress={handleContinuePress}>
-            <Text className="uppercase">{t.t('common.continue')}</Text>
+          <Button
+            variant="default"
+            onPress={handleContinuePress}
+            disabled={!screenFlow[currentScreen].next}
+          >
+            <Text
+              className="uppercase"
+              disabled={!screenFlow[currentScreen].next}
+            >
+              {t.t('common.continue')}
+            </Text>
           </Button>
         </PageFooter>
       }
@@ -94,7 +106,13 @@ export default function ProgressScreen() {
       <Animated.View
         key={currentScreen}
         style={{ flex: 1, width: '100%' }}
-        entering={isForward ? SlideInRight : SlideInLeft}
+        entering={
+          currentScreen === 'name'
+            ? undefined
+            : isForward
+              ? SlideInRight
+              : SlideInLeft
+        }
         exiting={isForward ? SlideOutLeft : SlideOutRight}
         layout={Layout.springify()}
       >
