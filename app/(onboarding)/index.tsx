@@ -19,13 +19,13 @@ export default function OnboardingMainScreen() {
       footer={
         <PageFooter className="bg-transparent">
           <Button
-            onPress={() => router.push('/(onboarding)/otp')}
+            onPress={() => router.push('/(onboarding)/(no-account)')}
             variant="default"
           >
             <Text className="uppercase">{t.t('common.getStarted')}</Text>
           </Button>
           <Button
-            onPress={() => router.push('/(onboarding)/otp')}
+            onPress={() => router.push('/(onboarding)/(account)')}
             variant="secondary"
             className="mt-4"
           >

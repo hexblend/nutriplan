@@ -11,7 +11,7 @@ const formSchema = z.object({
 });
 type FormValues = z.infer<typeof formSchema>;
 
-export default function OnboardingTwoScreen() {
+export default function NoAccountOtpScreen() {
   const [error] = useState<string | null>(null);
 
   const { control } = useForm<FormValues>({
