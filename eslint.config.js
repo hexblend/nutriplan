@@ -39,6 +39,8 @@ module.exports = [
       },
       globals: {
         console: 'readonly',
+        setTimeout: 'readonly',
+        clearTimeout: 'readonly',
       },
     },
     rules: {

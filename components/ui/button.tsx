@@ -145,7 +145,8 @@ const Button = React.forwardRef<
           className={cn(
             buttonBottomVariants({ variant, model }),
             buttonVariants({ variant, model, size, className }),
-            'opacity-70'
+            'opacity-70',
+            props.disabled && 'hidden'
           )}
         />
         <TextClassContext.Provider
@@ -158,8 +159,8 @@ const Button = React.forwardRef<
           >
             <Pressable
               className={cn(
-                props.disabled && 'opacity-50',
-                buttonVariants({ variant, model, size, className })
+                buttonVariants({ variant, model, size, className }),
+                props.disabled && '!bg-card'
               )}
               ref={ref}
               role="button"
