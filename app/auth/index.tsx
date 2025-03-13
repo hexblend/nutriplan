@@ -17,12 +17,12 @@ export default function OnboardingMainScreen() {
     <PageWrapper
       footer={
         <PageFooter className="bg-transparent">
-          <Link href="/auth/(no-account)/questions" asChild>
+          <Link href="/auth/questions" asChild>
             <Button variant="default">
               <Text className="uppercase">{t.t('auth.getStarted')}</Text>
             </Button>
           </Link>
-          <Link href="/auth/(account)/login" asChild>
+          <Link href="/auth/login" asChild>
             <Button variant="secondary" className="mt-4">
               <Text className="uppercase">
                 {t.t('auth.alreadyHaveAccount')}

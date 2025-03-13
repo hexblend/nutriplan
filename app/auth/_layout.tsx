@@ -1,3 +1,4 @@
+import PageHeader from '@/components/layout/PageHeader';
 import { t } from '@/i18n/translations';
 import { Stack } from 'expo-router';
 
@@ -26,7 +27,11 @@ export default function OnboardingLayout() {
           headerShadowVisible: false,
         }}
       />
-      <Stack.Screen name="(no-account)/name" />
+
+      <Stack.Screen
+        name="(no-account)/name"
+        options={{ header: (props) => <PageHeader {...props} /> }}
+      />
       <Stack.Screen name="(no-account)/goal" />
       <Stack.Screen name="(no-account)/weight" />
       <Stack.Screen name="(no-account)/knowledge" />
