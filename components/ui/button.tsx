@@ -13,7 +13,7 @@ const buttonVariants = cva(
     variants: {
       variant: {
         default: 'bg-blue-500',
-        secondary: 'bg-white',
+        secondary: 'bg-background border border-border border-b-0',
         tertiary: 'bg-accent',
         ghost: 'bg-transparent',
         success: 'bg-green-500',
@@ -21,7 +21,7 @@ const buttonVariants = cva(
         danger: 'bg-destructive',
       },
       model: {
-        classic: 'rounded-md',
+        classic: 'rounded-lg',
         pill: 'rounded-full',
         square: 'rounded-none',
         minimal: 'rounded',
@@ -45,7 +45,7 @@ const buttonTextVariants = cva('text-sm text-foreground', {
   variants: {
     variant: {
       default: 'text-white',
-      secondary: 'text-blue-500',
+      secondary: 'text-gray-200',
       tertiary: 'text-accent-foreground',
       ghost: 'text-blue-500',
       success: 'text-white',
@@ -68,13 +68,13 @@ const buttonTextVariants = cva('text-sm text-foreground', {
 const buttonBottomVariants = cva('absolute left-0 right-0 -bottom-1 h-1', {
   variants: {
     variant: {
-      default: 'bg-blue-700',
-      secondary: 'bg-blue-500',
-      ghost: 'bg-transparent',
-      tertiary: 'bg-purple-700',
-      success: 'bg-green-700',
-      warning: 'bg-yellow-700',
-      danger: 'bg-red-700',
+      default: '',
+      secondary: '!bg-border',
+      ghost: '!bg-transparent',
+      tertiary: '!bg-purple-700',
+      success: '!bg-green-700',
+      warning: '!bg-yellow-700',
+      danger: '!bg-red-700',
     },
     model: {
       classic: 'rounded-md',
