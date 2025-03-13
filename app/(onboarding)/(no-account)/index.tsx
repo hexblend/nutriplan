@@ -13,20 +13,38 @@ import { Animated, View, useWindowDimensions } from 'react-native';
 export default function QuickQuestionsScreen() {
   const { height } = useWindowDimensions();
   const [ready, setReady] = useState(false);
+
   const scaleAnim = new Animated.Value(0);
+  const logoBumpAnim = new Animated.Value(1);
 
   useEffect(() => {
+    // Speech animation
     Animated.spring(scaleAnim, {
       toValue: 1,
       useNativeDriver: true,
       tension: 50,
-      delay: 400,
+      delay: 600,
       friction: 7,
     }).start();
 
+    // Logo bump
+    Animated.sequence([
+      Animated.timing(logoBumpAnim, {
+        toValue: 1.3,
+        duration: 250,
+        delay: 250,
+        useNativeDriver: true,
+      }),
+      Animated.timing(logoBumpAnim, {
+        toValue: 1, // Scale back down to 1x
+        duration: 250,
+        useNativeDriver: true,
+      }),
+    ]).start();
+
     const timer = setTimeout(() => {
       setReady(true);
-    }, 650);
+    }, 1200);
     return () => clearTimeout(timer);
   }, []);
 
@@ -67,7 +85,13 @@ export default function QuickQuestionsScreen() {
           <SpeechCaret width={30} height={30} style={{ marginTop: -9 }} />
         </Animated.View>
 
-        <Logo width={80} height={80} />
+        <Animated.View
+          style={{
+            transform: [{ scale: logoBumpAnim }],
+          }}
+        >
+          <Logo width={80} height={80} />
+        </Animated.View>
       </View>
     </PageWrapper>
   );
