@@ -1,5 +1,4 @@
-import PageHeader from '@/components/layout/PageHeader';
-import { t } from '@/i18n/translations';
+import { Progress } from '@/components/ui/progress';
 import { Stack } from 'expo-router';
 
 export const defaultStackProps = {
@@ -23,16 +22,28 @@ export default function OnboardingLayout() {
         name="(no-account)/questions"
         options={{
           headerTitle: '',
-          headerBackTitle: t.t('common.back'),
+          headerBackTitle: '‎',
           headerShadowVisible: false,
         }}
       />
 
       <Stack.Screen
         name="(no-account)/name"
-        options={{ header: (props) => <PageHeader {...props} /> }}
+        options={{
+          headerTitle: '',
+          headerBackTitle: '‎',
+          headerRight: () => <Progress value={4} className="mr-8" />,
+        }}
       />
-      <Stack.Screen name="(no-account)/goal" />
+      <Stack.Screen
+        name="(no-account)/goal"
+        options={{
+          headerTitle: '',
+          headerBackTitle: '‎',
+          headerRight: () => <Progress value={10} className="mr-8" />,
+          animation: 'none',
+        }}
+      />
       <Stack.Screen name="(no-account)/weight" />
       <Stack.Screen name="(no-account)/knowledge" />
       <Stack.Screen name="(no-account)/phone" />
