@@ -2,6 +2,7 @@ import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import QuestionHeader from '@/components/layout/QuestionHeader';
 import { Button } from '@/components/ui/button';
+import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
@@ -64,7 +65,17 @@ export default function GoalScreen() {
         }
       >
         <View className="mt-6">
-          <Text>hello</Text>
+          <ControlledSelect
+            control={control}
+            name="goal"
+            options={[
+              { label: 'Vegetables', value: 'vegetables' },
+              { label: 'Fruits', value: 'fruits' },
+              { label: 'Proteins', value: 'proteins' },
+            ]}
+            multiple={false}
+            error={errors.goal}
+          />
         </View>
       </PageWrapper>
     </View>
