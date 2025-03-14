@@ -23,8 +23,8 @@ interface OnboardingContextType {
   goal: string;
   setGoal: Dispatch<SetStateAction<string>>;
   // Weight
-  weight: number;
-  setWeight: Dispatch<SetStateAction<number>>;
+  weight: string;
+  setWeight: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -39,7 +39,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('name');
+    useState<OnboardingContextType['currentScreenName']>('weight');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
@@ -50,7 +50,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Goal
   const [goal, setGoal] = useState<OnboardingContextType['goal']>('');
   // Weight
-  const [weight, setWeight] = useState<OnboardingContextType['weight']>(80);
+  const [weight, setWeight] =
+    useState<OnboardingContextType['weight']>('80 kg');
 
   return (
     <OnboardingContext.Provider

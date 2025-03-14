@@ -14,14 +14,15 @@ import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
 
+const kgToLbs = (kg: number) => Math.round(kg * 2.20462);
+const lbsToKg = (lbs: number) => parseFloat((lbs / 2.20462).toFixed(1));
+
 const formSchema = z.object({
   weight: z.string().min(2, 'Required'),
 });
 type FormValues = z.infer<typeof formSchema>;
 
 export default function WeigthScreen() {
-  const [tab, setTab] = useState('kg');
-
   const {
     weight,
     setWeight,
@@ -34,14 +35,31 @@ export default function WeigthScreen() {
     control,
     handleSubmit,
     formState: { errors, isDirty, isValid },
+    watch,
+    setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { weight: weight.toString() },
+    defaultValues: { weight: weight.split(' ')[0] },
   });
-  const readyToSubmit = (isDirty && isValid) || weight;
+  const currentWeight = watch('weight');
+  const readyToSubmit = (isDirty && isValid) || !!currentWeight;
+
+  const [unit, setUnit] = useState('kg');
+
+  const handleUnitChange = (value: string) => {
+    setUnit(value);
+    if (value === 'lbs') {
+      const weightNum = parseFloat(currentWeight);
+      setValue('weight', kgToLbs(weightNum).toString());
+    }
+    if (value === 'kg') {
+      const weightNum = parseFloat(currentWeight);
+      setValue('weight', lbsToKg(weightNum).toString());
+    }
+  };
 
   const onSubmit = (data: FormValues) => {
-    setWeight(Number(data.weight));
+    setWeight(`${data.weight} ${unit}`);
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;
@@ -69,7 +87,11 @@ export default function WeigthScreen() {
         className="px-0"
       >
         <View className="mt-8 flex-1 justify-center">
-          <Tabs value={tab} onValueChange={setTab} className="mx-auto w-1/2">
+          <Tabs
+            value={unit}
+            onValueChange={handleUnitChange}
+            className="mx-auto w-1/2"
+          >
             <TabsList className="w-full flex-row">
               <TabsTrigger value="kg" className="flex-1">
                 <Text>Kg</Text>
@@ -83,10 +105,11 @@ export default function WeigthScreen() {
             control={control}
             name="weight"
             error={errors.weight}
-            min={30}
-            max={200}
-            step={0.5}
-            unit={tab}
+            initialValue={unit === 'kg' ? 70 : 154} // 70kg = 154lbs
+            min={unit === 'kg' ? 30 : 66} // 30kg = 66lbs
+            max={unit === 'kg' ? 200 : 440} // 200kg = 440lbs
+            step={unit === 'kg' ? 0.5 : 1}
+            unit={unit}
             className="mt-10"
           />
         </View>

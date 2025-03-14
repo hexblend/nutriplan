@@ -15,6 +15,11 @@ export const defaultStackProps = {
 export default function OnboardingLayout() {
   return (
     <Stack {...(defaultStackProps as any)}>
+      <Stack.Screen
+        name="(no-account)/progress"
+        options={{ headerShown: false }}
+      />
+
       <Stack.Screen name="index" options={{ headerShown: false }} />
 
       <Stack.Screen
@@ -26,10 +31,10 @@ export default function OnboardingLayout() {
         }}
       />
 
-      <Stack.Screen
+      {/* <Stack.Screen
         name="(no-account)/progress"
         options={{ headerShown: false }}
-      />
+      /> */}
 
       <Stack.Screen name="(account)/login" />
       <Stack.Screen name="(account)/forgot-password" />
