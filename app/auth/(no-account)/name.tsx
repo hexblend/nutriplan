@@ -1,41 +1,91 @@
 import Logo from '@/assets/images/svg/logo.svg';
-import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
+import { ControlledInput } from '@/components/ui/form/ControlledInput';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { cn } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
-
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
+import { z } from 'zod';
+
+const formSchema = z.object({
+  firstName: z.string().min(2, 'Required'),
+  lastName: z.string().min(2, 'Required'),
+});
+type FormValues = z.infer<typeof formSchema>;
 
 export default function NameScreen() {
-  const { setIsForward, currentScreenName, setCurrentScreenName } =
-    useOnboardingContext();
+  const {
+    setIsForward,
+    currentScreenName,
+    setCurrentScreenName,
+    firstName,
+    lastName,
+    setFirstName,
+    setLastName,
+  } = useOnboardingContext();
 
-  const handleContinuePress = () => {
-    const currentScreen = progressScreensConfig[currentScreenName];
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { firstName, lastName },
+  });
+  const readyToSubmit = (isDirty && isValid) || (firstName && lastName);
+
+  const onSubmit = (data: FormValues) => {
+    const { firstName, lastName } = data;
+    setFirstName(firstName);
+    setLastName(lastName);
+    // Go to next screen
     setIsForward(true);
-    const nextScreen = currentScreen.next;
+    const nextScreen = progressScreensConfig[currentScreenName].next;
     if (nextScreen) setCurrentScreenName(nextScreen);
   };
 
   return (
-    <PageWrapper
-      footer={
-        <PageFooter className="bg-transparent px-0">
-          <Button variant="default" onPress={handleContinuePress}>
-            <Text className="uppercase">{t.t('common.continue')}</Text>
-          </Button>
-        </PageFooter>
-      }
-      className="flex-1"
-    >
+    <PageWrapper>
       <View className="flex-row items-center justify-between">
         <Logo width={60} height={60} />
         <Text className="ml-6 flex-1 font-bold">
           {t.t('auth.nameQuestion')}
         </Text>
+      </View>
+      <View className="mt-8">
+        <ControlledInput
+          name="firstName"
+          autoCorrect={false}
+          control={control}
+          placeholder={t.t('common.firstName')}
+          className={cn(
+            !errors.firstName && 'rounded-bl-none rounded-br-none border-b-0'
+          )}
+          error={errors?.firstName}
+        />
+        <ControlledInput
+          name="lastName"
+          autoCorrect={false}
+          control={control}
+          placeholder={t.t('common.firstName')}
+          error={errors?.lastName}
+          className={cn(!errors.lastName && 'rounded-tl-none rounded-tr-none')}
+        />
+        <Button
+          variant="default"
+          onPress={handleSubmit(onSubmit)}
+          className="mt-6"
+          disabled={!readyToSubmit}
+        >
+          <Text className="uppercase" disabled={!readyToSubmit}>
+            {t.t('common.continue')}
+          </Text>
+        </Button>
       </View>
     </PageWrapper>
   );

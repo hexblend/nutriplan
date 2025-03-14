@@ -15,7 +15,10 @@ export default function PageProgressHeader({
 }: PageProgressHeaderProps) {
   const insets = useSafeAreaInsets();
   return (
-    <View className="bg-transparent" style={{ paddingTop: insets.top - 5 }}>
+    <View
+      className="mb-3 bg-transparent"
+      style={{ paddingTop: insets.top - 5 }}
+    >
       <View className="min-h-[52px] flex-row items-center pl-0 pr-4">
         <Pressable
           onPress={onBackPress}

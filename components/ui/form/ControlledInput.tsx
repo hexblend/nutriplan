@@ -1,6 +1,12 @@
 import { cn } from '@/lib/utils';
 import React from 'react';
-import { Control, Controller, FieldValues, Path } from 'react-hook-form';
+import {
+  Control,
+  Controller,
+  FieldError,
+  FieldValues,
+  Path,
+} from 'react-hook-form';
 import { View } from 'react-native';
 import { Error } from '../error';
 import { Input } from '../input';
@@ -14,7 +20,7 @@ interface ControlledInputProps<T extends FieldValues>
   control: Control<T>;
   name: Path<T>;
   label?: string;
-  error?: string;
+  error?: FieldError;
   className?: string;
 }
 
@@ -42,7 +48,7 @@ export function ControlledInput<T extends FieldValues>({
           />
         )}
       />
-      {error && <Error>{error}</Error>}
+      {error && <Error>{error.message ?? ''}</Error>}
     </View>
   );
 }

@@ -15,10 +15,10 @@ interface OnboardingContextType {
   isForward: boolean;
   setIsForward: Dispatch<SetStateAction<boolean>>;
   // Name Values
-  firstName: string | undefined;
-  setFirstName: Dispatch<SetStateAction<string | undefined>>;
-  lastName: string | undefined;
-  setLastName: Dispatch<SetStateAction<string | undefined>>;
+  firstName: string;
+  setFirstName: Dispatch<SetStateAction<string>>;
+  lastName: string;
+  setLastName: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -38,9 +38,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     useState<OnboardingContextType['isForward']>(true);
   // Name Values
   const [firstName, setFirstName] =
-    useState<OnboardingContextType['firstName']>(undefined);
+    useState<OnboardingContextType['firstName']>('');
   const [lastName, setLastName] =
-    useState<OnboardingContextType['lastName']>(undefined);
+    useState<OnboardingContextType['lastName']>('');
 
   return (
     <OnboardingContext.Provider
