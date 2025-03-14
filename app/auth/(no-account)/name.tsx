@@ -1,5 +1,5 @@
-import Logo from '@/assets/images/svg/logo.svg';
 import PageWrapper from '@/components/layout/PageWrapper';
+import QuestionHeader from '@/components/layout/QuestionHeader';
 import { Button } from '@/components/ui/button';
 import { ControlledInput } from '@/components/ui/form/ControlledInput';
 import { Text } from '@/components/ui/text';
@@ -50,43 +50,42 @@ export default function NameScreen() {
   };
 
   return (
-    <PageWrapper>
-      <View className="flex-row items-center justify-between">
-        <Logo width={60} height={60} />
-        <Text className="ml-6 flex-1 font-bold">
-          {t.t('auth.nameQuestion')}
-        </Text>
-      </View>
-      <View className="mt-8">
-        <ControlledInput
-          name="firstName"
-          autoCorrect={false}
-          control={control}
-          placeholder={t.t('common.firstName')}
-          className={cn(!errors.firstName && 'rounded-bl-none rounded-br-none')}
-          error={errors?.firstName}
-        />
-        <ControlledInput
-          name="lastName"
-          autoCorrect={false}
-          control={control}
-          placeholder={t.t('common.firstName')}
-          error={errors?.lastName}
-          className={cn(
-            !errors.lastName && 'rounded-tl-none rounded-tr-none border-t-0'
-          )}
-        />
-        <Button
-          variant="default"
-          onPress={handleSubmit(onSubmit)}
-          className="mt-6"
-          disabled={!readyToSubmit}
-        >
-          <Text className="uppercase" disabled={!readyToSubmit}>
-            {t.t('common.continue')}
-          </Text>
-        </Button>
-      </View>
-    </PageWrapper>
+    <View className="flex-1">
+      <QuestionHeader>{t.t('auth.nameQuestion')}</QuestionHeader>
+      <PageWrapper>
+        <View className="mt-6">
+          <ControlledInput
+            name="firstName"
+            autoCorrect={false}
+            control={control}
+            placeholder={t.t('common.firstName')}
+            className={cn(
+              !errors.firstName && 'rounded-bl-none rounded-br-none'
+            )}
+            error={errors?.firstName}
+          />
+          <ControlledInput
+            name="lastName"
+            autoCorrect={false}
+            control={control}
+            placeholder={t.t('common.firstName')}
+            error={errors?.lastName}
+            className={cn(
+              !errors.lastName && 'rounded-tl-none rounded-tr-none border-t-0'
+            )}
+          />
+          <Button
+            variant="default"
+            onPress={handleSubmit(onSubmit)}
+            className="mt-6"
+            disabled={!readyToSubmit}
+          >
+            <Text className="uppercase" disabled={!readyToSubmit}>
+              {t.t('common.continue')}
+            </Text>
+          </Button>
+        </View>
+      </PageWrapper>
+    </View>
   );
 }

@@ -16,7 +16,7 @@ export default function PageProgressHeader({
   const insets = useSafeAreaInsets();
   return (
     <View
-      className="mb-3 bg-transparent"
+      className="mb-2 bg-transparent"
       style={{ paddingTop: insets.top - 5 }}
     >
       <View className="min-h-[52px] flex-row items-center pl-0 pr-4">
