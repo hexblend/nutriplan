@@ -7,6 +7,7 @@ export const authEN = {
   quickQuestions:
     'Just 7 quick questions before we start your first meal plan!',
   nameQuestion: 'What is your name?',
+  goalQuestion: 'What is your goal?',
 };
 export const authRO = {
   motto: 'Schimba-ți viața. Pentru totdeauna.',
@@ -17,4 +18,5 @@ export const authRO = {
   quickQuestions:
     'Doar 7 întrebări rapide înainte de a primi planul alimentar!',
   nameQuestion: 'Cum te numesti?',
+  goalQuestion: 'Care este obiectivul tău?',
 };

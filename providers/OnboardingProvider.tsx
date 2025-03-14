@@ -19,6 +19,9 @@ interface OnboardingContextType {
   setFirstName: Dispatch<SetStateAction<string>>;
   lastName: string;
   setLastName: Dispatch<SetStateAction<string>>;
+  // Goal
+  goal: string;
+  setGoal: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -41,6 +44,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     useState<OnboardingContextType['firstName']>('');
   const [lastName, setLastName] =
     useState<OnboardingContextType['lastName']>('');
+  // Goal
+  const [goal, setGoal] = useState<OnboardingContextType['goal']>('');
 
   return (
     <OnboardingContext.Provider
@@ -55,6 +60,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         setFirstName,
         lastName,
         setLastName,
+        // Goal
+        goal,
+        setGoal,
       }}
     >
       {children}
