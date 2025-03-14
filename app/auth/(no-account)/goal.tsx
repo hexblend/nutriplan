@@ -39,6 +39,7 @@ export default function GoalScreen() {
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
+    setGoal(data.goal);
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;
@@ -69,9 +70,15 @@ export default function GoalScreen() {
             control={control}
             name="goal"
             options={[
-              { label: 'Vegetables', value: 'vegetables' },
-              { label: 'Fruits', value: 'fruits' },
-              { label: 'Proteins', value: 'proteins' },
+              {
+                label: t.t('auth.goalLooseWeight'),
+                value: t.t('auth.goalLooseWeight'),
+              },
+              {
+                label: t.t('auth.goalIncreaseMass'),
+                value: t.t('auth.goalIncreaseMass'),
+              },
+              { label: t.t('auth.goalStable'), value: t.t('auth.goalStable') },
             ]}
             multiple={false}
             error={errors.goal}
