@@ -56,6 +56,7 @@ export default function NameScreen() {
         <View className="mt-6">
           <ControlledInput
             name="firstName"
+            autoFocus
             autoCorrect={false}
             control={control}
             placeholder={t.t('common.firstName')}
