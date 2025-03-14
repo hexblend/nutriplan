@@ -4,6 +4,7 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
+import { OnboardingProvider } from '@/providers/OnboardingProvider';
 import { useNavigation } from 'expo-router';
 import { useState } from 'react';
 import Animated, {
@@ -24,100 +25,90 @@ import PhysicalScreen from './physical';
 import RestrictionsScreen from './restrictions';
 import WeightScreen from './weight';
 
-export const screenFlow = {
-  name: { next: 'goal', progress: 10 },
-  goal: { next: 'weight', progress: 20 },
-  weight: { next: 'knowledge', progress: 30 },
-  knowledge: { next: 'phone', progress: 40 },
-  phone: { next: 'physical', progress: 50 },
-  physical: { next: 'age', progress: 60 },
-  age: { next: 'restrictions', progress: 70 },
-  restrictions: { next: 'diseaze', progress: 80 },
-  diseaze: { next: 'challenge', progress: 90 },
-  challenge: { next: undefined, progress: 100 },
+export const screens = {
+  name: { next: 'goal', progress: 2, component: NameScreen },
+  goal: { next: 'weight', progress: 10, component: GoalScreen },
+  weight: { next: 'knowledge', progress: 20, component: WeightScreen },
+  knowledge: { next: 'phone', progress: 30, component: KnowledgeScreen },
+  phone: { next: 'physical', progress: 40, component: PhoneScreen },
+  physical: { next: 'age', progress: 50, component: PhysicalScreen },
+  age: { next: 'restrictions', progress: 60, component: AgeScreen },
+  restrictions: {
+    next: 'diseaze',
+    progress: 70,
+    component: RestrictionsScreen,
+  },
+  diseaze: { next: 'challenge', progress: 80, component: DiseazeScreen },
+  challenge: { next: undefined, progress: 100, component: ChallengeScreen },
 } as const;
-type ScreenName = keyof typeof screenFlow;
-
-const screens = {
-  name: NameScreen,
-  goal: GoalScreen,
-  weight: WeightScreen,
-  knowledge: KnowledgeScreen,
-  phone: PhoneScreen,
-  physical: PhysicalScreen,
-  age: AgeScreen,
-  restrictions: RestrictionsScreen,
-  diseaze: DiseazeScreen,
-  challenge: ChallengeScreen,
-};
+type ScreenName = keyof typeof screens;
 
 export default function ProgressScreen() {
   const navigation = useNavigation();
+
   const [currentScreen, setCurrentScreen] = useState<ScreenName>('name');
   const [isForward, setIsForward] = useState(true);
 
-  const CurrentScreenComponent = screens[currentScreen];
-  const currentProgress = screenFlow[currentScreen].progress;
+  const currentScreenFlow = screens[currentScreen];
+  const { component: CurrentScreenComponent, progress: currentProgress } =
+    currentScreenFlow;
 
   const handleContinuePress = () => {
     setIsForward(true);
-    const nextScreen = screenFlow[currentScreen].next as ScreenName;
-    if (nextScreen) {
-      setCurrentScreen(screenFlow[currentScreen].next as ScreenName);
-    }
+    const nextScreen = currentScreenFlow.next;
+    if (nextScreen) setCurrentScreen(nextScreen);
   };
 
   const handleBackPress = () => {
     setIsForward(false);
-    if (currentProgress === 10) {
+    if (currentProgress === screens.name.progress) {
       return navigation.goBack();
     }
-    const previousScreen = Object.entries(screenFlow).find(
+    const previousScreen = Object.entries(screens).find(
       ([, config]) => config.next === currentScreen
     )?.[0] as ScreenName;
     setCurrentScreen(previousScreen);
   };
 
   return (
-    <PageWrapper
-      header={
-        <PageProgressHeader
-          progress={currentProgress}
-          onBackPress={handleBackPress}
-        />
-      }
-      footer={
-        <PageFooter className="bg-transparent">
-          <Button
-            variant="default"
-            onPress={handleContinuePress}
-            disabled={!screenFlow[currentScreen].next}
-          >
-            <Text
-              className="uppercase"
-              disabled={!screenFlow[currentScreen].next}
-            >
-              {t.t('common.continue')}
-            </Text>
-          </Button>
-        </PageFooter>
-      }
-    >
-      <Animated.View
-        key={currentScreen}
-        style={{ flex: 1, width: '100%' }}
-        entering={
-          currentScreen === 'name'
-            ? undefined
-            : isForward
-              ? SlideInRight
-              : SlideInLeft
+    <OnboardingProvider>
+      <PageWrapper
+        header={
+          <PageProgressHeader
+            progress={currentProgress}
+            onBackPress={handleBackPress}
+          />
         }
-        exiting={isForward ? SlideOutLeft : SlideOutRight}
-        layout={Layout.springify()}
+        footer={
+          <PageFooter className="bg-transparent">
+            <Button
+              variant="default"
+              onPress={handleContinuePress}
+              disabled={!currentScreenFlow.next}
+            >
+              <Text className="uppercase" disabled={!currentScreenFlow.next}>
+                {t.t('common.continue')}
+              </Text>
+            </Button>
+          </PageFooter>
+        }
       >
-        <CurrentScreenComponent />
-      </Animated.View>
-    </PageWrapper>
+        <Animated.View
+          key={currentScreen}
+          style={{ flex: 1, width: '100%' }}
+          entering={
+            currentScreen === 'name'
+              ? undefined
+              : isForward
+                ? SlideInRight
+                : SlideInLeft
+          }
+          exiting={isForward ? SlideOutLeft : SlideOutRight}
+          layout={Layout.springify()}
+        >
+          <CurrentScreenComponent />
+        </Animated.View>
+      </PageWrapper>
+    </OnboardingProvider>
   );
 }
