@@ -26,7 +26,7 @@ export default function PageProgressHeader({
           <Ionicons name="chevron-back" size={32} color="#FFF" />
         </Pressable>
 
-        <Progress value={progress} className="flex-1" />
+        <Progress value={progress} className="ml-4 flex-1" />
       </View>
     </View>
   );

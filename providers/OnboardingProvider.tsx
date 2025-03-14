@@ -1,3 +1,4 @@
+import { ProgressScreenName } from '@/app/auth/(no-account)/progress';
 import React, {
   Dispatch,
   ReactNode,
@@ -8,6 +9,12 @@ import React, {
 } from 'react';
 
 interface OnboardingContextType {
+  // Navigation
+  currentScreenName: ProgressScreenName;
+  setCurrentScreenName: Dispatch<SetStateAction<ProgressScreenName>>;
+  isForward: boolean;
+  setIsForward: Dispatch<SetStateAction<boolean>>;
+  // Name Values
   firstName: string | undefined;
   setFirstName: Dispatch<SetStateAction<string | undefined>>;
   lastName: string | undefined;
@@ -24,6 +31,12 @@ interface OnboardingProviderProps {
 export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   children,
 }) => {
+  // Navigation
+  const [currentScreenName, setCurrentScreenName] =
+    useState<OnboardingContextType['currentScreenName']>('name');
+  const [isForward, setIsForward] =
+    useState<OnboardingContextType['isForward']>(true);
+  // Name Values
   const [firstName, setFirstName] =
     useState<OnboardingContextType['firstName']>(undefined);
   const [lastName, setLastName] =
@@ -31,7 +44,18 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 
   return (
     <OnboardingContext.Provider
-      value={{ firstName, setFirstName, lastName, setLastName }}
+      value={{
+        // Navigation
+        currentScreenName,
+        setCurrentScreenName,
+        isForward,
+        setIsForward,
+        // Name Values
+        firstName,
+        setFirstName,
+        lastName,
+        setLastName,
+      }}
     >
       {children}
     </OnboardingContext.Provider>
