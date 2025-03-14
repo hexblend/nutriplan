@@ -20,7 +20,12 @@ export default function PageWrapper({
       {header && header}
       <View className="flex-1">
         <SafeAreaView className="flex-1">
-          <ScrollView className={cn('px-4', className)}>{children}</ScrollView>
+          <ScrollView
+            keyboardShouldPersistTaps="handled"
+            className={cn('px-4', className)}
+          >
+            {children}
+          </ScrollView>
         </SafeAreaView>
         {footer && footer}
       </View>
