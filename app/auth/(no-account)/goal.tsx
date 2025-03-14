@@ -38,7 +38,6 @@ export default function GoalScreen() {
   const readyToSubmit = (isDirty && isValid) || goal;
 
   const onSubmit = (data: FormValues) => {
-    console.log(data);
     setGoal(data.goal);
     // Go to next screen
     setIsForward(true);

@@ -14,7 +14,7 @@ interface OnboardingContextType {
   setCurrentScreenName: Dispatch<SetStateAction<ProgressScreenName>>;
   isForward: boolean;
   setIsForward: Dispatch<SetStateAction<boolean>>;
-  // Name Values
+  // Name
   firstName: string;
   setFirstName: Dispatch<SetStateAction<string>>;
   lastName: string;
@@ -22,6 +22,9 @@ interface OnboardingContextType {
   // Goal
   goal: string;
   setGoal: Dispatch<SetStateAction<string>>;
+  // Weight
+  weight: string;
+  setWeight: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -39,13 +42,15 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     useState<OnboardingContextType['currentScreenName']>('name');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
-  // Name Values
+  // Name
   const [firstName, setFirstName] =
     useState<OnboardingContextType['firstName']>('');
   const [lastName, setLastName] =
     useState<OnboardingContextType['lastName']>('');
   // Goal
   const [goal, setGoal] = useState<OnboardingContextType['goal']>('');
+  // Weight
+  const [weight, setWeight] = useState<OnboardingContextType['weight']>('');
 
   return (
     <OnboardingContext.Provider
@@ -55,7 +60,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         setCurrentScreenName,
         isForward,
         setIsForward,
-        // Name Values
+        // Name
         firstName,
         setFirstName,
         lastName,
@@ -63,6 +68,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Goal
         goal,
         setGoal,
+        // Weight
+        weight,
+        setWeight,
       }}
     >
       {children}

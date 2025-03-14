@@ -12,6 +12,8 @@ export const authEN = {
   goalLooseWeight: 'Loose weight',
   goalIncreaseMass: 'Increase my muscle mass',
   goalStable: 'Maintain in healthy way',
+
+  weightQuestion: 'What is your weight?',
 };
 export const authRO = {
   motto: 'Schimba-ți viața. Pentru totdeauna.',
@@ -27,4 +29,6 @@ export const authRO = {
   goalLooseWeight: 'Pierd din greutate',
   goalIncreaseMass: 'Crește masa musculară',
   goalStable: 'Să mă mențin într-un mod sănătos',
+
+  weightQuestion: 'Care este greutatea ta?',
 };
