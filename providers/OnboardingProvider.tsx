@@ -65,7 +65,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 export const useOnboardingContext = (): OnboardingContextType => {
   const context = useContext(OnboardingContext);
   if (context === undefined) {
-    throw new Error('useOnboarding must be used within an OnboardingProvider');
+    throw new Error(
+      'useOnboardingProvider must be used within an OnboardingProvider'
+    );
   }
   return context;
 };

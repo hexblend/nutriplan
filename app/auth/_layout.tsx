@@ -25,6 +25,7 @@ export default function OnboardingLayout() {
           headerShadowVisible: false,
         }}
       />
+
       <Stack.Screen
         name="(no-account)/progress"
         options={{ headerShown: false }}

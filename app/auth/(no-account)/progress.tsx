@@ -40,7 +40,7 @@ export const progressScreens = {
 } as const;
 export type ProgressScreenName = keyof typeof progressScreens;
 
-export default function ProgressScreen() {
+function ProgressContent() {
   const navigation = useNavigation();
   const { currentScreenName, setCurrentScreenName, isForward, setIsForward } =
     useOnboardingContext();
@@ -51,9 +51,8 @@ export default function ProgressScreen() {
 
   const handleBackPress = () => {
     setIsForward(false);
-    if (currentProgress === progressScreens.name.progress) {
-      return navigation.goBack();
-    }
+    if (currentScreenName === 'name') return navigation.goBack();
+
     const previousScreen = Object.entries(progressScreens).find(
       ([, config]) => config.next === currentScreenName
     )?.[0] as ProgressScreenName;
@@ -61,7 +60,7 @@ export default function ProgressScreen() {
   };
 
   return (
-    <OnboardingProvider>
+    <>
       <PageProgressHeader
         progress={currentProgress}
         onBackPress={handleBackPress}
@@ -81,6 +80,14 @@ export default function ProgressScreen() {
       >
         <CurrentScreenComponent />
       </Animated.View>
+    </>
+  );
+}
+
+export default function ProgressScreen() {
+  return (
+    <OnboardingProvider>
+      <ProgressContent />
     </OnboardingProvider>
   );
 }

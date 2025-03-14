@@ -28,7 +28,7 @@ export default function NameScreen() {
           </Button>
         </PageFooter>
       }
-      className="flex-1 px-0"
+      className="flex-1"
     >
       <View className="flex-row items-center justify-between">
         <Logo width={60} height={60} />
