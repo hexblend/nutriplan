@@ -63,9 +63,7 @@ export default function NameScreen() {
           autoCorrect={false}
           control={control}
           placeholder={t.t('common.firstName')}
-          className={cn(
-            !errors.firstName && 'rounded-bl-none rounded-br-none border-b-0'
-          )}
+          className={cn(!errors.firstName && 'rounded-bl-none rounded-br-none')}
           error={errors?.firstName}
         />
         <ControlledInput
@@ -74,7 +72,9 @@ export default function NameScreen() {
           control={control}
           placeholder={t.t('common.firstName')}
           error={errors?.lastName}
-          className={cn(!errors.lastName && 'rounded-tl-none rounded-tr-none')}
+          className={cn(
+            !errors.lastName && 'rounded-tl-none rounded-tr-none border-t-0'
+          )}
         />
         <Button
           variant="default"
