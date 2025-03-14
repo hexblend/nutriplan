@@ -44,7 +44,7 @@ export default function QuickQuestionsScreen() {
 
     const timer = setTimeout(() => {
       setReady(true);
-    }, 1500);
+    }, 1250);
     return () => clearTimeout(timer);
   }, []);
 
