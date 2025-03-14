@@ -23,8 +23,8 @@ interface OnboardingContextType {
   goal: string;
   setGoal: Dispatch<SetStateAction<string>>;
   // Weight
-  weight: string;
-  setWeight: Dispatch<SetStateAction<string>>;
+  weight: number;
+  setWeight: Dispatch<SetStateAction<number>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -50,7 +50,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Goal
   const [goal, setGoal] = useState<OnboardingContextType['goal']>('');
   // Weight
-  const [weight, setWeight] = useState<OnboardingContextType['weight']>('');
+  const [weight, setWeight] = useState<OnboardingContextType['weight']>(80);
 
   return (
     <OnboardingContext.Provider
