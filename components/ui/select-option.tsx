@@ -61,6 +61,7 @@ type SelectOptionProps = React.ComponentPropsWithoutRef<typeof Pressable> &
     value: string;
     selected?: boolean;
     icon?: keyof typeof Feather.glyphMap;
+    // eslint-disable-next-line
     onSelect: (value: string) => void;
   };
 

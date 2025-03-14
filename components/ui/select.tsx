@@ -9,6 +9,7 @@ type SelectProps = {
     value: string;
   }>;
   value: string | string[];
+  // eslint-disable-next-line
   onChange: (value: string | string[]) => void;
   multiple?: boolean;
   className?: string;
