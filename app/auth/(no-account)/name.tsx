@@ -4,16 +4,17 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
+import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
+
 import { View } from 'react-native';
-import { progressScreens } from './progress';
 
 export default function NameScreen() {
   const { setIsForward, currentScreenName, setCurrentScreenName } =
     useOnboardingContext();
 
   const handleContinuePress = () => {
-    const currentScreen = progressScreens[currentScreenName];
+    const currentScreen = progressScreensConfig[currentScreenName];
     setIsForward(true);
     const nextScreen = currentScreen.next;
     if (nextScreen) setCurrentScreenName(nextScreen);

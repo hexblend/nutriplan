@@ -1,4 +1,4 @@
-import { ProgressScreenName } from '@/app/auth/(no-account)/progress';
+import { ProgressScreenName } from '@/lib/onboarding/onboardingScreens';
 import React, {
   Dispatch,
   ReactNode,
