@@ -19,4 +19,4 @@ export const progressScreensConfig: Record<
   restrictions: { next: 'diseaze', progress: 70 },
   diseaze: { next: 'challenge', progress: 80 },
   challenge: { next: undefined, progress: 100 },
-} as const;
+};
