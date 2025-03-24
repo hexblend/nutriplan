@@ -16,14 +16,14 @@ export default function OnboardingLayout() {
   return (
     <Stack {...(defaultStackProps as any)}>
       <Stack.Screen
-        name="(no-account)/progress"
+        name="(onboarding)/progress"
         options={{ headerShown: false }}
       />
 
       <Stack.Screen name="index" options={{ headerShown: false }} />
 
       <Stack.Screen
-        name="(no-account)/questions"
+        name="(onboarding)/questions"
         options={{
           headerTitle: '',
           headerBackTitle: '‎',
@@ -32,7 +32,7 @@ export default function OnboardingLayout() {
       />
 
       {/* <Stack.Screen
-        name="(no-account)/progress"
+        name="(onboarding)/progress"
         options={{ headerShown: false }}
       /> */}
 
