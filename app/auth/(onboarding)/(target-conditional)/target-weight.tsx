@@ -1,10 +1,10 @@
 import { Text } from '@/components/ui/text';
 import { View } from 'react-native';
 
-export default function AgeScreen() {
+export default function TargetWeightScreen() {
   return (
     <View>
-      <Text>AgeScreen</Text>
+      <Text>TargetWeightScreen</Text>
     </View>
   );
 }

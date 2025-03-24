@@ -1,10 +1,10 @@
 import { Text } from '@/components/ui/text';
 import { View } from 'react-native';
 
-export default function PhysicalScreen() {
+export default function TargetMaintenanceScreen() {
   return (
     <View>
-      <Text>PhysicalScreen</Text>
+      <Text>TargetMaintenanceScreen</Text>
     </View>
   );
 }
