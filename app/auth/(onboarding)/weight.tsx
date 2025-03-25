@@ -7,15 +7,13 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { kgToLbs, lbsToKg } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
-
-const kgToLbs = (kg: number) => Math.round(kg * 2.20462);
-const lbsToKg = (lbs: number) => parseFloat((lbs / 2.20462).toFixed(1));
 
 const formSchema = z.object({
   weight: z.string().min(2, 'Required'),

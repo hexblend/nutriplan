@@ -21,6 +21,8 @@ export const authEN = {
   goalIncreaseMass: 'Increase my muscle mass',
   goalStable: 'Maintain in healthy way',
 
+  heightQuestion: 'What is your height?',
+
   weightQuestion: 'What is your weight?',
 };
 
@@ -46,6 +48,8 @@ export const authRO = {
   goalLooseWeight: 'Pierd din greutate',
   goalIncreaseMass: 'Crește masa musculară',
   goalStable: 'Să mă mențin într-un mod sănătos',
+
+  heightQuestion: 'Care este înălțimea ta?',
 
   weightQuestion: 'Care este greutatea ta?',
 };
