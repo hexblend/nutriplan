@@ -55,11 +55,12 @@ export default function ControlledPhoneInput<T extends FieldValues>({
             phoneInputStyles={{
               input: {
                 fontFamily: 'Silka',
-                fontSize: 15,
+                fontSize: 16,
               },
               container: {
                 backgroundColor: colors.primary[500],
                 borderColor: colors.primary[400],
+                height: 50,
               },
               flagContainer: {
                 backgroundColor: colors.primary[900],
