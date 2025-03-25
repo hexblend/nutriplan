@@ -9,7 +9,7 @@ export const authEN = {
   understandingFiller:
     'Understanding where you are now helps us create your perfect meal plan.',
   accountFiller:
-    "Let's save the progress in your account. More questions ahead.",
+    "let's save the progress in your account. More questions ahead.",
   goalsFiller: 'We want to understand your personal goals better',
   learningFiller:
     "We're learning a lot about you! It really helps us create a meal plan that actually fits YOU.",
@@ -46,7 +46,7 @@ export const authRO = {
   understandingFiller:
     'Înțelegerea situației tale ne ajută să creăm planul alimentar perfect pentru tine.',
   accountFiller:
-    'Hai să salvăm progresul în contul tău. Mai urmează câteva întrebări.',
+    'Să salvăm răspunsurile în contul tău. Mai urmează câteva întrebări.',
   goalsFiller: 'Dorim să înțelegem mai bine obiectivele tale personale.',
   learningFiller:
     'Învățăm multe despre tine; lucru ne ajută să creăm un plan alimentar ce ți se potrivește cu adevărat.',

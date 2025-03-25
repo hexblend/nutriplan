@@ -1,4 +1,5 @@
 import { t } from '@/i18n/translations';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import FillerScreen from './filler';
 
 export function QuestionsFillerScreen() {
@@ -6,7 +7,8 @@ export function QuestionsFillerScreen() {
 }
 
 export function AccountFillerScreen() {
-  return <FillerScreen text={t.t('auth.accountFiller')} />;
+  const { firstName } = useOnboardingContext();
+  return <FillerScreen text={`${firstName}, ${t.t('auth.accountFiller')}`} />;
 }
 
 export function GoalsFillerScreen() {

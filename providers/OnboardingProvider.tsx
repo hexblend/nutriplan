@@ -22,7 +22,6 @@ interface OnboardingContextType {
   // Goal
   goal: string;
   setGoal: Dispatch<SetStateAction<string>>;
-
   // Height
   height: string;
   setHeight: Dispatch<SetStateAction<string>>;
@@ -51,7 +50,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('activity');
+    useState<OnboardingContextType['currentScreenName']>('questionsFiller');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
