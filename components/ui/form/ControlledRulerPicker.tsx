@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import * as Haptics from 'expo-haptics';
 import React from 'react';
 import {
   Control,
@@ -42,7 +43,10 @@ export function ControlledRulerPicker<T extends FieldValues>({
               height={200}
               {...rulerPickerProps}
               initialValue={currentValue}
-              onValueChange={onChange}
+              onValueChange={(value) => {
+                Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+                onChange(value);
+              }}
               onValueChangeEnd={onChange}
             />
           );
