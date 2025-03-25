@@ -1,7 +1,6 @@
 import { TextClassContext } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 import * as TabsPrimitive from '@rn-primitives/tabs';
-import * as Haptics from 'expo-haptics';
 import * as React from 'react';
 
 const Tabs = TabsPrimitive.Root;
@@ -42,7 +41,6 @@ const TabsTrigger = React.forwardRef<
           className
         )}
         onPress={(e) => {
-          Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           props.onPress?.(e);
         }}
         {...props}
