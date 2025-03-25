@@ -28,6 +28,11 @@ interface OnboardingContextType {
   // Weight
   weight: string;
   setWeight: Dispatch<SetStateAction<string>>;
+  // Age & Sex
+  age: string;
+  setAge: Dispatch<SetStateAction<string>>;
+  sex: 'male' | 'female';
+  setSex: Dispatch<SetStateAction<'male' | 'female'>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -42,7 +47,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('questionsFiller');
+    useState<OnboardingContextType['currentScreenName']>('age');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
@@ -58,6 +63,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Weight
   const [weight, setWeight] =
     useState<OnboardingContextType['weight']>('80 kg');
+  // Age & Sex
+  const [age, setAge] = useState<OnboardingContextType['age']>('25');
+  const [sex, setSex] = useState<OnboardingContextType['sex']>('male');
 
   return (
     <OnboardingContext.Provider
@@ -81,6 +89,11 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Weight
         weight,
         setWeight,
+        // Age & Sex
+        age,
+        setAge,
+        sex,
+        setSex,
       }}
     >
       {children}

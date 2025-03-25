@@ -24,6 +24,13 @@ export const authEN = {
   heightQuestion: 'What is your height?',
 
   weightQuestion: 'What is your weight?',
+
+  ageAndSexQuestion: 'What is your age and sex?',
+  male: 'Male',
+  female: 'Female',
+  sex: 'Sex',
+  age: 'Age',
+  years: 'years',
 };
 
 export const authRO = {
@@ -52,4 +59,11 @@ export const authRO = {
   heightQuestion: 'Care este înălțimea ta?',
 
   weightQuestion: 'Care este greutatea ta?',
+
+  ageAndSexQuestion: 'Care este vârsta și sexul tău?',
+  male: 'Bărbat',
+  female: 'Femeie',
+  sex: 'Sex',
+  age: 'Vârstă',
+  years: 'ani',
 };
