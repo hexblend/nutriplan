@@ -48,10 +48,12 @@ export default function NewPasswordScreen() {
         data: { first_name, last_name },
       },
     });
-    if (error)
+    if (error) {
+      console.error('SIGN UP ERROR', error);
       return Alert.alert('Error', 'Could not send the verification code.', [
         { text: 'OK' },
       ]);
+    }
     if (supabaseData) {
       // Go to next screen
       setIsForward(true);

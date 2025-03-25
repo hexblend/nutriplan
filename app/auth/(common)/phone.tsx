@@ -46,7 +46,8 @@ export default function PhoneScreen() {
 
   const onSubmit = (data: FormValues) => {
     const { phoneNumber } = data;
-    setPhoneNumber(phoneNumber);
+    const phone = `${selectedCountry?.callingCode}${phoneNumber}`;
+    setPhoneNumber(phone);
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;
