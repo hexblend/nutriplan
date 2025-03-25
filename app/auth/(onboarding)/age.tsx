@@ -8,6 +8,7 @@ import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
+import { FontAwesome } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
@@ -70,18 +71,7 @@ export default function AgeScreen() {
         }
         className="px-0"
       >
-        <View className="mt-8 flex-1 justify-center">
-          {/* @ts-ignore */}
-          <Tabs value={sex} onValueChange={setSex} className="mx-auto w-1/2">
-            <TabsList className="w-full flex-row">
-              <TabsTrigger value="male" className="flex-1">
-                <Text className="font-bold">{t.t('auth.male')}</Text>
-              </TabsTrigger>
-              <TabsTrigger value="female" className="flex-1">
-                <Text className="font-bold">{t.t('auth.female')}</Text>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
+        <View className="mt-14 flex-1 justify-center">
           <ControlledRulerPicker
             control={control}
             name="age"
@@ -92,8 +82,35 @@ export default function AgeScreen() {
             step={1}
             unit={t.t('auth.years')}
             fractionDigits={0}
-            className="mt-10"
+            className="mb-2"
           />
+          {/* @ts-ignore */}
+          <Tabs value={sex} onValueChange={setSex} className="mx-auto w-1/2">
+            <TabsList className="w-full flex-row">
+              <TabsTrigger value="male" className="flex-1">
+                <View className="flex-row items-center">
+                  <FontAwesome
+                    name="male"
+                    size={20}
+                    color="#fff"
+                    className="mr-2"
+                  />
+                  <Text>{t.t('auth.male')}</Text>
+                </View>
+              </TabsTrigger>
+              <TabsTrigger value="female" className="flex-1">
+                <View className="flex-row items-center">
+                  <FontAwesome
+                    name="female"
+                    size={20}
+                    color="#fff"
+                    className="mr-2"
+                  />
+                  <Text>{t.t('auth.female')}</Text>
+                </View>
+              </TabsTrigger>
+            </TabsList>
+          </Tabs>
         </View>
       </PageWrapper>
     </View>
