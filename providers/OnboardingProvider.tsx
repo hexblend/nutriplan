@@ -22,6 +22,9 @@ interface OnboardingContextType {
   // Goal
   goal: string;
   setGoal: Dispatch<SetStateAction<string>>;
+  // Height
+  height: string;
+  setHeight: Dispatch<SetStateAction<string>>;
   // Weight
   weight: string;
   setWeight: Dispatch<SetStateAction<string>>;
@@ -49,6 +52,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
     useState<OnboardingContextType['lastName']>('');
   // Goal
   const [goal, setGoal] = useState<OnboardingContextType['goal']>('');
+  // Height
+  const [height, setHeight] =
+    useState<OnboardingContextType['height']>('170 cm');
   // Weight
   const [weight, setWeight] =
     useState<OnboardingContextType['weight']>('80 kg');
@@ -69,6 +75,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Goal
         goal,
         setGoal,
+        // Height
+        height,
+        setHeight,
         // Weight
         weight,
         setWeight,
