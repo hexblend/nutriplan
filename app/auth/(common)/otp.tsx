@@ -1,9 +1,14 @@
+import PageWrapper from '@/components/layout/PageWrapper';
+import QuestionHeader from '@/components/layout/QuestionHeader';
+import { Button } from '@/components/ui/button';
+import { ControlledOTP } from '@/components/ui/form/ControlledOTP';
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
+import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
+import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
-import { OtpInput } from 'react-native-otp-entry';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -12,9 +17,14 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function OtpScreen() {
-  const [error] = useState<string | null>(null);
+  const { setIsForward, currentScreenName, setCurrentScreenName } =
+    useOnboardingContext();
 
-  const { control } = useForm<FormValues>({
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
       otp: '',
@@ -23,36 +33,35 @@ export default function OtpScreen() {
 
   const onSubmit = (data: FormValues) => {
     console.log(data);
+    // Go to next screen
+    setIsForward(true);
+    const nextScreen = progressScreensConfig[currentScreenName].next;
+    if (nextScreen) setCurrentScreenName(nextScreen);
   };
 
   return (
-    <View className="flex-1 items-center justify-center px-4">
-      <Text className="mb-8 text-xl font-bold">Your Code</Text>
-      <Controller
-        name="otp"
-        control={control}
-        render={({ field: { onChange } }) => (
-          <OtpInput
-            numberOfDigits={6}
-            onTextChange={onChange}
+    <View className="flex-1">
+      <QuestionHeader>{t.t('auth.otpQuestion')}</QuestionHeader>
+      <PageWrapper>
+        <View className="mt-6">
+          <ControlledOTP
+            control={control}
+            name="otp"
+            error={errors?.otp}
             onFilled={(code) => onSubmit({ otp: code })}
-            autoFocus
-            blurOnFilled
-            type="numeric"
-            textInputProps={{
-              accessibilityLabel: 'One-Time Password',
-            }}
-            theme={{
-              containerStyle: {
-                marginBottom: 64,
-              },
-              pinCodeContainerStyle: { height: 48 },
-              pinCodeTextStyle: { color: 'white' },
-            }}
           />
-        )}
-      />
-      {error && <Text className="mt-2 text-red-500">{error}</Text>}
+          <Button
+            variant="default"
+            onPress={handleSubmit(onSubmit)}
+            disabled={!isDirty || !isValid}
+            className="mt-8"
+          >
+            <Text className="uppercase" disabled={!isDirty || !isValid}>
+              {t.t('common.continue')}
+            </Text>
+          </Button>
+        </View>
+      </PageWrapper>
     </View>
   );
 }

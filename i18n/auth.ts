@@ -36,6 +36,7 @@ export const authEN = {
   phoneQuestion: 'What is your phone number? You will log in with it',
   passwordQuestion: 'Create a password',
   passwordRequirements: 'Minimum 9 characters',
+  otpQuestion: 'Enter the sent code',
 };
 
 export const authRO = {
@@ -77,4 +78,5 @@ export const authRO = {
   phoneQuestion: 'Care este numărul tău de telefon? Te vei autentifica cu el',
   passwordQuestion: 'Creează o parolă',
   passwordRequirements: 'Minim 9 caractere',
+  otpQuestion: 'Introdu codul trimis',
 };
