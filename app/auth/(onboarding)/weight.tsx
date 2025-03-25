@@ -125,10 +125,10 @@ export default function WeigthScreen() {
           >
             <TabsList className="w-full flex-row">
               <TabsTrigger value="kg" className="flex-1">
-                <Text>Kg</Text>
+                <Text className="font-bold">KG</Text>
               </TabsTrigger>
               <TabsTrigger value="lbs" className="flex-1">
-                <Text>Lbs</Text>
+                <Text className="font-bold">LBS</Text>
               </TabsTrigger>
             </TabsList>
           </Tabs>

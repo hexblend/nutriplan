@@ -100,10 +100,10 @@ export default function HeightScreen() {
           >
             <TabsList className="w-full flex-row">
               <TabsTrigger value="cm" className="flex-1">
-                <Text>Cm</Text>
+                <Text className="font-bold">CM</Text>
               </TabsTrigger>
               <TabsTrigger value="ft" className="flex-1">
-                <Text>Ft</Text>
+                <Text className="font-bold">FT</Text>c
               </TabsTrigger>
             </TabsList>
           </Tabs>

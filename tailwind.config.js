@@ -17,7 +17,7 @@ module.exports = {
           300: 'var(--primary-300)',
           350: 'var(--primary-350)',
           950: 'var(--primary-950)',
-          DEFAULT: 'var(--primary)',
+          DEFAULT: 'var(--primary-300)',
           foreground: 'var(--primary-foreground)',
         },
         secondary: {
