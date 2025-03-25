@@ -36,6 +36,9 @@ interface OnboardingContextType {
   // Activity
   activity: string;
   setActivity: Dispatch<SetStateAction<string>>;
+  // Phone
+  phoneNumber: string;
+  setPhoneNumber: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -50,7 +53,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('activity');
+    useState<OnboardingContextType['currentScreenName']>('phone');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
@@ -72,6 +75,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Activity
   const [activity, setActivity] =
     useState<OnboardingContextType['activity']>('');
+  // Phone
+  const [phoneNumber, setPhoneNumber] =
+    useState<OnboardingContextType['phoneNumber']>('');
 
   return (
     <OnboardingContext.Provider
@@ -103,6 +109,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Activity
         activity,
         setActivity,
+        // Phone
+        phoneNumber,
+        setPhoneNumber,
       }}
     >
       {children}

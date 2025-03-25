@@ -33,6 +33,7 @@ export const authEN = {
   activityModerate: 'Moderately active',
   activityVery: 'Very active',
   activityExtreme: 'Extremely active',
+  phoneQuestion: 'What is your phone number? You will log in with it.',
 };
 
 export const authRO = {
@@ -70,4 +71,6 @@ export const authRO = {
   activityModerate: 'Moderat activ',
   activityVery: 'Foarte activ',
   activityExtreme: 'Extrem de activ',
+  phoneQuestion:
+    'Care este numărul tău de telefon? Vei folosi acest număr pentru autentificare.',
 };
