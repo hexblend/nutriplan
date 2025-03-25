@@ -61,7 +61,7 @@ export const authRO = {
 
   goalQuestion: 'Care este obiectivul tău?',
   goalLooseWeight: 'Pierd din greutate',
-  goalIncreaseMass: 'Câștig din greutate într-un mod sănătos',
+  goalIncreaseMass: 'Măresc masa musculara',
   goalStable: 'Mențin greutatea într-un mod sănătos',
   goalHealthCondition: 'Dietă pentru o afecțiune medicală',
   goalPerformance: 'Performanță pentru sportivi',
