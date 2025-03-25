@@ -17,9 +17,11 @@ export const authEN = {
   nameQuestion: 'What is your name?',
 
   goalQuestion: 'What is your goal?',
-  goalLooseWeight: 'Loose weight',
-  goalIncreaseMass: 'Increase my muscle mass',
-  goalStable: 'Maintain in healthy way',
+  goalLooseWeight: 'Lose weight',
+  goalIncreaseMass: 'Increase muscle mass',
+  goalStable: 'Maintain weight in a healthy way',
+  goalHealthCondition: 'Diet for a health condition',
+  goalPerformance: 'Performance for athletes',
 
   heightQuestion: 'What is your height?',
 
@@ -59,8 +61,10 @@ export const authRO = {
 
   goalQuestion: 'Care este obiectivul tău?',
   goalLooseWeight: 'Pierd din greutate',
-  goalIncreaseMass: 'Crește masa musculară',
-  goalStable: 'Să mă mențin într-un mod sănătos',
+  goalIncreaseMass: 'Câștig din greutate într-un mod sănătos',
+  goalStable: 'Mențin greutatea într-un mod sănătos',
+  goalHealthCondition: 'Dietă pentru o afecțiune medicală',
+  goalPerformance: 'Performanță pentru sportivi',
 
   heightQuestion: 'Care este înălțimea ta?',
 

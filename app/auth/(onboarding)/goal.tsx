@@ -71,13 +71,29 @@ export default function GoalScreen() {
             options={[
               {
                 label: t.t('auth.goalLooseWeight'),
-                value: t.t('auth.goalLooseWeight'),
+                value: 'Lose weigth',
+                icon: 'scale-bathroom',
+              },
+              {
+                label: t.t('auth.goalStable'),
+                value: 'Maintain weight in a healthy way',
+                icon: 'scale-balance',
               },
               {
                 label: t.t('auth.goalIncreaseMass'),
-                value: t.t('auth.goalIncreaseMass'),
+                value: 'Increase muscle mass',
+                icon: 'weight-lifter',
               },
-              { label: t.t('auth.goalStable'), value: t.t('auth.goalStable') },
+              {
+                label: t.t('auth.goalHealthCondition'),
+                value: 'Diet for a condition',
+                icon: 'heart-pulse',
+              },
+              {
+                label: t.t('auth.goalPerformance'),
+                value: 'Performance for athletes',
+                icon: 'run-fast',
+              },
             ]}
             multiple={false}
             error={errors.goal}
