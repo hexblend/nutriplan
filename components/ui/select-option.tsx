@@ -77,8 +77,8 @@ const SelectOption = React.forwardRef<
       label,
       value,
       selected = false,
-      onSelect,
       icon,
+      onSelect,
       ...props
     },
     ref
@@ -127,13 +127,13 @@ const SelectOption = React.forwardRef<
             onPress={() => onSelect(value)}
             {...props}
           >
-            <View className="w-full flex-row items-center">
+            <View className="flex-row items-center">
               {icon && (
                 <Icon
                   name={icon}
                   size={24}
                   color={selected ? '#ffffff' : '#9ca3af'}
-                  style={{ marginRight: 12 }}
+                  className="mr-2"
                 />
               )}
               <Text
