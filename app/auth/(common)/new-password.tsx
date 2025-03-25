@@ -5,12 +5,13 @@ import { ControlledInput } from '@/components/ui/form/ControlledInput';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { Ionicons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -19,8 +20,14 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function NewPasswordScreen() {
-  const { setIsForward, currentScreenName, setCurrentScreenName } =
-    useOnboardingContext();
+  const {
+    setIsForward,
+    currentScreenName,
+    setCurrentScreenName,
+    phoneNumber: phone,
+    firstName: first_name,
+    lastName: last_name,
+  } = useOnboardingContext();
 
   const [showPassword, setShowPassword] = useState(false);
 
@@ -32,12 +39,25 @@ export default function NewPasswordScreen() {
     resolver: zodResolver(formSchema),
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log('Password data:', data);
-    // Go to next screen
-    setIsForward(true);
-    const nextScreen = progressScreensConfig[currentScreenName].next;
-    if (nextScreen) setCurrentScreenName(nextScreen);
+  const onSubmit = async (data: FormValues) => {
+    const { password } = data;
+    const { data: supabaseData, error } = await supabase.auth.signUp({
+      phone,
+      password,
+      options: {
+        data: { first_name, last_name },
+      },
+    });
+    if (error)
+      return Alert.alert('Error', 'Could not send the verification code.', [
+        { text: 'OK' },
+      ]);
+    if (supabaseData) {
+      // Go to next screen
+      setIsForward(true);
+      const nextScreen = progressScreensConfig[currentScreenName].next;
+      if (nextScreen) setCurrentScreenName(nextScreen);
+    }
   };
 
   return (
@@ -59,10 +79,8 @@ export default function NewPasswordScreen() {
               />
             }
             onRightIconPress={() => setShowPassword(!showPassword)}
+            infoText={t.t('auth.passwordRequirements')}
           />
-          <Text className="mt-2 text-sm text-muted-foreground">
-            {t.t('auth.passwordRequirements')}
-          </Text>
           <Button
             variant="default"
             onPress={handleSubmit(onSubmit)}
