@@ -3,7 +3,6 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import QuestionHeader from '@/components/layout/QuestionHeader';
 import { Button } from '@/components/ui/button';
 import ControlledRulerPicker from '@/components/ui/form/ControlledRulerPicker';
-import { Label } from '@/components/ui/label';
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
@@ -72,7 +71,6 @@ export default function AgeScreen() {
         className="px-0"
       >
         <View className="mt-8 flex-1 justify-center">
-          <Label className="self-center">{t.t('auth.sex')}</Label>
           {/* @ts-ignore */}
           <Tabs value={sex} onValueChange={setSex} className="mx-auto w-1/2">
             <TabsList className="w-full flex-row">
@@ -84,7 +82,6 @@ export default function AgeScreen() {
               </TabsTrigger>
             </TabsList>
           </Tabs>
-          <Label className="mt-10 self-center">{t.t('auth.age')}</Label>
           <ControlledRulerPicker
             control={control}
             name="age"
@@ -95,6 +92,7 @@ export default function AgeScreen() {
             step={1}
             unit={t.t('auth.years')}
             fractionDigits={0}
+            className="mt-10"
           />
         </View>
       </PageWrapper>

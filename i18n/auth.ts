@@ -25,12 +25,12 @@ export const authEN = {
 
   weightQuestion: 'What is your weight?',
 
-  ageAndSexQuestion: 'What is your age and sex?',
+  ageAndSexQuestion: 'What is your sex and age?',
   male: 'Male',
   female: 'Female',
   sex: 'Sex',
   age: 'Age',
-  years: 'years',
+  years: 'years old',
 };
 
 export const authRO = {
@@ -60,7 +60,7 @@ export const authRO = {
 
   weightQuestion: 'Care este greutatea ta?',
 
-  ageAndSexQuestion: 'Care este vârsta și sexul tău?',
+  ageAndSexQuestion: 'Care este sexul și vârsta ta?',
   male: 'Bărbat',
   female: 'Femeie',
   sex: 'Sex',
