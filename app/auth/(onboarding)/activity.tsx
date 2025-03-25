@@ -46,7 +46,7 @@ export default function ActivityScreen() {
 
   return (
     <View className="flex-1">
-      <QuestionHeader>{`${t.t('auth.thankYou')}! ${t.t('auth.activityQuestion')}`}</QuestionHeader>
+      <QuestionHeader>{`${t.t('common.thankYou')}! ${t.t('auth.activityQuestion')}`}</QuestionHeader>
       <PageWrapper
         footer={
           <PageFooter>

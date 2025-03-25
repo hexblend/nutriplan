@@ -21,18 +21,11 @@ export const authEN = {
   goalIncreaseMass: 'Increase my muscle mass',
   goalStable: 'Maintain in healthy way',
 
-  thankYou: 'Thank you',
-
   heightQuestion: 'What is your height?',
 
   weightQuestion: 'What is your weight?',
 
   ageAndSexQuestion: 'What is your age and sex?',
-  male: 'Male',
-  female: 'Female',
-  sex: 'Sex',
-  age: 'Age',
-  years: 'years old',
 
   activityQuestion: 'How would you describe your activity level?',
   activitySedentary: 'Sedentary',
@@ -70,12 +63,6 @@ export const authRO = {
   weightQuestion: 'Care este greutatea ta?',
 
   ageAndSexQuestion: 'Care este vârsta și sexul tău?',
-  male: 'Bărbat',
-  female: 'Femeie',
-  sex: 'Sex',
-  age: 'Vârstă',
-  years: 'ani',
-  thankYou: 'Mulțumesc',
 
   activityQuestion: 'Cum ți-ai descrie nivelul de activitate?',
   activitySedentary: 'Sedentar',

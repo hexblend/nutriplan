@@ -4,6 +4,12 @@ export const commonEN = {
   continue: 'Continue',
   firstName: 'First name',
   lastName: 'Last name',
+  male: 'Male',
+  female: 'Female',
+  sex: 'Sex',
+  age: 'Age',
+  yearsOld: 'years old',
+  thankYou: 'Thank you',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -11,4 +17,10 @@ export const commonRO = {
   continue: 'Continuă',
   firstName: 'Prenume',
   lastName: 'Nume',
+  male: 'Bărbat',
+  female: 'Femeie',
+  sex: 'Sex',
+  age: 'Vârstă',
+  yearsOld: 'ani',
+  thankYou: 'Mulțumesc',
 };

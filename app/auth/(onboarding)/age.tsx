@@ -80,7 +80,7 @@ export default function AgeScreen() {
             min={16}
             max={100}
             step={1}
-            unit={t.t('auth.years')}
+            unit={t.t('common.yearsOld')}
             fractionDigits={0}
             className="mb-2"
           />
@@ -95,7 +95,7 @@ export default function AgeScreen() {
                     color="#fff"
                     className="mr-2"
                   />
-                  <Text>{t.t('auth.male')}</Text>
+                  <Text>{t.t('common.male')}</Text>
                 </View>
               </TabsTrigger>
               <TabsTrigger value="female" className="flex-1">
@@ -106,7 +106,7 @@ export default function AgeScreen() {
                     color="#fff"
                     className="mr-2"
                   />
-                  <Text>{t.t('auth.female')}</Text>
+                  <Text>{t.t('common.female')}</Text>
                 </View>
               </TabsTrigger>
             </TabsList>
