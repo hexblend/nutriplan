@@ -76,7 +76,7 @@ export default function ActivityScreen() {
               {
                 label: t.t('auth.activityLightly'),
                 value: 'Lightly active',
-                icon: 'human',
+                icon: 'human-handsup',
               },
               {
                 label: t.t('auth.activityModerate'),
