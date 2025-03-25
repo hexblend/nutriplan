@@ -7,7 +7,7 @@ import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { ICountry } from 'react-native-international-phone-number';
@@ -33,11 +33,16 @@ export default function PhoneScreen() {
     control,
     handleSubmit,
     formState: { errors, isDirty, isValid },
+    setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: { phoneNumber },
   });
   const readyToSubmit = (isDirty && isValid) || phoneNumber;
+
+  useEffect(() => {
+    if (phoneNumber) setValue('phoneNumber', phoneNumber);
+  }, [phoneNumber]);
 
   const onSubmit = (data: FormValues) => {
     const { phoneNumber } = data;
