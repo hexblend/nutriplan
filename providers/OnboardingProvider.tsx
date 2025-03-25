@@ -22,6 +22,7 @@ interface OnboardingContextType {
   // Goal
   goal: string;
   setGoal: Dispatch<SetStateAction<string>>;
+
   // Height
   height: string;
   setHeight: Dispatch<SetStateAction<string>>;
@@ -33,6 +34,9 @@ interface OnboardingContextType {
   setAge: Dispatch<SetStateAction<string>>;
   sex: 'male' | 'female';
   setSex: Dispatch<SetStateAction<'male' | 'female'>>;
+  // Activity
+  activity: string;
+  setActivity: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -47,7 +51,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('age');
+    useState<OnboardingContextType['currentScreenName']>('activity');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
@@ -66,6 +70,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Age & Sex
   const [age, setAge] = useState<OnboardingContextType['age']>('25');
   const [sex, setSex] = useState<OnboardingContextType['sex']>('male');
+  // Activity
+  const [activity, setActivity] =
+    useState<OnboardingContextType['activity']>('');
 
   return (
     <OnboardingContext.Provider
@@ -94,6 +101,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         setAge,
         sex,
         setSex,
+        // Activity
+        activity,
+        setActivity,
       }}
     >
       {children}

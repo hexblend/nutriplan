@@ -1,10 +1,99 @@
+import PageFooter from '@/components/layout/PageFooter';
+import PageWrapper from '@/components/layout/PageWrapper';
+import QuestionHeader from '@/components/layout/QuestionHeader';
+import { Button } from '@/components/ui/button';
+import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
+import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
+import { zodResolver } from '@hookform/resolvers/zod';
+import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
+import { z } from 'zod';
+
+const formSchema = z.object({
+  activity: z.string().min(2, 'Required'),
+});
+type FormValues = z.infer<typeof formSchema>;
 
 export default function ActivityScreen() {
+  const {
+    activity,
+    setActivity,
+    setIsForward,
+    currentScreenName,
+    setCurrentScreenName,
+  } = useOnboardingContext();
+
+  const {
+    control,
+    handleSubmit,
+    formState: { errors, isDirty, isValid },
+  } = useForm<FormValues>({
+    resolver: zodResolver(formSchema),
+    defaultValues: { activity },
+  });
+  const readyToSubmit = (isDirty && isValid) || activity;
+
+  const onSubmit = (data: FormValues) => {
+    setActivity(data.activity);
+    // Go to next screen
+    setIsForward(true);
+    const nextScreen = progressScreensConfig[currentScreenName].next;
+    if (nextScreen) setCurrentScreenName(nextScreen);
+  };
+
   return (
-    <View>
-      <Text>ActivityScreen</Text>
+    <View className="flex-1">
+      <QuestionHeader>{`${t.t('auth.thankYou')}! ${t.t('auth.activityQuestion')}`}</QuestionHeader>
+      <PageWrapper
+        footer={
+          <PageFooter>
+            <Button
+              variant="default"
+              onPress={handleSubmit(onSubmit)}
+              className="mt-6"
+              disabled={!readyToSubmit}
+            >
+              <Text className="uppercase" disabled={!readyToSubmit}>
+                {t.t('common.continue')}
+              </Text>
+            </Button>
+          </PageFooter>
+        }
+      >
+        <View className="mt-6">
+          <ControlledSelect
+            control={control}
+            name="activity"
+            options={[
+              {
+                label: t.t('auth.activitySedentary'),
+                value: t.t('auth.activitySedentary'),
+              },
+              {
+                label: t.t('auth.activityLightly'),
+                value: t.t('auth.activityLightly'),
+              },
+              {
+                label: t.t('auth.activityModerate'),
+                value: t.t('auth.activityModerate'),
+              },
+              {
+                label: t.t('auth.activityVery'),
+                value: t.t('auth.activityVery'),
+              },
+              {
+                label: t.t('auth.activityExtreme'),
+                value: t.t('auth.activityExtreme'),
+              },
+            ]}
+            multiple={false}
+            error={errors.activity}
+          />
+        </View>
+      </PageWrapper>
     </View>
   );
 }
