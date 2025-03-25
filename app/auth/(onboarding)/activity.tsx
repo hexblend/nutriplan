@@ -70,23 +70,23 @@ export default function ActivityScreen() {
             options={[
               {
                 label: t.t('auth.activitySedentary'),
-                value: t.t('auth.activitySedentary'),
+                value: 'Sedentary',
               },
               {
                 label: t.t('auth.activityLightly'),
-                value: t.t('auth.activityLightly'),
+                value: 'Lightly active',
               },
               {
                 label: t.t('auth.activityModerate'),
-                value: t.t('auth.activityModerate'),
+                value: 'Moderately active',
               },
               {
                 label: t.t('auth.activityVery'),
-                value: t.t('auth.activityVery'),
+                value: 'Very active',
               },
               {
                 label: t.t('auth.activityExtreme'),
-                value: t.t('auth.activityExtreme'),
+                value: 'Extremely active',
               },
             ]}
             multiple={false}
