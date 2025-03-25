@@ -34,6 +34,8 @@ export const authEN = {
   activityVery: 'Very active',
   activityExtreme: 'Extremely active',
   phoneQuestion: 'What is your phone number? You will log in with it',
+  passwordQuestion: 'Create a password',
+  passwordRequirements: 'Minimum 9 characters',
 };
 
 export const authRO = {
@@ -73,4 +75,6 @@ export const authRO = {
   activityExtreme: 'Extrem de activ',
 
   phoneQuestion: 'Care este numărul tău de telefon? Te vei autentifica cu el',
+  passwordQuestion: 'Creează o parolă',
+  passwordRequirements: 'Minim 9 caractere',
 };

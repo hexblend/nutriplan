@@ -22,6 +22,8 @@ interface ControlledInputProps<T extends FieldValues>
   label?: string;
   error?: FieldError;
   className?: string;
+  rightIcon?: React.ReactNode;
+  onRightIconPress?: () => void;
 }
 
 export function ControlledInput<T extends FieldValues>({
@@ -30,6 +32,8 @@ export function ControlledInput<T extends FieldValues>({
   label,
   error,
   className,
+  rightIcon,
+  onRightIconPress,
   ...props
 }: ControlledInputProps<T>) {
   return (
@@ -44,6 +48,8 @@ export function ControlledInput<T extends FieldValues>({
             value={value}
             onChangeText={onChange}
             onBlur={onBlur}
+            rightIcon={rightIcon}
+            onRightIconPress={onRightIconPress}
             {...props}
           />
         )}
