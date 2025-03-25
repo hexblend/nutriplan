@@ -1,4 +1,5 @@
 import { cn } from '@/lib/utils';
+import type { Feather } from '@expo/vector-icons';
 import React from 'react';
 import { View } from 'react-native';
 import SelectOption from './select-option';
@@ -7,6 +8,7 @@ type SelectProps = {
   options: Array<{
     label: string;
     value: string;
+    icon?: keyof typeof Feather.glyphMap;
   }>;
   value: string | string[];
   // eslint-disable-next-line
@@ -51,6 +53,7 @@ const Select = ({
           value={option.value}
           selected={isSelected(option.value)}
           onSelect={handleSelect}
+          icon={option.icon}
         />
       ))}
     </View>

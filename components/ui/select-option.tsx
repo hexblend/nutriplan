@@ -1,5 +1,6 @@
 import { cn } from '@/lib/utils';
 import type { Feather } from '@expo/vector-icons';
+import { Feather as FeatherIcon } from '@expo/vector-icons';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as Haptics from 'expo-haptics';
 import React, { useRef } from 'react';
@@ -77,6 +78,7 @@ const SelectOption = React.forwardRef<
       value,
       selected = false,
       onSelect,
+      icon,
       ...props
     },
     ref
@@ -125,7 +127,15 @@ const SelectOption = React.forwardRef<
             onPress={() => onSelect(value)}
             {...props}
           >
-            <View className="flex-row items-center">
+            <View className="w-full flex-row items-center">
+              {icon && (
+                <FeatherIcon
+                  name={icon}
+                  size={24}
+                  color={selected ? '#ffffff' : '#9ca3af'}
+                  style={{ marginRight: 12 }}
+                />
+              )}
               <Text
                 className={selectOptionTextVariants({
                   variant: activeVariant,
