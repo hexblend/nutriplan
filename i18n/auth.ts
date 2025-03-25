@@ -4,8 +4,16 @@ export const authEN = {
   getStarted: 'Get Started',
   alreadyHaveAccount: 'I already have an account',
 
-  quickQuestions:
+  quickQuestionsFiller:
     'Just 7 quick questions before we start your first meal plan!',
+  understandingFiller:
+    'Understanding where you are now helps us create your perfect meal plan.',
+  accountFiller:
+    "Let's save the progress in your account. More questions ahead.",
+  goalsFiller: 'We want to understand your personal goals better',
+  learningFiller:
+    "We're learning a lot about you! It really helps us create a meal plan that actually fits YOU.",
+
   nameQuestion: 'What is your name?',
 
   goalQuestion: 'What is your goal?',
@@ -15,14 +23,23 @@ export const authEN = {
 
   weightQuestion: 'What is your weight?',
 };
+
 export const authRO = {
-  motto: 'Schimba-ți viața. Pentru totdeauna.',
+  motto: 'Schimbă-ți viața. Pentru totdeauna.',
 
   getStarted: 'Începe',
   alreadyHaveAccount: 'Am deja un cont',
 
-  quickQuestions:
-    'Doar 7 întrebări rapide înainte de a primi planul alimentar!',
+  quickQuestionsFiller:
+    'Doar 7 întrebări rapide înainte de a începe primul tău plan alimentar!',
+  understandingFiller:
+    'Înțelegerea situației tale ne ajută să creăm planul alimentar perfect pentru tine.',
+  accountFiller:
+    'Hai să salvăm progresul în contul tău. Mai urmează câteva întrebări.',
+  goalsFiller: 'Dorim să înțelegem mai bine obiectivele tale personale.',
+  learningFiller:
+    'Învățăm multe despre tine; lucru ne ajută să creăm un plan alimentar ce ți se potrivește cu adevărat.',
+
   nameQuestion: 'Cum te numesti?',
 
   goalQuestion: 'Care este obiectivul tău?',

@@ -17,7 +17,7 @@ export default function OnboardingMainScreen() {
     <PageWrapper
       footer={
         <PageFooter className="bg-transparent">
-          <Link href="/auth/questions" asChild>
+          <Link href="/auth/progress" asChild>
             <Button variant="default">
               <Text className="uppercase">{t.t('auth.getStarted')}</Text>
             </Button>

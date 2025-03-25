@@ -1,11 +1,13 @@
 import NewPasswordScreen from '@/app/auth/(common)/new-password';
 import OtpScreen from '@/app/auth/(common)/otp';
 import PhoneScreen from '@/app/auth/(common)/phone';
-import AccountFillerScreen from '@/app/auth/(onboarding)/(fillers)/account-filler';
-import DoneFillerScreen from '@/app/auth/(onboarding)/(fillers)/done-filler';
-import GoalsFillerScreen from '@/app/auth/(onboarding)/(fillers)/goals-filler';
-import LearningFillerScreen from '@/app/auth/(onboarding)/(fillers)/learning-filler';
-import UnderstandingFillerScreen from '@/app/auth/(onboarding)/(fillers)/understanding-filler';
+import {
+  AccountFillerScreen,
+  GoalsFillerScreen,
+  LearningFillerScreen,
+  QuestionsFillerScreen,
+  UnderstandingFillerScreen,
+} from '@/app/auth/(onboarding)/(fillers)/filler-screens';
 import TargetActivityScreen from '@/app/auth/(onboarding)/(target-conditional)/target-activity';
 import TargetConditionScreen from '@/app/auth/(onboarding)/(target-conditional)/target-condition';
 import TargetMaintenanceScreen from '@/app/auth/(onboarding)/(target-conditional)/target-maintenance';
@@ -26,6 +28,7 @@ import WeightScreen from '@/app/auth/(onboarding)/weight';
 import React from 'react';
 
 export const onboardingProgressScreens: Record<string, React.ComponentType> = {
+  questionsFiller: QuestionsFillerScreen,
   name: NameScreen,
   goal: GoalScreen,
   understandingFiller: UnderstandingFillerScreen,
@@ -48,7 +51,6 @@ export const onboardingProgressScreens: Record<string, React.ComponentType> = {
   triedBefore: TriedBeforeScreen,
   challenge: ChallengeScreen,
   time: TimeScreen,
-  doneFiller: DoneFillerScreen,
   recap: RecapScreen,
   paywall: PaywallScreen,
 };

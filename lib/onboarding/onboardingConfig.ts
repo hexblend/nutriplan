@@ -9,6 +9,7 @@ export const progressScreensConfig: Record<
   ProgressScreenName,
   ProgressScreenConfig
 > = {
+  questionsFiller: { next: 'name', progress: 1 },
   name: { next: 'goal', progress: 2 },
   goal: { next: 'understandingFiller', progress: 6 },
   understandingFiller: { next: 'height', progress: 10 },
@@ -30,8 +31,7 @@ export const progressScreensConfig: Record<
   learningFiller: { next: 'triedBefore', progress: 58 },
   triedBefore: { next: 'challenge', progress: 62 },
   challenge: { next: 'time', progress: 70 },
-  time: { next: 'doneFiller', progress: 78 },
-  doneFiller: { next: 'recap', progress: 86 },
+  time: { next: 'recap', progress: 78 },
   recap: { next: 'paywall', progress: 94 },
   paywall: { next: undefined, progress: 100 },
 };

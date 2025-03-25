@@ -5,12 +5,18 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { cn } from '@/lib/utils';
-import { Link } from 'expo-router';
+import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { useEffect, useState } from 'react';
 import { Animated, View, useWindowDimensions } from 'react-native';
 
-export default function QuickQuestionsScreen() {
+interface FillerScreenProps {
+  text: string;
+}
+
+export default function FillerScreen({ text }: FillerScreenProps) {
+  const { setIsForward, currentScreenName, setCurrentScreenName } =
+    useOnboardingContext();
   const { height } = useWindowDimensions();
   const [ready, setReady] = useState(false);
 
@@ -48,20 +54,29 @@ export default function QuickQuestionsScreen() {
     return () => clearTimeout(timer);
   }, []);
 
+  const handleGoToNextScreen = () => {
+    setIsForward(true);
+    const nextScreen = progressScreensConfig[currentScreenName].next;
+    if (nextScreen) setCurrentScreenName(nextScreen);
+  };
+
   return (
     <PageWrapper
       footer={
         <PageFooter>
-          <Link href="/auth/progress" asChild>
-            <Button variant="default" className="mt-4" disabled={!ready}>
-              <Text className={cn('uppercase')} disabled={!ready}>
-                {t.t('common.continue')}
-              </Text>
-            </Button>
-          </Link>
+          <Button
+            variant="default"
+            onPress={handleGoToNextScreen}
+            className="mt-6"
+            disabled={!ready}
+          >
+            <Text className="uppercase" disabled={!ready}>
+              {t.t('common.continue')}
+            </Text>
+          </Button>
         </PageFooter>
       }
-      className="px-8"
+      className="px-4"
     >
       <View
         className="items-center justify-center"
@@ -74,9 +89,7 @@ export default function QuickQuestionsScreen() {
             transform: [{ scale: scaleAnim }],
           }}
         >
-          <Text className="rounded-md border border-border p-4">
-            {t.t('auth.quickQuestions')}
-          </Text>
+          <Text className="rounded-md border border-border p-4">{text}</Text>
           <SpeechCaret width={30} height={30} style={{ marginTop: -9 }} />
         </Animated.View>
 

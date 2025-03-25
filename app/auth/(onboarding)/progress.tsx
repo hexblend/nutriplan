@@ -27,7 +27,7 @@ function ProgressContent() {
 
   const handleBackPress = () => {
     setIsForward(false);
-    if (currentScreenName === 'name') return navigation.goBack();
+    if (currentScreenName === 'questionsFiller') return navigation.goBack();
 
     const previousScreen = Object.entries(progressScreensConfig).find(
       ([, screen]) => screen.next === currentScreenName
