@@ -7,7 +7,12 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
-import { kgToLbs, lbsToKg } from '@/lib/utils';
+import {
+  feetAndInchesToCm,
+  kgToLbs,
+  lbsToKg,
+  parseFeetAndInches,
+} from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -22,6 +27,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function WeigthScreen() {
   const {
+    height,
     weight,
     setWeight,
     setIsForward,
@@ -64,6 +70,33 @@ export default function WeigthScreen() {
     if (nextScreen) setCurrentScreenName(nextScreen);
   };
 
+  const calculateInitialWeight = () => {
+    let heightValue = 170; // default height in cm if no height is available
+    if (height) {
+      const parts = height.split(' ');
+      if (parts.length >= 1) {
+        if (parts[1] === 'cm') {
+          heightValue = parseFloat(parts[0]);
+        } else if (parts[1] === 'ft') {
+          // Convert feet/inches to cm first
+          const { feet, inches } = parseFeetAndInches(parts[0]);
+          heightValue = feetAndInchesToCm(feet, inches);
+        }
+      }
+    }
+    // Set initial weight slightly higher than ideal BMI weight (BMI ~25)
+    // Formula: weight (kg) = BMI × height (m) × height (m)
+    const weightInKg = Math.round(
+      26 * (heightValue / 100) * (heightValue / 100)
+    );
+    return {
+      kg: weightInKg,
+      lbs: kgToLbs(weightInKg),
+    };
+  };
+
+  const initialWeights = calculateInitialWeight();
+
   return (
     <View className="flex-1">
       <QuestionHeader>{t.t('auth.weightQuestion')}</QuestionHeader>
@@ -103,7 +136,9 @@ export default function WeigthScreen() {
             control={control}
             name="weight"
             error={errors.weight}
-            initialValue={unit === 'kg' ? 70 : 154} // 70kg = 154lbs
+            initialValue={
+              unit === 'kg' ? initialWeights.kg : initialWeights.lbs
+            }
             min={unit === 'kg' ? 30 : 66} // 30kg = 66lbs
             max={unit === 'kg' ? 200 : 440} // 200kg = 440lbs
             step={unit === 'kg' ? 0.5 : 1}
