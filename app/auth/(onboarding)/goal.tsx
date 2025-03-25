@@ -72,7 +72,7 @@ export default function GoalScreen() {
               {
                 label: t.t('auth.goalLooseWeight'),
                 value: 'Lose weigth',
-                icon: 'scale-bathroom',
+                icon: 'gauge-low',
               },
               {
                 label: t.t('auth.goalStable'),
