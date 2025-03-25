@@ -103,7 +103,7 @@ export default function HeightScreen() {
                 <Text className="font-bold">CM</Text>
               </TabsTrigger>
               <TabsTrigger value="ft" className="flex-1">
-                <Text className="font-bold">FT</Text>c
+                <Text className="font-bold">FT</Text>
               </TabsTrigger>
             </TabsList>
           </Tabs>

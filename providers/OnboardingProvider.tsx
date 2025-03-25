@@ -42,7 +42,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('height');
+    useState<OnboardingContextType['currentScreenName']>('questionsFiller');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name

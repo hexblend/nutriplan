@@ -11,8 +11,7 @@ export const progressScreensConfig: Record<
 > = {
   questionsFiller: { next: 'name', progress: 1 },
   name: { next: 'goal', progress: 2 },
-  goal: { next: 'understandingFiller', progress: 6 },
-  understandingFiller: { next: 'height', progress: 10 },
+  goal: { next: 'weight', progress: 6 },
   height: { next: 'weight', progress: 14 },
   weight: { next: 'age', progress: 18 },
   age: { next: 'activity', progress: 22 },

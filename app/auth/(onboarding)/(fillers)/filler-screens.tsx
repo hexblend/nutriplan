@@ -5,10 +5,6 @@ export function QuestionsFillerScreen() {
   return <FillerScreen text={t.t('auth.quickQuestionsFiller')} />;
 }
 
-export function UnderstandingFillerScreen() {
-  return <FillerScreen text={t.t('auth.understandingFiller')} />;
-}
-
 export function AccountFillerScreen() {
   return <FillerScreen text={t.t('auth.accountFiller')} />;
 }
@@ -23,7 +19,6 @@ export function LearningFillerScreen() {
 
 export default {
   QuestionsFillerScreen,
-  UnderstandingFillerScreen,
   AccountFillerScreen,
   GoalsFillerScreen,
   LearningFillerScreen,

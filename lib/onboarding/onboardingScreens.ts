@@ -6,7 +6,6 @@ import {
   GoalsFillerScreen,
   LearningFillerScreen,
   QuestionsFillerScreen,
-  UnderstandingFillerScreen,
 } from '@/app/auth/(onboarding)/(fillers)/filler-screens';
 import TargetActivityScreen from '@/app/auth/(onboarding)/(target-conditional)/target-activity';
 import TargetConditionScreen from '@/app/auth/(onboarding)/(target-conditional)/target-condition';
@@ -31,7 +30,6 @@ export const onboardingProgressScreens: Record<string, React.ComponentType> = {
   questionsFiller: QuestionsFillerScreen,
   name: NameScreen,
   goal: GoalScreen,
-  understandingFiller: UnderstandingFillerScreen,
   height: HeightScreen,
   weight: WeightScreen,
   age: AgeScreen,

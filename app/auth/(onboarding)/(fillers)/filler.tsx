@@ -89,7 +89,9 @@ export default function FillerScreen({ text }: FillerScreenProps) {
             transform: [{ scale: scaleAnim }],
           }}
         >
-          <Text className="rounded-md border border-border p-4">{text}</Text>
+          <Text className="rounded-md border border-border p-4 text-lg">
+            {text}
+          </Text>
           <SpeechCaret width={30} height={30} style={{ marginTop: -9 }} />
         </Animated.View>
 
