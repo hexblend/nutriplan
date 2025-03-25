@@ -87,17 +87,6 @@ export default function AgeScreen() {
           {/* @ts-ignore */}
           <Tabs value={sex} onValueChange={setSex} className="mx-auto w-1/2">
             <TabsList className="w-full flex-row">
-              <TabsTrigger value="male" className="flex-1">
-                <View className="flex-row items-center">
-                  <FontAwesome
-                    name="male"
-                    size={20}
-                    color="#fff"
-                    className="mr-2"
-                  />
-                  <Text>{t.t('common.male')}</Text>
-                </View>
-              </TabsTrigger>
               <TabsTrigger value="female" className="flex-1">
                 <View className="flex-row items-center">
                   <FontAwesome
@@ -107,6 +96,17 @@ export default function AgeScreen() {
                     className="mr-2"
                   />
                   <Text>{t.t('common.female')}</Text>
+                </View>
+              </TabsTrigger>
+              <TabsTrigger value="male" className="flex-1">
+                <View className="flex-row items-center">
+                  <FontAwesome
+                    name="male"
+                    size={20}
+                    color="#fff"
+                    className="mr-2"
+                  />
+                  <Text>{t.t('common.male')}</Text>
                 </View>
               </TabsTrigger>
             </TabsList>

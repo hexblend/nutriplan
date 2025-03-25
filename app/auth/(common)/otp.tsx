@@ -5,10 +5,11 @@ import { ControlledOTP } from '@/components/ui/form/ControlledOTP';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -17,7 +18,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function OtpScreen() {
-  const { setIsForward, currentScreenName, setCurrentScreenName } =
+  const { phoneNumber, setIsForward, currentScreenName, setCurrentScreenName } =
     useOnboardingContext();
 
   const {
@@ -31,12 +32,30 @@ export default function OtpScreen() {
     },
   });
 
-  const onSubmit = (data: FormValues) => {
-    console.log(data);
-    // Go to next screen
-    setIsForward(true);
-    const nextScreen = progressScreensConfig[currentScreenName].next;
-    if (nextScreen) setCurrentScreenName(nextScreen);
+  const onSubmit = async (data: FormValues) => {
+    const { otp } = data;
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.verifyOtp({
+      phone: phoneNumber,
+      token: otp,
+      type: 'sms',
+    });
+    if (error) {
+      console.error('OTP Verify ERROR', error);
+      return Alert.alert(
+        'Error',
+        'The code could not be verified. Try again.',
+        [{ text: 'OK' }]
+      );
+    }
+    if (session) {
+      // Go to next screen
+      setIsForward(true);
+      const nextScreen = progressScreensConfig[currentScreenName].next;
+      if (nextScreen) setCurrentScreenName(nextScreen);
+    }
   };
 
   return (
