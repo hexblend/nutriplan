@@ -1,6 +1,6 @@
 import { cn } from '@/lib/utils';
-import type { Feather } from '@expo/vector-icons';
-import { Feather as FeatherIcon } from '@expo/vector-icons';
+import type { MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons as Icon } from '@expo/vector-icons';
 import { cva, type VariantProps } from 'class-variance-authority';
 import * as Haptics from 'expo-haptics';
 import React, { useRef } from 'react';
@@ -61,7 +61,7 @@ type SelectOptionProps = React.ComponentPropsWithoutRef<typeof Pressable> &
     label: string;
     value: string;
     selected?: boolean;
-    icon?: keyof typeof Feather.glyphMap;
+    icon?: keyof typeof MaterialCommunityIcons.glyphMap;
     // eslint-disable-next-line
     onSelect: (value: string) => void;
   };
@@ -129,7 +129,7 @@ const SelectOption = React.forwardRef<
           >
             <View className="w-full flex-row items-center">
               {icon && (
-                <FeatherIcon
+                <Icon
                   name={icon}
                   size={24}
                   color={selected ? '#ffffff' : '#9ca3af'}

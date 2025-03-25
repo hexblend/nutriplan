@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import type { Feather } from '@expo/vector-icons';
+import type { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import {
   Control,
@@ -22,7 +22,7 @@ interface ControlledSelectProps<T extends FieldValues> {
   options: Array<{
     label: string;
     value: string;
-    icon?: keyof typeof Feather.glyphMap;
+    icon?: keyof typeof MaterialCommunityIcons.glyphMap;
   }>;
   multiple?: boolean;
 }

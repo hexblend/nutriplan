@@ -1,5 +1,5 @@
 import { cn } from '@/lib/utils';
-import type { Feather } from '@expo/vector-icons';
+import type { MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { View } from 'react-native';
 import SelectOption from './select-option';
@@ -8,7 +8,7 @@ type SelectProps = {
   options: Array<{
     label: string;
     value: string;
-    icon?: keyof typeof Feather.glyphMap;
+    icon?: keyof typeof MaterialCommunityIcons.glyphMap;
   }>;
   value: string | string[];
   // eslint-disable-next-line

@@ -71,27 +71,27 @@ export default function ActivityScreen() {
               {
                 label: t.t('auth.activitySedentary'),
                 value: 'Sedentary',
-                icon: 'tv',
+                icon: 'sofa',
               },
               {
                 label: t.t('auth.activityLightly'),
                 value: 'Lightly active',
-                icon: 'user',
+                icon: 'walk',
               },
               {
                 label: t.t('auth.activityModerate'),
                 value: 'Moderately active',
-                icon: 'activity',
+                icon: 'run',
               },
               {
                 label: t.t('auth.activityVery'),
                 value: 'Very active',
-                icon: 'trending-up',
+                icon: 'run-fast',
               },
               {
                 label: t.t('auth.activityExtreme'),
                 value: 'Extremely active',
-                icon: 'zap',
+                icon: 'weight-lifter',
               },
             ]}
             multiple={false}
