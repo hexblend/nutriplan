@@ -15,7 +15,7 @@ const selectOptionVariants = cva(
         selected: 'bg-background border border-blue-500',
       },
       size: {
-        default: 'h-14 px-4',
+        default: 'min-h-[48px] py-4 px-4',
       },
     },
     defaultVariants: {
@@ -137,10 +137,13 @@ const SelectOption = React.forwardRef<
                 />
               )}
               <Text
-                className={selectOptionTextVariants({
-                  variant: activeVariant,
-                  size,
-                })}
+                className={cn(
+                  selectOptionTextVariants({
+                    variant: activeVariant,
+                    size,
+                  }),
+                  'flex-1'
+                )}
               >
                 {label}
               </Text>
