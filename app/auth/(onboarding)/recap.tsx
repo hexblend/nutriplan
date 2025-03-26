@@ -140,7 +140,7 @@ export default function RecapScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setReady(true);
-    }, 4000);
+    }, 5000);
     return () => clearTimeout(timer);
   }, []);
 
