@@ -46,6 +46,14 @@ export const authEN = {
   targetActivitySometimes: '3-4 times',
   targetActivityOften: '5+ times',
   targetActivityNotYet: 'Not currently, but planning to start',
+
+  targetMaintenanceQuestion:
+    'What aspect of your health are you focused on maintaining?',
+  targetMaintenanceOverall: 'Overall wellbeing',
+  targetMaintenanceWeight: 'Current weight',
+  targetMaintenanceEnergy: 'Energy levels',
+  targetMaintenancePerformance: 'Athletic performance',
+  targetMaintenanceMental: 'Mental clarity and focus',
 };
 
 export const authRO = {
@@ -97,4 +105,12 @@ export const authRO = {
   targetActivitySometimes: '3-4 ori',
   targetActivityOften: '5+ ori',
   targetActivityNotYet: 'Deloc momentan, dar plănuiesc să încep',
+
+  targetMaintenanceQuestion:
+    'La ce aspect al sănătății tale te concentrezi să-l menții?',
+  targetMaintenanceOverall: 'Bunăstarea generală',
+  targetMaintenanceWeight: 'Greutatea actuală',
+  targetMaintenanceEnergy: 'Nivelul de energie',
+  targetMaintenancePerformance: 'Performanța atletică',
+  targetMaintenanceMental: 'Claritate și concentrare mentală',
 };

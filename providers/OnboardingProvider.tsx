@@ -49,6 +49,9 @@ interface OnboardingContextType {
   setTargetActivity: Dispatch<
     SetStateAction<OnboardingTargetActivity | undefined>
   >;
+  // Target Maintenance
+  targetMaintenance: string;
+  setTargetMaintenance: Dispatch<SetStateAction<string>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -94,6 +97,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Target Activity
   const [targetActivity, setTargetActivity] =
     useState<OnboardingContextType['targetActivity']>(undefined);
+  // Target Maintenance
+  const [targetMaintenance, setTargetMaintenance] =
+    useState<OnboardingContextType['targetMaintenance']>('');
 
   return (
     <OnboardingContext.Provider
@@ -134,6 +140,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Target Activity
         targetActivity,
         setTargetActivity,
+        // Target Maintenance
+        targetMaintenance,
+        setTargetMaintenance,
       }}
     >
       {children}
