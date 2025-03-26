@@ -7,7 +7,7 @@ import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { FontAwesome } from '@expo/vector-icons';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Animated, View } from 'react-native';
 
 interface RecapItemProps {
@@ -17,8 +17,8 @@ interface RecapItemProps {
 
 function RecapItem({ text, delay }: RecapItemProps) {
   const [visible, setVisible] = useState(false);
-  const opacityAnim = new Animated.Value(0);
-  const translateXAnim = new Animated.Value(-20);
+  const opacityAnim = useRef(new Animated.Value(0)).current;
+  const translateXAnim = useRef(new Animated.Value(-20)).current;
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -37,7 +37,7 @@ function RecapItem({ text, delay }: RecapItemProps) {
       ]).start();
     }, delay);
     return () => clearTimeout(timer);
-  }, [delay, text]);
+  }, [delay, text, opacityAnim, translateXAnim]);
 
   if (!visible) return null;
   return (
@@ -96,6 +96,8 @@ export default function RecapScreen() {
     ? `Address your challenge with ${challenge.toLowerCase()}`
     : 'Address your meal planning challenges';
 
+  const noRestrictions = dietaryRestrictions.includes('No restrictions');
+
   return (
     <View className="flex-1">
       <QuestionHeader>{`All set up ${displayName}!`}</QuestionHeader>
@@ -121,11 +123,17 @@ export default function RecapScreen() {
           </Text>
           <View className="mt-8 gap-6">
             <RecapItem text={displayGoal} delay={500} />
-            {!dietaryRestrictions.includes('No restrictions') && (
+            {!noRestrictions && (
               <RecapItem text={displayRestrictions} delay={1000} />
             )}
-            <RecapItem text={displayTime} delay={1500} />
-            <RecapItem text={displayChallenge} delay={2000} />
+            <RecapItem
+              text={displayTime}
+              delay={noRestrictions ? 1000 : 1500}
+            />
+            <RecapItem
+              text={displayChallenge}
+              delay={noRestrictions ? 1500 : 2000}
+            />
           </View>
         </View>
       </PageWrapper>
