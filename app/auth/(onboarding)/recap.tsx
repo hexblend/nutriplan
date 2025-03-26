@@ -7,7 +7,7 @@ import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { FontAwesome } from '@expo/vector-icons';
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Animated, View } from 'react-native';
 
 interface RecapItemProps {
@@ -54,13 +54,82 @@ function RecapItem({ text, delay }: RecapItemProps) {
   );
 }
 
+interface AnimatedTitleProps {
+  title: string;
+  delay: number;
+}
+
+function AnimatedTitle({ title, delay }: AnimatedTitleProps) {
+  const [visible, setVisible] = useState(false);
+  const opacityAnim = useRef(new Animated.Value(0)).current;
+  const translateXAnim = useRef(new Animated.Value(-20)).current;
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setVisible(true);
+      Animated.parallel([
+        Animated.timing(opacityAnim, {
+          toValue: 1,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+        Animated.timing(translateXAnim, {
+          toValue: 0,
+          duration: 500,
+          useNativeDriver: true,
+        }),
+      ]).start();
+    }, delay);
+    return () => clearTimeout(timer);
+  }, [delay, title, opacityAnim, translateXAnim]);
+
+  if (!visible) return null;
+  return (
+    <Animated.View
+      style={{
+        opacity: opacityAnim,
+        transform: [{ translateX: translateXAnim }],
+      }}
+    >
+      <Text className="mb-4 text-xl font-bold text-foreground">{title}</Text>
+    </Animated.View>
+  );
+}
+
+function RecapSection({
+  title,
+  children,
+  titleDelay,
+}: {
+  title: string;
+  children: React.ReactNode;
+  titleDelay: number;
+}) {
+  return (
+    <View className="mb-8">
+      <AnimatedTitle title={title} delay={titleDelay} />
+      <View className="gap-3">{children}</View>
+    </View>
+  );
+}
+
 export default function RecapScreen() {
   const {
     firstName,
+    lastName,
+    age,
+    height,
+    weight,
+    targetWeight,
     goal,
     dietaryRestrictions,
     time,
     challenge,
+    activity,
+    targetActivity,
+    targetMaintenance,
+    targetCondition,
+    targetSport,
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
@@ -71,7 +140,7 @@ export default function RecapScreen() {
   useEffect(() => {
     const timer = setTimeout(() => {
       setReady(true);
-    }, 2000);
+    }, 4000);
     return () => clearTimeout(timer);
   }, []);
 
@@ -117,24 +186,64 @@ export default function RecapScreen() {
           </PageFooter>
         }
       >
-        <View className="mt-8">
-          <Text className="text-center text-lg font-bold text-foreground">
-            Our meal plans will:
-          </Text>
-          <View className="mt-8 gap-6">
-            <RecapItem text={displayGoal} delay={500} />
-            {!noRestrictions && (
-              <RecapItem text={displayRestrictions} delay={1000} />
+        <View className="mt-6">
+          <RecapSection title="You are" titleDelay={200}>
+            <RecapItem
+              text={`${firstName} ${lastName}, ${age} years old`}
+              delay={800}
+            />
+            <RecapItem text={`Height: ${height}`} delay={1500} />
+            <RecapItem text={`Current weight: ${weight}`} delay={2000} />
+            {targetWeight && (
+              <RecapItem text={`Target weight: ${targetWeight}`} delay={2500} />
             )}
+          </RecapSection>
+
+          <RecapSection title="Your Goals" titleDelay={3000}>
+            <RecapItem text={displayGoal} delay={3500} />
+            {goal === 'Lose weight' && targetWeight && (
+              <RecapItem text={`Target weight: ${targetWeight}`} delay={4000} />
+            )}
+            {goal === 'Maintain weight in a healthy way' &&
+              targetMaintenance && (
+                <RecapItem
+                  text={`Focus on: ${targetMaintenance.toLowerCase()}`}
+                  delay={4000}
+                />
+              )}
+            {goal === 'Increase muscle mass' && targetActivity && (
+              <RecapItem
+                text={`Activity focus: ${targetActivity.toLowerCase()}`}
+                delay={4000}
+              />
+            )}
+            {goal === 'Diet for a condition' && targetCondition && (
+              <RecapItem text={`Condition: ${targetCondition}`} delay={4000} />
+            )}
+            {goal === 'Performance for athletes' && targetSport && (
+              <RecapItem
+                text={`Sport focus: ${targetSport.toLowerCase()}`}
+                delay={4000}
+              />
+            )}
+          </RecapSection>
+
+          <RecapSection title="Activity & Lifestyle" titleDelay={4500}>
+            {activity && (
+              <RecapItem text={`Activity level: ${activity}`} delay={5000} />
+            )}
+            <RecapItem text={displayTime} delay={5500} />
+            <RecapItem text={displayChallenge} delay={6000} />
+          </RecapSection>
+
+          <RecapSection title="Dietary Preferences" titleDelay={6500}>
             <RecapItem
-              text={displayTime}
-              delay={noRestrictions ? 1000 : 1500}
+              text={
+                noRestrictions ? 'No dietary restrictions' : displayRestrictions
+              }
+              delay={7000}
             />
-            <RecapItem
-              text={displayChallenge}
-              delay={noRestrictions ? 1500 : 2000}
-            />
-          </View>
+          </RecapSection>
         </View>
       </PageWrapper>
     </View>
