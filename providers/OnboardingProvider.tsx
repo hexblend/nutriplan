@@ -122,7 +122,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('challenge');
+    useState<OnboardingContextType['currentScreenName']>('name');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
