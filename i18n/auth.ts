@@ -98,7 +98,7 @@ export const authEN = {
 
   recapTitle: 'All set up %{name}!',
   recapYouAre: 'You are',
-  recapPersonInfo: '%{firstName}%{lastName}, %{age} years old',
+  recapPersonInfo: '%{firstName} %{lastName}, %{age} years old',
   recapHeight: 'Height: %{height}',
   recapCurrentWeight: 'Current weight: %{weight}',
   recapTargetWeight: 'Target weight: %{targetWeight}',
@@ -135,7 +135,7 @@ export const authRO = {
     'Să salvăm răspunsurile în contul tău. Mai urmează câteva întrebări.',
   goalsFiller: 'Dorim să înțelegem mai bine obiectivele tale personale.',
   learningFiller:
-    'Învățăm multe despre tine; lucru ne ajută să creăm un plan alimentar ce ți se potrivește cu adevărat.',
+    'Învățăm multe despre tine. Acest lucru ne ajută să creăm un plan alimentar ce ți se potrivește cu adevărat.',
 
   nameQuestion: 'Cum te numesti?',
 
@@ -221,12 +221,12 @@ export const authRO = {
     'Prefer să pregătesc mesele o dată sau de două ori pe săptămână',
 
   recapTitle: 'Totul este gata %{name}!',
-  recapYouAre: 'Tu ești',
-  recapPersonInfo: '%{firstName}%{lastName}, %{age} ani',
+  recapYouAre: 'Tu ești:',
+  recapPersonInfo: '%{firstName} %{lastName}, %{age} ani',
   recapHeight: 'Înălțime: %{height}',
   recapCurrentWeight: 'Greutate actuală: %{weight}',
   recapTargetWeight: 'Greutate țintă: %{targetWeight}',
-  recapHelpTitle: 'Vom ajuta prin',
+  recapHelpTitle: 'Te vom ajuta:',
   recapGoalLoseWeight:
     'Să te ajutăm să ajungi la greutatea țintă de %{targetWeight} prin nutriție echilibrată',
   recapGoalMaintain:

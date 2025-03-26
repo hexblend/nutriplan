@@ -24,7 +24,6 @@ export type OnboardingTargetActivity =
 
 export default function TargetActivityScreen() {
   const {
-    firstName,
     targetActivity,
     setTargetActivity,
     setIsForward,
@@ -52,7 +51,7 @@ export default function TargetActivityScreen() {
 
   return (
     <View className="flex-1">
-      <QuestionHeader>{`Hey ${firstName}! ${t.t('auth.targetActivityQuestion')}`}</QuestionHeader>
+      <QuestionHeader>{`${t.t('auth.targetActivityQuestion')}`}</QuestionHeader>
       <PageWrapper
         footer={
           <PageFooter>
