@@ -231,8 +231,7 @@ export const authRO = {
     'Să te ajutăm să ajungi la greutatea țintă de %{targetWeight} prin nutriție echilibrată',
   recapGoalMaintain:
     'Concentrându-ne pe %{targetMaintenance} pentru a menține greutatea actuală',
-  recapGoalMuscle:
-    'Proiectând mese care să sprijine %{targetActivity} și creșterea musculară.',
+  recapGoalMuscle: 'Proiectând mese care să sprijine creșterea musculară.',
   recapGoalCondition:
     'Creând mese care să sprijine condiția ta de %{targetCondition}.',
   recapGoalSport: 'Optimizând nutriția pentru performanță în %{targetSport}.',

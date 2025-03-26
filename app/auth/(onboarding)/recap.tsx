@@ -10,6 +10,65 @@ import { FontAwesome } from '@expo/vector-icons';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated, View } from 'react-native';
 
+// Helper function to translate values
+const translateValue = (key: string, value: string | undefined): string => {
+  if (!value) return '';
+
+  // Map of English values to translation keys
+  const translationMap: Record<string, string> = {
+    // Activity
+    Sedentary: 'auth.activitySedentary',
+    'Lightly active': 'auth.activityLightly',
+    'Moderately active': 'auth.activityModerate',
+    'Very active': 'auth.activityVery',
+    'Extremely active': 'auth.activityExtreme',
+
+    // Time
+    'Less than 30 minutes': 'auth.timeLessThan30',
+    '30-45 minutes': 'auth.time30To45',
+    '45-60 minutes': 'auth.time45To60',
+    'I prefer meal prepping once or twice a week': 'auth.timeWeeklyPrep',
+
+    // Challenge
+    'Lack of time to prepare meals': 'auth.challengeLackOfTime',
+    'Not knowing what to eat': 'auth.challengeNotKnowing',
+    'Cravings and temptations': 'auth.challengeCravings',
+    'Complicated recipes': 'auth.challengeComplicated',
+    'Meal repetition / boredom': 'auth.challengeRepetition',
+
+    // Target Activity
+    '1-2 times': 'auth.targetActivityRarely',
+    '3-4 times': 'auth.targetActivitySometimes',
+    '5+ times': 'auth.targetActivityOften',
+    'Not currently, but planning to start': 'auth.targetActivityNotYet',
+
+    // Target Maintenance
+    'Overall wellbeing': 'auth.targetMaintenanceOverall',
+    'Current weight': 'auth.targetMaintenanceWeight',
+    'Energy levels': 'auth.targetMaintenanceEnergy',
+    'Athletic performance': 'auth.targetMaintenancePerformance',
+    'Mental clarity and focus': 'auth.targetMaintenanceMental',
+
+    // Target Sport
+    'Endurance sports (running, cycling)': 'auth.targetSportEndurance',
+    'Team sports': 'auth.targetSportTeam',
+    'Strength training': 'auth.targetSportStrength',
+    'High intensity interval training': 'auth.targetSportHIIT',
+    'CrossFit/functional fitness': 'auth.targetSportCrossFit',
+    'Yoga/flexibility-focused training': 'auth.targetSportYoga',
+
+    // Goal
+    'Lose weight': 'auth.goalLooseWeight',
+    'Increase muscle mass': 'auth.goalIncreaseMass',
+    'Maintain weight in a healthy way': 'auth.goalStable',
+    'Diet for a health condition': 'auth.goalHealthCondition',
+    'Performance for athletes': 'auth.goalPerformance',
+  };
+
+  const translationKey = translationMap[value];
+  return translationKey ? t.t(translationKey) : value;
+};
+
 interface RecapItemProps {
   text: string;
   delay: number;
@@ -237,13 +296,23 @@ export default function RecapScreen() {
             {goal === 'Maintain weight in a healthy way' &&
               targetMaintenance && (
                 <RecapItem
-                  text={t.t('auth.recapGoalMaintain', { targetMaintenance })}
+                  text={t.t('auth.recapGoalMaintain', {
+                    targetMaintenance: translateValue(
+                      'targetMaintenance',
+                      targetMaintenance
+                    ),
+                  })}
                   delay={4000}
                 />
               )}
             {goal === 'Increase muscle mass' && targetActivity && (
               <RecapItem
-                text={t.t('auth.recapGoalMuscle', { targetActivity })}
+                text={t.t('auth.recapGoalMuscle', {
+                  targetActivity: translateValue(
+                    'targetActivity',
+                    targetActivity
+                  ),
+                })}
                 delay={4000}
               />
             )}
@@ -255,25 +324,30 @@ export default function RecapScreen() {
             )}
             {goal === 'Performance for athletes' && targetSport && (
               <RecapItem
-                text={t.t('auth.recapGoalSport', { targetSport })}
+                text={t.t('auth.recapGoalSport', {
+                  targetSport: translateValue('targetSport', targetSport),
+                })}
                 delay={4000}
               />
             )}
             {activity && (
               <RecapItem
-                text={t.t('auth.recapActivity', { activity })}
+                text={t.t('auth.recapActivity', {
+                  activity: translateValue('activity', activity),
+                })}
                 delay={4500}
               />
             )}
             <RecapItem
               text={t.t('auth.recapTime', {
-                time: time?.toLowerCase() || 'busy',
+                time: translateValue('time', time) || 'busy',
               })}
               delay={5000}
             />
             <RecapItem
               text={t.t('auth.recapChallenge', {
-                challenge: challenge?.toLowerCase() || 'meal planning',
+                challenge:
+                  translateValue('challenge', challenge) || 'meal planning',
               })}
               delay={5500}
             />
@@ -283,6 +357,7 @@ export default function RecapScreen() {
                   ? t.t('auth.recapRestrictions')
                   : t.t('auth.recapRestrictionsWith', {
                       restrictions: dietaryRestrictions
+                        .map((r) => translateValue('dietaryRestrictions', r))
                         .join(', ')
                         .toLowerCase(),
                     })
