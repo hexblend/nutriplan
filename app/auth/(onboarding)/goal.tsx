@@ -78,7 +78,7 @@ export default function GoalScreen() {
               {
                 label: t.t('auth.goalLooseWeight'),
                 value: 'Lose weigth',
-                icon: 'gauge-low',
+                icon: 'camera-timer',
               },
               {
                 label: t.t('auth.goalStable'),

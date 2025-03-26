@@ -66,6 +66,16 @@ export const authEN = {
   targetSportHIIT: 'High intensity interval training',
   targetSportCrossFit: 'CrossFit/functional fitness',
   targetSportYoga: 'Yoga/flexibility-focused training',
+
+  dietaryRestrictionsQuestion: 'Do you have any dietary restrictions?',
+  dietaryRestrictionsNone: 'No restrictions',
+  dietaryRestrictionsVegetarian: 'Vegetarian',
+  dietaryRestrictionsVegan: 'Vegan',
+  dietaryRestrictionsGlutenFree: 'Gluten-free',
+  dietaryRestrictionsDairyFree: 'Dairy-free',
+  dietaryRestrictionsKeto: 'Keto',
+  dietaryRestrictionsPescatarian: 'Pescatarian',
+  dietaryRestrictionsFasting: 'Fasting',
 };
 
 export const authRO = {
@@ -136,4 +146,14 @@ export const authRO = {
   targetSportHIIT: 'Antrenament interval de intensitate ridicată',
   targetSportCrossFit: 'CrossFit/antrenament funcțional',
   targetSportYoga: 'Yoga/antrenament de flexibilitate',
+
+  dietaryRestrictionsQuestion: 'Ai restricții alimentare?',
+  dietaryRestrictionsNone: 'Fără restricții',
+  dietaryRestrictionsVegetarian: 'Vegetarian',
+  dietaryRestrictionsVegan: 'Vegan',
+  dietaryRestrictionsGlutenFree: 'Fără gluten',
+  dietaryRestrictionsDairyFree: 'Fără lactate',
+  dietaryRestrictionsKeto: 'Keto',
+  dietaryRestrictionsPescatarian: 'Pescetarian',
+  dietaryRestrictionsFasting: 'Post',
 };

@@ -18,6 +18,15 @@ export type OnboardingTargetSport =
   | 'CrossFit/functional fitness'
   | 'Yoga/flexibility-focused training';
 
+export type OnboardingDietaryRestriction =
+  | 'No restrictions'
+  | 'Vegetarian'
+  | 'Vegan'
+  | 'Gluten-free'
+  | 'Dairy-free'
+  | 'Keto'
+  | 'Pescatarian';
+
 interface OnboardingContextType {
   // Navigation
   currentScreenName: ProgressScreenName;
@@ -66,6 +75,11 @@ interface OnboardingContextType {
   // Target Sport
   targetSport: OnboardingTargetSport | undefined;
   setTargetSport: Dispatch<SetStateAction<OnboardingTargetSport | undefined>>;
+  // Dietary Restrictions
+  dietaryRestrictions: OnboardingDietaryRestriction[];
+  setDietaryRestrictions: Dispatch<
+    SetStateAction<OnboardingDietaryRestriction[]>
+  >;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -120,6 +134,10 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Target Sport
   const [targetSport, setTargetSport] =
     useState<OnboardingContextType['targetSport']>(undefined);
+  // Dietary Restrictions
+  const [dietaryRestrictions, setDietaryRestrictions] = useState<
+    OnboardingContextType['dietaryRestrictions']
+  >([]);
 
   return (
     <OnboardingContext.Provider
@@ -169,6 +187,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Target Sport
         targetSport,
         setTargetSport,
+        // Dietary Restrictions
+        dietaryRestrictions,
+        setDietaryRestrictions,
       }}
     >
       {children}
