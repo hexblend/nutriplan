@@ -40,6 +40,12 @@ export type OnboardingChallenge =
   | 'Complicated recipes'
   | 'Meal repetition / boredom';
 
+export type OnboardingTime =
+  | 'Less than 30 minutes'
+  | '30-45 minutes'
+  | '45-60 minutes'
+  | 'I prefer meal prepping once or twice a week';
+
 interface OnboardingContextType {
   // Navigation
   currentScreenName: ProgressScreenName;
@@ -99,6 +105,9 @@ interface OnboardingContextType {
   // Challenge
   challenge: OnboardingChallenge | undefined;
   setChallenge: Dispatch<SetStateAction<OnboardingChallenge | undefined>>;
+  // Time
+  time: OnboardingTime | undefined;
+  setTime: Dispatch<SetStateAction<OnboardingTime | undefined>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -163,6 +172,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Challenge
   const [challenge, setChallenge] =
     useState<OnboardingContextType['challenge']>(undefined);
+  // Time
+  const [time, setTime] = useState<OnboardingContextType['time']>(undefined);
 
   return (
     <OnboardingContext.Provider
@@ -221,6 +232,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Challenge
         challenge,
         setChallenge,
+        // Time
+        time,
+        setTime,
       }}
     >
       {children}

@@ -90,6 +90,11 @@ export const authEN = {
   challengeCravings: 'Cravings and temptations',
   challengeComplicated: 'Complicated recipes',
   challengeRepetition: 'Meal repetition / boredom',
+  timeQuestion: 'How much time can you spend on meal preparation daily?',
+  timeLessThan30: 'Less than 30 minutes',
+  time30To45: '30-45 minutes',
+  time45To60: '45-60 minutes',
+  timeWeeklyPrep: 'I prefer meal prepping once or twice a week',
 };
 
 export const authRO = {
@@ -184,4 +189,10 @@ export const authRO = {
   challengeCravings: 'Pofte și tentații',
   challengeComplicated: 'Rețete complicate',
   challengeRepetition: 'Repetiția meselor / plictiseala',
+  timeQuestion: 'Cât timp poți aloca zilnic pentru prepararea meselor?',
+  timeLessThan30: 'Mai puțin de 30 de minute',
+  time30To45: '30-45 de minute',
+  time45To60: '45-60 de minute',
+  timeWeeklyPrep:
+    'Prefer să pregătesc mesele o dată sau de două ori pe săptămână',
 };
