@@ -173,10 +173,10 @@ export default function RecapScreen() {
 
   return (
     <View className="flex-1">
-      <QuestionHeader>{`All set up ${displayName}!`}</QuestionHeader>
+      <QuestionHeader className="">{`All set up ${displayName}!`}</QuestionHeader>
       <PageWrapper
         footer={
-          <PageFooter>
+          <PageFooter className="-mx-3 border-t border-t-border !px-6">
             <Button
               variant="default"
               onPress={handleGoToNextScreen}
@@ -279,6 +279,18 @@ export default function RecapScreen() {
               delay={6000}
             />
           </RecapSection>
+
+          <Animated.View
+            style={{
+              opacity: new Animated.Value(0),
+              transform: [{ translateY: 20 }],
+            }}
+            className="mt-8 items-center"
+          >
+            <Text className="text-center text-sm text-muted-foreground">
+              You can change these details as you improve 😊
+            </Text>
+          </Animated.View>
         </View>
       </PageWrapper>
     </View>
