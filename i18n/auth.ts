@@ -107,8 +107,7 @@ export const authEN = {
     'Helping you reach your target weight of %{targetWeight} through balanced nutrition',
   recapGoalMaintain:
     'Focusing on %{targetMaintenance} to maintain your current weight',
-  recapGoalMuscle:
-    'Designing meals to support %{targetActivity} and muscle growth.',
+  recapGoalMuscle: 'Designing meals to support muscle growth.',
   recapGoalCondition:
     'Creating meals that support your %{targetCondition} condition.',
   recapGoalSport: 'Optimizing nutrition for %{targetSport} performance.',
