@@ -6,14 +6,17 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
-import {
-  OnboardingTriedBefore,
-  useOnboardingContext,
-} from '@/providers/OnboardingProvider';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
+
+export type OnboardingTriedBefore =
+  | 'Yes, but it was too complicated'
+  | "Yes, but I couldn't stick with it"
+  | 'Yes, and it worked for a while'
+  | 'No, this is my first time';
 
 const formSchema = z.object({
   triedBefore: z

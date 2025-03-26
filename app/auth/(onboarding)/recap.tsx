@@ -173,7 +173,7 @@ export default function RecapScreen() {
 
   return (
     <View className="flex-1">
-      <QuestionHeader className="">{`All set up ${displayName}!`}</QuestionHeader>
+      <QuestionHeader>{`All set up ${displayName}!`}</QuestionHeader>
       <PageWrapper
         footer={
           <PageFooter className="-mx-3 border-t border-t-border !px-6">

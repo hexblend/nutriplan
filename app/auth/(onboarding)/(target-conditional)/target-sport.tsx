@@ -6,14 +6,19 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
-import {
-  OnboardingTargetSport,
-  useOnboardingContext,
-} from '@/providers/OnboardingProvider';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
+
+export type OnboardingTargetSport =
+  | 'Endurance sports (running, cycling)'
+  | 'Team sports'
+  | 'Strength training'
+  | 'High intensity interval training'
+  | 'CrossFit/functional fitness'
+  | 'Yoga/flexibility-focused training';
 
 const formSchema = z.object({
   targetSport: z.string().min(2, 'Required'),

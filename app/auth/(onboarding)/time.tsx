@@ -6,14 +6,17 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
-import {
-  OnboardingTime,
-  useOnboardingContext,
-} from '@/providers/OnboardingProvider';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
+
+export type OnboardingTime =
+  | 'Less than 30 minutes'
+  | '30-45 minutes'
+  | '45-60 minutes'
+  | 'I prefer meal prepping once or twice a week';
 
 const formSchema = z.object({
   time: z.string().min(2, 'Required') as z.ZodType<OnboardingTime>,

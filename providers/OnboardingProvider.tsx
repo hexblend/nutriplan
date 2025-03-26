@@ -1,5 +1,10 @@
 import { OnboardingTargetActivity } from '@/app/auth/(onboarding)/(target-conditional)/target-activity';
+import { OnboardingTargetSport } from '@/app/auth/(onboarding)/(target-conditional)/target-sport';
+import { OnboardingChallenge } from '@/app/auth/(onboarding)/challenge';
 import { OnboardingGoal } from '@/app/auth/(onboarding)/goal';
+import { OnboardingDietaryRestriction } from '@/app/auth/(onboarding)/restrictions';
+import { OnboardingTime } from '@/app/auth/(onboarding)/time';
+import { OnboardingTriedBefore } from '@/app/auth/(onboarding)/tried-before';
 import { ProgressScreenName } from '@/lib/onboarding/onboardingScreens';
 import React, {
   Dispatch,
@@ -9,42 +14,6 @@ import React, {
   useContext,
   useState,
 } from 'react';
-
-export type OnboardingTargetSport =
-  | 'Endurance sports (running, cycling)'
-  | 'Team sports'
-  | 'Strength training'
-  | 'High intensity interval training'
-  | 'CrossFit/functional fitness'
-  | 'Yoga/flexibility-focused training';
-
-export type OnboardingDietaryRestriction =
-  | 'No restrictions'
-  | 'Vegetarian'
-  | 'Vegan'
-  | 'Gluten-free'
-  | 'Dairy-free'
-  | 'Keto'
-  | 'Pescatarian';
-
-export type OnboardingTriedBefore =
-  | 'Yes, but it was too complicated'
-  | "Yes, but I couldn't stick with it"
-  | 'Yes, and it worked for a while'
-  | 'No, this is my first time';
-
-export type OnboardingChallenge =
-  | 'Lack of time to prepare meals'
-  | 'Not knowing what to eat'
-  | 'Cravings and temptations'
-  | 'Complicated recipes'
-  | 'Meal repetition / boredom';
-
-export type OnboardingTime =
-  | 'Less than 30 minutes'
-  | '30-45 minutes'
-  | '45-60 minutes'
-  | 'I prefer meal prepping once or twice a week';
 
 interface OnboardingContextType {
   // Navigation

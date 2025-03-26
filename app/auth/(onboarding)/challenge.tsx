@@ -6,14 +6,18 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
-import {
-  OnboardingChallenge,
-  useOnboardingContext,
-} from '@/providers/OnboardingProvider';
+import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
+
+export type OnboardingChallenge =
+  | 'Lack of time to prepare meals'
+  | 'Not knowing what to eat'
+  | 'Cravings and temptations'
+  | 'Complicated recipes'
+  | 'Meal repetition / boredom';
 
 const formSchema = z.object({
   challenge: z.string().min(2, 'Required') as z.ZodType<OnboardingChallenge>,
