@@ -29,6 +29,9 @@ interface OnboardingContextType {
   // Weight
   weight: string;
   setWeight: Dispatch<SetStateAction<string>>;
+  // Target Weight
+  targetWeight: string;
+  setTargetWeight: Dispatch<SetStateAction<string>>;
   // Age & Sex
   age: string;
   setAge: Dispatch<SetStateAction<string>>;
@@ -70,6 +73,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Weight
   const [weight, setWeight] =
     useState<OnboardingContextType['weight']>('80 kg');
+  // Target Weight
+  const [targetWeight, setTargetWeight] =
+    useState<OnboardingContextType['targetWeight']>('');
   // Age & Sex
   const [age, setAge] = useState<OnboardingContextType['age']>('25');
   const [sex, setSex] = useState<OnboardingContextType['sex']>('male');
@@ -102,6 +108,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Weight
         weight,
         setWeight,
+        // Target Weight
+        targetWeight,
+        setTargetWeight,
         // Age & Sex
         age,
         setAge,

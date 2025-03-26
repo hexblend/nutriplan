@@ -26,6 +26,7 @@ export const authEN = {
   heightQuestion: 'What is your height?',
 
   weightQuestion: 'What is your weight?',
+  targetWeightQuestion: 'What is your target weight?',
 
   ageAndSexQuestion: 'What is your age and sex?',
 
@@ -69,6 +70,7 @@ export const authRO = {
   heightQuestion: 'Care este înălțimea ta?',
 
   weightQuestion: 'Care este greutatea ta?',
+  targetWeightQuestion: 'La ce greutate vrei să ajungi?',
 
   ageAndSexQuestion: 'Care este vârsta și sexul tău?',
 
