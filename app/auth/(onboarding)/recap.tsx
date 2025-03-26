@@ -116,7 +116,7 @@ export default function RecapScreen() {
         }
       >
         <View className="mt-8">
-          <Text className="text-center text-lg text-foreground">
+          <Text className="text-center text-lg font-bold text-foreground">
             Our meal plans will:
           </Text>
           <View className="mt-8 gap-6">
