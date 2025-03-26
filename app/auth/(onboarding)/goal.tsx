@@ -16,6 +16,12 @@ const formSchema = z.object({
   goal: z.string().min(2, 'Required'),
 });
 type FormValues = z.infer<typeof formSchema>;
+export type OnboardingGoal =
+  | 'Lose weight'
+  | 'Maintain weight in a healthy way'
+  | 'Increase muscle mass'
+  | 'Diet for a condition'
+  | 'Performance for athletes';
 
 export default function GoalScreen() {
   const {
@@ -38,7 +44,7 @@ export default function GoalScreen() {
   const readyToSubmit = (isDirty && isValid) || goal;
 
   const onSubmit = (data: FormValues) => {
-    setGoal(data.goal);
+    setGoal(data.goal as OnboardingGoal);
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;

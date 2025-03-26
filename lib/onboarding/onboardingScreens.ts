@@ -7,11 +7,7 @@ import {
   LearningFillerScreen,
   QuestionsFillerScreen,
 } from '@/app/auth/(onboarding)/(fillers)/filler-screens';
-import TargetActivityScreen from '@/app/auth/(onboarding)/(target-conditional)/target-activity';
-import TargetConditionScreen from '@/app/auth/(onboarding)/(target-conditional)/target-condition';
-import TargetMaintenanceScreen from '@/app/auth/(onboarding)/(target-conditional)/target-maintenance';
-import TargetSportScreen from '@/app/auth/(onboarding)/(target-conditional)/target-sport';
-import TargetWeightScreen from '@/app/auth/(onboarding)/(target-conditional)/target-weight';
+import TargetScreen from '@/app/auth/(onboarding)/(target-conditional)/target-screen';
 import ActivityScreen from '@/app/auth/(onboarding)/activity';
 import AgeScreen from '@/app/auth/(onboarding)/age';
 import ChallengeScreen from '@/app/auth/(onboarding)/challenge';
@@ -39,11 +35,7 @@ export const onboardingProgressScreens: Record<string, React.ComponentType> = {
   otp: OtpScreen,
   password: NewPasswordScreen,
   goalsFiller: GoalsFillerScreen,
-  targetWeight: TargetWeightScreen,
-  targetActivity: TargetActivityScreen,
-  targetMaintenance: TargetMaintenanceScreen,
-  targetCondition: TargetConditionScreen,
-  targetSport: TargetSportScreen,
+  target: TargetScreen,
   restrictions: RestrictionsScreen,
   learningFiller: LearningFillerScreen,
   triedBefore: TriedBeforeScreen,

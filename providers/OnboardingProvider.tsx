@@ -1,3 +1,4 @@
+import { OnboardingGoal } from '@/app/auth/(onboarding)/goal';
 import { ProgressScreenName } from '@/lib/onboarding/onboardingScreens';
 import React, {
   Dispatch,
@@ -20,8 +21,8 @@ interface OnboardingContextType {
   lastName: string;
   setLastName: Dispatch<SetStateAction<string>>;
   // Goal
-  goal: string;
-  setGoal: Dispatch<SetStateAction<string>>;
+  goal: OnboardingGoal | undefined;
+  setGoal: Dispatch<SetStateAction<OnboardingGoal | undefined>>;
   // Height
   height: string;
   setHeight: Dispatch<SetStateAction<string>>;
@@ -53,7 +54,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('questionsFiller');
+    useState<OnboardingContextType['currentScreenName']>('goal');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
@@ -62,7 +63,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   const [lastName, setLastName] =
     useState<OnboardingContextType['lastName']>('');
   // Goal
-  const [goal, setGoal] = useState<OnboardingContextType['goal']>('');
+  const [goal, setGoal] = useState<OnboardingContextType['goal']>(undefined);
   // Height
   const [height, setHeight] =
     useState<OnboardingContextType['height']>('170 cm');
