@@ -173,7 +173,9 @@ export default function RecapScreen() {
 
   return (
     <View className="flex-1">
-      <QuestionHeader>{`All set up ${displayName}!`}</QuestionHeader>
+      <QuestionHeader>
+        {t.t('auth.recapTitle', { name: displayName })}
+      </QuestionHeader>
       <PageWrapper
         footer={
           <PageFooter className="-mx-3 border-t border-t-border !px-6">
@@ -191,23 +193,23 @@ export default function RecapScreen() {
         }
       >
         <View className="mt-6">
-          <RecapSection title="You are" titleDelay={200}>
+          <RecapSection title={t.t('auth.recapYouAre')} titleDelay={200}>
             <RecapItem
-              text={`${firstName} ${lastName}, ${age} years old`}
+              text={t.t('auth.recapPersonInfo', { firstName, lastName, age })}
               delay={800}
               icon="circle"
               iconColor="#ffffff"
               iconSize={12}
             />
             <RecapItem
-              text={`Height: ${height}`}
+              text={t.t('auth.recapHeight', { height })}
               delay={1500}
               icon="circle"
               iconColor="#ffffff"
               iconSize={12}
             />
             <RecapItem
-              text={`Current weight: ${weight}`}
+              text={t.t('auth.recapCurrentWeight', { weight })}
               delay={2000}
               icon="circle"
               iconColor="#ffffff"
@@ -215,7 +217,7 @@ export default function RecapScreen() {
             />
             {targetWeight && (
               <RecapItem
-                text={`Target weight: ${targetWeight}`}
+                text={t.t('auth.recapTargetWeight', { targetWeight })}
                 delay={2500}
                 icon="circle"
                 iconColor="#ffffff"
@@ -224,57 +226,65 @@ export default function RecapScreen() {
             )}
           </RecapSection>
 
-          <RecapSection title="We're going to help you by" titleDelay={3000}>
+          <RecapSection title={t.t('auth.recapHelpTitle')} titleDelay={3000}>
             {goal === 'Lose weight' && targetWeight && (
               <RecapItem
-                text={`Helping you reach your target weight of ${targetWeight} through balanced nutrition`}
+                text={t.t('auth.recapGoalLoseWeight', { targetWeight })}
                 delay={4000}
               />
             )}
             {goal === 'Maintain weight in a healthy way' &&
               targetMaintenance && (
                 <RecapItem
-                  text={`Focusing on ${targetMaintenance.toLowerCase()} to maintain your current weight`}
+                  text={t.t('auth.recapGoalMaintain', { targetMaintenance })}
                   delay={4000}
                 />
               )}
             {goal === 'Increase muscle mass' && targetActivity && (
               <RecapItem
-                text={`Designing meals to support ${targetActivity.toLowerCase()} and muscle growth.`}
+                text={t.t('auth.recapGoalMuscle', { targetActivity })}
                 delay={4000}
               />
             )}
             {goal === 'Diet for a condition' && targetCondition && (
               <RecapItem
-                text={`Creating meals that support your ${targetCondition.toLowerCase()} condition.`}
+                text={t.t('auth.recapGoalCondition', { targetCondition })}
                 delay={4000}
               />
             )}
             {goal === 'Performance for athletes' && targetSport && (
               <RecapItem
-                text={`Optimizing nutrition for ${targetSport.toLowerCase()} performance.`}
+                text={t.t('auth.recapGoalSport', { targetSport })}
                 delay={4000}
               />
             )}
             {activity && (
               <RecapItem
-                text={`Adapting meal plans to your ${activity.toLowerCase()} lifestyle.`}
+                text={t.t('auth.recapActivity', { activity })}
                 delay={4500}
               />
             )}
             <RecapItem
-              text={`Providing quick and easy recipes that fit your ${time?.toLowerCase() || 'busy'} schedule.`}
+              text={t.t('auth.recapTime', {
+                time: time?.toLowerCase() || 'busy',
+              })}
               delay={5000}
             />
             <RecapItem
-              text={`Offering solutions to overcome your ${challenge?.toLowerCase() || 'meal planning'}.`}
+              text={t.t('auth.recapChallenge', {
+                challenge: challenge?.toLowerCase() || 'meal planning',
+              })}
               delay={5500}
             />
             <RecapItem
               text={
                 noRestrictions
-                  ? 'Providing diverse meal options with no restrictions'
-                  : `Ensuring all meals respect your ${dietaryRestrictions.join(', ').toLowerCase()} preferences`
+                  ? t.t('auth.recapRestrictions')
+                  : t.t('auth.recapRestrictionsWith', {
+                      restrictions: dietaryRestrictions
+                        .join(', ')
+                        .toLowerCase(),
+                    })
               }
               delay={6000}
             />
@@ -288,7 +298,7 @@ export default function RecapScreen() {
             className="mt-8 items-center"
           >
             <Text className="text-center text-sm text-muted-foreground">
-              You can change these details as you improve 😊
+              {t.t('auth.recapChangeDetails')}
             </Text>
           </Animated.View>
         </View>

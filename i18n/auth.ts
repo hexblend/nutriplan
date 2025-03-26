@@ -95,6 +95,30 @@ export const authEN = {
   time30To45: '30-45 minutes',
   time45To60: '45-60 minutes',
   timeWeeklyPrep: 'I prefer meal prepping once or twice a week',
+
+  recapTitle: 'All set up %{name}!',
+  recapYouAre: 'You are',
+  recapPersonInfo: '%{firstName} %{lastName}, %{age} years old',
+  recapHeight: 'Height: %{height}',
+  recapCurrentWeight: 'Current weight: %{weight}',
+  recapTargetWeight: 'Target weight: %{targetWeight}',
+  recapHelpTitle: "We're going to help you by",
+  recapGoalLoseWeight:
+    'Helping you reach your target weight of %{targetWeight} through balanced nutrition',
+  recapGoalMaintain:
+    'Focusing on %{targetMaintenance} to maintain your current weight',
+  recapGoalMuscle:
+    'Designing meals to support %{targetActivity} and muscle growth.',
+  recapGoalCondition:
+    'Creating meals that support your %{targetCondition} condition.',
+  recapGoalSport: 'Optimizing nutrition for %{targetSport} performance.',
+  recapActivity: 'Adapting meal plans to your %{activity} lifestyle.',
+  recapTime: 'Providing quick and easy recipes that fit your %{time} schedule.',
+  recapChallenge: 'Offering solutions to overcome your %{challenge}.',
+  recapRestrictions: 'Providing diverse meal options with no restrictions',
+  recapRestrictionsWith:
+    'Ensuring all meals respect your %{restrictions} preferences',
+  recapChangeDetails: 'You can change these details as you improve 😊',
 };
 
 export const authRO = {
@@ -195,4 +219,31 @@ export const authRO = {
   time45To60: '45-60 de minute',
   timeWeeklyPrep:
     'Prefer să pregătesc mesele o dată sau de două ori pe săptămână',
+
+  recapTitle: 'Totul este gata %{name}!',
+  recapYouAre: 'Tu ești',
+  recapPersonInfo: '%{firstName} %{lastName}, %{age} ani',
+  recapHeight: 'Înălțime: %{height}',
+  recapCurrentWeight: 'Greutate actuală: %{weight}',
+  recapTargetWeight: 'Greutate țintă: %{targetWeight}',
+  recapHelpTitle: 'Vom ajuta prin',
+  recapGoalLoseWeight:
+    'Să te ajutăm să ajungi la greutatea țintă de %{targetWeight} prin nutriție echilibrată',
+  recapGoalMaintain:
+    'Concentrându-ne pe %{targetMaintenance} pentru a menține greutatea actuală',
+  recapGoalMuscle:
+    'Proiectând mese care să sprijine %{targetActivity} și creșterea musculară.',
+  recapGoalCondition:
+    'Creând mese care să sprijine condiția ta de %{targetCondition}.',
+  recapGoalSport: 'Optimizând nutriția pentru performanță în %{targetSport}.',
+  recapActivity:
+    'Adaptând planurile alimentare la stilul tău de viață %{activity}.',
+  recapTime:
+    'Oferind rețete rapide și ușoare care se potrivesc programului tău %{time}.',
+  recapChallenge:
+    'Oferind soluții pentru a depăși provocarea ta de %{challenge}.',
+  recapRestrictions: 'Oferind diverse opțiuni de mese fără restricții',
+  recapRestrictionsWith:
+    'Asigurând că toate mesele respectă preferințele tale de %{restrictions}',
+  recapChangeDetails: 'Poți modifica aceste detalii pe măsură ce evoluezi 😊',
 };
