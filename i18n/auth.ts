@@ -76,6 +76,12 @@ export const authEN = {
   dietaryRestrictionsKeto: 'Keto',
   dietaryRestrictionsPescatarian: 'Pescatarian',
   dietaryRestrictionsFasting: 'Fasting',
+
+  triedBeforeQuestion: 'Have you tried meal planning before?',
+  triedBeforeTooComplicated: 'Yes, but it was too complicated',
+  triedBeforeCouldntStick: "Yes, but I couldn't stick with it",
+  triedBeforeWorkedForWhile: 'Yes, and it worked for a while',
+  triedBeforeFirstTime: 'No, this is my first time',
 };
 
 export const authRO = {
@@ -156,4 +162,10 @@ export const authRO = {
   dietaryRestrictionsKeto: 'Keto',
   dietaryRestrictionsPescatarian: 'Pescetarian',
   dietaryRestrictionsFasting: 'Post',
+
+  triedBeforeQuestion: 'Ai încercat planificarea meselor înainte?',
+  triedBeforeTooComplicated: 'Da, dar era prea complicat',
+  triedBeforeCouldntStick: 'Da, dar nu am putut să mă țin de el',
+  triedBeforeWorkedForWhile: 'Da, și a funcționat pentru o vreme',
+  triedBeforeFirstTime: 'Nu, este prima dată',
 };

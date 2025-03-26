@@ -27,6 +27,12 @@ export type OnboardingDietaryRestriction =
   | 'Keto'
   | 'Pescatarian';
 
+export type OnboardingTriedBefore =
+  | 'Yes, but it was too complicated'
+  | "Yes, but I couldn't stick with it"
+  | 'Yes, and it worked for a while'
+  | 'No, this is my first time';
+
 interface OnboardingContextType {
   // Navigation
   currentScreenName: ProgressScreenName;
@@ -80,6 +86,9 @@ interface OnboardingContextType {
   setDietaryRestrictions: Dispatch<
     SetStateAction<OnboardingDietaryRestriction[]>
   >;
+  // Tried Before
+  triedBefore: OnboardingTriedBefore | undefined;
+  setTriedBefore: Dispatch<SetStateAction<OnboardingTriedBefore | undefined>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -138,6 +147,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   const [dietaryRestrictions, setDietaryRestrictions] = useState<
     OnboardingContextType['dietaryRestrictions']
   >([]);
+  // Tried Before
+  const [triedBefore, setTriedBefore] =
+    useState<OnboardingContextType['triedBefore']>(undefined);
 
   return (
     <OnboardingContext.Provider
@@ -190,6 +202,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Dietary Restrictions
         dietaryRestrictions,
         setDietaryRestrictions,
+        // Tried Before
+        triedBefore,
+        setTriedBefore,
       }}
     >
       {children}
