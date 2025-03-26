@@ -77,7 +77,7 @@ export default function TargetActivityScreen() {
               {
                 label: t.t('auth.targetActivityRarely'),
                 value: '1-2 times',
-                icon: 'dumbbell',
+                icon: 'human-handsup',
               },
               {
                 label: t.t('auth.targetActivitySometimes'),
@@ -87,12 +87,12 @@ export default function TargetActivityScreen() {
               {
                 label: t.t('auth.targetActivityOften'),
                 value: '5+ times',
-                icon: 'dumbbell',
+                icon: 'weight-lifter',
               },
               {
                 label: t.t('auth.targetActivityNotYet'),
                 value: 'Not currently, but planning to start',
-                icon: 'dumbbell',
+                icon: 'timer',
               },
             ]}
             multiple={false}
