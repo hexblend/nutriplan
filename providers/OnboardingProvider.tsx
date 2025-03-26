@@ -1,3 +1,4 @@
+import { OnboardingTargetActivity } from '@/app/auth/(onboarding)/(target-conditional)/target-activity';
 import { OnboardingGoal } from '@/app/auth/(onboarding)/goal';
 import { ProgressScreenName } from '@/lib/onboarding/onboardingScreens';
 import React, {
@@ -43,6 +44,11 @@ interface OnboardingContextType {
   // Phone
   phoneNumber: string;
   setPhoneNumber: Dispatch<SetStateAction<string>>;
+  // Target Activity
+  targetActivity: OnboardingTargetActivity | undefined;
+  setTargetActivity: Dispatch<
+    SetStateAction<OnboardingTargetActivity | undefined>
+  >;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -85,6 +91,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Phone
   const [phoneNumber, setPhoneNumber] =
     useState<OnboardingContextType['phoneNumber']>('');
+  // Target Activity
+  const [targetActivity, setTargetActivity] =
+    useState<OnboardingContextType['targetActivity']>(undefined);
 
   return (
     <OnboardingContext.Provider
@@ -122,6 +131,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Phone
         phoneNumber,
         setPhoneNumber,
+        // Target Activity
+        targetActivity,
+        setTargetActivity,
       }}
     >
       {children}

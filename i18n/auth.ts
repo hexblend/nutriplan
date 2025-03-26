@@ -40,6 +40,12 @@ export const authEN = {
   passwordQuestion: 'Create a password',
   passwordRequirements: 'Minimum 9 characters',
   otpQuestion: 'Enter the sent code',
+
+  targetActivityQuestion: 'How often do you workout in a week?',
+  targetActivityRarely: '1-2 times',
+  targetActivitySometimes: '3-4 times',
+  targetActivityOften: '5+ times',
+  targetActivityNotYet: 'Not currently, but planning to start',
 };
 
 export const authRO = {
@@ -85,4 +91,10 @@ export const authRO = {
   passwordQuestion: 'Creează o parolă',
   passwordRequirements: 'Minim 9 caractere',
   otpQuestion: 'Introdu codul trimis',
+
+  targetActivityQuestion: 'De câte ori faci sport într-o săptămână?',
+  targetActivityRarely: '1-2 ori',
+  targetActivitySometimes: '3-4 ori',
+  targetActivityOften: '5+ ori',
+  targetActivityNotYet: 'Deloc momentan, dar plănuiesc să încep',
 };
