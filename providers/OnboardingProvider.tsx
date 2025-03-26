@@ -77,8 +77,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   const [targetWeight, setTargetWeight] =
     useState<OnboardingContextType['targetWeight']>('');
   // Age & Sex
-  const [age, setAge] = useState<OnboardingContextType['age']>('25');
-  const [sex, setSex] = useState<OnboardingContextType['sex']>('male');
+  const [age, setAge] = useState<OnboardingContextType['age']>('30');
+  const [sex, setSex] = useState<OnboardingContextType['sex']>('female');
   // Activity
   const [activity, setActivity] =
     useState<OnboardingContextType['activity']>('');

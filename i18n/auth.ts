@@ -28,7 +28,7 @@ export const authEN = {
   weightQuestion: 'What is your weight?',
   targetWeightQuestion: 'What is your target weight?',
 
-  ageAndSexQuestion: 'What is your age and sex?',
+  ageAndSexQuestion: 'What is your age?',
 
   activityQuestion: 'How would you describe your activity level?',
   activitySedentary: 'Sedentary',
@@ -72,7 +72,7 @@ export const authRO = {
   weightQuestion: 'Care este greutatea ta?',
   targetWeightQuestion: 'La ce greutate vrei să ajungi?',
 
-  ageAndSexQuestion: 'Care este vârsta și sexul tău?',
+  ageAndSexQuestion: 'Care este vârsta ta?',
 
   activityQuestion: 'Cum ți-ai descrie nivelul de activitate?',
   activitySedentary: 'Sedentar',
