@@ -79,12 +79,12 @@ export default function ChallengeScreen() {
               {
                 label: t.t('auth.challengeNotKnowing'),
                 value: 'Not knowing what to eat',
-                icon: 'food-variant-off',
+                icon: 'help-circle-outline',
               },
               {
                 label: t.t('auth.challengeCravings'),
                 value: 'Cravings and temptations',
-                icon: 'food-croissant',
+                icon: 'cookie',
               },
               {
                 label: t.t('auth.challengeComplicated'),
