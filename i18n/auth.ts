@@ -98,7 +98,7 @@ export const authEN = {
 
   recapTitle: 'All set up %{name}!',
   recapYouAre: 'You are',
-  recapPersonInfo: '%{firstName} %{lastName}, %{age} years old',
+  recapPersonInfo: '%{firstName}%{lastName}, %{age} years old',
   recapHeight: 'Height: %{height}',
   recapCurrentWeight: 'Current weight: %{weight}',
   recapTargetWeight: 'Target weight: %{targetWeight}',
@@ -222,7 +222,7 @@ export const authRO = {
 
   recapTitle: 'Totul este gata %{name}!',
   recapYouAre: 'Tu ești',
-  recapPersonInfo: '%{firstName} %{lastName}, %{age} ani',
+  recapPersonInfo: '%{firstName}%{lastName}, %{age} ani',
   recapHeight: 'Înălțime: %{height}',
   recapCurrentWeight: 'Greutate actuală: %{weight}',
   recapTargetWeight: 'Greutate țintă: %{targetWeight}',

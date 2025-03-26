@@ -147,6 +147,7 @@ export default function RecapScreen() {
     targetMaintenance,
     targetCondition,
     targetSport,
+    sex,
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
@@ -197,31 +198,31 @@ export default function RecapScreen() {
             <RecapItem
               text={t.t('auth.recapPersonInfo', { firstName, lastName, age })}
               delay={800}
-              icon="circle"
-              iconColor="#ffffff"
-              iconSize={12}
+              icon={sex === 'male' ? 'male' : 'female'}
+              iconColor="#3b82f6"
+              iconSize={20}
             />
             <RecapItem
               text={t.t('auth.recapHeight', { height })}
               delay={1500}
-              icon="circle"
-              iconColor="#ffffff"
-              iconSize={12}
+              icon="arrows-v"
+              iconColor="#3b82f6"
+              iconSize={20}
             />
             <RecapItem
               text={t.t('auth.recapCurrentWeight', { weight })}
               delay={2000}
-              icon="circle"
-              iconColor="#ffffff"
-              iconSize={12}
+              icon="tachometer"
+              iconColor="#3b82f6"
+              iconSize={20}
             />
             {targetWeight && (
               <RecapItem
                 text={t.t('auth.recapTargetWeight', { targetWeight })}
                 delay={2500}
-                icon="circle"
-                iconColor="#ffffff"
-                iconSize={12}
+                icon="flag-checkered"
+                iconColor="#3b82f6"
+                iconSize={20}
               />
             )}
           </RecapSection>
