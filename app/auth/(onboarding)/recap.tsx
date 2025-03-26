@@ -13,9 +13,18 @@ import { Animated, View } from 'react-native';
 interface RecapItemProps {
   text: string;
   delay: number;
+  icon?: keyof typeof FontAwesome.glyphMap;
+  iconColor?: string;
+  iconSize?: number;
 }
 
-function RecapItem({ text, delay }: RecapItemProps) {
+function RecapItem({
+  text,
+  delay,
+  icon = 'check-square',
+  iconColor = '#22c55e',
+  iconSize = 24,
+}: RecapItemProps) {
   const [visible, setVisible] = useState(false);
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const translateXAnim = useRef(new Animated.Value(-20)).current;
@@ -48,7 +57,7 @@ function RecapItem({ text, delay }: RecapItemProps) {
         transform: [{ translateX: translateXAnim }],
       }}
     >
-      <FontAwesome name="check-square" size={24} color="#22c55e" />
+      <FontAwesome name={icon} size={iconSize} color={iconColor} />
       <Text className="flex-1 text-lg text-foreground">{text}</Text>
     </Animated.View>
   );
@@ -57,9 +66,10 @@ function RecapItem({ text, delay }: RecapItemProps) {
 interface AnimatedTitleProps {
   title: string;
   delay: number;
+  centered?: boolean;
 }
 
-function AnimatedTitle({ title, delay }: AnimatedTitleProps) {
+function AnimatedTitle({ title, delay, centered = false }: AnimatedTitleProps) {
   const [visible, setVisible] = useState(false);
   const opacityAnim = useRef(new Animated.Value(0)).current;
   const translateXAnim = useRef(new Animated.Value(-20)).current;
@@ -90,8 +100,13 @@ function AnimatedTitle({ title, delay }: AnimatedTitleProps) {
         opacity: opacityAnim,
         transform: [{ translateX: translateXAnim }],
       }}
+      className={centered ? 'items-center' : ''}
     >
-      <Text className="mb-4 text-xl font-bold text-foreground">{title}</Text>
+      <Text
+        className={`mb-4 text-xl font-bold text-foreground ${centered ? 'text-center' : ''}`}
+      >
+        {title}
+      </Text>
     </Animated.View>
   );
 }
@@ -100,14 +115,16 @@ function RecapSection({
   title,
   children,
   titleDelay,
+  centered = false,
 }: {
   title: string;
   children: React.ReactNode;
   titleDelay: number;
+  centered?: boolean;
 }) {
   return (
     <View className="mb-8">
-      <AnimatedTitle title={title} delay={titleDelay} />
+      <AnimatedTitle title={title} delay={titleDelay} centered={centered} />
       <View className="gap-3">{children}</View>
     </View>
   );
@@ -152,19 +169,6 @@ export default function RecapScreen() {
 
   // Default values for when data is missing
   const displayName = firstName || 'there';
-  const displayGoal = goal
-    ? `Help you ${goal.toLowerCase()}`
-    : 'Help you achieve your goals';
-  const displayRestrictions = dietaryRestrictions?.length
-    ? `Work with your ${dietaryRestrictions.join(', ').toLowerCase()} preferences`
-    : 'Work with your dietary preferences';
-  const displayTime = time
-    ? `Require only ${time.toLowerCase()} for daily preparation`
-    : 'Require minimal time for preparation';
-  const displayChallenge = challenge
-    ? `Address your challenge with ${challenge.toLowerCase()}`
-    : 'Address your meal planning challenges';
-
   const noRestrictions = dietaryRestrictions.includes('No restrictions');
 
   return (
@@ -191,57 +195,88 @@ export default function RecapScreen() {
             <RecapItem
               text={`${firstName} ${lastName}, ${age} years old`}
               delay={800}
+              icon="circle"
+              iconColor="#ffffff"
+              iconSize={12}
             />
-            <RecapItem text={`Height: ${height}`} delay={1500} />
-            <RecapItem text={`Current weight: ${weight}`} delay={2000} />
+            <RecapItem
+              text={`Height: ${height}`}
+              delay={1500}
+              icon="circle"
+              iconColor="#ffffff"
+              iconSize={12}
+            />
+            <RecapItem
+              text={`Current weight: ${weight}`}
+              delay={2000}
+              icon="circle"
+              iconColor="#ffffff"
+              iconSize={12}
+            />
             {targetWeight && (
-              <RecapItem text={`Target weight: ${targetWeight}`} delay={2500} />
+              <RecapItem
+                text={`Target weight: ${targetWeight}`}
+                delay={2500}
+                icon="circle"
+                iconColor="#ffffff"
+                iconSize={12}
+              />
             )}
           </RecapSection>
 
-          <RecapSection title="Your Goals" titleDelay={3000}>
-            <RecapItem text={displayGoal} delay={3500} />
+          <RecapSection title="We're going to help you by" titleDelay={3000}>
             {goal === 'Lose weight' && targetWeight && (
-              <RecapItem text={`Target weight: ${targetWeight}`} delay={4000} />
+              <RecapItem
+                text={`Helping you reach your target weight of ${targetWeight} through balanced nutrition`}
+                delay={4000}
+              />
             )}
             {goal === 'Maintain weight in a healthy way' &&
               targetMaintenance && (
                 <RecapItem
-                  text={`Focus on: ${targetMaintenance.toLowerCase()}`}
+                  text={`Focusing on ${targetMaintenance.toLowerCase()} to maintain your current weight`}
                   delay={4000}
                 />
               )}
             {goal === 'Increase muscle mass' && targetActivity && (
               <RecapItem
-                text={`Activity focus: ${targetActivity.toLowerCase()}`}
+                text={`Designing meals to support ${targetActivity.toLowerCase()} and muscle growth.`}
                 delay={4000}
               />
             )}
             {goal === 'Diet for a condition' && targetCondition && (
-              <RecapItem text={`Condition: ${targetCondition}`} delay={4000} />
-            )}
-            {goal === 'Performance for athletes' && targetSport && (
               <RecapItem
-                text={`Sport focus: ${targetSport.toLowerCase()}`}
+                text={`Creating meals that support your ${targetCondition.toLowerCase()} condition.`}
                 delay={4000}
               />
             )}
-          </RecapSection>
-
-          <RecapSection title="Activity & Lifestyle" titleDelay={4500}>
-            {activity && (
-              <RecapItem text={`Activity level: ${activity}`} delay={5000} />
+            {goal === 'Performance for athletes' && targetSport && (
+              <RecapItem
+                text={`Optimizing nutrition for ${targetSport.toLowerCase()} performance.`}
+                delay={4000}
+              />
             )}
-            <RecapItem text={displayTime} delay={5500} />
-            <RecapItem text={displayChallenge} delay={6000} />
-          </RecapSection>
-
-          <RecapSection title="Dietary Preferences" titleDelay={6500}>
+            {activity && (
+              <RecapItem
+                text={`Adapting meal plans to your ${activity.toLowerCase()} lifestyle.`}
+                delay={4500}
+              />
+            )}
+            <RecapItem
+              text={`Providing quick and easy recipes that fit your ${time?.toLowerCase() || 'busy'} schedule.`}
+              delay={5000}
+            />
+            <RecapItem
+              text={`Offering solutions to overcome your ${challenge?.toLowerCase() || 'meal planning'}.`}
+              delay={5500}
+            />
             <RecapItem
               text={
-                noRestrictions ? 'No dietary restrictions' : displayRestrictions
+                noRestrictions
+                  ? 'Providing diverse meal options with no restrictions'
+                  : `Ensuring all meals respect your ${dietaryRestrictions.join(', ').toLowerCase()} preferences`
               }
-              delay={7000}
+              delay={6000}
             />
           </RecapSection>
         </View>
