@@ -82,6 +82,14 @@ export const authEN = {
   triedBeforeCouldntStick: "Yes, but I couldn't stick with it",
   triedBeforeWorkedForWhile: 'Yes, and it worked for a while',
   triedBeforeFirstTime: 'No, this is my first time',
+
+  challengeQuestion:
+    "What's your biggest challenge when it comes to eating well?",
+  challengeLackOfTime: 'Lack of time to prepare meals',
+  challengeNotKnowing: 'Not knowing what to eat',
+  challengeCravings: 'Cravings and temptations',
+  challengeComplicated: 'Complicated recipes',
+  challengeRepetition: 'Meal repetition / boredom',
 };
 
 export const authRO = {
@@ -168,4 +176,12 @@ export const authRO = {
   triedBeforeCouldntStick: 'Da, dar nu am putut să mă țin de el',
   triedBeforeWorkedForWhile: 'Da, și a funcționat pentru o vreme',
   triedBeforeFirstTime: 'Nu, este prima dată',
+
+  challengeQuestion:
+    'Care este cea mai mare provocare când vine vorba despre alimentație sănătoasă?',
+  challengeLackOfTime: 'Lipsa timpului pentru prepararea meselor',
+  challengeNotKnowing: 'Nu știu ce să mănânc',
+  challengeCravings: 'Pofte și tentații',
+  challengeComplicated: 'Rețete complicate',
+  challengeRepetition: 'Repetiția meselor / plictiseala',
 };

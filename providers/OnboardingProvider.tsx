@@ -33,6 +33,13 @@ export type OnboardingTriedBefore =
   | 'Yes, and it worked for a while'
   | 'No, this is my first time';
 
+export type OnboardingChallenge =
+  | 'Lack of time to prepare meals'
+  | 'Not knowing what to eat'
+  | 'Cravings and temptations'
+  | 'Complicated recipes'
+  | 'Meal repetition / boredom';
+
 interface OnboardingContextType {
   // Navigation
   currentScreenName: ProgressScreenName;
@@ -89,6 +96,9 @@ interface OnboardingContextType {
   // Tried Before
   triedBefore: OnboardingTriedBefore | undefined;
   setTriedBefore: Dispatch<SetStateAction<OnboardingTriedBefore | undefined>>;
+  // Challenge
+  challenge: OnboardingChallenge | undefined;
+  setChallenge: Dispatch<SetStateAction<OnboardingChallenge | undefined>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -103,7 +113,7 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
 }) => {
   // Navigation
   const [currentScreenName, setCurrentScreenName] =
-    useState<OnboardingContextType['currentScreenName']>('goal');
+    useState<OnboardingContextType['currentScreenName']>('challenge');
   const [isForward, setIsForward] =
     useState<OnboardingContextType['isForward']>(true);
   // Name
@@ -150,6 +160,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Tried Before
   const [triedBefore, setTriedBefore] =
     useState<OnboardingContextType['triedBefore']>(undefined);
+  // Challenge
+  const [challenge, setChallenge] =
+    useState<OnboardingContextType['challenge']>(undefined);
 
   return (
     <OnboardingContext.Provider
@@ -205,6 +218,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Tried Before
         triedBefore,
         setTriedBefore,
+        // Challenge
+        challenge,
+        setChallenge,
       }}
     >
       {children}
