@@ -54,6 +54,8 @@ export const authEN = {
   targetMaintenanceEnergy: 'Energy levels',
   targetMaintenancePerformance: 'Athletic performance',
   targetMaintenanceMental: 'Mental clarity and focus',
+  targetConditionQuestion: 'Which health condition are you managing?',
+  targetConditionPlaceholder: 'Your condition...',
 };
 
 export const authRO = {
@@ -113,4 +115,6 @@ export const authRO = {
   targetMaintenanceEnergy: 'Nivelul de energie',
   targetMaintenancePerformance: 'Performanța atletică',
   targetMaintenanceMental: 'Claritate și concentrare mentală',
+  targetConditionQuestion: 'Ce afecțiune medicală combați?',
+  targetConditionPlaceholder: 'Afecțiunea ta...',
 };
