@@ -36,6 +36,7 @@ export const authEN = {
   activityModerate: 'Moderately active',
   activityVery: 'Very active',
   activityExtreme: 'Extremely active',
+
   phoneQuestion: 'What is your phone number? You will log in with it',
   passwordQuestion: 'Create a password',
   passwordRequirements: 'Minimum 9 characters',
@@ -54,8 +55,17 @@ export const authEN = {
   targetMaintenanceEnergy: 'Energy levels',
   targetMaintenancePerformance: 'Athletic performance',
   targetMaintenanceMental: 'Mental clarity and focus',
+
   targetConditionQuestion: 'Which health condition are you managing?',
   targetConditionPlaceholder: 'Your condition...',
+
+  targetSportQuestion: 'What type of activity do you primarily engage in?',
+  targetSportEndurance: 'Endurance sports (running, cycling)',
+  targetSportTeam: 'Team sports',
+  targetSportStrength: 'Strength training',
+  targetSportHIIT: 'High intensity interval training',
+  targetSportCrossFit: 'CrossFit/functional fitness',
+  targetSportYoga: 'Yoga/flexibility-focused training',
 };
 
 export const authRO = {
@@ -115,6 +125,15 @@ export const authRO = {
   targetMaintenanceEnergy: 'Nivelul de energie',
   targetMaintenancePerformance: 'Performanța atletică',
   targetMaintenanceMental: 'Claritate și concentrare mentală',
+
   targetConditionQuestion: 'Ce afecțiune medicală combați?',
   targetConditionPlaceholder: 'Afecțiunea ta...',
+
+  targetSportQuestion: 'Ce tip de activitate practici în principal?',
+  targetSportEndurance: 'Sporturi de rezistență (alergare, ciclism)',
+  targetSportTeam: 'Sporturi de echipă',
+  targetSportStrength: 'Antrenament de forță',
+  targetSportHIIT: 'Antrenament interval de intensitate ridicată',
+  targetSportCrossFit: 'CrossFit/antrenament funcțional',
+  targetSportYoga: 'Yoga/antrenament de flexibilitate',
 };

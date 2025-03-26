@@ -10,6 +10,14 @@ import React, {
   useState,
 } from 'react';
 
+export type OnboardingTargetSport =
+  | 'Endurance sports (running, cycling)'
+  | 'Team sports'
+  | 'Strength training'
+  | 'High intensity interval training'
+  | 'CrossFit/functional fitness'
+  | 'Yoga/flexibility-focused training';
+
 interface OnboardingContextType {
   // Navigation
   currentScreenName: ProgressScreenName;
@@ -55,6 +63,9 @@ interface OnboardingContextType {
   // Target Condition
   targetCondition: string;
   setTargetCondition: Dispatch<SetStateAction<string>>;
+  // Target Sport
+  targetSport: OnboardingTargetSport | undefined;
+  setTargetSport: Dispatch<SetStateAction<OnboardingTargetSport | undefined>>;
 }
 
 const OnboardingContext = createContext<OnboardingContextType | undefined>(
@@ -106,6 +117,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Target Condition
   const [targetCondition, setTargetCondition] =
     useState<OnboardingContextType['targetCondition']>('');
+  // Target Sport
+  const [targetSport, setTargetSport] =
+    useState<OnboardingContextType['targetSport']>(undefined);
 
   return (
     <OnboardingContext.Provider
@@ -152,6 +166,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Target Condition
         targetCondition,
         setTargetCondition,
+        // Target Sport
+        targetSport,
+        setTargetSport,
       }}
     >
       {children}
