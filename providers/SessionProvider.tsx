@@ -49,7 +49,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       await AsyncStorage.setItem(STORAGE_KEYS.LOGGED_IN_USER_ID, data.user.id);
       setSession(data.session);
       setSessionLoading(false);
-      router.replace('/(app)/(main)');
+      router.replace('/(main)');
     }
   };
 
@@ -58,7 +58,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     await AsyncStorage.removeItem(STORAGE_KEYS.LOGGED_IN_USER_ID);
     setSession(null);
     setSessionLoading(false);
-    router.replace('/(app)/auth');
+    router.replace('/auth');
   };
 
   return (

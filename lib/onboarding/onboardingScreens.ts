@@ -1,25 +1,25 @@
-import NewPasswordScreen from '@/app/(app)/auth/(common)/new-password';
-import OtpScreen from '@/app/(app)/auth/(common)/otp';
-import PhoneScreen from '@/app/(app)/auth/(common)/phone';
+import NewPasswordScreen from '@/app/auth/(common)/new-password';
+import OtpScreen from '@/app/auth/(common)/otp';
+import PhoneScreen from '@/app/auth/(common)/phone';
 import {
   AccountFillerScreen,
   GoalsFillerScreen,
   LearningFillerScreen,
   QuestionsFillerScreen,
-} from '@/app/(app)/auth/(onboarding)/(fillers)/filler-screens';
-import TargetScreen from '@/app/(app)/auth/(onboarding)/(target-conditional)/target-screen';
-import ActivityScreen from '@/app/(app)/auth/(onboarding)/activity';
-import AgeScreen from '@/app/(app)/auth/(onboarding)/age';
-import ChallengeScreen from '@/app/(app)/auth/(onboarding)/challenge';
-import GoalScreen from '@/app/(app)/auth/(onboarding)/goal';
-import HeightScreen from '@/app/(app)/auth/(onboarding)/height';
-import NameScreen from '@/app/(app)/auth/(onboarding)/name';
-import PaywallScreen from '@/app/(app)/auth/(onboarding)/paywall';
-import RecapScreen from '@/app/(app)/auth/(onboarding)/recap';
-import RestrictionsScreen from '@/app/(app)/auth/(onboarding)/restrictions';
-import TimeScreen from '@/app/(app)/auth/(onboarding)/time';
-import TriedBeforeScreen from '@/app/(app)/auth/(onboarding)/tried-before';
-import WeightScreen from '@/app/(app)/auth/(onboarding)/weight';
+} from '@/app/auth/(onboarding)/(fillers)/filler-screens';
+import TargetScreen from '@/app/auth/(onboarding)/(target-conditional)/target-screen';
+import ActivityScreen from '@/app/auth/(onboarding)/activity';
+import AgeScreen from '@/app/auth/(onboarding)/age';
+import ChallengeScreen from '@/app/auth/(onboarding)/challenge';
+import GoalScreen from '@/app/auth/(onboarding)/goal';
+import HeightScreen from '@/app/auth/(onboarding)/height';
+import NameScreen from '@/app/auth/(onboarding)/name';
+import PaywallScreen from '@/app/auth/(onboarding)/paywall';
+import RecapScreen from '@/app/auth/(onboarding)/recap';
+import RestrictionsScreen from '@/app/auth/(onboarding)/restrictions';
+import TimeScreen from '@/app/auth/(onboarding)/time';
+import TriedBeforeScreen from '@/app/auth/(onboarding)/tried-before';
+import WeightScreen from '@/app/auth/(onboarding)/weight';
 import React from 'react';
 
 export const onboardingProgressScreens: Record<string, React.ComponentType> = {

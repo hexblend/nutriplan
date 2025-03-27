@@ -1,10 +1,10 @@
-import { OnboardingTargetActivity } from '@/app/(app)/auth/(onboarding)/(target-conditional)/target-activity';
-import { OnboardingTargetSport } from '@/app/(app)/auth/(onboarding)/(target-conditional)/target-sport';
-import { OnboardingChallenge } from '@/app/(app)/auth/(onboarding)/challenge';
-import { OnboardingGoal } from '@/app/(app)/auth/(onboarding)/goal';
-import { OnboardingDietaryRestriction } from '@/app/(app)/auth/(onboarding)/restrictions';
-import { OnboardingTime } from '@/app/(app)/auth/(onboarding)/time';
-import { OnboardingTriedBefore } from '@/app/(app)/auth/(onboarding)/tried-before';
+import { OnboardingTargetActivity } from '@/app/auth/(onboarding)/(target-conditional)/target-activity';
+import { OnboardingTargetSport } from '@/app/auth/(onboarding)/(target-conditional)/target-sport';
+import { OnboardingChallenge } from '@/app/auth/(onboarding)/challenge';
+import { OnboardingGoal } from '@/app/auth/(onboarding)/goal';
+import { OnboardingDietaryRestriction } from '@/app/auth/(onboarding)/restrictions';
+import { OnboardingTime } from '@/app/auth/(onboarding)/time';
+import { OnboardingTriedBefore } from '@/app/auth/(onboarding)/tried-before';
 import { ProgressScreenName } from '@/lib/onboarding/onboardingScreens';
 import React, {
   Dispatch,
