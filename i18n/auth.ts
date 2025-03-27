@@ -118,6 +118,9 @@ export const authEN = {
   recapRestrictionsWith:
     'Ensuring all meals respect your %{restrictions} preferences',
   recapChangeDetails: 'You can change these details as you improve 😊',
+
+  paywallTitle: 'Say hello to your personalized weekly meal plans',
+  paywallBenefit: 'Reach your goals based on YOUR lifestyle',
 };
 
 export const authRO = {
@@ -244,4 +247,7 @@ export const authRO = {
   recapRestrictionsWith:
     'Asigurând că toate mesele respectă preferințele tale de %{restrictions}',
   recapChangeDetails: 'Poți modifica aceste detalii pe măsură ce evoluezi 😊',
+
+  paywallTitle: 'Salută planul tău personalizat de mese săptămânal',
+  paywallBenefit: 'Atinge obiectivele tale bazate pe stilul tău de viață',
 };
