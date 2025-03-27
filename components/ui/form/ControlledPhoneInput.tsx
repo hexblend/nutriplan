@@ -1,4 +1,4 @@
-import { appLanguage } from '@/i18n/translations';
+import { appLanguage, t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import * as Haptics from 'expo-haptics';
 import { Dispatch, SetStateAction } from 'react';
@@ -52,6 +52,7 @@ export default function ControlledPhoneInput<T extends FieldValues>({
             allowZeroAfterCallingCode={false}
             defaultCountry={appLanguage === 'en' ? 'US' : 'RO'}
             language={appLanguage as ILanguage}
+            placeholder={t.t('auth.phonePlaceholder')}
             phoneInputStyles={{
               input: {
                 fontFamily: 'Silka',
@@ -60,7 +61,7 @@ export default function ControlledPhoneInput<T extends FieldValues>({
               container: {
                 backgroundColor: colors.primary[500],
                 borderColor: colors.primary[400],
-                height: 50,
+                height: 54,
               },
               flagContainer: {
                 backgroundColor: colors.primary[900],

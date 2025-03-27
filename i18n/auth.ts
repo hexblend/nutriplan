@@ -3,6 +3,7 @@ export const authEN = {
 
   getStarted: 'Get Started',
   alreadyHaveAccount: 'I already have an account',
+  enterYourDetails: 'Enter your details',
 
   quickQuestionsFiller:
     'Just 7 quick questions before we start your first meal plan!',
@@ -40,7 +41,13 @@ export const authEN = {
   phoneQuestion: 'What is your phone number? You will log in with it',
   passwordQuestion: 'Create a password',
   passwordRequirements: 'Minimum 9 characters',
+  phonePlaceholder: 'Phone number',
+  passwordPlaceholder: 'Password',
   otpQuestion: 'Enter the sent code',
+
+  login: 'Welcome back!',
+  signIn: 'Sign In',
+  forgotPassword: 'Forgot password?',
 
   targetActivityQuestion: 'How often do you workout in a week?',
   targetActivityRarely: '1-2 times',
@@ -128,6 +135,7 @@ export const authRO = {
 
   getStarted: 'Începe',
   alreadyHaveAccount: 'Am deja un cont',
+  enterYourDetails: 'Introduceți detaliile',
 
   quickQuestionsFiller:
     'Doar 7 întrebări rapide înainte de a începe primul tău plan alimentar!',
@@ -165,7 +173,13 @@ export const authRO = {
   phoneQuestion: 'Care este numărul tău de telefon? Te vei autentifica cu el',
   passwordQuestion: 'Creează o parolă',
   passwordRequirements: 'Minim 9 caractere',
+  phonePlaceholder: 'Număr de telefon',
+  passwordPlaceholder: 'Parola',
   otpQuestion: 'Introdu codul trimis',
+
+  login: 'Bine ai revenit!',
+  signIn: 'Autentificare',
+  forgotPassword: 'Ai uitat parola?',
 
   targetActivityQuestion: 'De câte ori faci sport într-o săptămână?',
   targetActivityRarely: '1-2 ori',
