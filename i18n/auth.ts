@@ -48,6 +48,7 @@ export const authEN = {
   login: 'Welcome back!',
   signIn: 'Sign In',
   forgotPassword: 'Forgot password?',
+  loginError: 'Password or Phone number are incorrect',
 
   targetActivityQuestion: 'How often do you workout in a week?',
   targetActivityRarely: '1-2 times',
@@ -180,6 +181,7 @@ export const authRO = {
   login: 'Bine ai revenit!',
   signIn: 'Autentificare',
   forgotPassword: 'Ai uitat parola?',
+  loginError: 'Parola sau numărul de telefon sunt incorecte',
 
   targetActivityQuestion: 'De câte ori faci sport într-o săptămână?',
   targetActivityRarely: '1-2 ori',

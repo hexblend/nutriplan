@@ -4,12 +4,14 @@ import { ControlledInput } from '@/components/ui/form/ControlledInput';
 import ControlledPhoneInput from '@/components/ui/form/ControlledPhoneInput';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
+import { STORAGE_KEYS } from '@/lib/constants';
 import { supabase } from '@/lib/supabase/client';
 import { Ionicons } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
+import { Alert, View } from 'react-native';
 import { ICountry } from 'react-native-international-phone-number';
 import { z } from 'zod';
 
@@ -34,15 +36,19 @@ export default function LoginScreen() {
   const onSubmit = async (data: FormValues) => {
     const { phoneNumber, password } = data;
     const phone = `${selectedCountry?.callingCode}${phoneNumber}`;
-
-    const { error } = await supabase.auth.signInWithPassword({
+    const { data: userData, error } = await supabase.auth.signInWithPassword({
       phone,
       password,
     });
-
     if (error) {
-      console.error('LOGIN ERROR', error);
-      // Handle error appropriately
+      Alert.alert(t.t('auth.loginError'));
+      return console.error('LOGIN ERROR', error);
+    }
+    if (userData?.user?.id) {
+      await AsyncStorage.setItem(
+        STORAGE_KEYS.LOGGED_IN_USER_ID,
+        userData.user.id
+      );
     }
   };
 

@@ -1,3 +1,7 @@
+export const STORAGE_KEYS = {
+  LOGGED_IN_USER_ID: 'LOGGED_IN_USER_ID',
+};
+
 export const colors = {
   primary: {
     950: '#010b13', // Darkest blue - Extreme dark backgrounds

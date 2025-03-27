@@ -1,9 +1,8 @@
-import React from 'react';
+import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import { Link, Tabs } from 'expo-router';
-import { Pressable } from 'react-native';
-import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
-import { View } from 'react-native';
+import React from 'react';
+import { Pressable, View } from 'react-native';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
@@ -21,9 +20,9 @@ export default function MainLayout() {
         // Disable the static render of the header on web
         // to prevent a hydration error in React Navigation v6.
         headerShown: useClientOnlyValue(false, true),
-        headerBackground: () => <View className="bg-transparent h-[100px]" />,
+        headerBackground: () => <View className="h-[100px] bg-transparent" />,
         tabBarBackground: () => (
-          <View className="bg-transparent h-[100px] border-t border-gray-700" />
+          <View className="h-[100px] border-t border-gray-700 bg-transparent" />
         ),
         tabBarStyle: {
           paddingTop: 2,
