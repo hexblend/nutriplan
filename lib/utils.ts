@@ -1,6 +1,9 @@
 import { clsx, type ClassValue } from 'clsx';
 import { twMerge } from 'tailwind-merge';
 
+// eslint-disable-next-line
+export const bucketUrl = `${process.env.EXPO_PUBLIC_SUPABASE_URL}/storage/v1/object/public/app/`;
+
 export function cn(...inputs: ClassValue[]) {
   return twMerge(clsx(inputs));
 }
