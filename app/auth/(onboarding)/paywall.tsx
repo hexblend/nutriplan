@@ -4,7 +4,6 @@ import PaywallBenefit from '@/components/onboarding/paywall/PaywallBenefit';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { appLanguage, t } from '@/i18n/translations';
-import { bucketUrl } from '@/lib/utils';
 import { Image, View } from 'react-native';
 
 export default function PaywallScreen() {
@@ -27,8 +26,9 @@ export default function PaywallScreen() {
     >
       <View className="items-center">
         <Image
-          source={{ uri: `${bucketUrl}/paywall.png` }}
-          style={{ width: 195.5, height: 166.5 }} // Original size: 391 x 333 / 2
+          // eslint-disable-next-line
+          source={require('../../../assets/images/paywall-image.png')}
+          style={{ width: 195.5, height: 166.5 }} // Original size: 391 x 333 / 2}
         />
         <Text className="mt-4 text-center text-xl font-bold text-foreground">
           {appLanguage === 'en'
