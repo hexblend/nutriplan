@@ -1,15 +1,15 @@
 import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
-import FontAwesome from '@expo/vector-icons/FontAwesome';
-import { Link, Tabs } from 'expo-router';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { Tabs } from 'expo-router';
 import React from 'react';
-import { Pressable, View } from 'react-native';
+import { View } from 'react-native';
 
 // You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>['name'];
+  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
 }) {
-  return <FontAwesome size={20} className="mb-0.5" {...props} />;
+  return <MaterialCommunityIcons size={20} className="mb-0.5" {...props} />;
 }
 
 export default function MainLayout() {
@@ -32,32 +32,38 @@ export default function MainLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Your clients',
-          tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="info-circle"
-                    size={25}
-                    color={'#FFF'}
-                    style={{
-                      marginRight: 15,
-                      opacity: pressed ? 0.5 : 1,
-                    }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+          title: 'Meal Plans',
+          headerShown: false,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="bowl-mix" color={color} />
           ),
+          //   headerRight: () => (
+          //     <Link href="/modal">
+          //       <Pressable>
+          //         {({ pressed }) => (
+          //           <MaterialCommunityIcons
+          //             name="info-circle"
+          //             size={25}
+          //             color={'#FFF'}
+          //             style={{
+          //               marginRight: 15,
+          //               opacity: pressed ? 0.5 : 1,
+          //             }}
+          //           />
+          //         )}
+          //       </Pressable>
+          //     </Link>
+          //   ),
         }}
       />
       <Tabs.Screen
         name="two"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => <TabBarIcon name="user" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="lead-pencil" color={color} />
+          ),
+          headerShown: false,
         }}
       />
     </Tabs>
