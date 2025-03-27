@@ -2,6 +2,7 @@ import { STORAGE_KEYS } from '@/lib/constants';
 import { supabase } from '@/lib/supabase/client';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Session } from '@supabase/supabase-js';
+import { router } from 'expo-router';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type AuthContextType = {
@@ -27,17 +28,16 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       const loggedInUserId = await AsyncStorage.getItem(
         STORAGE_KEYS.LOGGED_IN_USER_ID
       );
-      const { data, error } = await supabase.auth.getSession();
-      if (error) {
-        return setSessionLoading(false);
-      }
+      const { data } = await supabase.auth.getSession();
       if (data && loggedInUserId) {
         setSession(data.session);
+        return setSessionLoading(false);
+      } else {
         return setSessionLoading(false);
       }
     };
     getSession();
-  }, []);
+  }, [session]);
 
   const signIn = async (phone: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -49,6 +49,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       await AsyncStorage.setItem(STORAGE_KEYS.LOGGED_IN_USER_ID, data.user.id);
       setSession(data.session);
       setSessionLoading(false);
+      router.replace('/(app)/(main)');
     }
   };
   const signOut = async () => {
@@ -56,6 +57,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
     await AsyncStorage.removeItem(STORAGE_KEYS.LOGGED_IN_USER_ID);
     setSession(null);
     setSessionLoading(false);
+    router.replace('/(app)/auth');
   };
 
   return (
