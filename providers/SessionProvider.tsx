@@ -52,6 +52,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       router.replace('/(app)/(main)');
     }
   };
+
   const signOut = async () => {
     await supabase.auth.signOut();
     await AsyncStorage.removeItem(STORAGE_KEYS.LOGGED_IN_USER_ID);

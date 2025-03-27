@@ -24,17 +24,10 @@ const DARK_THEME: Theme = {
   ...DarkTheme,
   colors: NAV_THEME.dark,
 };
-
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
 } from 'expo-router';
-
-// const isLoggedIn = false;
-
-// export const unstable_settings = {
-//   initialRouteName: '(main)',
-// };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
 SplashScreen.preventAutoHideAsync();
@@ -69,22 +62,10 @@ export default function AppLayout() {
     return null;
   }
 
-  if (!session)
-    return (
-      <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
-        <StatusBar style="light" />
-        <Stack>
-          <Stack.Screen redirect name="index" />
-          <Stack.Screen name="auth" options={{ headerShown: false }} />
-          <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
-          <Stack.Screen name="(main)" options={{ headerShown: false }} />
-        </Stack>
-      </ThemeProvider>
-    );
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style="light" />
-      <Stack>
+      <Stack initialRouteName={session ? '(main)' : 'auth'}>
         <Stack.Screen redirect name="index" />
         <Stack.Screen name="(main)" options={{ headerShown: false }} />
         <Stack.Screen name="auth" options={{ headerShown: false }} />
