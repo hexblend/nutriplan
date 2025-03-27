@@ -1,4 +1,5 @@
 import { Text } from '@/components/ui/text';
+import { cn } from '@/lib/utils';
 import React, { useEffect, useRef, useState } from 'react';
 import { Animated } from 'react-native';
 
@@ -6,12 +7,14 @@ interface AnimatedTitleProps {
   title: string;
   delay: number;
   centered?: boolean;
+  className?: string;
 }
 
 export default function AnimatedTitle({
   title,
   delay,
   centered = false,
+  className,
 }: AnimatedTitleProps) {
   const [visible, setVisible] = useState(false);
   const opacityAnim = useRef(new Animated.Value(0)).current;
@@ -43,7 +46,7 @@ export default function AnimatedTitle({
         opacity: opacityAnim,
         transform: [{ translateX: translateXAnim }],
       }}
-      className={centered ? 'items-center' : ''}
+      className={cn(centered ? 'items-center' : '', className)}
     >
       <Text
         className={`mb-4 text-xl font-bold text-foreground ${centered ? 'text-center' : ''}`}
