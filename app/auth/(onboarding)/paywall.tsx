@@ -19,7 +19,9 @@ export default function PaywallScreen() {
             disabled
             className="mt-4 text-center text-base text-lg font-normal"
           >
-            No Payment Due Now
+            {appLanguage === 'en'
+              ? 'No Payment Due Now'
+              : 'Fără plată necesară acum'}
           </Text>
         </PageFooter>
       }
