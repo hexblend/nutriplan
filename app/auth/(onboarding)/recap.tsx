@@ -61,7 +61,7 @@ export default function RecapScreen() {
       </QuestionHeader>
       <PageWrapper
         footer={
-          <PageFooter className="-mx-3 border-t border-t-border !px-6">
+          <PageFooter className="border-t border-t-border">
             <Button
               variant="default"
               onPress={handleGoToNextScreen}

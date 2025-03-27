@@ -60,7 +60,7 @@ export default function RestrictionsScreen() {
       <QuestionHeader>{`${t.t('auth.dietaryRestrictionsQuestion')}`}</QuestionHeader>
       <PageWrapper
         footer={
-          <PageFooter>
+          <PageFooter withBorder>
             <Button
               variant="default"
               onPress={handleSubmit(onSubmit)}

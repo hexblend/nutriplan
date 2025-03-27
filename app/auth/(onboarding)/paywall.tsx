@@ -1,7 +1,6 @@
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import PaywallBenefit from '@/components/onboarding/paywall/PaywallBenefit';
-import AnimatedTitle from '@/components/onboarding/recap/AnimatedTitle';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { appLanguage, t } from '@/i18n/translations';
@@ -13,10 +12,16 @@ export default function PaywallScreen() {
   return (
     <PageWrapper
       footer={
-        <PageFooter>
+        <PageFooter withBorder>
           <Button variant="default" onPress={onSubmit} className="mt-6">
             <Text className="uppercase">{t.t('common.continue')}</Text>
           </Button>
+          <Text
+            disabled
+            className="mt-4 text-center text-base text-lg font-normal"
+          >
+            No Payment Due Now
+          </Text>
         </PageFooter>
       }
     >
@@ -25,18 +30,13 @@ export default function PaywallScreen() {
           source={{ uri: `${bucketUrl}/paywall.png` }}
           style={{ width: 195.5, height: 166.5 }} // Original size: 391 x 333 / 2
         />
-        <AnimatedTitle
-          title={
-            appLanguage === 'en'
-              ? 'Say hello to your personalized weekly meal plans'
-              : 'Salută planul tău alimentar personalizat săptămlânal'
-          }
-          delay={100}
-          centered
-          className="mt-6"
-        />
+        <Text className="mt-4 text-center text-xl font-bold text-foreground">
+          {appLanguage === 'en'
+            ? 'Say hello to your personalized weekly meal plans'
+            : 'Salută planul tău alimentar personalizat săptămlânal'}
+        </Text>
         <PaywallBenefit
-          className="mt-4"
+          className="mt-6"
           text={
             appLanguage === 'en'
               ? 'Reach your goals based on YOUR lifestyle'
@@ -74,16 +74,11 @@ export default function PaywallScreen() {
             appLanguage === 'en' ? ["don't worry"] : ['Nu te preocupi']
           }
         />
-        <AnimatedTitle
-          title={
-            appLanguage === 'en'
-              ? 'Join hundreds of users who maintain a healthy lifestyle'
-              : 'Alătură-te sutelor de utilizatori ce mențin o viață sănătoasă'
-          }
-          delay={1500}
-          centered
-          className="mt-8"
-        />
+        {/* <Text className="mt-6 text-center text-xl font-bold text-foreground">
+          {appLanguage === 'en'
+            ? 'Join hundreds of users who maintain a healthy lifestyle'
+            : 'Alătură-te sutelor de utilizatori ce mențin o viață sănătoasă'}
+        </Text> */}
       </View>
     </PageWrapper>
   );
