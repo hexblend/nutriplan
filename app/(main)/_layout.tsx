@@ -1,11 +1,34 @@
 import TabBarIcon from '@/components/layout/TabBar/TabBarIcon';
 import TabBarLabel from '@/components/layout/TabBar/TabBarLabel';
-import { Tabs } from 'expo-router';
-import React from 'react';
+import { colors } from '@/lib/constants';
+import { Tabs, usePathname } from 'expo-router';
+import React, { useEffect, useRef } from 'react';
+import { Animated, Dimensions } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 export default function MainLayout() {
   const instets = useSafeAreaInsets();
+  const tabBarWidth = Dimensions.get('window').width - 24; // Accounting for left/right margins
+  const tabWidth = tabBarWidth / 3; // Since we have 3 tabs
+  const animatedValue = useRef(new Animated.Value(0)).current;
+  const pathname = usePathname();
+
+  useEffect(() => {
+    const getIndex = () => {
+      if (pathname === '/') return 0;
+      if (pathname === '/profile') return 1;
+      if (pathname === '/feedback') return 2;
+      return 0;
+    };
+
+    Animated.spring(animatedValue, {
+      toValue: getIndex(),
+      useNativeDriver: true,
+      tension: 50,
+      friction: 7,
+    }).start();
+  }, [pathname]);
+
   return (
     <Tabs
       screenOptions={{
@@ -21,6 +44,7 @@ export default function MainLayout() {
           borderWidth: 1,
           borderBottomWidth: 3,
           borderTopWidth: 1,
+          position: 'relative',
         },
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#9CA3AF',
@@ -30,6 +54,25 @@ export default function MainLayout() {
         },
         tabBarLabel: ({ focused, children }) => (
           <TabBarLabel focused={focused}>{children}</TabBarLabel>
+        ),
+        tabBarBackground: () => (
+          <Animated.View
+            style={{
+              position: 'absolute',
+              bottom: 0,
+              width: tabWidth,
+              height: 2,
+              backgroundColor: colors.primary[400],
+              transform: [
+                {
+                  translateX: animatedValue.interpolate({
+                    inputRange: [0, 1, 2],
+                    outputRange: [0, tabWidth, tabWidth * 2],
+                  }),
+                },
+              ],
+            }}
+          />
         ),
       }}
     >
