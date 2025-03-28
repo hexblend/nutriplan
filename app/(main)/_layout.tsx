@@ -1,15 +1,8 @@
-import { TabBar } from '@/components/layout/TabBar';
-import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import {
-  BottomTabBarProps,
-  BottomTabNavigationOptions,
-} from '@react-navigation/bottom-tabs';
 import { Tabs } from 'expo-router';
 import React from 'react';
-import { View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-// You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
 function TabBarIcon(props: {
   name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
   color: string;
@@ -18,18 +11,24 @@ function TabBarIcon(props: {
 }
 
 export default function MainLayout() {
+  const instets = useSafeAreaInsets();
   return (
     <Tabs
-      screenOptions={
-        {
-          tabBarActiveTintColor: 'white',
-          // Disable the static render of the header on web
-          // to prevent a hydration error in React Navigation v6.
-          headerShown: useClientOnlyValue(false, true),
-          headerBackground: () => <View className="h-[100px] bg-transparent" />,
-          tabBar: (props: BottomTabBarProps) => <TabBar {...props} />,
-        } as BottomTabNavigationOptions
-      }
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          marginBottom: instets.bottom,
+          marginLeft: 12,
+          marginRight: 12,
+          borderRadius: 12,
+          alignItems: 'center',
+          height: 70,
+          borderWidth: 1,
+          borderBottomWidth: 3,
+          borderTopWidth: 1,
+        },
+        tabBarActiveTintColor: 'white',
+      }}
     >
       <Tabs.Screen
         name="index"
@@ -59,13 +58,21 @@ export default function MainLayout() {
         }}
       />
       <Tabs.Screen
-        name="two"
+        name="profile"
         options={{
           title: 'Profile',
           tabBarIcon: ({ color }) => (
-            <TabBarIcon name="lead-pencil" color={color} />
+            <TabBarIcon name="clipboard-account-outline" color={color} />
           ),
-          headerShown: false,
+        }}
+      />
+      <Tabs.Screen
+        name="feedback"
+        options={{
+          title: 'Feedback',
+          tabBarIcon: ({ color }) => (
+            <TabBarIcon name="comment-text-outline" color={color} />
+          ),
         }}
       />
     </Tabs>
