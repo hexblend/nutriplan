@@ -28,7 +28,7 @@ export default function MainLayout() {
           height: 70,
           paddingBottom: 0,
           borderWidth: 1,
-          borderBottomWidth: 1,
+          borderBottomWidth: 3,
           borderTopWidth: 1,
           borderColor: colors.primary[800],
           position: 'relative',
@@ -36,7 +36,7 @@ export default function MainLayout() {
         tabBarActiveTintColor: '#FFFFFF',
         tabBarInactiveTintColor: '#9CA3AF',
         tabBarIconStyle: {
-          marginTop: 7,
+          marginTop: 6,
           marginBottom: 1.5,
         },
         tabBarLabel: ({ focused, children }) => (
