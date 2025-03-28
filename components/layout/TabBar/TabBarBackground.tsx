@@ -38,14 +38,14 @@ export default function TabBarBackground({
         bottom: 0,
         left: '11%',
         right: 12,
-        height: 3,
+        height: 2,
       }}
     >
       <Animated.View
         style={{
           position: 'absolute',
           bottom: -3,
-          height: 3,
+          height: 2,
           backgroundColor: colors.primary[300],
           borderRadius: 1,
           transform: [

@@ -30,7 +30,7 @@ export default function MainLayout() {
           height: 70,
           paddingBottom: 0,
           borderWidth: 1,
-          borderBottomWidth: 3,
+          borderBottomWidth: 4,
           borderTopWidth: 1,
           borderColor: colors.primary[800],
           position: 'relative',
