@@ -1,13 +1,34 @@
+import { colors } from '@/lib/constants';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
+import LogoIcon from '../../assets/images/svg/logo-icon.svg';
+
+type MaterialIconName = React.ComponentProps<
+  typeof MaterialCommunityIcons
+>['name'];
 
 function TabBarIcon(props: {
-  name: React.ComponentProps<typeof MaterialCommunityIcons>['name'];
+  name: MaterialIconName | 'logo';
   color: string;
+  focused: boolean;
 }) {
-  return <MaterialCommunityIcons size={20} className="mb-0.5" {...props} />;
+  const size = 20;
+  const color = props.focused ? colors.secondary[200] : '#9CA3AF';
+  if (props.name === 'logo') {
+    return (
+      <LogoIcon width={size} height={size} className="mb-0.5" color={color} />
+    );
+  }
+  return (
+    <MaterialCommunityIcons
+      name={props.name}
+      color={color}
+      size={size}
+      className="mb-0.5"
+    />
+  );
 }
 
 export default function MainLayout() {
@@ -27,7 +48,8 @@ export default function MainLayout() {
           borderBottomWidth: 3,
           borderTopWidth: 1,
         },
-        tabBarActiveTintColor: 'white',
+        tabBarActiveTintColor: '#FFFFFF',
+        tabBarInactiveTintColor: '#9CA3AF',
       }}
     >
       <Tabs.Screen
@@ -35,8 +57,8 @@ export default function MainLayout() {
         options={{
           title: 'Meal Plans',
           headerShown: false,
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="bowl-mix" color={color} />
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="logo" color="#FFFFFF" focused={focused} />
           ),
           //   headerRight: () => (
           //     <Link href="/modal">
@@ -61,8 +83,12 @@ export default function MainLayout() {
         name="profile"
         options={{
           title: 'Profile',
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="clipboard-account-outline" color={color} />
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              name="clipboard-account-outline"
+              color="#FFFFFF"
+              focused={focused}
+            />
           ),
         }}
       />
@@ -70,8 +96,12 @@ export default function MainLayout() {
         name="feedback"
         options={{
           title: 'Feedback',
-          tabBarIcon: ({ color }) => (
-            <TabBarIcon name="comment-text-outline" color={color} />
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon
+              name="comment-text-outline"
+              color="#FFFFFF"
+              focused={focused}
+            />
           ),
         }}
       />
