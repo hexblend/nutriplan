@@ -1,5 +1,10 @@
+import { TabBar } from '@/components/layout/TabBar';
 import { useClientOnlyValue } from '@/hooks/useClientOnlyValue';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import {
+  BottomTabBarProps,
+  BottomTabNavigationOptions,
+} from '@react-navigation/bottom-tabs';
 import { Tabs } from 'expo-router';
 import React from 'react';
 import { View } from 'react-native';
@@ -15,19 +20,16 @@ function TabBarIcon(props: {
 export default function MainLayout() {
   return (
     <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: 'white',
-        // Disable the static render of the header on web
-        // to prevent a hydration error in React Navigation v6.
-        headerShown: useClientOnlyValue(false, true),
-        headerBackground: () => <View className="h-[100px] bg-transparent" />,
-        tabBarBackground: () => (
-          <View className="h-[100px] border-t border-gray-700 bg-transparent" />
-        ),
-        tabBarStyle: {
-          paddingTop: 2,
-        },
-      }}
+      screenOptions={
+        {
+          tabBarActiveTintColor: 'white',
+          // Disable the static render of the header on web
+          // to prevent a hydration error in React Navigation v6.
+          headerShown: useClientOnlyValue(false, true),
+          headerBackground: () => <View className="h-[100px] bg-transparent" />,
+          tabBar: (props: BottomTabBarProps) => <TabBar {...props} />,
+        } as BottomTabNavigationOptions
+      }
     >
       <Tabs.Screen
         name="index"
