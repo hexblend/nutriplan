@@ -1,6 +1,7 @@
 import TabBarBackground from '@/components/layout/TabBar/TabBarBackground';
 import TabBarIcon from '@/components/layout/TabBar/TabBarIcon';
 import TabBarLabel from '@/components/layout/TabBar/TabBarLabel';
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { Tabs } from 'expo-router';
 import React, { useState } from 'react';
@@ -9,9 +10,9 @@ import { useSafeAreaInsets } from 'react-native-safe-area-context';
 export default function MainLayout() {
   const instets = useSafeAreaInsets();
   const [textWidths, setTextWidths] = useState<number[]>([
-    'Meal Plans'.length * 8,
-    'Profile'.length * 8,
-    'Feedback'.length * 8,
+    t.t('common.mealPlans').length * 8,
+    t.t('common.profile').length * 8,
+    t.t('common.feedback').length * 8,
   ]);
 
   return (
@@ -48,7 +49,7 @@ export default function MainLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Meal Plans',
+          title: t.t('common.mealPlans'),
           headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon name="logo" color="#FFFFFF" focused={focused} />
@@ -56,7 +57,7 @@ export default function MainLayout() {
         }}
         listeners={{
           tabPress: () => {
-            const text = 'Meal Plans';
+            const text = t.t('common.mealPlans');
             const width = text.length * 8;
             setTextWidths((prev) => [width, prev[1], prev[2]]);
           },
@@ -65,7 +66,7 @@ export default function MainLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: 'Profile',
+          title: t.t('common.profile'),
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               name="clipboard-account-outline"
@@ -76,7 +77,7 @@ export default function MainLayout() {
         }}
         listeners={{
           tabPress: () => {
-            const text = 'Profile';
+            const text = t.t('common.profile');
             const width = text.length * 8;
             setTextWidths((prev) => [prev[0], width, prev[2]]);
           },
@@ -85,7 +86,7 @@ export default function MainLayout() {
       <Tabs.Screen
         name="feedback"
         options={{
-          title: 'Feedback',
+          title: t.t('common.feedback'),
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
               name="comment-text-outline"
@@ -96,7 +97,7 @@ export default function MainLayout() {
         }}
         listeners={{
           tabPress: () => {
-            const text = 'Feedback';
+            const text = t.t('common.feedback');
             const width = text.length * 8;
             setTextWidths((prev) => [prev[0], prev[1], width]);
           },

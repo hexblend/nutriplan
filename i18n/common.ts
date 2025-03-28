@@ -10,6 +10,9 @@ export const commonEN = {
   age: 'Age',
   yearsOld: 'years old',
   thankYou: 'Thank you',
+  mealPlans: 'Meal Plans',
+  profile: 'Profile',
+  feedback: 'Feedback',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -23,4 +26,7 @@ export const commonRO = {
   age: 'Vârstă',
   yearsOld: 'ani',
   thankYou: 'Mulțumesc',
+  mealPlans: 'Alimentație',
+  profile: 'Profil',
+  feedback: 'Feedback',
 };
