@@ -3,6 +3,7 @@ import TabBarIcon from '@/components/layout/TabBar/TabBarIcon';
 import TabBarLabel from '@/components/layout/TabBar/TabBarLabel';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
+import * as Haptics from 'expo-haptics';
 import { Tabs } from 'expo-router';
 import React, { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -60,6 +61,7 @@ export default function MainLayout() {
             const text = t.t('common.mealPlans');
             const width = text.length * 8;
             setTextWidths((prev) => [width, prev[1], prev[2]]);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           },
         }}
       />
@@ -80,6 +82,7 @@ export default function MainLayout() {
             const text = t.t('common.profile');
             const width = text.length * 8;
             setTextWidths((prev) => [prev[0], width, prev[2]]);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           },
         }}
       />
@@ -100,6 +103,7 @@ export default function MainLayout() {
             const text = t.t('common.feedback');
             const width = text.length * 8;
             setTextWidths((prev) => [prev[0], prev[1], width]);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           },
         }}
       />
