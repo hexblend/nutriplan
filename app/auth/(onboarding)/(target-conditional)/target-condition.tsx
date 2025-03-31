@@ -5,6 +5,8 @@ import { ControlledInput } from '@/components/ui/form/ControlledInput';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -23,6 +25,7 @@ export default function TargetConditionScreen() {
     setCurrentScreenName,
     targetCondition,
     setTargetCondition,
+    clientId,
   } = useOnboardingContext();
 
   const {
@@ -35,9 +38,19 @@ export default function TargetConditionScreen() {
   });
   const readyToSubmit = (isDirty && isValid) || targetCondition;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     const { targetCondition } = data;
     setTargetCondition(targetCondition);
+    const { error } = await supabase
+      .from('clients')
+      .update({ target_condition: targetCondition })
+      .eq('id', clientId);
+    if (error) {
+      return throwError(
+        '[onboarding] Error updating client target condition',
+        error
+      );
+    }
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;

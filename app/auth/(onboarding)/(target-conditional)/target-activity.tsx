@@ -6,6 +6,8 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -29,6 +31,7 @@ export default function TargetActivityScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    clientId,
   } = useOnboardingContext();
 
   const {
@@ -41,8 +44,18 @@ export default function TargetActivityScreen() {
   });
   const readyToSubmit = (isDirty && isValid) || targetActivity;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setTargetActivity(data.targetActivity as OnboardingTargetActivity);
+    const { error } = await supabase
+      .from('clients')
+      .update({ target_activity: data.targetActivity })
+      .eq('id', clientId);
+    if (error) {
+      return throwError(
+        '[onboarding] Error updating client target activity',
+        error
+      );
+    }
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;
