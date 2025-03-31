@@ -18,8 +18,19 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function OtpScreen() {
-  const { phoneNumber, setIsForward, currentScreenName, setCurrentScreenName } =
-    useOnboardingContext();
+  const {
+    phoneNumber,
+    setIsForward,
+    currentScreenName,
+    setCurrentScreenName,
+    firstName,
+    lastName,
+    goal,
+    height,
+    weight,
+    age,
+    activity,
+  } = useOnboardingContext();
 
   const {
     control,
@@ -51,10 +62,35 @@ export default function OtpScreen() {
       );
     }
     if (session) {
-      // Go to next screen
-      setIsForward(true);
-      const nextScreen = progressScreensConfig[currentScreenName].next;
-      if (nextScreen) setCurrentScreenName(nextScreen);
+      // Create a client from the user
+      const userId = session.user.id;
+      const { data, error } = await supabase
+        .from('clients')
+        .insert([
+          {
+            userId,
+            first_name: firstName,
+            last_name: lastName,
+            goal,
+            height,
+            weight,
+            age,
+            activity_level: activity,
+          },
+        ])
+        .select();
+      if (error) {
+        console.error('Error creating client', error);
+        return Alert.alert('Error', 'Failed to create client', [
+          { text: 'OK' },
+        ]);
+      }
+      if (data) {
+        // Go to next screen
+        setIsForward(true);
+        const nextScreen = progressScreensConfig[currentScreenName].next;
+        if (nextScreen) setCurrentScreenName(nextScreen);
+      }
     }
   };
 
