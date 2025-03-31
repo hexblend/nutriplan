@@ -6,6 +6,8 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -33,6 +35,7 @@ export default function RestrictionsScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    clientId,
   } = useOnboardingContext();
 
   const {
@@ -45,10 +48,20 @@ export default function RestrictionsScreen() {
   });
   const readyToSubmit = (isDirty && isValid) || dietaryRestrictions.length > 0;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setDietaryRestrictions(
       data.dietaryRestrictions as OnboardingDietaryRestriction[]
     );
+    const { error } = await supabase
+      .from('clients')
+      .update({ dietary_restrictions: data.dietaryRestrictions })
+      .eq('id', clientId);
+    if (error) {
+      return throwError(
+        '[onboarding] Error updating client dietary restrictions',
+        error
+      );
+    }
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;

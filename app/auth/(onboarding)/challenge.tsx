@@ -6,6 +6,8 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -31,6 +33,7 @@ export default function ChallengeScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    clientId,
   } = useOnboardingContext();
 
   const {
@@ -43,8 +46,15 @@ export default function ChallengeScreen() {
   });
   const readyToSubmit = (isDirty && isValid) || challenge;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setChallenge(data.challenge);
+    const { error } = await supabase
+      .from('clients')
+      .update({ biggest_challenge: data.challenge })
+      .eq('id', clientId);
+    if (error) {
+      return throwError('[onboarding] Error updating client challenge', error);
+    }
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;
