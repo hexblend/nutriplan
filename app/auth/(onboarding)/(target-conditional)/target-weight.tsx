@@ -7,7 +7,8 @@ import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
-import { kgToLbs, lbsToKg } from '@/lib/utils';
+import { supabase } from '@/lib/supabase/client';
+import { kgToLbs, lbsToKg, throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useState } from 'react';
@@ -28,6 +29,7 @@ export default function TargetWeightScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    clientId,
   } = useOnboardingContext();
 
   const {
@@ -57,8 +59,15 @@ export default function TargetWeightScreen() {
     }
   };
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setTargetWeight(`${data.targetWeight} ${unit}`);
+    const { error } = await supabase
+      .from('clients')
+      .update({ target_weight: data.targetWeight })
+      .eq('id', clientId);
+    if (error) {
+      return throwError('[onboarding] Error updating client weight', error);
+    }
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;

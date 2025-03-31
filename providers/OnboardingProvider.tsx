@@ -49,6 +49,9 @@ interface OnboardingContextType {
   // Phone
   phoneNumber: string;
   setPhoneNumber: Dispatch<SetStateAction<string>>;
+  // Client ID
+  clientId: string | undefined;
+  setClientId: Dispatch<SetStateAction<string | undefined>>;
   // Target Activity
   targetActivity: OnboardingTargetActivity | undefined;
   setTargetActivity: Dispatch<
@@ -119,6 +122,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Phone
   const [phoneNumber, setPhoneNumber] =
     useState<OnboardingContextType['phoneNumber']>('');
+  // Client ID
+  const [clientId, setClientId] =
+    useState<OnboardingContextType['clientId']>(undefined);
   // Target Activity
   const [targetActivity, setTargetActivity] =
     useState<OnboardingContextType['targetActivity']>(undefined);
@@ -180,6 +186,9 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Phone
         phoneNumber,
         setPhoneNumber,
+        // Client ID
+        clientId,
+        setClientId,
         // Target Activity
         targetActivity,
         setTargetActivity,

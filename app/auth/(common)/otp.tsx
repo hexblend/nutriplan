@@ -6,10 +6,11 @@ import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
 import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
-import { Alert, View } from 'react-native';
+import { View } from 'react-native';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -30,6 +31,7 @@ export default function OtpScreen() {
     weight,
     age,
     activity,
+    setClientId,
   } = useOnboardingContext();
 
   const {
@@ -54,17 +56,12 @@ export default function OtpScreen() {
       type: 'sms',
     });
     if (error) {
-      console.error('OTP Verify ERROR', error);
-      return Alert.alert(
-        'Error',
-        'The code could not be verified. Try again.',
-        [{ text: 'OK' }]
-      );
+      return throwError('Error! The code could not be verified. Try again.');
     }
     if (session) {
       // Create a client from the user
       const userId = session.user.id;
-      const { data, error } = await supabase
+      const { data: clientData, error } = await supabase
         .from('clients')
         .insert([
           {
@@ -80,12 +77,10 @@ export default function OtpScreen() {
         ])
         .select();
       if (error) {
-        console.error('Error creating client', error);
-        return Alert.alert('Error', 'Failed to create client', [
-          { text: 'OK' },
-        ]);
+        return throwError('[onboarding] Error creating client', error);
       }
-      if (data) {
+      if (clientData) {
+        setClientId(clientData[0].id);
         // Go to next screen
         setIsForward(true);
         const nextScreen = progressScreensConfig[currentScreenName].next;

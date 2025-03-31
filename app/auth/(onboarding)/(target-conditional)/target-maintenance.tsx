@@ -6,6 +6,8 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { progressScreensConfig } from '@/lib/onboarding/onboardingConfig';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useOnboardingContext } from '@/providers/OnboardingProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useForm } from 'react-hook-form';
@@ -24,6 +26,7 @@ export default function TargetMaintenanceScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    clientId,
   } = useOnboardingContext();
 
   const {
@@ -36,8 +39,18 @@ export default function TargetMaintenanceScreen() {
   });
   const readyToSubmit = (isDirty && isValid) || targetMaintenance;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
     setTargetMaintenance(data.targetMaintenance);
+    const { error } = await supabase
+      .from('clients')
+      .update({ target_maintenance: data.targetMaintenance })
+      .eq('id', clientId);
+    if (error) {
+      return throwError(
+        '[onboarding] Error updating client target maintenance',
+        error
+      );
+    }
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;

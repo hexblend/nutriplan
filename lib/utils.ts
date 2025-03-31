@@ -1,4 +1,5 @@
 import { clsx, type ClassValue } from 'clsx';
+import { Alert } from 'react-native';
 import { twMerge } from 'tailwind-merge';
 
 // eslint-disable-next-line
@@ -46,4 +47,9 @@ export const parseFeetAndInches = (
   }
 
   return { feet: 0, inches: 0 };
+};
+
+export const throwError = (message: string, error?: any) => {
+  console.error(message, error);
+  return Alert.alert('Error', message, [{ text: 'OK' }]);
 };
