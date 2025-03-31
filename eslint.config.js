@@ -6,6 +6,10 @@ const prettier = require('eslint-config-prettier');
 const reactNative = require('eslint-plugin-react-native');
 
 module.exports = [
+  // Ignore generated files
+  {
+    ignores: ['supabase/database.types.ts'],
+  },
   // Configuration for Node.js config files
   {
     files: ['*.config.js'],
