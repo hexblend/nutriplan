@@ -11,7 +11,8 @@
     "lint": "eslint . --ext .js,.jsx,.ts,.tsx",
     "lint:fix": "eslint . --ext .js,.jsx,.ts,.tsx --fix",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json,md}\"",
-    "prepare": "husky"
+    "prepare": "husky",
+    "types": "npx supabase gen types --lang=typescript --project-id 'bgefmqefmboheirzxqvu' --schema public > supabase/database.types.ts"
   },
   "jest": {
     "preset": "jest-expo"
