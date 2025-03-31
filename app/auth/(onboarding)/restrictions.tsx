@@ -54,11 +54,11 @@ export default function RestrictionsScreen() {
     );
     const { error } = await supabase
       .from('clients')
-      .update({ dietary_restrictions: data.dietaryRestrictions })
+      .update({ food_restrictions: data.dietaryRestrictions })
       .eq('id', clientId);
     if (error) {
       return throwError(
-        '[onboarding] Error updating client dietary restrictions',
+        '[onboarding] Error updating client food restrictions',
         error
       );
     }

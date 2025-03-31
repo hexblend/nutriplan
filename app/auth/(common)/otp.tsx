@@ -65,7 +65,7 @@ export default function OtpScreen() {
         .from('clients')
         .insert([
           {
-            userId,
+            user_id: userId,
             first_name: firstName,
             last_name: lastName,
             goal,
