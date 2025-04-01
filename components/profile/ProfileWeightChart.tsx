@@ -14,9 +14,9 @@ export default function ProfileWeightChart() {
   ];
 
   return (
-    <View>
-      <Text className="mt-6 text-center font-bold">Weight Pogress</Text>
-      <View className="-ml-2 mt-8 w-full">
+    <View className="mt-8">
+      <Text className="text-center font-bold">Weight Pogress</Text>
+      <View className="-ml-2 mt-6 w-full">
         <LineChart
           data={lineData}
           maxValue={73 * 1.8}
