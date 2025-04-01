@@ -1,9 +1,19 @@
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
+import { useFocusEffect } from 'expo-router';
+import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 
 export default function ProfileWeightChart() {
+  const [key, setKey] = useState(0);
+
+  useFocusEffect(
+    useCallback(() => {
+      setKey((prev) => prev + 1); // Force re-render
+    }, [])
+  );
+
   const lineData = [
     { value: 73, label: '22 Aug', dataPointText: '73 kg' },
     { value: 72.5, label: '3 Sep', dataPointText: '72.5 kg' },
@@ -15,9 +25,10 @@ export default function ProfileWeightChart() {
 
   return (
     <View className="mt-8">
-      <Text className="text-center font-bold">Weight Pogress</Text>
+      <Text className="text-center font-bold">Weight Progress</Text>
       <View className="-ml-2 mt-6 w-full">
         <LineChart
+          key={key}
           data={lineData}
           maxValue={73 * 1.8}
           initialSpacing={16}
