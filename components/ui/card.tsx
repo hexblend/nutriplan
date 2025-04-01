@@ -69,17 +69,14 @@ export default function Card({
 
   if (asLink) {
     return (
-      <Animated.View
-        style={{
-          transform: [{ translateY }, { scale }],
-          opacity,
-        }}
-      >
+      <Animated.View style={{ opacity }}>
         <View className="relative">
           <View className="absolute -bottom-1 left-0 right-0 h-3 rounded-xl rounded-tl-none rounded-tr-none bg-muted opacity-70" />
           <Link href={href} asChild>
             <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
-              <CardContent className={className}>{children}</CardContent>
+              <Animated.View style={{ transform: [{ translateY }, { scale }] }}>
+                <CardContent className={className}>{children}</CardContent>
+              </Animated.View>
             </Pressable>
           </Link>
         </View>
