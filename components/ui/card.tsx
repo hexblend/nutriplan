@@ -14,7 +14,7 @@ interface CardProps {
 function CardContent({ children, className }: ViewProps) {
   return (
     <View
-      className={cn('flex-1 rounded-lg border-muted bg-accent p-4', className)}
+      className={cn('flex-1 rounded-xl border-muted bg-accent p-4', className)}
       style={{ borderWidth: 1 }}
     >
       {children}
@@ -57,7 +57,7 @@ export default function Card({
   if (asLink) {
     return (
       <View className="relative">
-        <View className="absolute -bottom-1 left-0 right-0 h-3 rounded-lg bg-muted opacity-70" />
+        <View className="absolute -bottom-1 left-0 right-0 h-3 rounded-xl rounded-tl-none rounded-tr-none bg-muted opacity-70" />
         <Link href={href} asChild>
           <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
             <Animated.View
