@@ -46,7 +46,26 @@ export default function MainLayout() {
         ),
         tabBarBackground: () => <TabBarBackground textWidths={textWidths} />,
       }}
+      initialRouteName="profile"
     >
+      <Tabs.Screen
+        name="index"
+        options={{
+          title: t.t('common.mealPlans'),
+          headerShown: false,
+          tabBarIcon: ({ focused }) => (
+            <TabBarIcon name="logo" color="#FFFFFF" focused={focused} />
+          ),
+        }}
+        listeners={{
+          tabPress: () => {
+            const text = t.t('common.mealPlans');
+            const width = text.length * 8;
+            setTextWidths((prev) => [width, prev[1], prev[2]]);
+            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+          },
+        }}
+      />
       <Tabs.Screen
         name="profile"
         options={{
@@ -64,24 +83,6 @@ export default function MainLayout() {
             const text = t.t('common.profile');
             const width = text.length * 8;
             setTextWidths((prev) => [prev[0], width, prev[2]]);
-            Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
-          },
-        }}
-      />
-      <Tabs.Screen
-        name="index"
-        options={{
-          title: t.t('common.mealPlans'),
-          headerShown: false,
-          tabBarIcon: ({ focused }) => (
-            <TabBarIcon name="logo" color="#FFFFFF" focused={focused} />
-          ),
-        }}
-        listeners={{
-          tabPress: () => {
-            const text = t.t('common.mealPlans');
-            const width = text.length * 8;
-            setTextWidths((prev) => [width, prev[1], prev[2]]);
             Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
           },
         }}

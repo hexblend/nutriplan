@@ -13,7 +13,7 @@ export default function Card({ children, className }: CardProps) {
         'border-1 rounded-lg border-muted bg-accent p-4',
         className
       )}
-      style={{ borderWidth: 1, borderBottomWidth: 4 }}
+      style={{ borderWidth: 1, borderBottomWidth: 3 }}
     >
       {children}
     </View>

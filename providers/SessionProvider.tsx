@@ -1,5 +1,6 @@
 import { STORAGE_KEYS } from '@/lib/constants';
 import { supabase } from '@/lib/supabase/client';
+import { Tables } from '@/supabase/database.types';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { Session } from '@supabase/supabase-js';
 import { router } from 'expo-router';
@@ -11,18 +12,28 @@ type AuthContextType = {
   // eslint-disable-next-line
   signIn: (phone: string, password: string) => Promise<void>;
   signOut: () => Promise<void>;
+  currentClient: Tables<'clients'> | null;
+  setCurrentClient: React.Dispatch<
+    React.SetStateAction<Tables<'clients'> | null>
+  >;
 };
 const AuthContext = createContext<AuthContextType>({
   session: null,
   sessionLoading: true,
   signIn: async () => {},
   signOut: async () => {},
+  currentClient: null,
+  setCurrentClient: () => {},
 });
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [sessionLoading, setSessionLoading] = useState(true);
+  const [currentClient, setCurrentClient] = useState<Tables<'clients'> | null>(
+    null
+  );
 
+  // Get the session
   useEffect(() => {
     const getSession = async () => {
       const loggedInUserId = await AsyncStorage.getItem(
@@ -31,13 +42,19 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       const { data } = await supabase.auth.getSession();
       if (data && loggedInUserId) {
         setSession(data.session);
+        const { data: clientData } = await supabase
+          .from('clients')
+          .select('*')
+          .eq('user_id', loggedInUserId)
+          .single();
+        setCurrentClient(clientData);
         return setSessionLoading(false);
       } else {
         return setSessionLoading(false);
       }
     };
     getSession();
-  }, [session]);
+  }, []);
 
   const signIn = async (phone: string, password: string) => {
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -62,7 +79,16 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   };
 
   return (
-    <AuthContext.Provider value={{ session, sessionLoading, signIn, signOut }}>
+    <AuthContext.Provider
+      value={{
+        session,
+        sessionLoading,
+        signIn,
+        signOut,
+        currentClient,
+        setCurrentClient,
+      }}
+    >
       {children}
     </AuthContext.Provider>
   );
