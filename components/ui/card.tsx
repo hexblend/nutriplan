@@ -30,12 +30,19 @@ export default function Card({
 }: CardProps) {
   const translateY = useRef(new Animated.Value(0)).current;
   const scale = useRef(new Animated.Value(1)).current;
+  const opacity = useRef(new Animated.Value(1)).current;
 
   const handlePressIn = () => {
     Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
     Animated.parallel([
       Animated.timing(translateY, {
         toValue: 4,
+        duration: 100,
+        easing: Easing.out(Easing.ease),
+        useNativeDriver: true,
+      }),
+      Animated.timing(opacity, {
+        toValue: 0.7,
         duration: 100,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
@@ -51,25 +58,32 @@ export default function Card({
         easing: Easing.out(Easing.back(1.5)),
         useNativeDriver: true,
       }),
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 150,
+        easing: Easing.out(Easing.back(1.5)),
+        useNativeDriver: true,
+      }),
     ]).start();
   };
 
   if (asLink) {
     return (
-      <View className="relative">
-        <View className="absolute -bottom-1 left-0 right-0 h-3 rounded-xl rounded-tl-none rounded-tr-none bg-muted opacity-70" />
-        <Link href={href} asChild>
-          <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
-            <Animated.View
-              style={{
-                transform: [{ translateY }, { scale }],
-              }}
-            >
+      <Animated.View
+        style={{
+          transform: [{ translateY }, { scale }],
+          opacity,
+        }}
+      >
+        <View className="relative">
+          <View className="absolute -bottom-1 left-0 right-0 h-3 rounded-xl rounded-tl-none rounded-tr-none bg-muted opacity-70" />
+          <Link href={href} asChild>
+            <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
               <CardContent className={className}>{children}</CardContent>
-            </Animated.View>
-          </Pressable>
-        </Link>
-      </View>
+            </Pressable>
+          </Link>
+        </View>
+      </Animated.View>
     );
   }
   return <CardContent className={className}>{children}</CardContent>;
