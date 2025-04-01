@@ -1,32 +1,12 @@
 import PageWrapper from '@/components/layout/PageWrapper';
-import Card from '@/components/main/Card';
-import { Avatar, AvatarFallback } from '@/components/ui/avatar';
+import ProfileAvatarCard from '@/components/profile/ProfileAvatarCard';
 import { Text } from '@/components/ui/text';
-import { useSession } from '@/providers/SessionProvider';
-import { useEffect } from 'react';
-import { View } from 'react-native';
 
 export default function ProfileScreen() {
-  const { currentClient } = useSession();
-
-  useEffect(() => {
-    console.log(currentClient);
-  }, [currentClient]);
-
   return (
     <PageWrapper>
       <Text className="mb-6 text-2xl font-bold text-foreground">Profile</Text>
-
-      <Card className="flex-row items-start justify-between">
-        <View>
-          <Text>Hello</Text>
-        </View>
-        <Avatar alt="Avatar" className="h-20 w-20">
-          <AvatarFallback>
-            <Text className="text-2xl font-bold">ZN</Text>
-          </AvatarFallback>
-        </Avatar>
-      </Card>
+      <ProfileAvatarCard />
     </PageWrapper>
   );
 }
