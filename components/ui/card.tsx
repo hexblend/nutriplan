@@ -42,7 +42,7 @@ export default function Card({
         useNativeDriver: true,
       }),
       Animated.timing(opacity, {
-        toValue: 0.7,
+        toValue: 0.6,
         duration: 100,
         easing: Easing.out(Easing.ease),
         useNativeDriver: true,
