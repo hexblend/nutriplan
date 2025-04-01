@@ -9,6 +9,7 @@ export default function ProfileScreen() {
       <Text className="mb-6 text-2xl font-bold text-foreground">Profile</Text>
       <ProfileAvatarCard />
       <ProfileGoal />
+      <Text className="mt-8 font-bold">Weight Pogress</Text>
     </PageWrapper>
   );
 }
