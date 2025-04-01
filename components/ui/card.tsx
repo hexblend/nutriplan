@@ -1,7 +1,8 @@
 import { cn } from '@/lib/utils';
+import * as Haptics from 'expo-haptics';
 import { Link, LinkProps } from 'expo-router';
-import { JSX } from 'react';
-import { Pressable, View, ViewProps } from 'react-native';
+import { JSX, useRef } from 'react';
+import { Animated, Easing, Pressable, View, ViewProps } from 'react-native';
 
 interface CardProps {
   children: JSX.Element | JSX.Element[];
@@ -13,11 +14,8 @@ interface CardProps {
 function CardContent({ children, className }: ViewProps) {
   return (
     <View
-      className={cn(
-        'border-1 flex-1 rounded-lg border-muted bg-accent p-4',
-        className
-      )}
-      style={{ borderWidth: 1, borderBottomWidth: 3 }}
+      className={cn('flex-1 rounded-lg border-muted bg-accent p-4', className)}
+      style={{ borderWidth: 1 }}
     >
       {children}
     </View>
@@ -30,13 +28,48 @@ export default function Card({
   asLink = false,
   href = '/',
 }: CardProps) {
+  const translateY = useRef(new Animated.Value(0)).current;
+  const scale = useRef(new Animated.Value(1)).current;
+
+  const handlePressIn = () => {
+    Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
+    Animated.parallel([
+      Animated.timing(translateY, {
+        toValue: 4,
+        duration: 100,
+        easing: Easing.out(Easing.ease),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
+  const handlePressOut = () => {
+    Animated.parallel([
+      Animated.timing(translateY, {
+        toValue: 0,
+        duration: 150,
+        easing: Easing.out(Easing.back(1.5)),
+        useNativeDriver: true,
+      }),
+    ]).start();
+  };
+
   if (asLink) {
     return (
-      <Link href={href} asChild>
-        <Pressable>
-          <CardContent className={className}>{children}</CardContent>
-        </Pressable>
-      </Link>
+      <View className="relative">
+        <View className="absolute -bottom-1 left-0 right-0 h-3 rounded-lg bg-muted opacity-70" />
+        <Link href={href} asChild>
+          <Pressable onPressIn={handlePressIn} onPressOut={handlePressOut}>
+            <Animated.View
+              style={{
+                transform: [{ translateY }, { scale }],
+              }}
+            >
+              <CardContent className={className}>{children}</CardContent>
+            </Animated.View>
+          </Pressable>
+        </Link>
+      </View>
     );
   }
   return <CardContent className={className}>{children}</CardContent>;
