@@ -18,7 +18,7 @@ export default function ProfileAvatarCard() {
   const lastLetter = last_name.charAt(0);
 
   return (
-    <Card className="flex-row items-start justify-between py-5">
+    <Card className="flex-row items-start justify-between py-5" asLink>
       <View className="flex-col gap-4">
         {/* Name */}
         <View className="flex-row items-center gap-2">
@@ -68,7 +68,7 @@ export default function ProfileAvatarCard() {
           }}
         >
           <AvatarFallback>
-            <Text className="text-2xl font-bold">
+            <Text className="text-3xl font-bold text-gray-300">
               {firstLetter}
               {lastLetter}
             </Text>
