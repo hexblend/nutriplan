@@ -18,6 +18,7 @@ export default function MainLayout() {
 
   return (
     <Tabs
+      initialRouteName="index"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -46,7 +47,6 @@ export default function MainLayout() {
         ),
         tabBarBackground: () => <TabBarBackground textWidths={textWidths} />,
       }}
-      initialRouteName="profile"
     >
       <Tabs.Screen
         name="index"

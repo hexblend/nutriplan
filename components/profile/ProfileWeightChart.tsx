@@ -48,6 +48,7 @@ export default function ProfileWeightChart() {
           dataPointsColor="skyblue"
           showVerticalLines
           isAnimated
+          animationDuration={500}
           areaChart
           endFillColor={'rgb(84,219,234)'}
           startFillColor={colors.primary[350]}
