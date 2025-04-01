@@ -5,6 +5,7 @@ import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { useSession } from '@/providers/SessionProvider';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { LinearGradient } from 'expo-linear-gradient';
 import { View } from 'react-native';
 
 export default function ProfileAvatarCard() {
@@ -51,13 +52,28 @@ export default function ProfileAvatarCard() {
           </Text>
         </View>
       </View>
-      <Avatar alt="Avatar" className="h-20 w-20">
-        <AvatarFallback>
-          <Text className="text-2xl font-bold">
-            {firstLetter}
-            {lastLetter}
-          </Text>
-        </AvatarFallback>
+      <Avatar
+        alt="Avatar"
+        className="h-20 w-20 bg-gradient-to-r from-blue-700 to-blue-950"
+      >
+        <LinearGradient
+          colors={['rgba(31, 82, 155, 0.3)', 'rgba(11, 26, 80, 0.3)']}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 0, y: 1 }}
+          style={{
+            width: '100%',
+            height: '100%',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+        >
+          <AvatarFallback>
+            <Text className="text-2xl font-bold">
+              {firstLetter}
+              {lastLetter}
+            </Text>
+          </AvatarFallback>
+        </LinearGradient>
       </Avatar>
     </Card>
   );
