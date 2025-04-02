@@ -1,4 +1,6 @@
 import { Text } from '@/components/ui/text';
+import { colors } from '@/lib/constants';
+import { FontAwesome } from '@expo/vector-icons';
 import { View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -89,8 +91,22 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
   return (
     <View className={`w-full space-y-4 ${className || ''}`}>
       <View className="items-center space-y-1">
-        <Text className="text-3xl font-bold">{bmi.toFixed(1)}</Text>
-        <Text className="text-xl font-semibold">Current BMI</Text>
+        <View className="flex-row items-center gap-2">
+          <FontAwesome
+            name="balance-scale"
+            size={20}
+            color={colors.primary[350]}
+          />
+          <Text className="text-3xl font-bold">BMI {bmi.toFixed(1)}</Text>
+        </View>
+
+        <View className="mb-1 mt-0.5 flex-row items-center gap-2">
+          {currentRange && (
+            <Text className="text-xl font-semibold text-gray-500">
+              {currentRange.label}
+            </Text>
+          )}
+        </View>
       </View>
 
       <View className="mt-3 px-4">

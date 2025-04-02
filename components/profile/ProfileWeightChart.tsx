@@ -1,18 +1,34 @@
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
+import { cn } from '@/lib/utils';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
-import { View } from 'react-native';
+import { Animated, View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 import { Button } from '../ui/button';
+interface ProfileWeightChartProps {
+  className?: string;
+}
 
-export default function ProfileWeightChart() {
+export default function ProfileWeightChart({
+  className,
+}: ProfileWeightChartProps) {
   const [key, setKey] = useState(0);
+  const [opacity] = useState(new Animated.Value(0));
 
   useFocusEffect(
     useCallback(() => {
       setKey((prev) => prev + 1); // Force re-render
+      Animated.timing(opacity, {
+        toValue: 1,
+        duration: 600,
+        useNativeDriver: true,
+      }).start();
+
+      return () => {
+        opacity.setValue(0);
+      };
     }, [])
   );
 
@@ -26,7 +42,7 @@ export default function ProfileWeightChart() {
   ];
 
   return (
-    <View className="mt-10">
+    <View className={cn(className)}>
       <Text className="text-center font-bold">Weight Progress</Text>
       <View className="-ml-2 mt-2 w-full">
         <LineChart
@@ -58,10 +74,15 @@ export default function ProfileWeightChart() {
           endOpacity={0.1}
         />
       </View>
-      <Button variant="secondary" className="mt-6 flex-row items-center gap-2">
-        <FontAwesome name="plus" size={16} color="white" />
-        <Text>Add current weight</Text>
-      </Button>
+      <Animated.View style={{ opacity }}>
+        <Button
+          variant="secondary"
+          className="mt-6 flex-row items-center gap-2"
+        >
+          <FontAwesome name="plus" size={16} color="white" />
+          <Text>Add current weight</Text>
+        </Button>
+      </Animated.View>
     </View>
   );
 }

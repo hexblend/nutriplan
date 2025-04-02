@@ -1,5 +1,9 @@
 import { BmiRange } from '@/components/ui/bmi-range';
+import { cn } from '@/lib/utils';
 
-export default function ProfileBmiRange() {
-  return <BmiRange bmi={26} className="mt-12" />;
+interface ProfileBmiRangeProps {
+  className?: string;
+}
+export default function ProfileBmiRange({ className }: ProfileBmiRangeProps) {
+  return <BmiRange bmi={26} className={cn(className)} />;
 }
