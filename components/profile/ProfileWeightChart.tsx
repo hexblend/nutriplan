@@ -24,7 +24,7 @@ export default function ProfileWeightChart() {
   ];
 
   return (
-    <View className="mt-8">
+    <View className="mt-10">
       <Text className="text-center font-bold">Weight Progress</Text>
       <View className="-ml-2 mt-6 w-full">
         <LineChart

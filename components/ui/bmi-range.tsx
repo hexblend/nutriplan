@@ -15,7 +15,6 @@ const SCALE_MAX = 40;
 const TOTAL_RANGE = SCALE_MAX - SCALE_MIN;
 
 const BMI_RANGES = [
-  { min: SCALE_MIN, max: 16, color: 'bg-sky-400', label: 'Severe Underweight' },
   { min: 16, max: 18.5, color: 'bg-green-400', label: 'Underweight' },
   { min: 18.5, max: 25, color: 'bg-yellow-300', label: 'Normal' },
   { min: 25, max: 30, color: 'bg-orange-400', label: 'Overweight' },
@@ -41,75 +40,74 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
     };
   });
 
-  // Get all unique boundary values
-  const boundaries = [
-    ...new Set([SCALE_MIN, ...BMI_RANGES.map((range) => range.max)]),
-  ].sort((a, b) => a - b);
-
   return (
     <View className={`w-full space-y-4 ${className || ''}`}>
       <View className="items-center space-y-1">
-        <Text className="text-4xl font-bold">{bmi.toFixed(1)}</Text>
+        <Text className="text-3xl font-bold">{bmi.toFixed(1)}</Text>
         <Text className="text-xl font-semibold">Current BMI</Text>
       </View>
 
-      <View className="px-2">
-        <View className="relative h-4 overflow-hidden rounded-full">
-          <View className="flex-1 flex-row">
-            {BMI_RANGES.map((range, index) => {
-              const rangeWidth = ((range.max - range.min) / TOTAL_RANGE) * 100;
-              return (
-                <View
-                  key={index}
-                  className={`h-full ${range.color}`}
-                  style={{ width: `${rangeWidth}%` }}
-                />
-              );
-            })}
-          </View>
+      <View className="mt-3 px-4">
+        <View className="relative h-4 overflow-hidden rounded-full bg-gray-100">
+          {/* First range */}
+          <View
+            className="absolute h-full bg-sky-400"
+            style={{
+              left: '0%',
+              width: `${((16 - SCALE_MIN) / TOTAL_RANGE) * 100}%`,
+            }}
+          />
+          {/* Rest of the ranges */}
+          {BMI_RANGES.map((range, index) => {
+            const rangeWidth = ((range.max - range.min) / TOTAL_RANGE) * 100;
+            const position = getBoundaryPosition(range.min);
+            return (
+              <View
+                key={index}
+                className={`absolute h-full ${range.color}`}
+                style={{
+                  left: `${position}%`,
+                  width: `${rangeWidth}%`,
+                }}
+              />
+            );
+          })}
           <Animated.View
-            className="absolute top-0 h-full w-1 bg-black"
+            className="absolute top-0 -mt-1 h-6 w-1 bg-white"
             style={caretStyle}
           />
         </View>
 
-        <View className="relative mt-1 h-8">
-          {boundaries.map((value, index) => {
-            const position = getBoundaryPosition(value);
-            let textAlign: 'left' | 'center' | 'right' = 'center';
-            let xOffset = -50; // Default center alignment (-50%)
-
-            // Handle edge cases and cramped numbers
-            if (value === SCALE_MIN) {
-              textAlign = 'left';
-              xOffset = 0;
-            } else if (value === SCALE_MAX) {
-              textAlign = 'right';
-              xOffset = -100;
-            } else if (value === 16) {
-              // Slightly offset 16 to prevent overlap with 15
-              xOffset = -25;
-            }
-
+        <View className="relative h-6">
+          {/* Starting value */}
+          <Text className="absolute text-sm text-gray-500" style={{ left: 0 }}>
+            {SCALE_MIN}
+          </Text>
+          {/* Middle values */}
+          {BMI_RANGES.map((range, index) => {
+            const position = getBoundaryPosition(range.min);
             return (
               <Text
                 key={index}
-                className="absolute text-sm text-gray-500"
+                className="absolute ml-4 text-sm text-gray-500"
                 style={{
                   left: `${position}%`,
-                  transform: [{ translateX: `${xOffset}%` }],
-                  textAlign,
+                  transform: [{ translateX: '-50%' }],
                 }}
               >
-                {value}
+                {range.min}
               </Text>
             );
           })}
+          {/* Final value */}
+          <Text className="absolute text-sm text-gray-500" style={{ right: 0 }}>
+            {SCALE_MAX}
+          </Text>
         </View>
       </View>
 
       {currentRange && (
-        <Text className="mt-4 text-center text-xl text-gray-600">
+        <Text className="mt-3 text-center text-xl text-gray-600">
           {currentRange.label === 'Normal'
             ? "You're in a healthy range!"
             : 'You only need a bit more sweat exercises to see a fitter you!'}
