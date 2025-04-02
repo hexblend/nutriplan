@@ -13,13 +13,15 @@ export const defaultStackProps = {
     headerTitleStyle: {
       fontWeight: 'bold',
     },
-    headerBackTitle: '‎',
   },
 };
 
 export default function OnboardingLayout() {
   return (
-    <Stack {...(defaultStackProps as any)}>
+    <Stack
+      {...(defaultStackProps as any)}
+      screenOptions={{ headerBackTitle: '‎' }}
+    >
       <Stack.Screen name="index" options={{ headerShown: false }} />
 
       <Stack.Screen

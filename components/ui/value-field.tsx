@@ -16,6 +16,7 @@ interface ValueFieldProps {
   labelLeft?: string;
   labelClassName?: string;
   icon?: JSX.Element;
+  noEditIcon?: boolean;
 }
 
 export default function ValueField({
@@ -27,6 +28,7 @@ export default function ValueField({
   labelLeft,
   labelClassName,
   icon,
+  noEditIcon,
 }: ValueFieldProps) {
   return (
     <View className={className}>
@@ -48,7 +50,7 @@ export default function ValueField({
             {valueRight && (
               <Text className="text-left uppercase">{valueRight}</Text>
             )}
-            <FontAwesome name="edit" size={18} color="white" />
+            {!noEditIcon && <FontAwesome name="edit" size={18} color="white" />}
           </View>
         </Button>
       </Link>

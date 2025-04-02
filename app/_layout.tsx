@@ -65,10 +65,11 @@ function AppLayout() {
   return (
     <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style="light" />
-      <Stack initialRouteName={session ? '(main)' : 'auth'}>
+      <Stack initialRouteName={session ? '(tabs)' : 'auth'}>
         <Stack.Screen redirect name="index" />
-        <Stack.Screen name="(main)" options={{ headerShown: false }} />
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="auth" options={{ headerShown: false }} />
+        <Stack.Screen name="profile" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>

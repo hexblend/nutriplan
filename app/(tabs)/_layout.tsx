@@ -8,7 +8,7 @@ import { Tabs } from 'expo-router';
 import React, { useState } from 'react';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
-export default function MainLayout() {
+export default function TabsLayout() {
   const instets = useSafeAreaInsets();
   const [textWidths, setTextWidths] = useState<number[]>([
     t.t('common.mealPlans').length * 8,
@@ -69,6 +69,7 @@ export default function MainLayout() {
       <Tabs.Screen
         name="profile"
         options={{
+          headerShown: false,
           title: t.t('common.profile'),
           tabBarIcon: ({ focused }) => (
             <TabBarIcon
