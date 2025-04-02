@@ -10,7 +10,7 @@ export default function ProfileScreen() {
     <PageWrapper className="pt-2">
       <Text className="mb-6 text-center text-2xl font-bold">Profile</Text>
       <ProfileAvatarCard />
-      <BmiRange bmi={28.3} className="mt-8" />
+      <BmiRange bmi={36} className="mt-8" />
       <ProfileWeightChart />
       <ProfileGoal />
     </PageWrapper>

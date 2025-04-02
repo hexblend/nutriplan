@@ -21,7 +21,7 @@ const BMI_RANGES = [
     color: 'bg-blue-900',
     label: 'Severely Underweight',
     recommendation:
-      'Please consult a healthcare provider for a personalized nutrition plan to gain weight safely.',
+      'Consider consulting with a healthcare provider for personalized guidance. Focus on nutrient-dense foods and gentle strength exercises.',
   },
   {
     min: 16,
@@ -29,7 +29,7 @@ const BMI_RANGES = [
     color: 'bg-blue-700',
     label: 'Underweight',
     recommendation:
-      'Focus on nutrient-rich foods and increase your caloric intake gradually.',
+      'Try eating more nutrient-rich foods like nuts, avocados, and whole grains. Small, frequent meals can help increase your energy and strength.',
   },
   {
     min: 18.5,
@@ -37,7 +37,7 @@ const BMI_RANGES = [
     color: 'bg-blue-500',
     label: 'Normal',
     recommendation:
-      "You're at a healthy weight! Maintain your balanced diet and regular exercise routine.",
+      "You're in a healthy range! Continue enjoying varied foods and activities you love.",
   },
   {
     min: 25,
@@ -45,7 +45,7 @@ const BMI_RANGES = [
     color: 'bg-yellow-500',
     label: 'Overweight',
     recommendation:
-      'Consider incorporating more physical activity and mindful eating habits.',
+      'Add colorful vegetables to meals and find movement that brings you joy. Small daily changes can make a meaningful difference.',
   },
   {
     min: 30,
@@ -53,7 +53,7 @@ const BMI_RANGES = [
     color: 'bg-orange-500',
     label: 'Obese',
     recommendation:
-      'Focus on sustainable lifestyle changes with regular exercise and a balanced diet.',
+      'Focus on progress, not perfection. Start with whole foods and movement that feels good. Set small, achievable weekly goals.',
   },
   {
     min: 35,
@@ -61,7 +61,7 @@ const BMI_RANGES = [
     color: 'bg-secondary-200',
     label: 'Severely Obese',
     recommendation:
-      'Please consult with healthcare professionals for a comprehensive weight management plan.',
+      'Consider partnering with healthcare providers for personalized guidance. Celebrate small daily victories in nutrition and gentle movement.',
   },
 ];
 
