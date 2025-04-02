@@ -19,7 +19,7 @@ export default function ProfileActivityLevel({
       <Text className="text-center text-xl font-semibold">
         Daily intake (BMR)
       </Text>
-      <Button variant="secondary" className="mt-2 flex-row items-center gap-2">
+      <Button variant="tertiary" className="mt-4 flex-row items-center gap-2">
         <FontAwesome name="edit" size={16} color="white" />
         <Text>Sedentary Activity</Text>
       </Button>

@@ -75,10 +75,7 @@ export default function ProfileWeightChart({
         />
       </View>
       <Animated.View style={{ opacity }}>
-        <Button
-          variant="secondary"
-          className="mt-6 flex-row items-center gap-2"
-        >
+        <Button variant="tertiary" className="mt-6 flex-row items-center gap-2">
           <FontAwesome name="plus" size={16} color="white" />
           <Text>Add current weight</Text>
         </Button>

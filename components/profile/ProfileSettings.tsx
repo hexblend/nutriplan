@@ -13,16 +13,16 @@ export default function ProfileSettings({ className }: ProfileSettingsProps) {
   const { height_unit, weight_unit } = currentClient ?? {};
   return (
     <View className={className}>
-      <View className="flex-row items-center justify-center gap-1">
+      <View className="mb-5 flex-row items-center justify-center gap-1">
         <Ionicons name="cog" size={24} color="#777" />
         <Text className="text-gray-400">Settings</Text>
       </View>
+
       <ValueField
         editHref="/profile/edit-units"
         labelLeft="Units"
         valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
         hideEditIcon
-        className="mt-4"
       />
     </View>
   );

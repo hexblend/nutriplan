@@ -14,10 +14,10 @@ export default function ProfileScreen() {
       <ProfileAvatarCard className="mt-6" />
 
       <ProfileWeightChart className="mt-10" />
-      <ProfileGoal className="mt-12" />
+      <ProfileGoal className="mt-10" />
       <ProfileActivityLevel className="mt-16" />
-      <ProfileBmiRange className="mt-16" />
-      <ProfileSettings className="mt-24" />
+      <ProfileBmiRange className="mt-18" />
+      <ProfileSettings className="mt-20" />
     </PageWrapper>
   );
 }

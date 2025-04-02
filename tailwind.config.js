@@ -54,6 +54,9 @@ module.exports = {
       height: {
         13: '3.25rem',
       },
+      spacing: {
+        18: '4.5rem',
+      },
       borderWidth: {
         hairline: hairlineWidth(),
       },

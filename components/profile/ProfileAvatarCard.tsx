@@ -37,6 +37,7 @@ export default function ProfileAvatarCard({
     <Card
       className={cn('flex-row items-start justify-between py-5', className)}
       asLink
+      href="/profile"
     >
       <View className="flex-col gap-4">
         {/* Name */}
