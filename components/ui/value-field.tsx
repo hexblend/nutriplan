@@ -9,9 +9,11 @@ import { Text } from './text';
 
 interface ValueFieldProps {
   editHref: LinkProps['href'];
-  value: string;
+  value?: string;
+  valueRight?: string;
   className?: string;
   label?: string;
+  labelLeft?: string;
   labelClassName?: string;
   icon?: JSX.Element;
 }
@@ -19,8 +21,10 @@ interface ValueFieldProps {
 export default function ValueField({
   editHref,
   value,
+  valueRight,
   className,
   label,
+  labelLeft,
   labelClassName,
   icon,
 }: ValueFieldProps) {
@@ -38,9 +42,12 @@ export default function ValueField({
         >
           <View className="flex-row items-center gap-2">
             {icon}
-            <Text className="text-left uppercase">{value}</Text>
+            <Text className="text-left uppercase">{labelLeft ?? value}</Text>
           </View>
-          <FontAwesome name="edit" size={18} color="white" />
+          {!valueRight && <FontAwesome name="edit" size={18} color="white" />}
+          {valueRight && (
+            <Text className="text-left uppercase">{valueRight}</Text>
+          )}
         </Button>
       </Link>
     </View>
