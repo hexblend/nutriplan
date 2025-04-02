@@ -25,7 +25,8 @@ export type Database = {
           first_name: string;
           food_restrictions: string | null;
           goal: string | null;
-          height: string | null;
+          height_cm: number | null;
+          height_unit: Database['public']['Enums']['unit_type'] | null;
           id: string;
           last_name: string;
           lipids: string | null;
@@ -40,7 +41,8 @@ export type Database = {
           target_weight: string | null;
           tried_before: string | null;
           user_id: string;
-          weight: string | null;
+          weight_kg: number | null;
+          weight_unit: Database['public']['Enums']['unit_type'] | null;
         };
         Insert: {
           activity_level?: string | null;
@@ -57,7 +59,8 @@ export type Database = {
           first_name: string;
           food_restrictions?: string | null;
           goal?: string | null;
-          height?: string | null;
+          height_cm?: number | null;
+          height_unit?: Database['public']['Enums']['unit_type'] | null;
           id?: string;
           last_name: string;
           lipids?: string | null;
@@ -72,7 +75,8 @@ export type Database = {
           target_weight?: string | null;
           tried_before?: string | null;
           user_id?: string;
-          weight?: string | null;
+          weight_kg?: number | null;
+          weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
         Update: {
           activity_level?: string | null;
@@ -89,7 +93,8 @@ export type Database = {
           first_name?: string;
           food_restrictions?: string | null;
           goal?: string | null;
-          height?: string | null;
+          height_cm?: number | null;
+          height_unit?: Database['public']['Enums']['unit_type'] | null;
           id?: string;
           last_name?: string;
           lipids?: string | null;
@@ -104,7 +109,8 @@ export type Database = {
           target_weight?: string | null;
           tried_before?: string | null;
           user_id?: string;
-          weight?: string | null;
+          weight_kg?: number | null;
+          weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
         Relationships: [];
       };
@@ -673,6 +679,7 @@ export type Database = {
     };
     Enums: {
       subscription_type: 'free' | 'start' | 'plus' | 'pro' | 'elite' | 'max';
+      unit_type: 'metric' | 'imperial';
       user_role: 'admin' | 'user';
     };
     CompositeTypes: {
