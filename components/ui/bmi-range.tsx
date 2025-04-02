@@ -15,15 +15,53 @@ const SCALE_MAX = 40;
 const TOTAL_RANGE = SCALE_MAX - SCALE_MIN;
 
 const BMI_RANGES = [
-  { min: 16, max: 18.5, color: 'bg-blue-700', label: 'Underweight' },
-  { min: 18.5, max: 25, color: 'bg-blue-500', label: 'Normal' },
-  { min: 25, max: 30, color: 'bg-yellow-500', label: 'Overweight' },
-  { min: 30, max: 35, color: 'bg-orange-500', label: 'Obese' },
+  {
+    min: SCALE_MIN,
+    max: 16,
+    color: 'bg-blue-900',
+    label: 'Severely Underweight',
+    recommendation:
+      'Please consult a healthcare provider for a personalized nutrition plan to gain weight safely.',
+  },
+  {
+    min: 16,
+    max: 18.5,
+    color: 'bg-blue-700',
+    label: 'Underweight',
+    recommendation:
+      'Focus on nutrient-rich foods and increase your caloric intake gradually.',
+  },
+  {
+    min: 18.5,
+    max: 25,
+    color: 'bg-blue-500',
+    label: 'Normal',
+    recommendation:
+      "You're at a healthy weight! Maintain your balanced diet and regular exercise routine.",
+  },
+  {
+    min: 25,
+    max: 30,
+    color: 'bg-yellow-500',
+    label: 'Overweight',
+    recommendation:
+      'Consider incorporating more physical activity and mindful eating habits.',
+  },
+  {
+    min: 30,
+    max: 35,
+    color: 'bg-orange-500',
+    label: 'Obese',
+    recommendation:
+      'Focus on sustainable lifestyle changes with regular exercise and a balanced diet.',
+  },
   {
     min: 35,
     max: SCALE_MAX,
     color: 'bg-secondary-200',
     label: 'Severely Obese',
+    recommendation:
+      'Please consult with healthcare professionals for a comprehensive weight management plan.',
   },
 ];
 
@@ -54,15 +92,6 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
 
       <View className="mt-3 px-4">
         <View className="relative h-4 overflow-hidden rounded-full bg-gray-100">
-          {/* First range */}
-          <View
-            className="absolute h-full bg-blue-900"
-            style={{
-              left: '0%',
-              width: `${((16 - SCALE_MIN) / TOTAL_RANGE) * 100}%`,
-            }}
-          />
-          {/* Rest of the ranges */}
           {BMI_RANGES.map((range, index) => {
             const rangeWidth = ((range.max - range.min) / TOTAL_RANGE) * 100;
             const position = getBoundaryPosition(range.min);
@@ -91,18 +120,20 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
           {/* Middle values */}
           {BMI_RANGES.map((range, index) => {
             const position = getBoundaryPosition(range.min);
-            return (
-              <Text
-                key={index}
-                className="absolute ml-1 text-sm text-gray-500"
-                style={{
-                  left: `${position}%`,
-                  transform: [{ translateX: '-50%' }],
-                }}
-              >
-                {range.min}
-              </Text>
-            );
+            if (range.min !== SCALE_MIN) {
+              return (
+                <Text
+                  key={index}
+                  className="absolute ml-1 text-sm text-gray-500"
+                  style={{
+                    left: `${position}%`,
+                    transform: [{ translateX: '-50%' }],
+                  }}
+                >
+                  {range.min}
+                </Text>
+              );
+            }
           })}
           {/* Final value */}
           <Text className="absolute text-sm text-gray-500" style={{ right: 0 }}>
@@ -112,11 +143,11 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
       </View>
 
       {currentRange && (
-        <Text className="mt-2 text-center text-lg text-gray-500">
-          {currentRange.label === 'Normal'
-            ? "You're in a healthy range!"
-            : 'You only need a bit more sweat exercises to see a fitter you!'}
-        </Text>
+        <View className="mt-2 space-y-1">
+          <Text className="text-center text-base text-gray-500">
+            {currentRange.recommendation}
+          </Text>
+        </View>
       )}
     </View>
   );
