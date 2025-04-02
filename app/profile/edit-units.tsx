@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/text';
 export default function EditUnitsScreen() {
   return (
     <PageWrapper>
-      <Text>Edit Units</Text>
+      <Text className="mt-4">Edit Units</Text>
     </PageWrapper>
   );
 }

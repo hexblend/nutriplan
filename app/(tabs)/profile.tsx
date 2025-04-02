@@ -15,15 +15,18 @@ export default function ProfileScreen() {
   return (
     <PageWrapper className="pt-2">
       <Text className="text-center text-2xl font-bold">Profile</Text>
+      <ProfileAvatarCard className="mt-6" />
+
+      <ProfileWeightChart className="mt-6" />
+
+      <ProfileGoal className="mt-10" />
+
       <ValueField
         editHref="/profile/edit-units"
         labelLeft="Units"
         valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
         className="mt-16"
       />
-      <ProfileAvatarCard className="mt-6" />
-      <ProfileWeightChart className="mt-6" />
-      <ProfileGoal className="mt-10" />
       <ProfileActivityLevel className="mt-16" />
       <ProfileBmiRange className="mt-16" />
     </PageWrapper>

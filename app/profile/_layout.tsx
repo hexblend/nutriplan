@@ -1,20 +1,26 @@
+import SecondaryHeader from '@/components/layout/SecondaryHeader';
 import { Stack } from 'expo-router';
+import { ReactNode } from 'react';
 
 export default function ProfileLayout() {
   return (
     <Stack
       screenOptions={{
-        headerShown: true,
-        headerBackTitle: 'Back',
+        title: 'Hello',
+        header: ({ navigation, route, options }) => {
+          const headerRight = options.headerRight as ReactNode;
+          return (
+            <SecondaryHeader
+              title={options.title || route.name}
+              showBackButton={navigation.canGoBack()}
+              backButtonText={options.headerBackTitle}
+              rightComponent={headerRight}
+            />
+          );
+        },
       }}
     >
-      <Stack.Screen
-        name="edit-units"
-        options={{
-          title: 'Edit Units',
-          headerBackTitle: 'Profile',
-        }}
-      />
+      <Stack.Screen name="edit-units" options={{ title: 'Edit Units' }} />
     </Stack>
   );
 }
