@@ -3,7 +3,7 @@ import Card from '@/components/ui/card';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
-import { cn } from '@/lib/utils';
+import { cn, displayHeight, displayWeight } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
@@ -19,7 +19,16 @@ export default function ProfileAvatarCard({
   const { currentClient } = useSession();
   if (!currentClient) return null;
 
-  const { first_name, last_name, sex, height, age, weight } = currentClient;
+  const {
+    first_name,
+    last_name,
+    sex,
+    height_cm,
+    height_unit,
+    age,
+    weight_kg,
+    weight_unit,
+  } = currentClient;
 
   const firstLetter = first_name.charAt(0);
   const lastLetter = last_name.charAt(0);
@@ -48,7 +57,9 @@ export default function ProfileAvatarCard({
             size={24}
             color="#16a34a" // green-500
           />
-          <Text className="text-lg">{height}</Text>
+          <Text className="text-lg">
+            {displayHeight(height_cm, height_unit || 'metric')}
+          </Text>
         </View>
         {/* Age */}
         <View className="flex-row items-center gap-2">
@@ -68,7 +79,9 @@ export default function ProfileAvatarCard({
             size={20}
             color="#ea580c" // orange-600
           />
-          <Text className="text-lg">{weight}</Text>
+          <Text className="text-lg">
+            {displayWeight(weight_kg, weight_unit || 'metric')}
+          </Text>
         </View>
       </View>
       <Avatar

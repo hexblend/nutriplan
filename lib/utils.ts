@@ -53,3 +53,27 @@ export const throwError = (message: string, error?: any) => {
   console.error(message, error);
   return Alert.alert('Error', message, [{ text: 'OK' }]);
 };
+
+export const displayHeight = (
+  height_cm: number | null,
+  unit: 'metric' | 'imperial'
+): string => {
+  if (!height_cm) return 'N/A';
+
+  if (unit === 'imperial') {
+    return cmToFeetAndInches(height_cm);
+  }
+  return `${height_cm} cm`;
+};
+
+export const displayWeight = (
+  weight_kg: number | null,
+  unit: 'metric' | 'imperial'
+): string => {
+  if (!weight_kg) return 'N/A';
+
+  if (unit === 'imperial') {
+    return `${kgToLbs(weight_kg)} lbs`;
+  }
+  return `${weight_kg} kg`;
+};
