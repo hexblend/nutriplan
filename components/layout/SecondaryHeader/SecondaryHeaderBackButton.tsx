@@ -15,7 +15,7 @@ export default function SecondaryHeaderBackButton({
       className="absolute bottom-0 left-0 z-10 flex-row items-center pb-2 pl-4 pr-12 pt-4"
       onPress={() => router.back()}
     >
-      <FontAwesome6 name="arrow-left" size={25} color="#fff" />
+      <FontAwesome6 name="arrow-left" size={25} color="#ccc" />
       {backButtonText && (
         <Text className="ml-1 text-xl text-blue-500">{backButtonText}</Text>
       )}

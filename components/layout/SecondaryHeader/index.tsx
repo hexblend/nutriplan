@@ -28,7 +28,7 @@ export default function SecondaryHeader({
         )}
         <View className="mx-10 flex-1 items-center justify-center">
           <Text
-            className="text-center text-xl font-bold text-gray-100"
+            className="text-center text-xl font-bold text-gray-200"
             numberOfLines={1}
           >
             {title}

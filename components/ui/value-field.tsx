@@ -3,7 +3,7 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Link, LinkProps } from 'expo-router';
 import { JSX } from 'react';
 import { View } from 'react-native';
-import { Button } from './button';
+import { Button, ButtonProps } from './button';
 import { Label } from './label';
 import { Text } from './text';
 
@@ -16,7 +16,8 @@ interface ValueFieldProps {
   labelLeft?: string;
   labelClassName?: string;
   icon?: JSX.Element;
-  noEditIcon?: boolean;
+  hideEditIcon?: boolean;
+  buttonVariant?: ButtonProps['variant'];
 }
 
 export default function ValueField({
@@ -28,7 +29,8 @@ export default function ValueField({
   labelLeft,
   labelClassName,
   icon,
-  noEditIcon,
+  hideEditIcon,
+  buttonVariant = 'tertiary',
 }: ValueFieldProps) {
   return (
     <View className={className}>
@@ -39,7 +41,7 @@ export default function ValueField({
       )}
       <Link href={editHref} asChild>
         <Button
-          variant="tertiary"
+          variant={buttonVariant}
           className="flex-row items-center justify-between px-4"
         >
           <View className="flex-row items-center gap-2">
@@ -50,7 +52,9 @@ export default function ValueField({
             {valueRight && (
               <Text className="text-left uppercase">{valueRight}</Text>
             )}
-            {!noEditIcon && <FontAwesome name="edit" size={18} color="white" />}
+            {!hideEditIcon && (
+              <FontAwesome name="edit" size={18} color="white" />
+            )}
           </View>
         </Button>
       </Link>

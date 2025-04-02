@@ -1,4 +1,5 @@
 import SecondaryHeader from '@/components/layout/SecondaryHeader';
+import { t } from '@/i18n/translations';
 import { Stack } from 'expo-router';
 import { ReactNode } from 'react';
 
@@ -26,7 +27,10 @@ export default function OnboardingLayout() {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen name="(account)/login" />
+      <Stack.Screen
+        name="(account)/login"
+        options={{ title: t.t('auth.enterYourDetails') }}
+      />
       <Stack.Screen name="(account)/forgot-password" />
 
       <Stack.Screen name="(common)/new-password" />

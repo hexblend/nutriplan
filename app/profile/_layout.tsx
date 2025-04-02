@@ -19,7 +19,7 @@ export default function ProfileLayout() {
         },
       }}
     >
-      <Stack.Screen name="edit-units" options={{ title: 'Edit Units' }} />
+      <Stack.Screen name="edit-units" options={{ title: 'Units' }} />
     </Stack>
   );
 }
