@@ -31,6 +31,8 @@ export default function OtpScreen() {
     weight,
     age,
     activity,
+    heightUnit,
+    weightUnit,
     setClientId,
   } = useOnboardingContext();
 
@@ -70,7 +72,9 @@ export default function OtpScreen() {
             last_name: lastName,
             goal,
             height,
+            height_unit: heightUnit,
             weight,
+            weight_unit: weightUnit,
             age,
             activity_level: activity,
           },

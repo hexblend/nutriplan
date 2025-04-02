@@ -33,6 +33,7 @@ export default function WeigthScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    setWeightUnit,
   } = useOnboardingContext();
 
   const {
@@ -55,10 +56,12 @@ export default function WeigthScreen() {
     if (value === 'lbs') {
       const weightNum = parseFloat(currentWeight);
       setValue('weight', kgToLbs(weightNum).toString());
+      setWeightUnit('imperial');
     }
     if (value === 'kg') {
       const weightNum = parseFloat(currentWeight);
       setValue('weight', lbsToKg(weightNum).toString());
+      setWeightUnit('metric');
     }
   };
 

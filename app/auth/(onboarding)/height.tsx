@@ -31,6 +31,7 @@ export default function HeightScreen() {
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
+    setHeightUnit,
   } = useOnboardingContext();
 
   const {
@@ -66,6 +67,7 @@ export default function HeightScreen() {
   const onSubmit = (data: FormValues) => {
     const finalValue = `${data.height} ${unit}`;
     setHeight(finalValue);
+    setHeightUnit(unit === 'cm' ? 'metric' : 'imperial');
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;

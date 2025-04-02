@@ -32,9 +32,13 @@ interface OnboardingContextType {
   // Height
   height: string;
   setHeight: Dispatch<SetStateAction<string>>;
+  heightUnit: 'metric' | 'imperial';
+  setHeightUnit: Dispatch<SetStateAction<'metric' | 'imperial'>>;
   // Weight
   weight: string;
   setWeight: Dispatch<SetStateAction<string>>;
+  weightUnit: 'metric' | 'imperial';
+  setWeightUnit: Dispatch<SetStateAction<'metric' | 'imperial'>>;
   // Target Weight
   targetWeight: string;
   setTargetWeight: Dispatch<SetStateAction<string>>;
@@ -107,9 +111,13 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   // Height
   const [height, setHeight] =
     useState<OnboardingContextType['height']>('170 cm');
+  const [heightUnit, setHeightUnit] =
+    useState<OnboardingContextType['heightUnit']>('metric');
   // Weight
   const [weight, setWeight] =
     useState<OnboardingContextType['weight']>('80 kg');
+  const [weightUnit, setWeightUnit] =
+    useState<OnboardingContextType['weightUnit']>('metric');
   // Target Weight
   const [targetWeight, setTargetWeight] =
     useState<OnboardingContextType['targetWeight']>('');
@@ -169,9 +177,13 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         // Height
         height,
         setHeight,
+        heightUnit,
+        setHeightUnit,
         // Weight
         weight,
         setWeight,
+        weightUnit,
+        setWeightUnit,
         // Target Weight
         targetWeight,
         setTargetWeight,
