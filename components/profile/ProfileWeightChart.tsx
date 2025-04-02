@@ -30,7 +30,7 @@ export default function ProfileWeightChart() {
         <LineChart
           key={key}
           data={lineData}
-          maxValue={73 * 1.8}
+          maxValue={73 * 1.2}
           initialSpacing={16}
           textColor1={colors.primary[350]}
           textShiftY={-8}
