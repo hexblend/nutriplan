@@ -18,7 +18,7 @@ const BMI_RANGES = [
   {
     min: SCALE_MIN,
     max: 16,
-    color: 'bg-blue-900',
+    color: 'bg-blue-800',
     label: 'Severely Underweight',
     recommendation:
       'Consider consulting with a healthcare provider for personalized guidance. Focus on nutrient-dense foods and gentle strength exercises.',
@@ -26,7 +26,7 @@ const BMI_RANGES = [
   {
     min: 16,
     max: 18.5,
-    color: 'bg-blue-700',
+    color: 'bg-blue-600',
     label: 'Underweight',
     recommendation:
       'Try eating more nutrient-rich foods like nuts, avocados, and whole grains. Small, frequent meals can help increase your energy and strength.',
@@ -34,7 +34,7 @@ const BMI_RANGES = [
   {
     min: 18.5,
     max: 25,
-    color: 'bg-blue-500',
+    color: 'bg-green-600',
     label: 'Normal',
     recommendation:
       "You're in a healthy range! Continue enjoying varied foods and activities you love.",
