@@ -9,6 +9,7 @@ import {
   useOnboardingContext,
 } from '@/providers/OnboardingProvider';
 import { useNavigation } from 'expo-router';
+import React from 'react';
 import Animated, {
   Layout,
   SlideInLeft,
@@ -36,7 +37,7 @@ function ProgressContent() {
   };
 
   return (
-    <>
+    <React.Fragment>
       <PageProgressHeader
         progress={currentScreen.progress}
         onBackPress={handleBackPress}
@@ -56,7 +57,7 @@ function ProgressContent() {
       >
         <CurrentScreenComponent />
       </Animated.View>
-    </>
+    </React.Fragment>
   );
 }
 
