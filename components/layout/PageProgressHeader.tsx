@@ -26,7 +26,7 @@ export default function PageProgressHeader({
           hitSlop={8}
           android_ripple={{ color: 'rgba(255, 255, 255, 0.2)' }}
         >
-          <FontAwesome6 name="arrow-left" size={26} color="#FFF" />
+          <FontAwesome6 name="arrow-left" size={27} color="#FFF" />
         </Pressable>
 
         <Progress value={progress} className="ml-4 flex-1" />
