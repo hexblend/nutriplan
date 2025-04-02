@@ -22,6 +22,7 @@ export default function PageWrapper({
         <SafeAreaView className="flex-1">
           <ScrollView
             keyboardShouldPersistTaps="handled"
+            showsVerticalScrollIndicator={false}
             className={cn('px-4', className)}
           >
             {children}
