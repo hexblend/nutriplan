@@ -65,7 +65,14 @@ export default function HeightScreen() {
   };
 
   const onSubmit = (data: FormValues) => {
-    const finalValue = `${data.height} ${unit}`;
+    let heightInCm: number;
+    if (unit === 'cm') {
+      heightInCm = parseFloat(data.height);
+    } else {
+      const { feet, inches } = parseFeetAndInches(data.height);
+      heightInCm = feetAndInchesToCm(feet, inches);
+    }
+    const finalValue = `${heightInCm} cm`;
     setHeight(finalValue);
     setHeightUnit(unit === 'cm' ? 'metric' : 'imperial');
     // Go to next screen

@@ -29,7 +29,7 @@ export default function ProfileAvatarCard({
       className={cn('flex-row items-start justify-between py-5', className)}
       asLink
     >
-      <View className="flex-col gap-3">
+      <View className="flex-col gap-4">
         {/* Name */}
         <View className="flex-row items-center gap-2">
           <MaterialCommunityIcons

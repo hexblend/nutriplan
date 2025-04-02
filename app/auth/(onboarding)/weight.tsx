@@ -66,7 +66,15 @@ export default function WeigthScreen() {
   };
 
   const onSubmit = (data: FormValues) => {
-    setWeight(`${data.weight} ${unit}`);
+    let weightInKg: number;
+    if (unit === 'kg') {
+      weightInKg = parseFloat(data.weight);
+    } else {
+      weightInKg = lbsToKg(parseFloat(data.weight));
+    }
+    const finalValue = `${weightInKg} kg`;
+    setWeight(finalValue);
+    setWeightUnit(unit === 'kg' ? 'metric' : 'imperial');
     // Go to next screen
     setIsForward(true);
     const nextScreen = progressScreensConfig[currentScreenName].next;
