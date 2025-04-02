@@ -79,7 +79,10 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
 
   const caretStyle = useAnimatedStyle(() => {
     return {
-      left: withSpring(`${percentage}%`),
+      left: withSpring(`${percentage}%`, {
+        damping: 22,
+        stiffness: 300,
+      }),
     };
   });
 
@@ -91,23 +94,25 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
       </View>
 
       <View className="mt-3 px-4">
-        <View className="relative h-4 overflow-hidden rounded-full bg-gray-100">
-          {BMI_RANGES.map((range, index) => {
-            const rangeWidth = ((range.max - range.min) / TOTAL_RANGE) * 100;
-            const position = getBoundaryPosition(range.min);
-            return (
-              <View
-                key={index}
-                className={`absolute h-full ${range.color}`}
-                style={{
-                  left: `${position}%`,
-                  width: `${rangeWidth}%`,
-                }}
-              />
-            );
-          })}
+        <View className="relative">
+          <View className="h-4 overflow-hidden rounded-full bg-gray-100">
+            {BMI_RANGES.map((range, index) => {
+              const rangeWidth = ((range.max - range.min) / TOTAL_RANGE) * 100;
+              const position = getBoundaryPosition(range.min);
+              return (
+                <View
+                  key={index}
+                  className={`absolute h-full ${range.color}`}
+                  style={{
+                    left: `${position}%`,
+                    width: `${rangeWidth}%`,
+                  }}
+                />
+              );
+            })}
+          </View>
           <Animated.View
-            className="absolute top-0 -mt-1 h-6 w-1 bg-white"
+            className="absolute top-0 -mt-1 h-6 w-1 rounded-lg bg-white"
             style={caretStyle}
           />
         </View>
