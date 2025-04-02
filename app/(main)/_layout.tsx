@@ -18,7 +18,7 @@ export default function MainLayout() {
 
   return (
     <Tabs
-      initialRouteName="index"
+      initialRouteName="profile"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
