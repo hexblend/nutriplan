@@ -18,8 +18,8 @@ export default function TabBarBackground({
   useEffect(() => {
     const getIndex = () => {
       if (pathname === '/') return 0;
-      if (pathname === '/profile') return 1;
-      if (pathname === '/feedback') return 2;
+      if (pathname.startsWith('/profile')) return 1;
+      if (pathname.startsWith('/feedback')) return 2;
       return 0;
     };
 
