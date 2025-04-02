@@ -44,10 +44,12 @@ export default function ValueField({
             {icon}
             <Text className="text-left uppercase">{labelLeft ?? value}</Text>
           </View>
-          {!valueRight && <FontAwesome name="edit" size={18} color="white" />}
-          {valueRight && (
-            <Text className="text-left uppercase">{valueRight}</Text>
-          )}
+          <View className="flex-row items-center gap-4">
+            {valueRight && (
+              <Text className="text-left uppercase">{valueRight}</Text>
+            )}
+            <FontAwesome name="edit" size={18} color="white" />
+          </View>
         </Button>
       </Link>
     </View>
