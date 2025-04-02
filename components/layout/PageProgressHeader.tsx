@@ -1,4 +1,4 @@
-import { Ionicons } from '@expo/vector-icons';
+import { FontAwesome6 } from '@expo/vector-icons';
 import React from 'react';
 import { Pressable, View } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
@@ -22,11 +22,11 @@ export default function PageProgressHeader({
       <View className="min-h-[52px] flex-row items-center pl-0 pr-4">
         <Pressable
           onPress={onBackPress}
-          className="mr-2 flex-row items-center active:opacity-50"
+          className="flex-row items-center pl-4 active:opacity-50"
           hitSlop={8}
           android_ripple={{ color: 'rgba(255, 255, 255, 0.2)' }}
         >
-          <Ionicons name="chevron-back" size={32} color="#FFF" />
+          <FontAwesome6 name="arrow-left" size={26} color="#FFF" />
         </Pressable>
 
         <Progress value={progress} className="ml-4 flex-1" />

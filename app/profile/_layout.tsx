@@ -6,7 +6,6 @@ export default function ProfileLayout() {
   return (
     <Stack
       screenOptions={{
-        title: 'Hello',
         header: ({ navigation, route, options }) => {
           const headerRight = options.headerRight as ReactNode;
           return (

@@ -1,26 +1,23 @@
-import { t } from '@/i18n/translations';
+import SecondaryHeader from '@/components/layout/SecondaryHeader';
 import { Stack } from 'expo-router';
-
-export const defaultStackProps = {
-  screenOptions: {
-    headerStyle: {
-      backgroundColor: 'transparent',
-      borderWidth: 0,
-      elevation: 0,
-      shadowOpacity: 0,
-    },
-    headerTintColor: '#fff',
-    headerTitleStyle: {
-      fontWeight: 'bold',
-    },
-  },
-};
+import { ReactNode } from 'react';
 
 export default function OnboardingLayout() {
   return (
     <Stack
-      {...(defaultStackProps as any)}
-      screenOptions={{ headerBackTitle: '‎' }}
+      screenOptions={{
+        header: ({ navigation, route, options }) => {
+          const headerRight = options.headerRight as ReactNode;
+          return (
+            <SecondaryHeader
+              title={options.title || route.name}
+              showBackButton={navigation.canGoBack()}
+              backButtonText={options.headerBackTitle}
+              rightComponent={headerRight}
+            />
+          );
+        },
+      }}
     >
       <Stack.Screen name="index" options={{ headerShown: false }} />
 
@@ -29,10 +26,7 @@ export default function OnboardingLayout() {
         options={{ headerShown: false }}
       />
 
-      <Stack.Screen
-        name="(account)/login"
-        options={{ headerTitle: t.t('auth.enterYourDetails') }}
-      />
+      <Stack.Screen name="(account)/login" />
       <Stack.Screen name="(account)/forgot-password" />
 
       <Stack.Screen name="(common)/new-password" />
