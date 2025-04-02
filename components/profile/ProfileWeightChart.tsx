@@ -1,9 +1,11 @@
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
+import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
+import { Button } from '../ui/button';
 
 export default function ProfileWeightChart() {
   const [key, setKey] = useState(0);
@@ -31,7 +33,7 @@ export default function ProfileWeightChart() {
           key={key}
           data={lineData}
           maxValue={73 * 1.2}
-          initialSpacing={16}
+          initialSpacing={24}
           textColor1={colors.primary[350]}
           textShiftY={-8}
           textShiftX={-10}
@@ -56,6 +58,10 @@ export default function ProfileWeightChart() {
           endOpacity={0.1}
         />
       </View>
+      <Button variant="secondary" className="mt-6 flex-row items-center gap-2">
+        <FontAwesome name="plus" size={16} color="white" />
+        <Text>Add current weight</Text>
+      </Button>
     </View>
   );
 }
