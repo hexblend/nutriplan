@@ -1,4 +1,5 @@
 import PageWrapper from '@/components/layout/PageWrapper';
+import ProfileActivityLevel from '@/components/profile/ProfileActivityLevel';
 import ProfileAvatarCard from '@/components/profile/ProfileAvatarCard';
 import ProfileBmiRange from '@/components/profile/ProfileBmiRange';
 import ProfileGoal from '@/components/profile/ProfileGoal';
@@ -13,6 +14,7 @@ export default function ProfileScreen() {
       <ProfileGoal />
       <ProfileWeightChart />
       <ProfileBmiRange />
+      <ProfileActivityLevel />
     </PageWrapper>
   );
 }

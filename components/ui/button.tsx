@@ -14,7 +14,7 @@ const buttonVariants = cva(
       variant: {
         default: 'bg-blue-500',
         secondary: 'bg-background border border-border border-b-0',
-        tertiary: 'bg-accent',
+        tertiary: 'bg-accent border border-muted border-b-0',
         ghost: 'bg-transparent',
         success: 'bg-green-500',
         warning: 'bg-amber-600',
@@ -46,7 +46,7 @@ const buttonTextVariants = cva('text-sm text-foreground', {
     variant: {
       default: 'text-white',
       secondary: 'text-gray-200',
-      tertiary: 'text-accent-foreground',
+      tertiary: 'text-gray-200',
       ghost: 'text-blue-500',
       success: 'text-white',
       warning: 'text-white',
@@ -71,7 +71,7 @@ const buttonBottomVariants = cva('absolute left-0 right-0 -bottom-1 h-1', {
       default: '',
       secondary: '!bg-border',
       ghost: '!bg-transparent',
-      tertiary: '!bg-purple-700',
+      tertiary: '!bg-muted',
       success: '!bg-green-700',
       warning: '!bg-yellow-700',
       danger: '!bg-red-700',

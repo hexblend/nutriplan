@@ -1,7 +1,9 @@
 import { Text } from '@/components/ui/text';
+import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Animated } from 'react-native';
+import { Button } from '../ui/button';
 import Frame from '../ui/frame';
 
 export default function ProfileGoal() {
@@ -33,6 +35,10 @@ export default function ProfileGoal() {
           <Text className="font-bold text-green-500">48 weeks</Text>
         </Text>
       </Frame>
+      <Button variant="secondary" className="mt-2 flex-row items-center gap-2">
+        <FontAwesome name="edit" size={16} color="white" />
+        <Text>Change goal</Text>
+      </Button>
     </Animated.View>
   );
 }
