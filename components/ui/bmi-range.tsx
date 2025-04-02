@@ -15,11 +15,16 @@ const SCALE_MAX = 40;
 const TOTAL_RANGE = SCALE_MAX - SCALE_MIN;
 
 const BMI_RANGES = [
-  { min: 16, max: 18.5, color: 'bg-green-400', label: 'Underweight' },
-  { min: 18.5, max: 25, color: 'bg-yellow-300', label: 'Normal' },
-  { min: 25, max: 30, color: 'bg-orange-400', label: 'Overweight' },
-  { min: 30, max: 35, color: 'bg-pink-400', label: 'Obese' },
-  { min: 35, max: SCALE_MAX, color: 'bg-blue-500', label: 'Severely Obese' },
+  { min: 16, max: 18.5, color: 'bg-blue-700', label: 'Underweight' },
+  { min: 18.5, max: 25, color: 'bg-blue-500', label: 'Normal' },
+  { min: 25, max: 30, color: 'bg-yellow-500', label: 'Overweight' },
+  { min: 30, max: 35, color: 'bg-orange-500', label: 'Obese' },
+  {
+    min: 35,
+    max: SCALE_MAX,
+    color: 'bg-secondary-200',
+    label: 'Severely Obese',
+  },
 ];
 
 const getBoundaryPosition = (value: number) => {
@@ -51,7 +56,7 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
         <View className="relative h-4 overflow-hidden rounded-full bg-gray-100">
           {/* First range */}
           <View
-            className="absolute h-full bg-sky-400"
+            className="absolute h-full bg-blue-900"
             style={{
               left: '0%',
               width: `${((16 - SCALE_MIN) / TOTAL_RANGE) * 100}%`,
@@ -89,7 +94,7 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
             return (
               <Text
                 key={index}
-                className="absolute ml-4 text-sm text-gray-500"
+                className="absolute ml-1 text-sm text-gray-500"
                 style={{
                   left: `${position}%`,
                   transform: [{ translateX: '-50%' }],
@@ -107,7 +112,7 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
       </View>
 
       {currentRange && (
-        <Text className="mt-3 text-center text-xl text-gray-600">
+        <Text className="mt-2 text-center text-lg text-gray-500">
           {currentRange.label === 'Normal'
             ? "You're in a healthy range!"
             : 'You only need a bit more sweat exercises to see a fitter you!'}
