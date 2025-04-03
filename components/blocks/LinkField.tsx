@@ -20,6 +20,7 @@ interface LinkFieldProps {
   buttonVariant?: ButtonProps['variant'];
   centered?: boolean;
   valueClassName?: string;
+  disabled?: boolean;
 }
 
 export default function LinkField({
@@ -35,6 +36,7 @@ export default function LinkField({
   buttonVariant = 'tertiary',
   centered = false,
   valueClassName,
+  disabled = false,
 }: LinkFieldProps) {
   return (
     <View className={className}>
@@ -46,9 +48,11 @@ export default function LinkField({
       <Link href={href} asChild>
         <Button
           variant={buttonVariant}
+          disabled={disabled}
           className={cn(
             'flex-row items-center',
-            centered ? 'justify-center gap-2' : 'justify-between px-4'
+            centered ? 'justify-center gap-2' : 'justify-between px-4',
+            disabled && 'opacity-25'
           )}
         >
           {centered ? (

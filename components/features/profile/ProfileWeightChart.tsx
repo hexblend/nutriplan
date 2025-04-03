@@ -41,9 +41,14 @@ export default function ProfileWeightChart({
     }, [])
   );
 
+  const weightUpdates = useMemo(() => {
+    if (!clientUpdates) return [];
+    return clientUpdates.filter((update) => update.field === 'weight_kg');
+  }, [clientUpdates]);
+
   const lineData = useMemo(() => {
-    if (!clientUpdates || !currentProfile?.weight_unit) return [];
-    return clientUpdates.map((update) => {
+    if (!weightUpdates || !currentProfile?.weight_unit) return [];
+    return weightUpdates.map((update) => {
       const weightInKg = parseFloat(update.value);
       const displayValue =
         currentProfile.weight_unit === 'imperial'
@@ -59,7 +64,19 @@ export default function ProfileWeightChart({
         ),
       };
     });
-  }, [clientUpdates, currentProfile]);
+  }, [weightUpdates, currentProfile]);
+
+  const isLatestWeightFromToday = useMemo(() => {
+    if (!weightUpdates?.length) return false;
+    const latestUpdate = weightUpdates[0];
+    const today = new Date();
+    const updateDate = new Date(latestUpdate.date);
+    return (
+      today.getFullYear() === updateDate.getFullYear() &&
+      today.getMonth() === updateDate.getMonth() &&
+      today.getDate() === updateDate.getDate()
+    );
+  }, [weightUpdates]);
 
   if (loading) return <Loading />;
   return (
@@ -78,7 +95,7 @@ export default function ProfileWeightChart({
           textShiftX={-10}
           textFontSize={13}
           thickness={2}
-          spacing={60}
+          spacing={lineData.length <= 3 ? 160 : lineData.length <= 6 ? 120 : 80}
           verticalLinesColor={colors.primary[800]}
           hideRules
           xAxisColor={colors.primary[700]}
@@ -104,6 +121,7 @@ export default function ProfileWeightChart({
           value={t.t('profile.addCurrentWeight')}
           centered
           className="mt-4"
+          disabled={isLatestWeightFromToday}
         />
       </Animated.View>
     </View>
