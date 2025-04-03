@@ -1,5 +1,6 @@
 import LinkField from '@/components/blocks/LinkField';
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { cn } from '@/lib/utils';
 import { FontAwesome } from '@expo/vector-icons';
@@ -7,6 +8,12 @@ import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Animated, View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
+
+/*
+    1. Check client_updates and if there are no weight updates, show current weight with created_at date
+    2. When you add a weight update, check if there are any other updates. If not, then add current weight with created_at date as a first update and then add the new update
+    3. Show a list of weight updates with the date and the weight
+*/
 
 interface ProfileWeightChartProps {
   className?: string;
@@ -44,7 +51,9 @@ export default function ProfileWeightChart({
 
   return (
     <View className={cn(className)}>
-      <Text className="text-center font-bold">Weight Progress</Text>
+      <Text className="text-center font-bold">
+        {t.t('profile.weightProgress')}
+      </Text>
       <View className="-ml-2 mt-2 w-full">
         <LineChart
           key={key}
@@ -77,9 +86,9 @@ export default function ProfileWeightChart({
       </View>
       <Animated.View style={{ opacity }}>
         <LinkField
-          href="/profile"
+          href="/profile/add-weight"
           icon={<FontAwesome name="plus" size={16} color="white" />}
-          value="Add current weight"
+          value={t.t('profile.addCurrentWeight')}
           centered
           className="mt-4"
         />

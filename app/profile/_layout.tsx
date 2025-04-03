@@ -28,6 +28,10 @@ export default function ProfileLayout() {
         name="edit-language"
         options={{ title: t.t('common.language') }}
       />
+      <Stack.Screen
+        name="add-weight"
+        options={{ title: t.t('profile.currentWeight') }}
+      />
     </Stack>
   );
 }
