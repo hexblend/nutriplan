@@ -46,12 +46,10 @@ export default function ValueField({
         >
           <View className="flex-row items-center gap-2">
             {icon}
-            <Text className="text-left uppercase">{labelLeft ?? value}</Text>
+            <Text className="uppercase">{labelLeft ?? value}</Text>
           </View>
           <View className="flex-row items-center gap-4">
-            {valueRight && (
-              <Text className="text-left uppercase">{valueRight}</Text>
-            )}
+            {valueRight && <Text className="uppercase">{valueRight}</Text>}
             {!hideEditIcon && (
               <FontAwesome name="edit" size={18} color="white" />
             )}

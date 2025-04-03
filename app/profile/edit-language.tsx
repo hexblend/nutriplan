@@ -4,6 +4,7 @@ import { setAppLanguage, t } from '@/i18n/translations';
 import { supabase } from '@/lib/supabase/client';
 import { throwError } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
+import { router } from 'expo-router';
 import { View } from 'react-native';
 
 export default function EditLanguageScreen() {
@@ -31,6 +32,8 @@ export default function EditLanguageScreen() {
       setAppLanguage(currentProfile.updated_app_language || 'en');
       return throwError('[profile] Error updating language', error);
     }
+    // Refresh the app to apply language changes
+    router.replace('/(tabs)/profile');
   };
 
   return (
