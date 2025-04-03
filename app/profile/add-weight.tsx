@@ -21,7 +21,6 @@ type FormValues = z.infer<typeof formSchema>;
 export default function AddWeightScreen() {
   const { currentProfile, currentClient, setCurrentClient } = useSession();
   if (!currentProfile || !currentClient) return null;
-
   const navigation = useNavigation();
 
   const defaultWeight = currentClient.weight_kg
@@ -29,7 +28,6 @@ export default function AddWeightScreen() {
       ? kgToLbs(currentClient.weight_kg).toString()
       : currentClient.weight_kg.toString()
     : '';
-
   const {
     control,
     handleSubmit,
@@ -41,27 +39,105 @@ export default function AddWeightScreen() {
     },
   });
 
+  /*
+   * DB Operations
+   */
+  const getWeightUpdatesNumber = async () => {
+    const { data, error } = await supabase
+      .from('client_updates')
+      .select('*')
+      .eq('client_id', currentClient.id)
+      .eq('field', 'weight_kg')
+      .limit(1);
+    return {
+      error,
+      weightUpdatesNumber: data?.length === 0 ? 0 : data?.length,
+    };
+  };
+  const updateClientWeight = async (weightInKg: number) => {
+    // Optimistic update
+    setCurrentClient({ ...currentClient, weight_kg: weightInKg });
+    // DB Update
+    const { error } = await supabase
+      .from('clients')
+      .update({ weight_kg: weightInKg })
+      .eq('id', currentClient.id);
+    return { error };
+  };
+  const addWeightUpdate = async (
+    weightInKg: number,
+    date: string | undefined
+  ) => {
+    const { error } = await supabase.from('client_updates').insert({
+      client_id: currentClient.id,
+      field: 'weight_kg',
+      value: weightInKg,
+      date,
+    });
+    return { error };
+  };
+
+  /*
+   * Form Submission
+   */
   const onSubmit = async (data: FormValues) => {
+    if (!currentClient.weight_kg) return;
     const weightValue = parseFloat(data.weight);
+
     let weightInKg: number;
     if (currentProfile.weight_unit === 'imperial') {
       weightInKg = lbsToKg(weightValue);
     } else {
       weightInKg = weightValue;
     }
-    // Optimistic update
-    setCurrentClient({ ...currentClient, weight_kg: weightInKg });
-    const { error } = await supabase
-      .from('clients')
-      .update({ weight_kg: weightInKg })
-      .eq('id', currentClient.id);
-    if (error) {
-      // Revert update
+
+    const { error: getWeightUpdatesNumberError, weightUpdatesNumber } =
+      await getWeightUpdatesNumber();
+    if (getWeightUpdatesNumberError) {
+      return throwError(
+        '[profile] Error getting weight updates number',
+        getWeightUpdatesNumberError
+      );
+    }
+
+    if (weightUpdatesNumber === 0) {
+      // Add initial weight as weight update with created_at as time
+      const { error: initialWeightUpdateError } = await addWeightUpdate(
+        currentClient.weight_kg,
+        currentClient.created_at
+      );
+      if (initialWeightUpdateError) {
+        return throwError(
+          '[profile] Error adding initial weight update',
+          initialWeightUpdateError
+        );
+      }
+      // Add new weight update
+      const { error } = await addWeightUpdate(weightInKg, undefined); // default to now
+      if (error) {
+        return throwError('[profile] Error adding new weight update', error);
+      }
+    } else {
+      // Just add new weight update
+      const { error } = await addWeightUpdate(weightInKg, undefined); // default to now
+      if (error) {
+        return throwError('[profile] Error adding new weight update', error);
+      }
+    }
+
+    // Update client weight
+    const { error: updateClientWeightError } =
+      await updateClientWeight(weightInKg);
+    if (updateClientWeightError) {
+      // Revert optimistic update
       setCurrentClient({
         ...currentClient,
         weight_kg: currentClient.weight_kg,
       });
-      return throwError('[profile] Error updating weight', error);
+      return throwError(
+        '[profile] Error updating weight',
+        updateClientWeightError
+      );
     }
 
     return navigation.goBack();
