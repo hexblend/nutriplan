@@ -13,6 +13,11 @@ export const commonEN = {
   mealPlans: 'Meal Plans',
   profile: 'Profile',
   feedback: 'Feedback',
+  height: 'Height',
+  weight: 'Weight',
+  units: 'Units',
+  metric: 'Metric',
+  imperial: 'Imperial',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -29,4 +34,9 @@ export const commonRO = {
   mealPlans: 'Alimentație',
   profile: 'Profil',
   feedback: 'Feedback',
+  height: 'Înălțime',
+  weight: 'Greutate',
+  units: 'Unități',
+  metric: 'Metric',
+  imperial: 'Imperial',
 };

@@ -5,5 +5,5 @@ interface ProfileBmiRangeProps {
   className?: string;
 }
 export default function ProfileBmiRange({ className }: ProfileBmiRangeProps) {
-  return <BmiRange bmi={26} className={cn(className)} />;
+  return <BmiRange bmi={32} className={cn(className)} />;
 }
