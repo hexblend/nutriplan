@@ -44,8 +44,8 @@ export default function EditLanguageScreen() {
           value={t.locale === 'ro' ? 'ro' : 'en'}
           onValueChange={handleLanguageChange}
           options={[
-            { value: 'en', label: 'ENGLISH' },
-            { value: 'ro', label: 'ROMANA' },
+            { value: 'en', label: 'EN' },
+            { value: 'ro', label: 'RO' },
           ]}
           hideBorder
         />
