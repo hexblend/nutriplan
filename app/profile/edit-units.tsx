@@ -1,6 +1,5 @@
+import { ValueSwitchRow } from '@/components/blocks/ValueSwitchRow';
 import PageWrapper from '@/components/layout/PageWrapper';
-import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
-import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { supabase } from '@/lib/supabase/client';
 import { throwError } from '@/lib/utils';
@@ -60,40 +59,24 @@ export default function EditUnitsScreen() {
   return (
     <PageWrapper className="pt-5">
       <View className="flex-col gap-8">
-        <View className="flex-row items-center justify-between">
-          <Text className="font-bold">{t.t('common.height')}</Text>
-          <Tabs
-            value={currentClient.height_unit === 'metric' ? 'cm' : 'ft'}
-            onValueChange={handleHeightUnitChange}
-            className="w-1/2"
-          >
-            <TabsList className="w-full flex-row">
-              <TabsTrigger value="cm" className="flex-1">
-                <Text className="font-bold">CM</Text>
-              </TabsTrigger>
-              <TabsTrigger value="ft" className="flex-1">
-                <Text className="font-bold">FT</Text>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </View>
-        <View className="flex-row items-center justify-between">
-          <Text className="font-bold">{t.t('common.weight')}</Text>
-          <Tabs
-            value={currentClient.weight_unit === 'metric' ? 'kg' : 'lbs'}
-            onValueChange={handleWeightUnitChange}
-            className="w-1/2"
-          >
-            <TabsList className="w-full flex-row">
-              <TabsTrigger value="kg" className="flex-1">
-                <Text className="font-bold">KG</Text>
-              </TabsTrigger>
-              <TabsTrigger value="lbs" className="flex-1">
-                <Text className="font-bold">LBS</Text>
-              </TabsTrigger>
-            </TabsList>
-          </Tabs>
-        </View>
+        <ValueSwitchRow
+          label={t.t('common.height')}
+          value={currentClient.height_unit === 'metric' ? 'cm' : 'ft'}
+          onValueChange={handleHeightUnitChange}
+          options={[
+            { value: 'cm', label: 'CM' },
+            { value: 'ft', label: 'FT' },
+          ]}
+        />
+        <ValueSwitchRow
+          label={t.t('common.weight')}
+          value={currentClient.weight_unit === 'metric' ? 'kg' : 'lbs'}
+          onValueChange={handleWeightUnitChange}
+          options={[
+            { value: 'kg', label: 'KG' },
+            { value: 'lbs', label: 'LBS' },
+          ]}
+        />
       </View>
     </PageWrapper>
   );
