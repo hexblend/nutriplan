@@ -74,15 +74,15 @@ export default function ProfileWeightChart({
         currentProfile.weight_unit === 'imperial'
           ? kgToLbs(weightInKg)
           : weightInKg;
+      const date = format(new Date(currentClient.created_at), 'd MMM');
+      const dataPointText = displayWeight(
+        weightInKg,
+        currentProfile.weight_unit as 'metric' | 'imperial'
+      );
+      // Return two identical points to create a visible line, but only show label and value on second point
       return [
-        {
-          value: displayValue,
-          label: format(new Date(currentClient.created_at), 'd MMM'),
-          dataPointText: displayWeight(
-            weightInKg,
-            currentProfile.weight_unit as 'metric' | 'imperial'
-          ),
-        },
+        { value: displayValue, hideDataPoints: true },
+        { value: displayValue, label: date, dataPointText },
       ];
     }
     return [];
@@ -117,7 +117,7 @@ export default function ProfileWeightChart({
           textShiftX={-10}
           textFontSize={13}
           thickness={2}
-          spacing={lineData.length <= 3 ? 160 : lineData.length <= 6 ? 120 : 80}
+          spacing={lineData.length <= 3 ? 150 : lineData.length <= 6 ? 120 : 80}
           verticalLinesColor={colors.primary[800]}
           hideRules
           xAxisColor={colors.primary[700]}
@@ -140,7 +140,7 @@ export default function ProfileWeightChart({
         <LinkField
           href="/profile/add-weight"
           icon={<FontAwesome name="plus" size={16} color="white" />}
-          value={t.t('profile.addCurrentWeight')}
+          value={t.t('profile.addTodayWeight')}
           centered
           className="mt-4"
           disabled={isLatestWeightFromToday}

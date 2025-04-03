@@ -1,10 +1,10 @@
 export const profileEN = {
   weightProgress: 'Weight progress',
-  addCurrentWeight: 'Add current weight',
+  addTodayWeight: 'Add today weight',
   currentWeight: 'Current weight',
 };
 export const profileRO = {
   weightProgress: 'Progresul greutății',
-  addCurrentWeight: 'Adaugă greutatea curentă',
+  addTodayWeight: 'Adaugă greutatea de azi',
   currentWeight: 'Greutate curentă',
 };
