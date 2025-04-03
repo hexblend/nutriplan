@@ -68,7 +68,7 @@ export default function ProfileWeightChart({
 
   const isLatestWeightFromToday = useMemo(() => {
     if (!weightUpdates?.length) return false;
-    const latestUpdate = weightUpdates[0];
+    const latestUpdate = weightUpdates[weightUpdates.length - 1];
     const today = new Date();
     const updateDate = new Date(latestUpdate.date);
     return (
