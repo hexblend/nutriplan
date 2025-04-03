@@ -30,7 +30,7 @@ export default function ProfileLayout() {
       />
       <Stack.Screen
         name="add-weight"
-        options={{ title: t.t('profile.currentWeight') }}
+        options={{ title: t.t('profile.addTodayWeight') }}
       />
     </Stack>
   );

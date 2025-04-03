@@ -26,7 +26,7 @@ export default function AddWeightScreen() {
   const defaultWeight = currentClient.weight_kg
     ? currentProfile.weight_unit === 'imperial'
       ? kgToLbs(currentClient.weight_kg).toString()
-      : currentClient.weight_kg.toString()
+      : currentClient.weight_kg.toFixed(1)
     : '';
   const {
     control,
@@ -153,7 +153,11 @@ export default function AddWeightScreen() {
             control={control}
             name="weight"
             error={errors.weight}
-            keyboardType="numeric"
+            keyboardType={
+              currentProfile.weight_unit === 'metric'
+                ? 'decimal-pad'
+                : 'numeric'
+            }
             autoFocus
             rightIcon={<Text className="mr-1 mt-4 text-gray-200">{unit}</Text>}
             className="mt-4"
