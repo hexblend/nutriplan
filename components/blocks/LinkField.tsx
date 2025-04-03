@@ -7,7 +7,7 @@ import { Button, ButtonProps } from '../ui/button';
 import { Label } from '../ui/label';
 import { Text } from '../ui/text';
 
-interface ValueFieldProps {
+interface LinkFieldProps {
   editHref: LinkProps['href'];
   value?: string;
   valueRight?: string;
@@ -22,7 +22,7 @@ interface ValueFieldProps {
   valueClassName?: string;
 }
 
-export default function ValueField({
+export default function LinkField({
   editHref,
   value,
   valueRight,
@@ -35,7 +35,7 @@ export default function ValueField({
   buttonVariant = 'tertiary',
   centered = false,
   valueClassName,
-}: ValueFieldProps) {
+}: LinkFieldProps) {
   return (
     <View className={className}>
       {label && (
@@ -52,10 +52,10 @@ export default function ValueField({
           )}
         >
           {centered ? (
-            <>
+            <View className="flex-row items-center gap-2">
               {icon}
               <Text className={cn(valueClassName)}>{labelLeft ?? value}</Text>
-            </>
+            </View>
           ) : (
             <>
               <View className="flex-row items-center gap-2">

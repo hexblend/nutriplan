@@ -1,4 +1,4 @@
-import ValueField from '@/components/blocks/ValueField';
+import LinkField from '@/components/blocks/LinkField';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { useSession } from '@/providers/SessionProvider';
@@ -12,7 +12,6 @@ interface ProfileSettingsProps {
 export default function ProfileSettings({ className }: ProfileSettingsProps) {
   const { currentProfile } = useSession();
   const { height_unit, weight_unit } = currentProfile ?? {};
-  const appLanguage = t.locale;
 
   return (
     <View className={className}>
@@ -22,16 +21,16 @@ export default function ProfileSettings({ className }: ProfileSettingsProps) {
       </View>
 
       <View className="flex-col gap-4">
-        <ValueField
+        <LinkField
           editHref="/profile/edit-units"
           labelLeft={t.t('common.units')}
           valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
           hideEditIcon
         />
-        <ValueField
+        <LinkField
           editHref="/profile/edit-language"
           labelLeft={t.t('common.language')}
-          valueRight={appLanguage === 'en' ? 'ENGLISH' : 'ROMANA'}
+          valueRight={t.locale === 'en' ? 'ENGLISH' : 'ROMANA'}
           hideEditIcon
         />
       </View>

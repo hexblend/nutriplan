@@ -1,4 +1,4 @@
-import ValueField from '@/components/blocks/ValueField';
+import LinkField from '@/components/blocks/LinkField';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -76,7 +76,7 @@ export default function ProfileWeightChart({
         />
       </View>
       <Animated.View style={{ opacity }}>
-        <ValueField
+        <LinkField
           editHref="/profile"
           icon={<FontAwesome name="plus" size={16} color="white" />}
           value="Add current weight"
