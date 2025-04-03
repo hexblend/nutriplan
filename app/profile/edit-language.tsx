@@ -10,30 +10,27 @@ export default function EditLanguageScreen() {
   const { currentProfile, setCurrentProfile } = useSession();
   if (!currentProfile) return null;
 
-  const handleLanguageChange = async (value: string) => {
-    const newLanguage = value === 'RO' ? 'ro' : 'en';
-    // Optimistically update UI
+  const handleLanguageChange = async (newLanguage: string) => {
+    // Optimistic update
+    setAppLanguage(newLanguage);
     setCurrentProfile({
       ...currentProfile,
       updated_app_language: newLanguage,
     });
-    // Update database in the background
+    // Update db in the background
     const { error } = await supabase
       .from('profiles')
       .update({ updated_app_language: newLanguage })
       .eq('id', currentProfile.id);
-
     if (error) {
       // Revert optimistic update
       setCurrentProfile({
         ...currentProfile,
         updated_app_language: currentProfile.updated_app_language,
       });
+      setAppLanguage(currentProfile.updated_app_language || 'en');
       return throwError('[profile] Error updating language', error);
     }
-
-    // Update the app language
-    setAppLanguage(newLanguage);
   };
 
   return (
