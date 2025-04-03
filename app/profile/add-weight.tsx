@@ -70,15 +70,10 @@ export default function AddWeightScreen() {
         <ControlledInput
           control={control}
           name="weight"
-          label={t.t('profile.currentWeight')}
           error={errors.weight}
           keyboardType="numeric"
           autoFocus
-          rightIcon={
-            <View className="flex h-full items-center justify-center">
-              <Text className="text-gray-200">{unit}</Text>
-            </View>
-          }
+          rightIcon={<Text className="mr-1 mt-4 text-gray-200">{unit}</Text>}
           className="mt-4"
         />
         <Button
