@@ -21,7 +21,7 @@ export default function ProfileWeightChart({
   className,
 }: ProfileWeightChartProps) {
   const { clientUpdates, loading } = useGetClientUpdates();
-  const { currentProfile } = useSession();
+  const { currentProfile, currentClient } = useSession();
 
   const [key, setKey] = useState(0);
   const [opacity] = useState(new Animated.Value(0));
@@ -47,24 +47,46 @@ export default function ProfileWeightChart({
   }, [clientUpdates]);
 
   const lineData = useMemo(() => {
-    if (!weightUpdates || !currentProfile?.weight_unit) return [];
-    return weightUpdates.map((update) => {
-      const weightInKg = parseFloat(update.value);
+    if (!currentProfile?.weight_unit) return [];
+    // If there are weight updates, use those
+    if (weightUpdates?.length > 0) {
+      return weightUpdates.map((update) => {
+        const weightInKg = parseFloat(update.value);
+        const displayValue =
+          currentProfile.weight_unit === 'imperial'
+            ? kgToLbs(weightInKg)
+            : weightInKg;
+
+        return {
+          value: displayValue,
+          label: format(new Date(update.date), 'd MMM'),
+          dataPointText: displayWeight(
+            weightInKg,
+            currentProfile.weight_unit as 'metric' | 'imperial'
+          ),
+        };
+      });
+    }
+    // If no updates but we have a current weight, show it as a single point
+    if (currentClient?.weight_kg) {
+      const weightInKg = currentClient.weight_kg;
       const displayValue =
         currentProfile.weight_unit === 'imperial'
           ? kgToLbs(weightInKg)
           : weightInKg;
-
-      return {
-        value: displayValue,
-        label: format(new Date(update.date), 'd MMM'),
-        dataPointText: displayWeight(
-          weightInKg,
-          currentProfile.weight_unit as 'metric' | 'imperial'
-        ),
-      };
-    });
-  }, [weightUpdates, currentProfile]);
+      return [
+        {
+          value: displayValue,
+          label: format(new Date(currentClient.created_at), 'd MMM'),
+          dataPointText: displayWeight(
+            weightInKg,
+            currentProfile.weight_unit as 'metric' | 'imperial'
+          ),
+        },
+      ];
+    }
+    return [];
+  }, [weightUpdates, currentProfile, currentClient]);
 
   const isLatestWeightFromToday = useMemo(() => {
     if (!weightUpdates?.length) return false;
