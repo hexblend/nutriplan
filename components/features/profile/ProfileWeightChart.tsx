@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -6,7 +7,7 @@ import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Animated, View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
-import { Button } from '../ui/button';
+
 interface ProfileWeightChartProps {
   className?: string;
 }

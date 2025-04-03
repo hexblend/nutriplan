@@ -1,11 +1,11 @@
+import { Button } from '@/components/ui/button';
+import Frame from '@/components/ui/frame';
 import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useState } from 'react';
 import { Animated } from 'react-native';
-import { Button } from '../ui/button';
-import Frame from '../ui/frame';
 
 interface ProfileGoalProps {
   className?: string;

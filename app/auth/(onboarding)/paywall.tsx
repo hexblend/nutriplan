@@ -1,6 +1,6 @@
+import PaywallBenefit from '@/components/features/onboarding/paywall/PaywallBenefit';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
-import PaywallBenefit from '@/components/onboarding/paywall/PaywallBenefit';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { appLanguage, t } from '@/i18n/translations';

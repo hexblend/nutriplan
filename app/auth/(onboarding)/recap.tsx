@@ -1,9 +1,9 @@
+import RecapItem from '@/components/features/onboarding/recap/RecapItem';
+import RecapSection from '@/components/features/onboarding/recap/RecapSection';
+import { translateValue } from '@/components/features/onboarding/recap/TranslationMap';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import QuestionHeader from '@/components/layout/QuestionHeader';
-import RecapItem from '@/components/onboarding/recap/RecapItem';
-import RecapSection from '@/components/onboarding/recap/RecapSection';
-import { translateValue } from '@/components/onboarding/recap/TranslationMap';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';

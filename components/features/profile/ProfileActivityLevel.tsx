@@ -1,8 +1,8 @@
+import { Button } from '@/components/ui/button';
+import { Text } from '@/components/ui/text';
 import { cn } from '@/lib/utils';
 import { FontAwesome, Octicons } from '@expo/vector-icons';
 import { View } from 'react-native';
-import { Button } from '../ui/button';
-import { Text } from '../ui/text';
 
 interface ProfileActivityLevelProps {
   className?: string;

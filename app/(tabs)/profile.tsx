@@ -1,10 +1,10 @@
+import ProfileActivityLevel from '@/components/features/profile/ProfileActivityLevel';
+import ProfileAvatarCard from '@/components/features/profile/ProfileAvatarCard';
+import ProfileBmiRange from '@/components/features/profile/ProfileBmiRange';
+import ProfileGoal from '@/components/features/profile/ProfileGoal';
+import ProfileSettings from '@/components/features/profile/ProfileSettings';
+import ProfileWeightChart from '@/components/features/profile/ProfileWeightChart';
 import PageWrapper from '@/components/layout/PageWrapper';
-import ProfileActivityLevel from '@/components/profile/ProfileActivityLevel';
-import ProfileAvatarCard from '@/components/profile/ProfileAvatarCard';
-import ProfileBmiRange from '@/components/profile/ProfileBmiRange';
-import ProfileGoal from '@/components/profile/ProfileGoal';
-import ProfileSettings from '@/components/profile/ProfileSettings';
-import ProfileWeightChart from '@/components/profile/ProfileWeightChart';
 import { Text } from '@/components/ui/text';
 
 export default function ProfileScreen() {
