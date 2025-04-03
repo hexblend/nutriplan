@@ -20,6 +20,7 @@ export const commonEN = {
   imperial: 'Imperial',
   settings: 'Settings',
   language: 'Language',
+  add: 'Add',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -43,4 +44,5 @@ export const commonRO = {
   imperial: 'Imperial',
   settings: 'Setări',
   language: 'Limba',
+  add: 'Adaugă',
 };

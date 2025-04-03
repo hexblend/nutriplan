@@ -7,6 +7,7 @@ import { supabase } from '@/lib/supabase/client';
 import { kgToLbs, lbsToKg, throwError } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useNavigation } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
@@ -18,10 +19,11 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function AddWeightScreen() {
-  const { currentProfile, currentClient } = useSession();
+  const { currentProfile, currentClient, setCurrentClient } = useSession();
   if (!currentProfile || !currentClient) return null;
 
-  // Convert default value to imperial if needed
+  const navigation = useNavigation();
+
   const defaultWeight = currentClient.weight_kg
     ? currentProfile.weight_unit === 'imperial'
       ? kgToLbs(currentClient.weight_kg).toString()
@@ -42,24 +44,27 @@ export default function AddWeightScreen() {
   const onSubmit = async (data: FormValues) => {
     const weightValue = parseFloat(data.weight);
     let weightInKg: number;
-
     if (currentProfile.weight_unit === 'imperial') {
       weightInKg = lbsToKg(weightValue);
     } else {
       weightInKg = weightValue;
     }
-
+    // Optimistic update
+    setCurrentClient({ ...currentClient, weight_kg: weightInKg });
     const { error } = await supabase
       .from('clients')
       .update({ weight_kg: weightInKg })
       .eq('id', currentClient.id);
-
     if (error) {
+      // Revert update
+      setCurrentClient({
+        ...currentClient,
+        weight_kg: currentClient.weight_kg,
+      });
       return throwError('[profile] Error updating weight', error);
     }
 
-    // Update local state
-    currentClient.weight_kg = weightInKg;
+    return navigation.goBack();
   };
 
   const unit = currentProfile.weight_unit === 'metric' ? 'kg' : 'lbs';
@@ -86,7 +91,7 @@ export default function AddWeightScreen() {
             disabled={!isDirty || !isValid}
           >
             <Text className="uppercase" disabled={!isDirty || !isValid}>
-              {t.t('common.continue')}
+              {t.t('common.add')}
             </Text>
           </Button>
         </View>
