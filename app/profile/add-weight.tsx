@@ -101,7 +101,7 @@ export default function AddWeightScreen() {
     }
 
     if (weightUpdatesNumber === 0) {
-      // Add initial weight as weight update with created_at as time
+      // Add initial weight as weight update
       const { error: initialWeightUpdateError } = await addWeightUpdate(
         currentClient.weight_kg,
         currentClient.created_at

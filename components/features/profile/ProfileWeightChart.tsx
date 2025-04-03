@@ -1,19 +1,17 @@
 import LinkField from '@/components/blocks/LinkField';
+import Loading from '@/components/ui/loading';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
-import { cn } from '@/lib/utils';
+import { cn, displayWeight, kgToLbs } from '@/lib/utils';
+import { useSession } from '@/providers/SessionProvider';
+import { useGetClientUpdates } from '@/supabase/hooks/useClientUpdates';
 import { FontAwesome } from '@expo/vector-icons';
+import { format } from 'date-fns';
 import { useFocusEffect } from 'expo-router';
-import { useCallback, useState } from 'react';
+import { useCallback, useMemo, useState } from 'react';
 import { Animated, View } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
-
-/*
-    1. Check client_updates and if there are no weight updates, show current weight with created_at date
-    2. When you add a weight update, check if there are any other updates. If not, then add current weight with created_at date as a first update and then add the new update
-    3. Show a list of weight updates with the date and the weight
-*/
 
 interface ProfileWeightChartProps {
   className?: string;
@@ -22,6 +20,9 @@ interface ProfileWeightChartProps {
 export default function ProfileWeightChart({
   className,
 }: ProfileWeightChartProps) {
+  const { clientUpdates, loading } = useGetClientUpdates();
+  const { currentProfile } = useSession();
+
   const [key, setKey] = useState(0);
   const [opacity] = useState(new Animated.Value(0));
 
@@ -40,15 +41,27 @@ export default function ProfileWeightChart({
     }, [])
   );
 
-  const lineData = [
-    { value: 73, label: '22 Aug', dataPointText: '73 kg' },
-    { value: 72.5, label: '3 Sep', dataPointText: '72.5 kg' },
-    { value: 71, label: '6 Oct', dataPointText: '71 kg' },
-    { value: 70, label: '8 Nov', dataPointText: '70 kg' },
-    { value: 69, label: '10 Dec', dataPointText: '69 kg' },
-    { value: 68, label: '23 Ian', dataPointText: '68 kg' },
-  ];
+  const lineData = useMemo(() => {
+    if (!clientUpdates || !currentProfile?.weight_unit) return [];
+    return clientUpdates.map((update) => {
+      const weightInKg = parseFloat(update.value);
+      const displayValue =
+        currentProfile.weight_unit === 'imperial'
+          ? kgToLbs(weightInKg)
+          : weightInKg;
 
+      return {
+        value: displayValue,
+        label: format(new Date(update.date), 'd MMM'),
+        dataPointText: displayWeight(
+          weightInKg,
+          currentProfile.weight_unit as 'metric' | 'imperial'
+        ),
+      };
+    });
+  }, [clientUpdates, currentProfile]);
+
+  if (loading) return <Loading />;
   return (
     <View className={cn(className)}>
       <Text className="text-center font-bold">
@@ -58,7 +71,7 @@ export default function ProfileWeightChart({
         <LineChart
           key={key}
           data={lineData}
-          maxValue={73 * 1.2}
+          maxValue={Math.max(...lineData.map((d) => d.value)) * 1.2}
           initialSpacing={24}
           textColor1={colors.primary[350]}
           textShiftY={-8}
