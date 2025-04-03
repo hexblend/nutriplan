@@ -19,7 +19,7 @@ export default function SecondaryHeader({
   const insets = useSafeAreaInsets();
   return (
     <View
-      className="border-b border-border bg-transparent"
+      className="border-b border-muted bg-transparent"
       style={{ paddingTop: insets.top }}
     >
       <View className="h-11 flex-row items-center px-4">
@@ -28,7 +28,7 @@ export default function SecondaryHeader({
         )}
         <View className="mx-10 flex-1 items-center justify-center">
           <Text
-            className="text-center text-xl font-bold text-gray-200"
+            className="text-center text-xl font-bold text-gray-100"
             numberOfLines={1}
           >
             {title}

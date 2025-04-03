@@ -18,6 +18,7 @@ export const commonEN = {
   units: 'Units',
   metric: 'Metric',
   imperial: 'Imperial',
+  settings: 'Settings',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -39,4 +40,5 @@ export const commonRO = {
   units: 'Unități',
   metric: 'Metric',
   imperial: 'Imperial',
+  settings: 'Setări',
 };

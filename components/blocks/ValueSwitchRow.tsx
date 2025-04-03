@@ -1,5 +1,6 @@
 import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Text } from '@/components/ui/text';
+import { cn } from '@/lib/utils';
 import * as Haptics from 'expo-haptics';
 import { View } from 'react-native';
 
@@ -13,6 +14,7 @@ interface ValueSwitchRowProps {
     label: string;
   }[];
   className?: string;
+  hideBorder?: boolean;
 }
 
 export function ValueSwitchRow({
@@ -21,6 +23,7 @@ export function ValueSwitchRow({
   onValueChange,
   options,
   className,
+  hideBorder,
 }: ValueSwitchRowProps) {
   const handleValueChange = async (newValue: string) => {
     await Haptics.impactAsync(Haptics.ImpactFeedbackStyle.Light);
@@ -29,7 +32,12 @@ export function ValueSwitchRow({
 
   return (
     <View className={className}>
-      <View className="flex-row items-center justify-between">
+      <View
+        className={cn(
+          'flex-row items-center justify-between',
+          !hideBorder && 'border-b border-muted pb-4'
+        )}
+      >
         <Text className="font-bold">{label}</Text>
         <Tabs value={value} onValueChange={handleValueChange} className="w-1/2">
           <TabsList className="w-full flex-row">

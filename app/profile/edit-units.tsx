@@ -57,8 +57,8 @@ export default function EditUnitsScreen() {
   };
 
   return (
-    <PageWrapper className="pt-5">
-      <View className="flex-col gap-8">
+    <PageWrapper className="pt-6">
+      <View className="flex-col gap-4">
         <ValueSwitchRow
           label={t.t('common.height')}
           value={currentClient.height_unit === 'metric' ? 'cm' : 'ft'}
@@ -76,6 +76,7 @@ export default function EditUnitsScreen() {
             { value: 'kg', label: 'KG' },
             { value: 'lbs', label: 'LBS' },
           ]}
+          hideBorder
         />
       </View>
     </PageWrapper>
