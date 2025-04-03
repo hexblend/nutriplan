@@ -8,7 +8,7 @@ import { Label } from '../ui/label';
 import { Text } from '../ui/text';
 
 interface LinkFieldProps {
-  editHref: LinkProps['href'];
+  href: LinkProps['href'];
   value?: string;
   valueRight?: string;
   className?: string;
@@ -23,7 +23,7 @@ interface LinkFieldProps {
 }
 
 export default function LinkField({
-  editHref,
+  href,
   value,
   valueRight,
   className,
@@ -43,7 +43,7 @@ export default function LinkField({
           {label}
         </Label>
       )}
-      <Link href={editHref} asChild>
+      <Link href={href} asChild>
         <Button
           variant={buttonVariant}
           className={cn(

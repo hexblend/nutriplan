@@ -77,7 +77,7 @@ export default function ProfileWeightChart({
       </View>
       <Animated.View style={{ opacity }}>
         <LinkField
-          editHref="/profile"
+          href="/profile"
           icon={<FontAwesome name="plus" size={16} color="white" />}
           value="Add current weight"
           centered

@@ -22,13 +22,13 @@ export default function ProfileSettings({ className }: ProfileSettingsProps) {
 
       <View className="flex-col gap-4">
         <LinkField
-          editHref="/profile/edit-units"
+          href="/profile/edit-units"
           labelLeft={t.t('common.units')}
           valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
           hideEditIcon
         />
         <LinkField
-          editHref="/profile/edit-language"
+          href="/profile/edit-language"
           labelLeft={t.t('common.language')}
           valueRight={t.locale === 'en' ? 'ENGLISH' : 'ROMANA'}
           hideEditIcon
