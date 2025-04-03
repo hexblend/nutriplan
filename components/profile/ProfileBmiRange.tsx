@@ -1,4 +1,4 @@
-import { BmiRange } from '@/components/ui/bmi-range';
+import { BmiRange } from '@/components/blocks/BmiRange';
 import { cn } from '@/lib/utils';
 
 interface ProfileBmiRangeProps {

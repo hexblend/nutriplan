@@ -1,5 +1,5 @@
+import ValueField from '@/components/blocks/ValueField';
 import { Text } from '@/components/ui/text';
-import ValueField from '@/components/ui/value-field';
 import { useSession } from '@/providers/SessionProvider';
 import { Ionicons } from '@expo/vector-icons';
 import { View } from 'react-native';

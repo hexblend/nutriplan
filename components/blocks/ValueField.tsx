@@ -3,9 +3,9 @@ import { FontAwesome } from '@expo/vector-icons';
 import { Link, LinkProps } from 'expo-router';
 import { JSX } from 'react';
 import { View } from 'react-native';
-import { Button, ButtonProps } from './button';
-import { Label } from './label';
-import { Text } from './text';
+import { Button, ButtonProps } from '../ui/button';
+import { Label } from '../ui/label';
+import { Text } from '../ui/text';
 
 interface ValueFieldProps {
   editHref: LinkProps['href'];
