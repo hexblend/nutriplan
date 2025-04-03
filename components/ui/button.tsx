@@ -140,7 +140,7 @@ const Button = React.forwardRef<
     };
 
     return (
-      <View className={cn('relative', size === 'full' && 'w-full')}>
+      <View className={cn('relative self-center', size === 'full' && 'w-full')}>
         <View
           className={cn(
             buttonBottomVariants({ variant, model }),

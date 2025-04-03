@@ -66,26 +66,30 @@ export default function AddWeightScreen() {
 
   return (
     <PageWrapper className="pt-6">
-      <View className="flex-1">
-        <ControlledInput
-          control={control}
-          name="weight"
-          error={errors.weight}
-          keyboardType="numeric"
-          autoFocus
-          rightIcon={<Text className="mr-1 mt-4 text-gray-200">{unit}</Text>}
-          className="mt-4"
-        />
-        <Button
-          variant="default"
-          onPress={handleSubmit(onSubmit)}
-          className="mt-6"
-          disabled={!isDirty || !isValid}
-        >
-          <Text className="uppercase" disabled={!isDirty || !isValid}>
-            {t.t('common.continue')}
-          </Text>
-        </Button>
+      <View className="flex-col items-center">
+        <View className="w-[120px] flex-1 self-center">
+          <ControlledInput
+            control={control}
+            name="weight"
+            error={errors.weight}
+            keyboardType="numeric"
+            autoFocus
+            rightIcon={<Text className="mr-1 mt-4 text-gray-200">{unit}</Text>}
+            className="mt-4"
+          />
+        </View>
+        <View>
+          <Button
+            variant="default"
+            onPress={handleSubmit(onSubmit)}
+            className="mt-6 w-[120px]"
+            disabled={!isDirty || !isValid}
+          >
+            <Text className="uppercase" disabled={!isDirty || !isValid}>
+              {t.t('common.continue')}
+            </Text>
+          </Button>
+        </View>
       </View>
     </PageWrapper>
   );
