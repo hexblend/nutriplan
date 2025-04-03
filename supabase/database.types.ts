@@ -26,7 +26,6 @@ export type Database = {
           food_restrictions: string | null;
           goal: string | null;
           height_cm: number | null;
-          height_unit: Database['public']['Enums']['unit_type'] | null;
           id: string;
           last_name: string;
           lipids: string | null;
@@ -42,7 +41,6 @@ export type Database = {
           tried_before: string | null;
           user_id: string;
           weight_kg: number | null;
-          weight_unit: Database['public']['Enums']['unit_type'] | null;
         };
         Insert: {
           activity_level?: string | null;
@@ -60,7 +58,6 @@ export type Database = {
           food_restrictions?: string | null;
           goal?: string | null;
           height_cm?: number | null;
-          height_unit?: Database['public']['Enums']['unit_type'] | null;
           id?: string;
           last_name: string;
           lipids?: string | null;
@@ -76,7 +73,6 @@ export type Database = {
           tried_before?: string | null;
           user_id?: string;
           weight_kg?: number | null;
-          weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
         Update: {
           activity_level?: string | null;
@@ -94,7 +90,6 @@ export type Database = {
           food_restrictions?: string | null;
           goal?: string | null;
           height_cm?: number | null;
-          height_unit?: Database['public']['Enums']['unit_type'] | null;
           id?: string;
           last_name?: string;
           lipids?: string | null;
@@ -110,7 +105,6 @@ export type Database = {
           tried_before?: string | null;
           user_id?: string;
           weight_kg?: number | null;
-          weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
         Relationships: [];
       };
@@ -323,7 +317,9 @@ export type Database = {
           cui: string | null;
           email: string | null;
           first_name: string | null;
+          height_unit: Database['public']['Enums']['unit_type'] | null;
           id: string;
+          language: string;
           last_name: string | null;
           phone: string | null;
           reg_com: string | null;
@@ -334,6 +330,7 @@ export type Database = {
           stripe_customer_id: string | null;
           subscription_type: Database['public']['Enums']['subscription_type'];
           updated_at: string | null;
+          weight_unit: Database['public']['Enums']['unit_type'] | null;
         };
         Insert: {
           address?: string | null;
@@ -343,7 +340,9 @@ export type Database = {
           cui?: string | null;
           email?: string | null;
           first_name?: string | null;
+          height_unit?: Database['public']['Enums']['unit_type'] | null;
           id: string;
+          language?: string;
           last_name?: string | null;
           phone?: string | null;
           reg_com?: string | null;
@@ -354,6 +353,7 @@ export type Database = {
           stripe_customer_id?: string | null;
           subscription_type?: Database['public']['Enums']['subscription_type'];
           updated_at?: string | null;
+          weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
         Update: {
           address?: string | null;
@@ -363,7 +363,9 @@ export type Database = {
           cui?: string | null;
           email?: string | null;
           first_name?: string | null;
+          height_unit?: Database['public']['Enums']['unit_type'] | null;
           id?: string;
+          language?: string;
           last_name?: string | null;
           phone?: string | null;
           reg_com?: string | null;
@@ -374,6 +376,7 @@ export type Database = {
           stripe_customer_id?: string | null;
           subscription_type?: Database['public']['Enums']['subscription_type'];
           updated_at?: string | null;
+          weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
         Relationships: [];
       };

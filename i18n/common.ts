@@ -19,6 +19,7 @@ export const commonEN = {
   metric: 'Metric',
   imperial: 'Imperial',
   settings: 'Settings',
+  language: 'Language',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -41,4 +42,5 @@ export const commonRO = {
   metric: 'Metric',
   imperial: 'Imperial',
   settings: 'Setări',
+  language: 'Limba',
 };

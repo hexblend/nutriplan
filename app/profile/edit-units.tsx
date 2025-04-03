@@ -7,27 +7,27 @@ import { useSession } from '@/providers/SessionProvider';
 import { View } from 'react-native';
 
 export default function EditUnitsScreen() {
-  const { currentClient, setCurrentClient } = useSession();
-  if (!currentClient) return null;
+  const { currentProfile, setCurrentProfile } = useSession();
+  if (!currentProfile) return null;
 
   const handleHeightUnitChange = async (value: string) => {
     const newUnit = value === 'cm' ? 'metric' : 'imperial';
     // Optimistically update UI
-    setCurrentClient({
-      ...currentClient,
+    setCurrentProfile({
+      ...currentProfile,
       height_unit: newUnit,
     });
     // Update database in the background
     const { error } = await supabase
-      .from('clients')
+      .from('profiles')
       .update({ height_unit: newUnit })
-      .eq('id', currentClient.id);
+      .eq('id', currentProfile.id);
 
     if (error) {
       // Revert optimistic update
-      setCurrentClient({
-        ...currentClient,
-        height_unit: currentClient.height_unit,
+      setCurrentProfile({
+        ...currentProfile,
+        height_unit: currentProfile.height_unit,
       });
       return throwError('[profile] Error updating height unit', error);
     }
@@ -36,21 +36,21 @@ export default function EditUnitsScreen() {
   const handleWeightUnitChange = async (value: string) => {
     const newUnit = value === 'kg' ? 'metric' : 'imperial';
     // Optimistically update UI
-    setCurrentClient({
-      ...currentClient,
+    setCurrentProfile({
+      ...currentProfile,
       weight_unit: newUnit,
     });
     // Update database in the background
     const { error } = await supabase
-      .from('clients')
+      .from('profiles')
       .update({ weight_unit: newUnit })
-      .eq('id', currentClient.id);
+      .eq('id', currentProfile.id);
 
     if (error) {
       // Revert optimistic update
-      setCurrentClient({
-        ...currentClient,
-        weight_unit: currentClient.weight_unit,
+      setCurrentProfile({
+        ...currentProfile,
+        weight_unit: currentProfile.weight_unit,
       });
       return throwError('[profile] Error updating weight unit', error);
     }
@@ -61,7 +61,7 @@ export default function EditUnitsScreen() {
       <View className="flex-col gap-4">
         <ValueSwitchRow
           label={t.t('common.height')}
-          value={currentClient.height_unit === 'metric' ? 'cm' : 'ft'}
+          value={currentProfile.height_unit === 'metric' ? 'cm' : 'ft'}
           onValueChange={handleHeightUnitChange}
           options={[
             { value: 'cm', label: 'CM' },
@@ -70,7 +70,7 @@ export default function EditUnitsScreen() {
         />
         <ValueSwitchRow
           label={t.t('common.weight')}
-          value={currentClient.weight_unit === 'metric' ? 'kg' : 'lbs'}
+          value={currentProfile.weight_unit === 'metric' ? 'kg' : 'lbs'}
           onValueChange={handleWeightUnitChange}
           options={[
             { value: 'kg', label: 'KG' },

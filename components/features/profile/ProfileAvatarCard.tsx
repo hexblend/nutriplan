@@ -16,19 +16,12 @@ interface ProfileAvatarCardProps {
 export default function ProfileAvatarCard({
   className,
 }: ProfileAvatarCardProps) {
-  const { currentClient } = useSession();
-  if (!currentClient) return null;
+  const { currentClient, currentProfile } = useSession();
+  if (!currentClient || !currentProfile) return null;
 
-  const {
-    first_name,
-    last_name,
-    sex,
-    height_cm,
-    height_unit,
-    age,
-    weight_kg,
-    weight_unit,
-  } = currentClient;
+  const { first_name, last_name, sex, height_cm, age, weight_kg } =
+    currentClient;
+  const { height_unit, weight_unit } = currentProfile;
 
   const firstLetter = first_name.charAt(0);
   const lastLetter = last_name.charAt(0);

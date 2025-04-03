@@ -10,8 +10,8 @@ interface ProfileSettingsProps {
 }
 
 export default function ProfileSettings({ className }: ProfileSettingsProps) {
-  const { currentClient } = useSession();
-  const { height_unit, weight_unit } = currentClient ?? {};
+  const { currentProfile } = useSession();
+  const { height_unit, weight_unit } = currentProfile ?? {};
   return (
     <View className={className}>
       <View className="mb-5 flex-row items-center justify-center gap-1">
@@ -19,12 +19,20 @@ export default function ProfileSettings({ className }: ProfileSettingsProps) {
         <Text className="text-gray-400">{t.t('common.settings')}</Text>
       </View>
 
-      <ValueField
-        editHref="/profile/edit-units"
-        labelLeft={t.t('common.units')}
-        valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
-        hideEditIcon
-      />
+      <View className="flex-col gap-4">
+        <ValueField
+          editHref="/profile/edit-units"
+          labelLeft={t.t('common.units')}
+          valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
+          hideEditIcon
+        />
+        <ValueField
+          editHref="/profile/edit-language"
+          labelLeft={t.t('common.language')}
+          valueRight={`${height_unit === 'metric' ? 'CM' : 'FT'}/${weight_unit === 'metric' ? 'KG' : 'LBS'}`}
+          hideEditIcon
+        />
+      </View>
     </View>
   );
 }

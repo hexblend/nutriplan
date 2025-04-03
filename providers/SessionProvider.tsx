@@ -16,6 +16,10 @@ type AuthContextType = {
   setCurrentClient: React.Dispatch<
     React.SetStateAction<Tables<'clients'> | null>
   >;
+  currentProfile: Tables<'profiles'> | null;
+  setCurrentProfile: React.Dispatch<
+    React.SetStateAction<Tables<'profiles'> | null>
+  >;
 };
 const AuthContext = createContext<AuthContextType>({
   session: null,
@@ -24,6 +28,8 @@ const AuthContext = createContext<AuthContextType>({
   signOut: async () => {},
   currentClient: null,
   setCurrentClient: () => {},
+  currentProfile: null,
+  setCurrentProfile: () => {},
 });
 
 export function SessionProvider({ children }: { children: React.ReactNode }) {
@@ -32,6 +38,8 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
   const [currentClient, setCurrentClient] = useState<Tables<'clients'> | null>(
     null
   );
+  const [currentProfile, setCurrentProfile] =
+    useState<Tables<'profiles'> | null>(null);
 
   // Get the session
   useEffect(() => {
@@ -42,12 +50,20 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       const { data } = await supabase.auth.getSession();
       if (data && loggedInUserId) {
         setSession(data.session);
+        // Get the client
         const { data: clientData } = await supabase
           .from('clients')
           .select('*')
           .eq('user_id', loggedInUserId)
           .single();
         setCurrentClient(clientData);
+        // Get the profile
+        const { data: profileData } = await supabase
+          .from('profiles')
+          .select('*')
+          .eq('id', loggedInUserId)
+          .single();
+        setCurrentProfile(profileData);
         return setSessionLoading(false);
       } else {
         return setSessionLoading(false);
@@ -87,6 +103,8 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
         signOut,
         currentClient,
         setCurrentClient,
+        currentProfile,
+        setCurrentProfile,
       }}
     >
       {children}
