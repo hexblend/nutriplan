@@ -13,39 +13,53 @@ export default function EditUnitsScreen() {
 
   const handleHeightUnitChange = async (value: string) => {
     const newUnit = value === 'cm' ? 'metric' : 'imperial';
-    const { error } = await supabase
-      .from('clients')
-      .update({ height_unit: newUnit })
-      .eq('id', currentClient.id);
-    if (error) {
-      return throwError('[profile] Error updating height unit', error);
-    }
-    // Update local state
+    // Optimistically update UI
     setCurrentClient({
       ...currentClient,
       height_unit: newUnit,
     });
+    // Update database in the background
+    const { error } = await supabase
+      .from('clients')
+      .update({ height_unit: newUnit })
+      .eq('id', currentClient.id);
+
+    if (error) {
+      // Revert optimistic update
+      setCurrentClient({
+        ...currentClient,
+        height_unit: currentClient.height_unit,
+      });
+      return throwError('[profile] Error updating height unit', error);
+    }
   };
 
   const handleWeightUnitChange = async (value: string) => {
     const newUnit = value === 'kg' ? 'metric' : 'imperial';
-    const { error } = await supabase
-      .from('clients')
-      .update({ weight_unit: newUnit })
-      .eq('id', currentClient.id);
-    if (error) {
-      return throwError('[profile] Error updating weight unit', error);
-    }
-    // Update local state
+    // Optimistically update UI
     setCurrentClient({
       ...currentClient,
       weight_unit: newUnit,
     });
+    // Update database in the background
+    const { error } = await supabase
+      .from('clients')
+      .update({ weight_unit: newUnit })
+      .eq('id', currentClient.id);
+
+    if (error) {
+      // Revert optimistic update
+      setCurrentClient({
+        ...currentClient,
+        weight_unit: currentClient.weight_unit,
+      });
+      return throwError('[profile] Error updating weight unit', error);
+    }
   };
 
   return (
     <PageWrapper className="pt-5">
-      <View className="flex-col gap-6">
+      <View className="flex-col gap-8">
         <View className="flex-row items-center justify-between">
           <Text className="font-bold">{t.t('common.height')}</Text>
           <Tabs
