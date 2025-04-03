@@ -12,7 +12,7 @@ const TabsList = React.forwardRef<
   <TabsPrimitive.List
     ref={ref}
     className={cn(
-      'native:h-12 native:px-1.5 h-10 items-center justify-center rounded-md bg-muted p-1 web:inline-flex',
+      'native:h-12 native:px-1.5 h-10 items-center justify-center rounded-lg border border-b-[3px] border-muted bg-accent p-1 web:inline-flex',
       className
     )}
     {...props}
@@ -28,7 +28,7 @@ const TabsTrigger = React.forwardRef<
   return (
     <TextClassContext.Provider
       value={cn(
-        'text-sm native:text-base font-medium text-gray-200 web:transition-all',
+        'text-sm native:text-base font-medium text-gray-100 web:transition-all',
         value === props.value && 'text-foreground'
       )}
     >
