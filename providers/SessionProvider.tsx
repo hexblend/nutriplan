@@ -1,3 +1,4 @@
+import { setAppLanguage } from '@/i18n/translations';
 import { STORAGE_KEYS } from '@/lib/constants';
 import { supabase } from '@/lib/supabase/client';
 import { Tables } from '@/supabase/database.types';
@@ -64,8 +65,12 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
           .eq('id', loggedInUserId)
           .single();
         setCurrentProfile(profileData);
+        // Init app language
+        setAppLanguage(profileData?.updated_app_language);
         return setSessionLoading(false);
       } else {
+        // Init app language
+        setAppLanguage(null);
         return setSessionLoading(false);
       }
     };

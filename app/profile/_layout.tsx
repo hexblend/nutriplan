@@ -24,6 +24,10 @@ export default function ProfileLayout() {
         name="edit-units"
         options={{ title: t.t('common.units') }}
       />
+      <Stack.Screen
+        name="edit-language"
+        options={{ title: t.t('common.language') }}
+      />
     </Stack>
   );
 }

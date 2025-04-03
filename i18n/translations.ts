@@ -9,5 +9,9 @@ export const t = new I18n({
   ro: { common: commonRO, auth: authRO, profile: profileRO },
 });
 
-export const appLanguage = getLocales()[0].languageCode === 'ro' ? 'ro' : 'en';
-t.locale = appLanguage;
+const defaultLanguage = getLocales()[0].languageCode === 'ro' ? 'ro' : 'en';
+
+export const setAppLanguage = (profileLanguage?: string | null) => {
+  if (profileLanguage) t.locale = profileLanguage;
+  else t.locale = defaultLanguage;
+};

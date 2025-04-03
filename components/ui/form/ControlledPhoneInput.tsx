@@ -1,4 +1,4 @@
-import { appLanguage, t } from '@/i18n/translations';
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import * as Haptics from 'expo-haptics';
 import { Dispatch, SetStateAction } from 'react';
@@ -30,6 +30,7 @@ export default function ControlledPhoneInput<T extends FieldValues>({
   error,
   className,
 }: ControlledPhoneInputProps<T>) {
+  const appLanguage = t.locale;
   return (
     <View className={className}>
       {label && <Label>{label}</Label>}

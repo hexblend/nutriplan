@@ -319,7 +319,6 @@ export type Database = {
           first_name: string | null;
           height_unit: Database['public']['Enums']['unit_type'] | null;
           id: string;
-          language: string;
           last_name: string | null;
           phone: string | null;
           reg_com: string | null;
@@ -329,6 +328,7 @@ export type Database = {
           state: string | null;
           stripe_customer_id: string | null;
           subscription_type: Database['public']['Enums']['subscription_type'];
+          updated_app_language: string | null;
           updated_at: string | null;
           weight_unit: Database['public']['Enums']['unit_type'] | null;
         };
@@ -342,7 +342,6 @@ export type Database = {
           first_name?: string | null;
           height_unit?: Database['public']['Enums']['unit_type'] | null;
           id: string;
-          language?: string;
           last_name?: string | null;
           phone?: string | null;
           reg_com?: string | null;
@@ -352,6 +351,7 @@ export type Database = {
           state?: string | null;
           stripe_customer_id?: string | null;
           subscription_type?: Database['public']['Enums']['subscription_type'];
+          updated_app_language?: string | null;
           updated_at?: string | null;
           weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };
@@ -365,7 +365,6 @@ export type Database = {
           first_name?: string | null;
           height_unit?: Database['public']['Enums']['unit_type'] | null;
           id?: string;
-          language?: string;
           last_name?: string | null;
           phone?: string | null;
           reg_com?: string | null;
@@ -375,6 +374,7 @@ export type Database = {
           state?: string | null;
           stripe_customer_id?: string | null;
           subscription_type?: Database['public']['Enums']['subscription_type'];
+          updated_app_language?: string | null;
           updated_at?: string | null;
           weight_unit?: Database['public']['Enums']['unit_type'] | null;
         };

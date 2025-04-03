@@ -3,11 +3,13 @@ import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
-import { appLanguage, t } from '@/i18n/translations';
+import { t } from '@/i18n/translations';
 import { Image, View } from 'react-native';
 
 export default function PaywallScreen() {
   const onSubmit = () => {};
+  const appLanguage = t.locale;
+
   return (
     <PageWrapper
       footer={
