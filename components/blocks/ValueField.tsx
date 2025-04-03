@@ -1,7 +1,7 @@
 import { cn } from '@/lib/utils';
 import { FontAwesome } from '@expo/vector-icons';
 import { Link, LinkProps } from 'expo-router';
-import { JSX } from 'react';
+import React, { JSX } from 'react';
 import { View } from 'react-native';
 import { Button, ButtonProps } from '../ui/button';
 import { Label } from '../ui/label';
@@ -18,6 +18,8 @@ interface ValueFieldProps {
   icon?: JSX.Element;
   hideEditIcon?: boolean;
   buttonVariant?: ButtonProps['variant'];
+  centered?: boolean;
+  valueClassName?: string;
 }
 
 export default function ValueField({
@@ -31,6 +33,8 @@ export default function ValueField({
   icon,
   hideEditIcon,
   buttonVariant = 'tertiary',
+  centered = false,
+  valueClassName,
 }: ValueFieldProps) {
   return (
     <View className={className}>
@@ -42,18 +46,32 @@ export default function ValueField({
       <Link href={editHref} asChild>
         <Button
           variant={buttonVariant}
-          className="flex-row items-center justify-between px-4"
+          className={cn(
+            'flex-row items-center',
+            centered ? 'justify-center gap-2' : 'justify-between px-4'
+          )}
         >
-          <View className="flex-row items-center gap-2">
-            {icon}
-            <Text className="uppercase">{labelLeft ?? value}</Text>
-          </View>
-          <View className="flex-row items-center gap-4">
-            {valueRight && <Text className="uppercase">{valueRight}</Text>}
-            {!hideEditIcon && (
-              <FontAwesome name="edit" size={18} color="white" />
-            )}
-          </View>
+          {centered ? (
+            <>
+              {icon}
+              <Text className={cn(valueClassName)}>{labelLeft ?? value}</Text>
+            </>
+          ) : (
+            <>
+              <View className="flex-row items-center gap-2">
+                {icon}
+                <Text className={cn(valueClassName)}>{labelLeft ?? value}</Text>
+              </View>
+              <View className="flex-row items-center gap-4">
+                {valueRight && (
+                  <Text className={cn(valueClassName)}>{valueRight}</Text>
+                )}
+                {!hideEditIcon && (
+                  <FontAwesome name="edit" size={18} color="white" />
+                )}
+              </View>
+            </>
+          )}
         </Button>
       </Link>
     </View>

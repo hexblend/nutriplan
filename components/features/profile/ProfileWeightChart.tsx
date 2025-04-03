@@ -1,4 +1,4 @@
-import { Button } from '@/components/ui/button';
+import ValueField from '@/components/blocks/ValueField';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
 import { cn } from '@/lib/utils';
@@ -76,10 +76,13 @@ export default function ProfileWeightChart({
         />
       </View>
       <Animated.View style={{ opacity }}>
-        <Button variant="tertiary" className="mt-6 flex-row items-center gap-2">
-          <FontAwesome name="plus" size={16} color="white" />
-          <Text>Add current weight</Text>
-        </Button>
+        <ValueField
+          editHref="/profile"
+          icon={<FontAwesome name="plus" size={16} color="white" />}
+          value="Add current weight"
+          centered
+          className="mt-4"
+        />
       </Animated.View>
     </View>
   );
