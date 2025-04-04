@@ -1,4 +1,6 @@
 export const profileEN = {
+  yourProfile: 'Your profile',
+
   weightProgress: 'Weight progress',
   addTodayWeight: 'Add today weight',
 
@@ -36,6 +38,8 @@ export const profileEN = {
     'Consider partnering with healthcare providers for personalized guidance. Celebrate small daily victories in nutrition and gentle movement.',
 };
 export const profileRO = {
+  yourProfile: 'Profilul tău',
+
   weightProgress: 'Progresul greutății',
   addTodayWeight: 'Adaugă greutatea de azi',
 

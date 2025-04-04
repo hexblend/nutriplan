@@ -1,5 +1,6 @@
 import { Avatar, AvatarFallback } from '@/components/ui/avatar';
 import Card from '@/components/ui/card';
+import Loading from '@/components/ui/loading';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
@@ -17,7 +18,7 @@ export default function ProfileAvatarCard({
   className,
 }: ProfileAvatarCardProps) {
   const { currentClient, currentProfile } = useSession();
-  if (!currentClient || !currentProfile) return null;
+  if (!currentClient || !currentProfile) return <Loading />;
 
   const { first_name, last_name, sex, height_cm, age, weight_kg } =
     currentClient;
@@ -30,7 +31,7 @@ export default function ProfileAvatarCard({
     <Card
       className={cn('flex-row items-start justify-between py-5', className)}
       asLink
-      href="/profile"
+      href="/profile/edit-basic-info"
     >
       <View className="flex-col gap-4">
         {/* Name */}

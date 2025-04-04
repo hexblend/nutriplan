@@ -12,7 +12,6 @@ export default function ProfileScreen() {
     <PageWrapper className="pt-2">
       <Text className="text-center text-2xl font-bold">Profile</Text>
       <ProfileAvatarCard className="mt-6" />
-
       <ProfileWeightChart className="mt-10" />
       <ProfileGoal className="mt-10" />
       <ProfileBmiRange className="mt-18" />

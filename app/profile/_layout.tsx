@@ -38,6 +38,10 @@ export default function ProfileLayout() {
       />
       <Stack.Screen name="edit-goal" options={{ headerShown: false }} />
       <Stack.Screen name="edit-activity" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="edit-basic-info"
+        options={{ title: t.t('profile.yourProfile') }}
+      />
     </Stack>
   );
 }
