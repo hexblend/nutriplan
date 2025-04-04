@@ -4,9 +4,9 @@ import Loading from '@/components/ui/loading';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
-import { cn, displayHeight, displayWeight } from '@/lib/utils';
+import { cn, displayHeight } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
-import { FontAwesome6, MaterialCommunityIcons } from '@expo/vector-icons';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { LinearGradient } from 'expo-linear-gradient';
 import { View } from 'react-native';
 
@@ -20,9 +20,8 @@ export default function ProfileAvatarCard({
   const { currentClient, currentProfile } = useSession();
   if (!currentClient || !currentProfile) return <Loading />;
 
-  const { first_name, last_name, sex, height_cm, age, weight_kg } =
-    currentClient;
-  const { height_unit, weight_unit } = currentProfile;
+  const { first_name, last_name, sex, height_cm, age } = currentClient;
+  const { height_unit } = currentProfile;
 
   const firstLetter = first_name.charAt(0);
   const lastLetter = last_name.charAt(0);
@@ -65,17 +64,6 @@ export default function ProfileAvatarCard({
           />
           <Text className="text-lg">
             {age} {t.t('common.yearsOld')}
-          </Text>
-        </View>
-        {/* Weight */}
-        <View className="flex-row items-center gap-3">
-          <FontAwesome6
-            name="weight-scale"
-            size={20}
-            color="#ea580c" // orange-600
-          />
-          <Text className="text-lg">
-            {displayWeight(weight_kg, weight_unit || 'metric')}
           </Text>
         </View>
       </View>

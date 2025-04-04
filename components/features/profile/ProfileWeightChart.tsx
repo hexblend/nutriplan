@@ -6,7 +6,7 @@ import { colors } from '@/lib/constants';
 import { cn, displayWeight, kgToLbs } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { useGetClientUpdates } from '@/supabase/hooks/useClientUpdates';
-import { FontAwesome } from '@expo/vector-icons';
+import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
 import { format } from 'date-fns';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
@@ -103,9 +103,16 @@ export default function ProfileWeightChart({
   if (loading) return <Loading />;
   return (
     <View className={cn(className)}>
-      <Text className="text-center font-bold">
-        {t.t('profile.weightProgress')}
-      </Text>
+      <View className="flex-row items-center justify-center gap-3">
+        <FontAwesome6
+          name="weight-scale"
+          size={20}
+          color="#ea580c" // orange-600
+        />
+        <Text className="text-center font-bold">
+          {t.t('profile.weightProgress')}
+        </Text>
+      </View>
       <View className="-ml-2 mt-2 w-full">
         <LineChart
           key={key}
