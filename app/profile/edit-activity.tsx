@@ -1,11 +1,11 @@
-import SecondaryHeader from '@/components/layout/SecondaryHeader';
+import PageWrapper from '@/components/layout/PageWrapper';
 import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { t } from '@/i18n/translations';
 import { supabase } from '@/lib/supabase/client';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
 import { z } from 'zod';
 
 const formSchema = z.object({
@@ -14,6 +14,7 @@ const formSchema = z.object({
 type FormValues = z.infer<typeof formSchema>;
 
 export default function EditActivityScreen() {
+  const router = useRouter();
   const { currentClient, setCurrentClient } = useSession();
 
   const {
@@ -32,6 +33,8 @@ export default function EditActivityScreen() {
       ...currentClient,
       activity_level: data.activity_level,
     });
+    router.back();
+
     // DB Update
     const { error } = await supabase
       .from('clients')
@@ -49,49 +52,42 @@ export default function EditActivityScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background">
-      <SecondaryHeader
-        title={t.t('profile.activityLevel')}
-        showBackButton
-        onBackButtonPress={handleSubmit(onSubmit)}
+    <PageWrapper className="pt-6">
+      <ControlledSelect
+        control={control}
+        name="activity_level"
+        // @ts-ignore-next-line
+        onValueChange={handleSubmit(onSubmit)}
+        options={[
+          {
+            label: t.t('auth.activitySedentary'),
+            value: 'Sedentary',
+            icon: 'sofa',
+          },
+          {
+            label: t.t('auth.activityLightly'),
+            value: 'Lightly active',
+            icon: 'human-handsup',
+          },
+          {
+            label: t.t('auth.activityModerate'),
+            value: 'Moderately active',
+            icon: 'walk',
+          },
+          {
+            label: t.t('auth.activityVery'),
+            value: 'Very active',
+            icon: 'run',
+          },
+          {
+            label: t.t('auth.activityExtreme'),
+            value: 'Extremely active',
+            icon: 'run-fast',
+          },
+        ]}
+        multiple={false}
+        error={errors.activity_level}
       />
-      <View className="flex-1 p-4">
-        <View className="mt-6">
-          <ControlledSelect
-            control={control}
-            name="activity_level"
-            options={[
-              {
-                label: t.t('auth.activitySedentary'),
-                value: 'Sedentary',
-                icon: 'sofa',
-              },
-              {
-                label: t.t('auth.activityLightly'),
-                value: 'Lightly active',
-                icon: 'human-handsup',
-              },
-              {
-                label: t.t('auth.activityModerate'),
-                value: 'Moderately active',
-                icon: 'walk',
-              },
-              {
-                label: t.t('auth.activityVery'),
-                value: 'Very active',
-                icon: 'run',
-              },
-              {
-                label: t.t('auth.activityExtreme'),
-                value: 'Extremely active',
-                icon: 'run-fast',
-              },
-            ]}
-            multiple={false}
-            error={errors.activity_level}
-          />
-        </View>
-      </View>
-    </View>
+    </PageWrapper>
   );
 }
