@@ -1,4 +1,5 @@
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { FontAwesome } from '@expo/vector-icons';
 import { View } from 'react-native';
@@ -21,49 +22,43 @@ const BMI_RANGES = [
     min: SCALE_MIN,
     max: 16,
     color: 'bg-blue-800',
-    label: 'Severely Underweight',
-    recommendation:
-      'Consider consulting with a healthcare provider for personalized guidance. Focus on nutrient-dense foods and gentle strength exercises.',
+    label: t.t('profile.severelyUnderweight'),
+    recommendation: t.t('profile.bmiRecommendationSeverelyUnderweight'),
   },
   {
     min: 16,
     max: 18.5,
     color: 'bg-blue-600',
-    label: 'Underweight',
-    recommendation:
-      'Try eating more nutrient-rich foods like nuts, avocados, and whole grains. Small, frequent meals can help increase your energy and strength.',
+    label: t.t('profile.underweight'),
+    recommendation: t.t('profile.bmiRecommendationUnderweight'),
   },
   {
     min: 18.5,
     max: 25,
     color: 'bg-green-600',
-    label: 'Normal',
-    recommendation:
-      "You're in a healthy range! Continue enjoying varied foods and activities you love.",
+    label: t.t('profile.normal'),
+    recommendation: t.t('profile.bmiRecommendationNormal'),
   },
   {
     min: 25,
     max: 30,
     color: 'bg-yellow-500',
-    label: 'Overweight',
-    recommendation:
-      'Add colorful vegetables to meals and find movement that brings you joy. Small daily changes can make a meaningful difference.',
+    label: t.t('profile.overweight'),
+    recommendation: t.t('profile.bmiRecommendationOverweight'),
   },
   {
     min: 30,
     max: 35,
     color: 'bg-orange-500',
-    label: 'Obese',
-    recommendation:
-      'Focus on progress, not perfection. Start with whole foods and movement that feels good. Set small, achievable weekly goals.',
+    label: t.t('profile.obese'),
+    recommendation: t.t('profile.bmiRecommendationObese'),
   },
   {
     min: 35,
     max: SCALE_MAX,
     color: 'bg-secondary-200',
-    label: 'Severely Obese',
-    recommendation:
-      'Consider partnering with healthcare providers for personalized guidance. Celebrate small daily victories in nutrition and gentle movement.',
+    label: t.t('profile.severelyObese'),
+    recommendation: t.t('profile.bmiRecommendationSeverelyObese'),
   },
 ];
 
@@ -97,7 +92,9 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
             size={20}
             color={colors.primary[350]}
           />
-          <Text className="text-3xl font-bold">BMI {bmi.toFixed(1)}</Text>
+          <Text className="text-3xl font-bold">
+            {t.t('profile.bmi')} {bmi.toFixed(1)}
+          </Text>
         </View>
 
         <View className="mb-1 mt-0.5 flex-row items-center gap-2">

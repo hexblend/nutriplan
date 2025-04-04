@@ -15,8 +15,8 @@ export default function ProfileScreen() {
 
       <ProfileWeightChart className="mt-10" />
       <ProfileGoal className="mt-10" />
-      <ProfileActivityLevel className="mt-16" />
       <ProfileBmiRange className="mt-18" />
+      <ProfileActivityLevel className="mt-16" />
       <ProfileSettings className="mt-20" />
     </PageWrapper>
   );
