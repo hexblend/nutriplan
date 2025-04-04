@@ -52,7 +52,7 @@ export default function EditGoalScreen() {
   return (
     <View className="flex-1 bg-background">
       <SecondaryHeader
-        title="Edit goal"
+        title={t.t('profile.yourGoal')}
         showBackButton
         onBackButtonPress={handleSubmit(onSubmit)}
       />
@@ -64,7 +64,7 @@ export default function EditGoalScreen() {
             options={[
               {
                 label: t.t('auth.goalLooseWeight'),
-                value: 'Lose weigth',
+                value: 'Lose weight',
                 icon: 'camera-timer',
               },
               {

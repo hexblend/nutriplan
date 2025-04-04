@@ -77,7 +77,7 @@ export default function GoalScreen() {
             options={[
               {
                 label: t.t('auth.goalLooseWeight'),
-                value: 'Lose weigth',
+                value: 'Lose weight',
                 icon: 'camera-timer',
               },
               {

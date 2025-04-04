@@ -1,4 +1,5 @@
 import LinkField from '@/components/blocks/LinkField';
+import { translateValue } from '@/components/features/onboarding/recap/TranslationMap';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { ControlledInput } from '@/components/ui/form/ControlledInput';
@@ -79,12 +80,12 @@ export default function EditTargetWeightScreen() {
     <PageWrapper className="pt-6">
       <LinkField
         href="/profile/edit-goal"
-        labelLeft={currentClient?.goal ?? ''}
+        labelLeft={translateValue('Goal', currentClient?.goal ?? undefined)}
       />
       <View className="mt-12 flex-col items-center">
         <View className="w-[120px] flex-1 self-center">
           <ControlledInput
-            label="Target Weight"
+            label={t.t('profile.targetWeight')}
             control={control}
             name="targetWeight"
             error={errors.targetWeight}
