@@ -117,7 +117,15 @@ export default function ProfileWeightChart({
           textShiftX={-10}
           textFontSize={13}
           thickness={2}
-          spacing={lineData.length <= 3 ? 150 : lineData.length <= 6 ? 120 : 80}
+          spacing={
+            weightUpdates?.length === 0 || lineData.length === 1 // 2 data points for both
+              ? 150
+              : lineData.length >= 3
+                ? 120
+                : lineData.length >= 6
+                  ? 80
+                  : 80
+          }
           verticalLinesColor={colors.primary[800]}
           hideRules
           xAxisColor={colors.primary[700]}

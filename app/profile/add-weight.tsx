@@ -7,7 +7,7 @@ import { supabase } from '@/lib/supabase/client';
 import { kgToLbs, lbsToKg, throwError } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useNavigation } from 'expo-router';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
@@ -21,7 +21,7 @@ type FormValues = z.infer<typeof formSchema>;
 export default function AddWeightScreen() {
   const { currentProfile, currentClient, setCurrentClient } = useSession();
   if (!currentProfile || !currentClient) return null;
-  const navigation = useNavigation();
+  const router = useRouter();
 
   const defaultWeight = currentClient.weight_kg
     ? currentProfile.weight_unit === 'imperial'
@@ -140,7 +140,8 @@ export default function AddWeightScreen() {
       );
     }
 
-    return navigation.goBack();
+    // Refresh the app to apply language changes
+    router.replace('/(tabs)/profile');
   };
 
   const unit = currentProfile.weight_unit === 'metric' ? 'kg' : 'lbs';
