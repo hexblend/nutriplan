@@ -51,7 +51,6 @@ export default function EditHeightScreen() {
     let heightInCm: number;
     if (currentProfile.height_unit === 'metric') {
       heightInCm = parseFloat(data.height);
-      console.log('Metric height in cm:', heightInCm);
     } else {
       const heightStr = data.height;
       const feet = parseFloat(heightStr);
