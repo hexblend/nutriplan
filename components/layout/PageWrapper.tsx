@@ -25,7 +25,7 @@ export default function PageWrapper({
             showsVerticalScrollIndicator={false}
             className={cn('px-4', className)}
           >
-            <View className="mb-32">{children}</View>
+            <View className="mb-24">{children}</View>
           </ScrollView>
         </SafeAreaView>
         {footer && footer}
