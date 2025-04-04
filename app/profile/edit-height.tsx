@@ -48,26 +48,14 @@ export default function EditHeightScreen() {
 
   const onSubmit = async (data: FormData) => {
     if (!currentClient?.id) return;
-
-    console.log('Form data:', data);
-    console.log('Current profile unit:', currentProfile.height_unit);
-
     let heightInCm: number;
     if (currentProfile.height_unit === 'metric') {
       heightInCm = parseFloat(data.height);
       console.log('Metric height in cm:', heightInCm);
     } else {
       const heightStr = data.height;
-      // Check if the string is in the expected format (e.g., "5'11"")
-      //   if (heightStr.includes("'")) {
-      //     const { feet, inches } = parseFeetAndInches(heightStr);
-      //     console.log('Parsed feet:', feet, 'inches:', inches);
-      //     heightInCm = feetAndInchesToCm(feet, inches);
-      //   } else {
-      // If not in the expected format, try to parse as a number (feet only)
       const feet = parseFloat(heightStr);
       heightInCm = feetAndInchesToCm(feet, 0);
-      //   }
     }
 
     // Optimistic update
