@@ -69,7 +69,7 @@ export default function NameScreen() {
             name="lastName"
             autoCorrect={false}
             control={control}
-            placeholder={t.t('common.firstName')}
+            placeholder={t.t('common.lastName')}
             error={errors?.lastName}
             className={cn(
               !errors.lastName && 'rounded-tl-none rounded-tr-none border-t-0'

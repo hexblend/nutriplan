@@ -97,7 +97,7 @@ export default function EditNameScreen() {
         control={control}
         name="last_name"
         label={t.t('common.lastName')}
-        placeholder={t.t('common.firstName')}
+        placeholder={t.t('common.lastName')}
         error={errors.last_name}
         containerClassName="mt-4"
       />
