@@ -32,6 +32,10 @@ export default function ProfileLayout() {
         name="add-weight"
         options={{ title: t.t('profile.addTodayWeight') }}
       />
+      <Stack.Screen
+        name="edit-target-weight"
+        options={{ title: 'Change your goal' }}
+      />
     </Stack>
   );
 }

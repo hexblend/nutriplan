@@ -1,7 +1,7 @@
-import { Button } from '@/components/ui/button';
+import LinkField from '@/components/blocks/LinkField';
 import Frame from '@/components/ui/frame';
 import { Text } from '@/components/ui/text';
-import { cn, displayWeight } from '@/lib/utils';
+import { cn } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
@@ -18,7 +18,10 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
 
   const formatWeight = (weight: number | null | undefined) => {
     if (weight === null || weight === undefined) return 'N/A';
-    return displayWeight(weight, currentProfile?.weight_unit || 'metric');
+    if (currentProfile?.weight_unit === 'imperial') {
+      return `${Math.round(weight * 2.20462)} lbs`;
+    }
+    return `${weight} kg`;
   };
 
   const calculateWeeksToGoal = () => {
@@ -68,10 +71,13 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
           ) : null}
         </View>
       </Frame>
-      <Button variant="tertiary" className="mt-4 flex-row items-center gap-2">
-        <FontAwesome name="edit" size={16} color="white" />
-        <Text>Change goal</Text>
-      </Button>
+      <LinkField
+        href="/profile/edit-target-weight"
+        icon={<FontAwesome name="edit" size={16} color="white" />}
+        value="Change goal"
+        centered
+        className="mt-4"
+      />
     </Animated.View>
   );
 }

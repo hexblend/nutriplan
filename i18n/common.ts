@@ -21,6 +21,7 @@ export const commonEN = {
   settings: 'Settings',
   language: 'Language',
   add: 'Add',
+  save: 'Save',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -45,4 +46,5 @@ export const commonRO = {
   settings: 'Setări',
   language: 'Limba',
   add: 'Adaugă',
+  save: 'Salvează',
 };
