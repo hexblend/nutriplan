@@ -1,11 +1,11 @@
-import SecondaryHeader from '@/components/layout/SecondaryHeader';
+import PageWrapper from '@/components/layout/PageWrapper';
 import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { t } from '@/i18n/translations';
 import { supabase } from '@/lib/supabase/client';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
+import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
-import { View } from 'react-native';
 import { z } from 'zod';
 import { OnboardingGoal } from '../auth/(onboarding)/goal';
 
@@ -16,6 +16,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function EditGoalScreen() {
   const { currentClient, setCurrentClient } = useSession();
+  const router = useRouter();
 
   const {
     control,
@@ -33,6 +34,7 @@ export default function EditGoalScreen() {
       ...currentClient,
       goal: data.goal as OnboardingGoal,
     });
+    router.back();
     // DB Update
     const { error } = await supabase
       .from('clients')
@@ -50,49 +52,42 @@ export default function EditGoalScreen() {
   };
 
   return (
-    <View className="flex-1 bg-background">
-      <SecondaryHeader
-        title={t.t('profile.yourGoal')}
-        showBackButton
-        onBackButtonPress={handleSubmit(onSubmit)}
+    <PageWrapper className="pt-6">
+      <ControlledSelect
+        control={control}
+        name="goal"
+        // @ts-ignore-next-line
+        onValueChange={handleSubmit(onSubmit)}
+        options={[
+          {
+            label: t.t('auth.goalLooseWeight'),
+            value: 'Lose weight',
+            icon: 'camera-timer',
+          },
+          {
+            label: t.t('auth.goalStable'),
+            value: 'Maintain weight in a healthy way',
+            icon: 'scale-balance',
+          },
+          {
+            label: t.t('auth.goalIncreaseMass'),
+            value: 'Increase muscle mass',
+            icon: 'weight-lifter',
+          },
+          {
+            label: t.t('auth.goalHealthCondition'),
+            value: 'Diet for a condition',
+            icon: 'heart-pulse',
+          },
+          {
+            label: t.t('auth.goalPerformance'),
+            value: 'Performance for athletes',
+            icon: 'run-fast',
+          },
+        ]}
+        multiple={false}
+        error={errors.goal}
       />
-      <View className="flex-1 p-4">
-        <View className="mt-6">
-          <ControlledSelect
-            control={control}
-            name="goal"
-            options={[
-              {
-                label: t.t('auth.goalLooseWeight'),
-                value: 'Lose weight',
-                icon: 'camera-timer',
-              },
-              {
-                label: t.t('auth.goalStable'),
-                value: 'Maintain weight in a healthy way',
-                icon: 'scale-balance',
-              },
-              {
-                label: t.t('auth.goalIncreaseMass'),
-                value: 'Increase muscle mass',
-                icon: 'weight-lifter',
-              },
-              {
-                label: t.t('auth.goalHealthCondition'),
-                value: 'Diet for a condition',
-                icon: 'heart-pulse',
-              },
-              {
-                label: t.t('auth.goalPerformance'),
-                value: 'Performance for athletes',
-                icon: 'run-fast',
-              },
-            ]}
-            multiple={false}
-            error={errors.goal}
-          />
-        </View>
-      </View>
-    </View>
+    </PageWrapper>
   );
 }

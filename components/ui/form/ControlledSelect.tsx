@@ -25,6 +25,8 @@ interface ControlledSelectProps<T extends FieldValues> {
     icon?: keyof typeof MaterialCommunityIcons.glyphMap;
   }>;
   multiple?: boolean;
+  // eslint-disable-next-line
+  onValueChange?: (value: string | string[]) => void;
 }
 
 export function ControlledSelect<T extends FieldValues>({
@@ -35,6 +37,7 @@ export function ControlledSelect<T extends FieldValues>({
   className,
   options,
   multiple = false,
+  onValueChange,
 }: ControlledSelectProps<T>) {
   return (
     <View className="w-full space-y-2">
@@ -47,7 +50,10 @@ export function ControlledSelect<T extends FieldValues>({
             className={cn(error ? 'border-destructive' : '', className)}
             options={options}
             value={value}
-            onChange={onChange}
+            onChange={(value) => {
+              onChange(value);
+              onValueChange && onValueChange(value);
+            }}
             multiple={multiple}
           />
         )}

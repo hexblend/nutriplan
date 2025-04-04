@@ -36,7 +36,10 @@ export default function ProfileLayout() {
         name="edit-target-weight"
         options={{ title: t.t('profile.changeGoal') }}
       />
-      <Stack.Screen name="edit-goal" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="edit-goal"
+        options={{ title: t.t('profile.yourGoal') }}
+      />
       <Stack.Screen name="edit-activity" options={{ headerShown: false }} />
       <Stack.Screen
         name="edit-basic-info"
