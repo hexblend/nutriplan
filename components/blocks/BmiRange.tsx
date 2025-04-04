@@ -2,6 +2,7 @@ import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { FontAwesome } from '@expo/vector-icons';
+import { useMemo } from 'react';
 import { View } from 'react-native';
 import Animated, {
   useAnimatedStyle,
@@ -17,51 +18,6 @@ const SCALE_MIN = 15;
 const SCALE_MAX = 40;
 const TOTAL_RANGE = SCALE_MAX - SCALE_MIN;
 
-const BMI_RANGES = [
-  {
-    min: SCALE_MIN,
-    max: 16,
-    color: 'bg-blue-800',
-    label: t.t('profile.severelyUnderweight'),
-    recommendation: t.t('profile.bmiRecommendationSeverelyUnderweight'),
-  },
-  {
-    min: 16,
-    max: 18.5,
-    color: 'bg-blue-600',
-    label: t.t('profile.underweight'),
-    recommendation: t.t('profile.bmiRecommendationUnderweight'),
-  },
-  {
-    min: 18.5,
-    max: 25,
-    color: 'bg-green-600',
-    label: t.t('profile.normal'),
-    recommendation: t.t('profile.bmiRecommendationNormal'),
-  },
-  {
-    min: 25,
-    max: 30,
-    color: 'bg-yellow-500',
-    label: t.t('profile.overweight'),
-    recommendation: t.t('profile.bmiRecommendationOverweight'),
-  },
-  {
-    min: 30,
-    max: 35,
-    color: 'bg-orange-500',
-    label: t.t('profile.obese'),
-    recommendation: t.t('profile.bmiRecommendationObese'),
-  },
-  {
-    min: 35,
-    max: SCALE_MAX,
-    color: 'bg-secondary-200',
-    label: t.t('profile.severelyObese'),
-    recommendation: t.t('profile.bmiRecommendationSeverelyObese'),
-  },
-];
-
 const getBoundaryPosition = (value: number) => {
   return ((value - SCALE_MIN) / TOTAL_RANGE) * 100;
 };
@@ -69,6 +25,54 @@ const getBoundaryPosition = (value: number) => {
 export function BmiRange({ bmi, className }: BmiRangeProps) {
   const clampedBmi = Math.min(Math.max(bmi, SCALE_MIN), SCALE_MAX);
   const percentage = ((clampedBmi - SCALE_MIN) / TOTAL_RANGE) * 100;
+
+  const BMI_RANGES = useMemo(
+    () => [
+      {
+        min: SCALE_MIN,
+        max: 16,
+        color: 'bg-blue-800',
+        label: t.t('profile.severelyUnderweight'),
+        recommendation: t.t('profile.bmiRecommendationSeverelyUnderweight'),
+      },
+      {
+        min: 16,
+        max: 18.5,
+        color: 'bg-blue-600',
+        label: t.t('profile.underweight'),
+        recommendation: t.t('profile.bmiRecommendationUnderweight'),
+      },
+      {
+        min: 18.5,
+        max: 25,
+        color: 'bg-green-600',
+        label: t.t('profile.normal'),
+        recommendation: t.t('profile.bmiRecommendationNormal'),
+      },
+      {
+        min: 25,
+        max: 30,
+        color: 'bg-yellow-500',
+        label: t.t('profile.overweight'),
+        recommendation: t.t('profile.bmiRecommendationOverweight'),
+      },
+      {
+        min: 30,
+        max: 35,
+        color: 'bg-orange-500',
+        label: t.t('profile.obese'),
+        recommendation: t.t('profile.bmiRecommendationObese'),
+      },
+      {
+        min: 35,
+        max: SCALE_MAX,
+        color: 'bg-secondary-200',
+        label: t.t('profile.severelyObese'),
+        recommendation: t.t('profile.bmiRecommendationSeverelyObese'),
+      },
+    ],
+    [t.locale] // Re-create when language changes
+  );
 
   const currentRange = BMI_RANGES.find(
     (range) => clampedBmi >= range.min && clampedBmi < range.max

@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { cn } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
-import { FontAwesome, Octicons } from '@expo/vector-icons';
+import { Octicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { View } from 'react-native';
 
@@ -154,7 +154,6 @@ export default function ProfileActivityLevel({
       {/*  Set Activity Level */}
       <LinkField
         href="/profile/edit-activity"
-        icon={<FontAwesome name="edit" size={16} color="white" />}
         labelLeft={t.t('profile.activity')}
         valueRight={translateValue(
           'activity',
