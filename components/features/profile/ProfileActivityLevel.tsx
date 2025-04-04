@@ -144,7 +144,7 @@ export default function ProfileActivityLevel({
       </View>
 
       {/*  Daily intake for Goal */}
-      <Text className="mt-2 w-2/3 self-center text-center text-xl">
+      <Text className="mt-1 w-2/3 self-center text-center text-xl">
         {t.t('profile.dailyIntake')}{' '}
         <Text className="lowercase">
           {translateValue('goal', currentClient?.goal ?? '')}
