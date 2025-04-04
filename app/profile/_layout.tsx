@@ -42,6 +42,18 @@ export default function ProfileLayout() {
         name="edit-basic-info"
         options={{ title: t.t('profile.yourProfile') }}
       />
+      <Stack.Screen
+        name="edit-name"
+        options={{ title: t.t('common.editName') }}
+      />
+      <Stack.Screen
+        name="edit-height"
+        options={{ title: t.t('common.editHeight') }}
+      />
+      <Stack.Screen
+        name="edit-age"
+        options={{ title: t.t('common.editAge') }}
+      />
     </Stack>
   );
 }
