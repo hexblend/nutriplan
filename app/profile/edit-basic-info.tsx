@@ -15,17 +15,17 @@ export default function EditBasicInfoScreen() {
   return (
     <View className="flex-col gap-4 px-4 pt-6">
       <LinkField
-        href="/profile/edit-target-weight"
+        href="/profile/edit-name"
         labelLeft={t.t('common.name')}
         valueRight={`${first_name} ${last_name}`}
       />
       <LinkField
-        href="/profile/edit-target-weight"
+        href="/profile/edit-height"
         labelLeft={t.t('common.height')}
         valueRight={displayHeight(height_cm, height_unit || 'metric')}
       />
       <LinkField
-        href="/profile/edit-target-weight"
+        href="/profile/edit-age"
         labelLeft={t.t('common.age')}
         valueRight={`${age} ${t.t('common.yearsOld')}`}
       />

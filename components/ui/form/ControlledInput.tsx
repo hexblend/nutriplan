@@ -22,6 +22,7 @@ interface ControlledInputProps<T extends FieldValues>
   label?: string;
   error?: FieldError;
   className?: string;
+  containerClassName?: string;
   rightIcon?: React.ReactNode;
   onRightIconPress?: () => void;
   infoText?: string;
@@ -33,15 +34,16 @@ export function ControlledInput<T extends FieldValues>({
   label,
   error,
   className,
+  containerClassName,
   rightIcon,
   onRightIconPress,
   infoText,
   ...props
 }: ControlledInputProps<T>) {
   return (
-    <View className="w-full space-y-2">
+    <View className={cn('w-full space-y-2', containerClassName)}>
       {label && (
-        <Label className={cn('mb-0 !text-lg font-bold')}>{label}</Label>
+        <Label className={cn('mb-2 !text-lg font-bold')}>{label}</Label>
       )}
       <Controller
         control={control}
