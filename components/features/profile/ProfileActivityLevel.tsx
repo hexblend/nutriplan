@@ -1,5 +1,7 @@
+import { translateValue } from '@/components/features/onboarding/recap/TranslationMap';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
 import { cn } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { FontAwesome, Octicons } from '@expo/vector-icons';
@@ -133,18 +135,30 @@ export default function ProfileActivityLevel({
 
   return (
     <View className={cn(className)}>
+      {/*  Calories */}
       <View className="mb-2 flex-row items-center justify-center gap-2">
         <Octicons name="flame" size={18} color="#ea580c" />
         <Text className="text-center text-3xl font-bold">
           {targetCalories ? `${targetCalories} Kcal` : '--- Kcal'}
         </Text>
       </View>
-      <Text className="text-center text-xl font-semibold">
-        Daily intake ({currentClient?.goal ?? 'Set Goal'})
+
+      {/*  Daily intake for Goal */}
+      <Text className="mt-2 w-2/3 self-center text-center text-xl">
+        {t.t('profile.dailyIntake')}{' '}
+        <Text className="lowercase">
+          {translateValue('goal', currentClient?.goal ?? '')}
+        </Text>
       </Text>
+
+      {/*  Set Activity Level */}
       <Button variant="tertiary" className="mt-4 flex-row items-center gap-2">
         <FontAwesome name="edit" size={16} color="white" />
-        <Text>{currentClient?.activity_level ?? 'Set Activity Level'}</Text>
+        <Text>
+          {currentClient?.activity_level
+            ? translateValue('activity', currentClient.activity_level)
+            : t.t('profile.setActivityLevel')}
+        </Text>
       </Button>
     </View>
   );

@@ -7,6 +7,11 @@ export const profileEN = {
   goal: 'Goal',
   achievableIn: 'Achievable in',
   targetWeight: 'Target weight',
+
+  // Activity Level
+  dailyIntake: 'Daily intake to',
+  setGoal: 'Set Goal',
+  setActivityLevel: 'Set Activity Level',
 };
 export const profileRO = {
   weightProgress: 'Progresul greutății',
@@ -17,4 +22,9 @@ export const profileRO = {
   goal: 'Ideal',
   achievableIn: 'Realizabil în',
   targetWeight: 'Greutate țintă',
+
+  // Activity Level
+  dailyIntake: 'Consum zilnic ca',
+  setGoal: 'Setează Idealul',
+  setActivityLevel: 'Setează Nivelul de Activitate',
 };
