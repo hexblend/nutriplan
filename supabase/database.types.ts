@@ -69,7 +69,7 @@ export type Database = {
           target_condition: string | null;
           target_maintenance: string | null;
           target_sport: string | null;
-          target_weight_kg: string | null;
+          target_weight_kg: number | null;
           tried_before: string | null;
           user_id: string;
           weight_kg: number | null;
@@ -101,7 +101,7 @@ export type Database = {
           target_condition?: string | null;
           target_maintenance?: string | null;
           target_sport?: string | null;
-          target_weight_kg?: string | null;
+          target_weight_kg?: number | null;
           tried_before?: string | null;
           user_id?: string;
           weight_kg?: number | null;
@@ -133,7 +133,7 @@ export type Database = {
           target_condition?: string | null;
           target_maintenance?: string | null;
           target_sport?: string | null;
-          target_weight_kg?: string | null;
+          target_weight_kg?: number | null;
           tried_before?: string | null;
           user_id?: string;
           weight_kg?: number | null;
