@@ -128,7 +128,7 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
             })}
           </View>
           <Animated.View
-            className="absolute top-0 -mt-1 h-6 w-1 rounded-lg bg-white"
+            className="absolute top-0 h-4 w-1 rounded-lg bg-white"
             style={caretStyle}
           />
         </View>
