@@ -4,7 +4,12 @@ import ControlledRulerPicker from '@/components/ui/form/ControlledRulerPicker';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { supabase } from '@/lib/supabase/client';
-import { displayHeight, parseFeetAndInches, throwError } from '@/lib/utils';
+import {
+  displayHeight,
+  feetAndInchesToCm,
+  parseFeetAndInches,
+  throwError,
+} from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { router } from 'expo-router';
@@ -44,15 +49,36 @@ export default function EditHeightScreen() {
   const onSubmit = async (data: FormData) => {
     if (!currentClient?.id) return;
 
-    const heightInCm = parseFloat(data.height);
+    console.log('Form data:', data);
+    console.log('Current profile unit:', currentProfile.height_unit);
+
+    let heightInCm: number;
+    if (currentProfile.height_unit === 'metric') {
+      heightInCm = parseFloat(data.height);
+      console.log('Metric height in cm:', heightInCm);
+    } else {
+      const heightStr = data.height;
+      // Check if the string is in the expected format (e.g., "5'11"")
+      //   if (heightStr.includes("'")) {
+      //     const { feet, inches } = parseFeetAndInches(heightStr);
+      //     console.log('Parsed feet:', feet, 'inches:', inches);
+      //     heightInCm = feetAndInchesToCm(feet, inches);
+      //   } else {
+      // If not in the expected format, try to parse as a number (feet only)
+      const feet = parseFloat(heightStr);
+      heightInCm = feetAndInchesToCm(feet, 0);
+      //   }
+    }
 
     // Optimistic update
     setCurrentClient({ ...currentClient, height_cm: heightInCm });
+
     // DB Update
     const { error } = await supabase
       .from('clients')
       .update({ height_cm: heightInCm })
       .eq('id', currentClient.id);
+
     if (error) {
       // Revert optimistic update
       setCurrentClient({
@@ -62,7 +88,7 @@ export default function EditHeightScreen() {
       return throwError('[profile] Error updating height', error);
     }
 
-    router.back();
+    return router.back();
   };
 
   return (
