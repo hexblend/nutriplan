@@ -17,10 +17,10 @@ interface LinkFieldProps {
   labelClassName?: string;
   icon?: JSX.Element;
   hideEditIcon?: boolean;
-  buttonVariant?: ButtonProps['variant'];
   centered?: boolean;
   valueClassName?: string;
   disabled?: boolean;
+  variant?: ButtonProps['variant'];
 }
 
 export default function LinkField({
@@ -33,10 +33,10 @@ export default function LinkField({
   labelClassName,
   icon,
   hideEditIcon,
-  buttonVariant = 'tertiary',
   centered = false,
   valueClassName,
   disabled = false,
+  variant = 'tertiary',
 }: LinkFieldProps) {
   return (
     <View className={className}>
@@ -47,7 +47,7 @@ export default function LinkField({
       )}
       <Link href={href} asChild>
         <Button
-          variant={buttonVariant}
+          variant={variant}
           disabled={disabled}
           className={cn(
             'flex-row items-center',

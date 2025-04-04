@@ -78,6 +78,7 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
         value={t.t('profile.changeGoal')}
         centered
         className="mt-4"
+        variant="secondary"
       />
     </Animated.View>
   );

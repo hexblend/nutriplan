@@ -1,7 +1,5 @@
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { colors } from '@/lib/constants';
-import { FontAwesome } from '@expo/vector-icons';
 import { useMemo } from 'react';
 import { View } from 'react-native';
 import Animated, {
@@ -91,12 +89,12 @@ export function BmiRange({ bmi, className }: BmiRangeProps) {
     <View className={`w-full space-y-4 ${className || ''}`}>
       <View className="items-center space-y-1">
         <View className="flex-row items-center gap-2">
-          <FontAwesome
+          {/* <FontAwesome
             name="balance-scale"
             size={20}
-            color={colors.primary[350]}
-          />
-          <Text className="text-3xl font-bold">
+            color="#6B7280" // gray-500
+          /> */}
+          <Text className="text-3xl font-bold text-gray-500">
             {t.t('profile.bmi')} {bmi.toFixed(1)}
           </Text>
         </View>

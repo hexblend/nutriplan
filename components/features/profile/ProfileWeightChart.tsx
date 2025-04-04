@@ -10,7 +10,7 @@ import { FontAwesome, FontAwesome6 } from '@expo/vector-icons';
 import { format } from 'date-fns';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useMemo, useState } from 'react';
-import { Animated, View } from 'react-native';
+import { Animated, View, useWindowDimensions } from 'react-native';
 import { LineChart } from 'react-native-gifted-charts';
 
 interface ProfileWeightChartProps {
@@ -22,6 +22,7 @@ export default function ProfileWeightChart({
 }: ProfileWeightChartProps) {
   const { clientUpdates, loading } = useGetClientUpdates();
   const { currentProfile, currentClient } = useSession();
+  const { width: screenWidth } = useWindowDimensions();
 
   const [key, setKey] = useState(0);
   const [opacity] = useState(new Animated.Value(0));
@@ -83,6 +84,7 @@ export default function ProfileWeightChart({
       return [
         { value: displayValue, hideDataPoints: true },
         { value: displayValue, label: date, dataPointText },
+        { value: displayValue, hideDataPoints: true },
       ];
     }
     return [];
@@ -113,12 +115,13 @@ export default function ProfileWeightChart({
           {t.t('profile.weightProgress')}
         </Text>
       </View>
+
       <View className="-ml-2 mt-2 w-full">
         <LineChart
           key={key}
           data={lineData}
           maxValue={Math.max(...lineData.map((d) => d.value)) * 1.2}
-          initialSpacing={24}
+          initialSpacing={weightUpdates?.length === 0 ? -3 : 24}
           textColor1={colors.primary[350]}
           textShiftY={-8}
           textShiftX={-10}
@@ -126,7 +129,7 @@ export default function ProfileWeightChart({
           thickness={2}
           spacing={
             weightUpdates?.length === 0
-              ? 180
+              ? screenWidth / 2 - 16
               : lineData.length <= 3
                 ? 120
                 : lineData.length <= 6
@@ -149,6 +152,7 @@ export default function ProfileWeightChart({
           startFillColor={colors.primary[350]}
           startOpacity={0.4}
           endOpacity={0.1}
+          height={170}
         />
       </View>
       <Animated.View style={{ opacity }}>
