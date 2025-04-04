@@ -8,6 +8,7 @@ import { t } from '@/i18n/translations';
 import { supabase } from '@/lib/supabase/client';
 import { kgToLbs, lbsToKg, throwError } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
+import { FontAwesome } from '@expo/vector-icons';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
@@ -81,6 +82,8 @@ export default function EditTargetWeightScreen() {
       <LinkField
         href="/profile/edit-goal"
         labelLeft={translateValue('Goal', currentClient?.goal ?? undefined)}
+        icon={<FontAwesome name="edit" size={16} color="#fff" />}
+        hideEditIcon
       />
       <View className="mt-12 flex-col items-center">
         <View className="w-[120px] flex-1 self-center">
