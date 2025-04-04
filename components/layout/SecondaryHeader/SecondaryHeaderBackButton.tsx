@@ -5,15 +5,20 @@ import { TouchableOpacity } from 'react-native';
 
 interface SecondaryHeaderBackButtonProps {
   backButtonText?: string;
+  onPress?: () => void;
 }
 export default function SecondaryHeaderBackButton({
   backButtonText,
+  onPress,
 }: SecondaryHeaderBackButtonProps) {
   const router = useRouter();
   return (
     <TouchableOpacity
       className="absolute bottom-0 left-0 z-10 flex-row items-center pb-2 pl-4 pr-12 pt-4"
-      onPress={() => router.back()}
+      onPress={() => {
+        router.back();
+        onPress && onPress();
+      }}
     >
       <FontAwesome6 name="arrow-left" size={25} color="#ccc" />
       {backButtonText && (

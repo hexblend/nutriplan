@@ -36,6 +36,7 @@ export default function ProfileLayout() {
         name="edit-target-weight"
         options={{ title: 'Change your goal' }}
       />
+      <Stack.Screen name="edit-goal" options={{ headerShown: false }} />
     </Stack>
   );
 }

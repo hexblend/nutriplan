@@ -8,6 +8,7 @@ interface SecondaryHeaderProps {
   showBackButton?: boolean;
   backButtonText?: string;
   rightComponent?: React.ReactNode;
+  onBackButtonPress?: () => void;
 }
 
 export default function SecondaryHeader({
@@ -15,6 +16,7 @@ export default function SecondaryHeader({
   showBackButton = true,
   backButtonText,
   rightComponent,
+  onBackButtonPress,
 }: SecondaryHeaderProps) {
   const insets = useSafeAreaInsets();
   return (
@@ -24,7 +26,10 @@ export default function SecondaryHeader({
     >
       <View className="h-11 flex-row items-center px-4">
         {showBackButton && (
-          <SecondaryHeaderBackButton backButtonText={backButtonText} />
+          <SecondaryHeaderBackButton
+            backButtonText={backButtonText}
+            onPress={onBackButtonPress}
+          />
         )}
         <View className="mx-10 flex-1 items-center justify-center">
           <Text

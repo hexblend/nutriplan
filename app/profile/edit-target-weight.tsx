@@ -78,7 +78,7 @@ export default function EditTargetWeightScreen() {
   return (
     <PageWrapper className="pt-6">
       <LinkField
-        href="/profile/edit-language"
+        href="/profile/edit-goal"
         labelLeft={currentClient?.goal ?? ''}
       />
       <View className="mt-12 flex-col items-center">
