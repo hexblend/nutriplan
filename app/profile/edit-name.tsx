@@ -16,7 +16,8 @@ type FormData = {
 };
 
 export default function EditNameScreen() {
-  const { currentProfile, setCurrentProfile } = useSession();
+  const { currentProfile, setCurrentProfile, currentClient, setCurrentClient } =
+    useSession();
   const [isLoading, setIsLoading] = useState(false);
 
   const {
@@ -34,20 +35,50 @@ export default function EditNameScreen() {
     if (!currentProfile?.id) return;
     setIsLoading(true);
 
-    const { error } = await supabase
+    // Update profile
+    const { error: profileError } = await supabase
       .from('profiles')
       .update({
         first_name: data.first_name,
         last_name: data.last_name,
       })
       .eq('id', currentProfile.id);
-    if (error) throwError('Error updating name', error);
+    if (profileError) throwError('Error updating name', profileError);
 
+    // Update client if exists
+    if (currentClient?.id) {
+      const { error: clientError } = await supabase
+        .from('clients')
+        .update({
+          first_name: data.first_name,
+          last_name: data.last_name,
+        })
+        .eq('id', currentClient.id);
+      if (clientError) throwError('Error updating client name', clientError);
+    }
+
+    // Update auth metadata
+    const { error: authError } = await supabase.auth.updateUser({
+      data: {
+        first_name: data.first_name,
+        last_name: data.last_name,
+      },
+    });
+    if (authError) throwError('Error updating authentication name', authError);
+
+    // Update local state
     setCurrentProfile({
       ...currentProfile,
       first_name: data.first_name,
       last_name: data.last_name,
     });
+    if (currentClient) {
+      setCurrentClient({
+        ...currentClient,
+        first_name: data.first_name,
+        last_name: data.last_name,
+      });
+    }
 
     setIsLoading(false);
     router.back();
