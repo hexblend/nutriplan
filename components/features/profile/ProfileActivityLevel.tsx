@@ -1,5 +1,5 @@
+import LinkField from '@/components/blocks/LinkField';
 import { translateValue } from '@/components/features/onboarding/recap/TranslationMap';
-import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { cn } from '@/lib/utils';
@@ -152,14 +152,17 @@ export default function ProfileActivityLevel({
       </Text>
 
       {/*  Set Activity Level */}
-      <Button variant="tertiary" className="mt-4 flex-row items-center gap-2">
-        <FontAwesome name="edit" size={16} color="white" />
-        <Text>
-          {currentClient?.activity_level
-            ? translateValue('activity', currentClient.activity_level)
-            : t.t('profile.setActivityLevel')}
-        </Text>
-      </Button>
+      <LinkField
+        href="/profile/edit-activity"
+        icon={<FontAwesome name="edit" size={16} color="white" />}
+        labelLeft={t.t('profile.activity')}
+        valueRight={translateValue(
+          'activity',
+          currentClient?.activity_level ?? ''
+        )}
+        hideEditIcon
+        className="mt-4"
+      />
     </View>
   );
 }

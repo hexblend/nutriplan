@@ -11,7 +11,8 @@ export const profileEN = {
   // Activity Level
   dailyIntake: 'Daily intake to',
   setGoal: 'Set Goal',
-  setActivityLevel: 'Set Activity Level',
+  activityLevel: 'Activity level',
+  activity: 'Acitivity',
 };
 export const profileRO = {
   weightProgress: 'Progresul greutății',
@@ -26,5 +27,6 @@ export const profileRO = {
   // Activity Level
   dailyIntake: 'Consum zilnic ca',
   setGoal: 'Setează Idealul',
-  setActivityLevel: 'Setează Nivelul de Activitate',
+  activityLevel: 'Nivel de activitate',
+  activity: 'Activitate',
 };

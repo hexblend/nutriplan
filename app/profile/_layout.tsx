@@ -37,6 +37,10 @@ export default function ProfileLayout() {
         options={{ title: t.t('profile.changeGoal') }}
       />
       <Stack.Screen name="edit-goal" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="edit-activity"
+        options={{ title: t.t('profile.activityLevel') }}
+      />
     </Stack>
   );
 }
