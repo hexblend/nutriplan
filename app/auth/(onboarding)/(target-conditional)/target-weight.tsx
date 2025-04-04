@@ -17,15 +17,19 @@ import { View } from 'react-native';
 import { z } from 'zod';
 
 const formSchema = z.object({
-  targetWeight: z.string().min(2, 'Required'),
+  targetWeight: z
+    .string()
+    .min(1, 'Weight is required')
+    .refine((val) => !isNaN(parseFloat(val)), 'Invalid number'),
 });
+
 type FormValues = z.infer<typeof formSchema>;
 
 export default function TargetWeightScreen() {
   const {
     weight,
-    targetWeight,
-    setTargetWeight,
+    targetWeightKg,
+    setTargetWeightKg,
     setIsForward,
     currentScreenName,
     setCurrentScreenName,
@@ -40,7 +44,9 @@ export default function TargetWeightScreen() {
     setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { targetWeight: targetWeight?.split(' ')[0] || '' },
+    defaultValues: {
+      targetWeight: targetWeightKg?.toString() || '',
+    },
   });
   const currentTargetWeight = watch('targetWeight');
   const readyToSubmit = (isDirty && isValid) || !!currentTargetWeight;
@@ -50,20 +56,24 @@ export default function TargetWeightScreen() {
   const handleUnitChange = (value: string) => {
     setUnit(value);
     if (value === 'lbs') {
-      const weightNum = parseFloat(currentTargetWeight);
+      const weightNum = parseFloat(currentTargetWeight || '0');
       setValue('targetWeight', kgToLbs(weightNum).toString());
     }
     if (value === 'kg') {
-      const weightNum = parseFloat(currentTargetWeight);
+      const weightNum = parseFloat(currentTargetWeight || '0');
       setValue('targetWeight', lbsToKg(weightNum).toString());
     }
   };
 
   const onSubmit = async (data: FormValues) => {
-    setTargetWeight(`${data.targetWeight} ${unit}`);
+    const weightInKg =
+      unit === 'kg'
+        ? parseFloat(data.targetWeight)
+        : lbsToKg(parseFloat(data.targetWeight));
+    setTargetWeightKg(weightInKg);
     const { error } = await supabase
       .from('clients')
-      .update({ target_weight: data.targetWeight })
+      .update({ target_weight_kg: weightInKg })
       .eq('id', clientId);
     if (error) {
       return throwError('[onboarding] Error updating client weight', error);
@@ -74,17 +84,14 @@ export default function TargetWeightScreen() {
     if (nextScreen) setCurrentScreenName(nextScreen);
   };
 
-  // Calculate initial target weight based on current weight
+  // Initial target weight based on current weight
   const calculateInitialTargetWeight = () => {
     const currentWeightNum = parseFloat(weight.split(' ')[0]);
     const currentUnit = weight.split(' ')[1];
-
+    const currentWeightInKg =
+      currentUnit === 'kg' ? currentWeightNum : lbsToKg(currentWeightNum);
     // Set initial target weight slightly lower than current weight
-    const targetWeightInKg =
-      currentUnit === 'kg'
-        ? currentWeightNum - 5
-        : lbsToKg(currentWeightNum) - 5;
-
+    const targetWeightInKg = currentWeightInKg - 5;
     return {
       kg: Math.round(targetWeightInKg),
       lbs: Math.round(kgToLbs(targetWeightInKg)),

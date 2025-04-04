@@ -40,8 +40,8 @@ interface OnboardingContextType {
   weightUnit: 'metric' | 'imperial';
   setWeightUnit: Dispatch<SetStateAction<'metric' | 'imperial'>>;
   // Target Weight
-  targetWeight: string;
-  setTargetWeight: Dispatch<SetStateAction<string>>;
+  targetWeightKg: number | undefined;
+  setTargetWeightKg: Dispatch<SetStateAction<number | undefined>>;
   // Age & Sex
   age: string;
   setAge: Dispatch<SetStateAction<string>>;
@@ -119,8 +119,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
   const [weightUnit, setWeightUnit] =
     useState<OnboardingContextType['weightUnit']>('metric');
   // Target Weight
-  const [targetWeight, setTargetWeight] =
-    useState<OnboardingContextType['targetWeight']>('');
+  const [targetWeightKg, setTargetWeightKg] =
+    useState<OnboardingContextType['targetWeightKg']>(undefined);
   // Age & Sex
   const [age, setAge] = useState<OnboardingContextType['age']>('30');
   const [sex, setSex] = useState<OnboardingContextType['sex']>('female');
@@ -185,8 +185,8 @@ export const OnboardingProvider: React.FC<OnboardingProviderProps> = ({
         weightUnit,
         setWeightUnit,
         // Target Weight
-        targetWeight,
-        setTargetWeight,
+        targetWeightKg,
+        setTargetWeightKg,
         // Age & Sex
         age,
         setAge,
