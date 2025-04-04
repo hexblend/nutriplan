@@ -1,3 +1,4 @@
+import LinkField from '@/components/blocks/LinkField';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { ControlledInput } from '@/components/ui/form/ControlledInput';
@@ -76,9 +77,14 @@ export default function EditTargetWeightScreen() {
 
   return (
     <PageWrapper className="pt-6">
-      <View className="flex-col items-center">
+      <LinkField
+        href="/profile/edit-language"
+        labelLeft={currentClient?.goal ?? ''}
+      />
+      <View className="mt-12 flex-col items-center">
         <View className="w-[120px] flex-1 self-center">
           <ControlledInput
+            label="Target Weight"
             control={control}
             name="targetWeight"
             error={errors.targetWeight}

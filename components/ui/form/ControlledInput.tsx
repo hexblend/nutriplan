@@ -40,7 +40,9 @@ export function ControlledInput<T extends FieldValues>({
 }: ControlledInputProps<T>) {
   return (
     <View className="w-full space-y-2">
-      {label && <Label>{label}</Label>}
+      {label && (
+        <Label className={cn('mb-0 !text-lg font-bold')}>{label}</Label>
+      )}
       <Controller
         control={control}
         name={name}
