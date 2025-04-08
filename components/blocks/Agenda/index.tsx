@@ -23,10 +23,12 @@ export default function Agenda() {
       highlightDateNameStyle={{ color: 'white' }}
       highlightDateNumberStyle={{ color: 'white' }}
       highlightDateContainerStyle={{
-        backgroundColor: colors.secondary[200],
+        backgroundColor: colors.primary[400],
         borderRadius: 8,
         paddingBottom: 12,
         paddingTop: 12,
+        paddingHorizontal: 8,
+        width: 36,
         // borderBottomWidth: 3,
         // borderColor: colors.primary[300],
       }}
