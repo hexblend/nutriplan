@@ -1,9 +1,6 @@
 import { useColorScheme } from '@/components/ui/useColorScheme';
+import { APP_THEME } from '@/lib/constants';
 import { SessionProvider, useSession } from '@/providers/SessionProvider';
-import {
-  ThemeCustomizerProvider,
-  useThemeCustomizer,
-} from '@/providers/ThemeCustomizerProvider';
 import FontAwesome from '@expo/vector-icons/FontAwesome';
 import {
   DarkTheme,
@@ -19,6 +16,15 @@ import React, { useEffect } from 'react';
 import 'react-native-reanimated';
 import '../assets/styles/global.css';
 
+const LIGHT_THEME: Theme = {
+  ...DefaultTheme,
+  colors: APP_THEME.light,
+};
+const DARK_THEME: Theme = {
+  ...DarkTheme,
+  colors: APP_THEME.dark,
+};
+
 export {
   // Catch any errors thrown by the Layout component.
   ErrorBoundary,
@@ -29,15 +35,8 @@ SplashScreen.preventAutoHideAsync();
 
 function AppLayout() {
   const { isDarkColorScheme } = useColorScheme();
-  const { theme } = useThemeCustomizer();
   const [isAppReady, setIsAppReady] = React.useState(false);
   const { session, sessionLoading } = useSession();
-
-  // Create a dynamic theme that uses our customized theme colors
-  const customTheme: Theme = {
-    ...(isDarkColorScheme ? DarkTheme : DefaultTheme),
-    colors: theme, // Use the customizable theme
-  };
 
   const [loaded, error] = useFonts({
     /* eslint-disable */
@@ -65,7 +64,7 @@ function AppLayout() {
   }
 
   return (
-    <ThemeProvider value={customTheme}>
+    <ThemeProvider value={isDarkColorScheme ? DARK_THEME : LIGHT_THEME}>
       <StatusBar style="light" />
       <Stack initialRouteName={session ? '(tabs)' : 'auth'}>
         <Stack.Screen redirect name="index" />
@@ -83,9 +82,7 @@ function AppLayout() {
 export default function RootLayout() {
   return (
     <SessionProvider>
-      <ThemeCustomizerProvider>
-        <AppLayout />
-      </ThemeCustomizerProvider>
+      <AppLayout />
     </SessionProvider>
   );
 }

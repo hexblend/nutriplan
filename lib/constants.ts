@@ -25,3 +25,22 @@ export const colors = {
     gray: '#5c5c5c', // Muted text and disabled states
   },
 } as const;
+
+export const APP_THEME = {
+  light: {
+    background: colors.primary[900],
+    border: colors.primary[400],
+    card: colors.primary[500],
+    notification: colors.secondary[300],
+    primary: colors.primary[500],
+    text: colors.grayscale['white'],
+  },
+  dark: {
+    background: colors.primary[900],
+    border: colors.primary[400],
+    card: colors.primary[500],
+    notification: colors.secondary[300],
+    primary: colors.primary[500],
+    text: colors.grayscale['white'],
+  },
+};

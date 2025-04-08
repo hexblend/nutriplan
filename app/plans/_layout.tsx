@@ -1,4 +1,5 @@
 import SecondaryHeader from '@/components/layout/SecondaryHeader';
+import { colors } from '@/lib/constants';
 import { CreateMealPlanProvider } from '@/providers/CreateMealPlanProvider';
 import { Stack } from 'expo-router';
 import { ReactNode } from 'react';
@@ -26,8 +27,11 @@ export default function PlansLayout() {
           name="start"
           options={{
             title: ' ',
-            // @ts-ignore-next-line
-            headerStyle: { borderBottomWidth: 0 },
+            headerStyle: {
+              // @ts-ignore-next-line
+              borderBottomWidth: 0,
+              backgroundColor: colors.primary[500],
+            },
           }}
         />
       </Stack>

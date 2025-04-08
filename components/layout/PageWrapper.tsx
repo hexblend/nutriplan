@@ -1,9 +1,16 @@
 import { cn } from '@/lib/utils';
-import { JSX } from 'react';
-import { SafeAreaView, ScrollView, View } from 'react-native';
+import React, { JSX } from 'react';
+import {
+  SafeAreaView,
+  ScrollView,
+  StyleProp,
+  View,
+  ViewStyle,
+} from 'react-native';
 
 interface PageWrapperProps {
   className?: string;
+  containerStyle?: StyleProp<ViewStyle>;
   children?: JSX.Element | JSX.Element[];
   footer?: JSX.Element;
   header?: JSX.Element;
@@ -11,14 +18,15 @@ interface PageWrapperProps {
 
 export default function PageWrapper({
   className,
+  containerStyle,
   children,
   footer,
   header,
 }: PageWrapperProps) {
   return (
-    <>
+    <React.Fragment>
       {header && header}
-      <View className="flex-1">
+      <View className={cn('flex-1')} style={containerStyle}>
         <SafeAreaView className="flex-1">
           <ScrollView
             keyboardShouldPersistTaps="handled"
@@ -30,6 +38,6 @@ export default function PageWrapper({
         </SafeAreaView>
         {footer && footer}
       </View>
-    </>
+    </React.Fragment>
   );
 }
