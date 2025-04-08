@@ -16,12 +16,20 @@ export default function PlansLayout() {
                 showBackButton={navigation.canGoBack()}
                 backButtonText={options.headerBackTitle}
                 rightComponent={headerRight}
+                style={options.headerStyle}
               />
             );
           },
         }}
       >
-        <Stack.Screen name="start" options={{ title: 'Your meal plan' }} />
+        <Stack.Screen
+          name="start"
+          options={{
+            title: ' ',
+            // @ts-ignore-next-line
+            headerStyle: { borderBottomWidth: 0 },
+          }}
+        />
       </Stack>
     </CreateMealPlanProvider>
   );

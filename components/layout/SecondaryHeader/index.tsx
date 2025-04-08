@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
+import { StyleProp, Text, View, ViewStyle } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
 import SecondaryHeaderBackButton from './SecondaryHeaderBackButton';
 
@@ -9,6 +9,7 @@ interface SecondaryHeaderProps {
   backButtonText?: string;
   rightComponent?: React.ReactNode;
   onBackButtonPress?: () => void;
+  style?: StyleProp<ViewStyle>;
 }
 
 export default function SecondaryHeader({
@@ -17,12 +18,13 @@ export default function SecondaryHeader({
   backButtonText,
   rightComponent,
   onBackButtonPress,
+  style,
 }: SecondaryHeaderProps) {
   const insets = useSafeAreaInsets();
   return (
     <View
       className="border-b border-muted bg-transparent"
-      style={{ paddingTop: insets.top }}
+      style={[{ paddingTop: insets.top }, style]}
     >
       <View className="h-11 flex-row items-center px-4">
         {showBackButton && (

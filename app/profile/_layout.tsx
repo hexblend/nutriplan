@@ -15,6 +15,7 @@ export default function ProfileLayout() {
               showBackButton={navigation.canGoBack()}
               backButtonText={options.headerBackTitle}
               rightComponent={headerRight}
+              style={options.headerStyle}
             />
           );
         },
