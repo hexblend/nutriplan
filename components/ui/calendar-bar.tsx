@@ -1,13 +1,24 @@
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { format } from 'date-fns';
 import { useFocusEffect } from 'expo-router';
-import React, { useCallback, useState } from 'react';
+import moment from 'moment';
+import 'moment/locale/ro';
+import React, { useCallback, useEffect, useState } from 'react';
 import { Animated } from 'react-native';
 import CalendarStrip from 'react-native-calendar-strip';
 
 export default function CalendarBar() {
   const today = format(new Date(), 'yyyy-MM-dd');
   const [opacity] = useState(new Animated.Value(0));
+
+  // Configure the locale based on app language
+  const currentLocale = t.locale === 'ro' ? 'ro' : 'en';
+
+  // Set moment locale when t.locale changes
+  useEffect(() => {
+    moment.locale(currentLocale);
+  }, [currentLocale]);
 
   useFocusEffect(
     useCallback(() => {
@@ -23,9 +34,71 @@ export default function CalendarBar() {
     }, [])
   );
 
+  // Romanian locale configuration
+  const locale = {
+    name: currentLocale,
+    config: {
+      weekdays:
+        currentLocale === 'ro'
+          ? [
+              'Duminică',
+              'Luni',
+              'Marți',
+              'Miercuri',
+              'Joi',
+              'Vineri',
+              'Sâmbătă',
+            ]
+          : undefined,
+      weekdaysShort:
+        currentLocale === 'ro'
+          ? ['Dum', 'Lun', 'Mar', 'Mie', 'Joi', 'Vin', 'Sâm']
+          : undefined,
+      weekdaysMin:
+        currentLocale === 'ro'
+          ? ['Du', 'Lu', 'Ma', 'Mi', 'Jo', 'Vi', 'Sâ']
+          : undefined,
+      months:
+        currentLocale === 'ro'
+          ? [
+              'Ianuarie',
+              'Februarie',
+              'Martie',
+              'Aprilie',
+              'Mai',
+              'Iunie',
+              'Iulie',
+              'August',
+              'Septembrie',
+              'Octombrie',
+              'Noiembrie',
+              'Decembrie',
+            ]
+          : undefined,
+      monthsShort:
+        currentLocale === 'ro'
+          ? [
+              'Ian',
+              'Feb',
+              'Mar',
+              'Apr',
+              'Mai',
+              'Iun',
+              'Iul',
+              'Aug',
+              'Sep',
+              'Oct',
+              'Nov',
+              'Dec',
+            ]
+          : undefined,
+    },
+  };
+
   return (
     <Animated.View style={{ opacity }}>
       <CalendarStrip
+        locale={locale}
         numDaysInWeek={7}
         scrollable
         scrollerPaging
