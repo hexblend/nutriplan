@@ -10,7 +10,7 @@ export default function NutritionEmptyState() {
       <Text className="mb-2 text-center text-lg font-medium">
         No meal plan this week
       </Text>
-      <Text className="mb-4 text-center text-lg text-muted-foreground">
+      <Text className="mb-4 text-center text-lg text-gray-500">
         Create a meal plan to continue your nutrition journey
       </Text>
       <LinkField
