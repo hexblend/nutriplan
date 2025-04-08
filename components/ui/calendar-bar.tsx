@@ -15,9 +15,9 @@ export default function CalendarBar() {
     useCallback(() => {
       Animated.timing(opacity, {
         toValue: 1,
-        duration: 500,
+        duration: 400,
         useNativeDriver: true,
-        delay: 75,
+        delay: 70,
       }).start();
       return () => {
         opacity.setValue(0);
