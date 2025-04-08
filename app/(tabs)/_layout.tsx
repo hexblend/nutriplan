@@ -18,7 +18,7 @@ export default function TabsLayout() {
 
   return (
     <Tabs
-      initialRouteName="index"
+      initialRouteName="nutrition"
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
@@ -49,7 +49,7 @@ export default function TabsLayout() {
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="nutrition"
         options={{
           title: t.t('common.mealPlans'),
           headerShown: false,
