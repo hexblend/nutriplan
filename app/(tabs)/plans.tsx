@@ -1,4 +1,4 @@
-import NutritionEmptyState from '@/components/features/nutrition/NutritionEmptyState';
+import NutritionEmptyState from '@/components/features/plans/NutritionEmptyState';
 import PageWrapper from '@/components/layout/PageWrapper';
 import CalendarBar from '@/components/ui/calendar-bar';
 import { Text } from '@/components/ui/text';
