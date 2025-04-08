@@ -52,7 +52,6 @@ export default function TabsLayout() {
         name="plans"
         options={{
           title: t.t('common.mealPlans'),
-          headerShown: false,
           tabBarIcon: ({ focused }) => (
             <TabBarIcon name="logo" color="#FFFFFF" focused={focused} />
           ),
@@ -69,7 +68,6 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          headerShown: false,
           title: t.t('common.profile'),
           tabBarIcon: ({ focused }) => (
             <TabBarIcon

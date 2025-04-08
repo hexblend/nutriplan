@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/text';
 import { Octicons } from '@expo/vector-icons';
 import React from 'react';
 
-export default function NutritionEmptyState() {
+export default function PlansEmptyState() {
   return (
     <Card className="mt-8 items-center justify-center p-6">
       <Text className="mb-2 text-center text-lg font-medium">
@@ -14,7 +14,7 @@ export default function NutritionEmptyState() {
         Create a meal plan to continue your nutrition journey
       </Text>
       <LinkField
-        href="/plans"
+        href="/plans/start"
         className="w-full"
         value="Create Meal Plan"
         icon={<Octicons name="plus" size={20} color="white" />}

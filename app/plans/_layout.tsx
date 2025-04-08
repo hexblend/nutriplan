@@ -1,9 +1,8 @@
 import SecondaryHeader from '@/components/layout/SecondaryHeader';
-import { t } from '@/i18n/translations';
 import { Stack } from 'expo-router';
 import { ReactNode } from 'react';
 
-export default function NutritionLayout() {
+export default function FeedbackLayout() {
   return (
     <Stack
       screenOptions={{
@@ -20,7 +19,7 @@ export default function NutritionLayout() {
         },
       }}
     >
-      <Stack.Screen name="start" options={{ title: t.t('common.start') }} />
+      <Stack.Screen name="start" options={{ title: 'Your meal plan' }} />
     </Stack>
   );
 }

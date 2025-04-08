@@ -4,7 +4,7 @@ import { Text } from '@/components/ui/text';
 export default function StartScreen() {
   return (
     <PageWrapper className="pt-2">
-      <Text className="text-center text-2xl font-bold">Start</Text>
+      <Text className="text-center text-2xl font-bold">Hello</Text>
     </PageWrapper>
   );
 }

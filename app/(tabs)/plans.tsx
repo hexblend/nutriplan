@@ -1,4 +1,4 @@
-import NutritionEmptyState from '@/components/features/plans/NutritionEmptyState';
+import PlansEmptyState from '@/components/features/plans/PlansEmptyState';
 import PageWrapper from '@/components/layout/PageWrapper';
 import CalendarBar from '@/components/ui/calendar-bar';
 import { Text } from '@/components/ui/text';
@@ -10,7 +10,7 @@ export default function TabOneScreen() {
       <Text className="mb-4 text-center text-2xl font-bold">Meal Plans</Text>
       <CalendarBar />
 
-      <NutritionEmptyState />
+      <PlansEmptyState />
     </PageWrapper>
   );
 }

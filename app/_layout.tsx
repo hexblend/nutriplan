@@ -70,6 +70,8 @@ function AppLayout() {
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
         <Stack.Screen name="auth" options={{ headerShown: false }} />
         <Stack.Screen name="profile" options={{ headerShown: false }} />
+        <Stack.Screen name="plans" options={{ headerShown: false }} />
+        <Stack.Screen name="feedback" options={{ headerShown: false }} />
         <Stack.Screen name="modal" options={{ presentation: 'modal' }} />
       </Stack>
     </ThemeProvider>
