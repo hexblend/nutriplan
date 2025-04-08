@@ -6,31 +6,38 @@ export default function Agenda() {
   return (
     <CalendarStrip
       numDaysInWeek={7}
-      scrollable
-      scrollerPaging
+      //   scrollable
+      //   scrollerPaging
+      //   calendarHeaderFormat="MMMM"
       calendarColor={colors.primary[700]}
       //  Header
-      showMonth={false}
+      //   showMonth={false}
+      calendarHeaderStyle={{
+        color: 'white',
+      }}
+      calendarHeaderContainerStyle={{ marginTop: 8, marginBottom: 8 }}
       // Date
-      dateNumberStyle={{ color: 'white' }}
-      dateNameStyle={{ color: 'white' }}
+      dateNumberStyle={{ color: 'white', fontSize: 14 }}
+      dateNameStyle={{ color: 'white', fontSize: 10 }}
       // Icon
-      iconContainer={{ flex: 0.1 }}
+      iconContainer={{ flex: 0.1, marginBottom: 2 }}
+      /* eslint-disable */
+      iconLeft={require('../../../assets/images/chevron-left.png')}
+      iconRight={require('../../../assets/images/chevron-right.png')}
+      /* eslint-enable */
       // Animation
       calendarAnimation={{ type: 'sequence', duration: 50 }}
       // Selected Date
       selectedDate={new Date()}
-      highlightDateNameStyle={{ color: 'white' }}
-      highlightDateNumberStyle={{ color: 'white' }}
+      highlightDateNumberStyle={{ color: 'white', fontSize: 14 }}
+      highlightDateNameStyle={{ color: 'white', fontSize: 10 }}
+      dayContainerStyle={{
+        borderRadius: 2,
+      }}
       highlightDateContainerStyle={{
-        backgroundColor: colors.primary[400],
-        borderRadius: 8,
-        paddingBottom: 12,
-        paddingTop: 12,
-        paddingHorizontal: 8,
-        width: 36,
-        // borderBottomWidth: 3,
-        // borderColor: colors.primary[300],
+        borderBottomWidth: 2,
+        borderColor: colors.primary[300],
+        backgroundColor: colors.primary[800],
       }}
       //   daySelectionAnimation={{
       //     type: 'background',
@@ -38,11 +45,11 @@ export default function Agenda() {
       //     highlightColor: colors.secondary[200],
       //   }}
       style={{
+        height: 74,
+        // paddingBottom: ,
         borderWidth: 1,
         borderBottomWidth: 3,
         borderRadius: 16,
-        paddingTop: 10,
-        paddingBottom: 10,
         borderColor: colors.primary[800],
       }}
     />
