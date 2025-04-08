@@ -32,10 +32,22 @@ export default function CalendarBar() {
         numDaysInWeek={7}
         scrollable
         scrollerPaging
+        // Monday / Sunday first
+        startingDate={
+          new Date(
+            new Date().setDate(
+              new Date().getDate() -
+                (currentLocale === 'ro'
+                  ? new Date().getDay() === 0
+                    ? 6
+                    : new Date().getDay() - 1
+                  : new Date().getDay())
+            )
+          )
+        }
         style={{
           height: 80,
-          marginHorizontal: -16,
-          paddingHorizontal: 8,
+          marginHorizontal: -20,
         }}
         calendarHeaderStyle={{
           color: 'white',
@@ -49,10 +61,12 @@ export default function CalendarBar() {
           return dateString !== today;
         }}
         // Icon
-        iconContainer={{ flex: 0.1, marginBottom: 2 }}
+        iconContainer={{ flex: 0.1, marginBottom: 2, paddingHorizontal: 8 }}
         /* eslint-disable */
         iconLeft={require('../../assets/images/chevron-left.png')}
+        iconLeftStyle={{ width: 20, height: 20, marginRight: -10 }}
         iconRight={require('../../assets/images/chevron-right.png')}
+        iconRightStyle={{ width: 20, height: 20, marginLeft: -10 }}
         calendarAnimation={{ type: 'sequence', duration: 0 }}
         /* eslint-enable */
         // Selected Date
