@@ -12,11 +12,13 @@ import ProfileCalories from './ProfileCalories';
 interface ProfileActivityLevelProps {
   className?: string;
   hideChangeActivity?: boolean;
+  customCalories?: number | null;
 }
 
 export default function ProfileActivityLevel({
   className,
   hideChangeActivity = false,
+  customCalories,
 }: ProfileActivityLevelProps) {
   const [opacity] = useState(new Animated.Value(0));
   const { currentClient } = useSession();
@@ -45,7 +47,7 @@ export default function ProfileActivityLevel({
     <Animated.View style={{ opacity }}>
       <View className={cn(className)}>
         {/*  Calories */}
-        <ProfileCalories calories={targetCalories ?? 0} />
+        <ProfileCalories calories={customCalories ?? targetCalories ?? 0} />
 
         {/*  Daily intake for Goal */}
         <Text className="mt-1 w-2/3 self-center text-center text-xl">

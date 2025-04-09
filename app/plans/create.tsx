@@ -1,6 +1,5 @@
 import LinkField from '@/components/blocks/LinkField';
 import ProfileActivityLevel from '@/components/features/profile/ProfileActivityLevel';
-import ProfileCalories from '@/components/features/profile/ProfileCalories';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
@@ -22,10 +21,16 @@ export default function CreateScreen() {
   const { setDailyCalories, isCustomCalories, dailyCalories } =
     useCreateMealPlanContext();
 
-  const calculatedDailyCalories = calculateDailyCalories(currentClient);
-  const weeksToGoal = calculatedDailyCalories
-    ? calculateWeeksToGoal(currentClient, calculatedDailyCalories)
+  const defaultDailyCalories = calculateDailyCalories(currentClient);
+
+  const caloriesForCalculation = isCustomCalories
+    ? dailyCalories
+    : defaultDailyCalories;
+
+  const weeksToGoal = caloriesForCalculation
+    ? calculateWeeksToGoal(currentClient, caloriesForCalculation)
     : null;
+
   const weightGoal = displayWeight(
     currentClient?.target_weight_kg ?? null,
     currentProfile?.weight_unit || 'metric'
@@ -34,7 +39,7 @@ export default function CreateScreen() {
   const router = useRouter();
 
   const onSubmit = () => {
-    setDailyCalories(calculatedDailyCalories);
+    setDailyCalories(defaultDailyCalories);
     router.push('/plans/create');
   };
 
@@ -62,15 +67,13 @@ export default function CreateScreen() {
       </Text>
 
       <View className="mt-14">
-        {isCustomCalories ? (
-          // Show just calories - no calculations
-          <ProfileCalories calories={dailyCalories ?? 0} className="mt-12" />
-        ) : (
-          <ProfileActivityLevel hideChangeActivity className="mt-6" />
-        )}
+        <ProfileActivityLevel
+          hideChangeActivity
+          className="mt-6"
+          customCalories={caloriesForCalculation}
+        />
 
-        {/* TODO: Calulate time to get to goal on custom calories as well */}
-        {!isCustomCalories && (
+        {weeksToGoal && (
           <View className="mt-6">
             <Text className="text-center">{t.t('profile.toGetTo')}</Text>
             <View className="mt-6 flex-row items-center justify-center gap-2">
