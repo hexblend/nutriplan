@@ -34,6 +34,16 @@ export default function PlansLayout() {
             },
           }}
         />
+        <Stack.Screen
+          name="edit-calories"
+          options={{
+            title: 'Edit calories',
+            headerStyle: {
+              // @ts-ignore-next-line
+              backgroundColor: colors.primary[700],
+            },
+          }}
+        />
       </Stack>
     </CreateMealPlanProvider>
   );

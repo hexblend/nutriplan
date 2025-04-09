@@ -14,7 +14,7 @@ export default function PlansEmptyState() {
         Create a meal plan to continue your nutrition journey
       </Text>
       <LinkField
-        href="/plans/start"
+        href="/plans/create"
         className="w-full"
         value="Create Meal Plan"
         icon={<Octicons name="plus" size={20} color="white" />}

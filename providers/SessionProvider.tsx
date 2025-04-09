@@ -87,7 +87,7 @@ export function SessionProvider({ children }: { children: React.ReactNode }) {
       await AsyncStorage.setItem(STORAGE_KEYS.LOGGED_IN_USER_ID, data.user.id);
       setSession(data.session);
       setSessionLoading(false);
-      router.replace('/(tabs)');
+      router.replace('/(tabs)/plans');
     }
   };
 

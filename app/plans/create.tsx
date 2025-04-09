@@ -1,3 +1,4 @@
+import LinkField from '@/components/blocks/LinkField';
 import ProfileActivityLevel from '@/components/features/profile/ProfileActivityLevel';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
@@ -37,9 +38,16 @@ export default function CreateScreen() {
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
-          <Button onPress={onSubmit}>
+          <Button onPress={onSubmit} className="mt-3">
             <Text>{t.t('common.continue')}</Text>
           </Button>
+          <LinkField
+            href="/plans/edit-calories"
+            centered
+            value="Schimba caloriile"
+            variant="tertiary"
+            className="mt-3"
+          />
         </PageFooter>
       }
     >
