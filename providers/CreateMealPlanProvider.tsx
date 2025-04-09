@@ -1,6 +1,9 @@
-import React, { ReactNode, createContext, useContext } from 'react';
+import React, { ReactNode, createContext, useContext, useState } from 'react';
 
-interface CreateMealPlanContextType {}
+interface CreateMealPlanContextType {
+  dailyCalories: number | null;
+  setDailyCalories: React.Dispatch<React.SetStateAction<number | null>>;
+}
 
 const CreateMealPlanContext = createContext<
   CreateMealPlanContextType | undefined
@@ -12,8 +15,10 @@ interface CreateMealPlanProviderProps {
 export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   children,
 }) => {
+  const [dailyCalories, setDailyCalories] = useState<number | null>(null);
+
   return (
-    <CreateMealPlanContext.Provider value={{}}>
+    <CreateMealPlanContext.Provider value={{ dailyCalories, setDailyCalories }}>
       {children}
     </CreateMealPlanContext.Provider>
   );

@@ -1,21 +1,35 @@
-import LinkField from '@/components/blocks/LinkField';
 import ProfileActivityLevel from '@/components/features/profile/ProfileActivityLevel';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
+import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
-import { calculateWeeksToGoal, displayWeight } from '@/lib/utils';
+import {
+  calculateDailyCalories,
+  calculateWeeksToGoal,
+  displayWeight,
+} from '@/lib/utils';
+import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
 import { useSession } from '@/providers/SessionProvider';
+import { useRouter } from 'expo-router';
 import { View } from 'react-native';
 
 export default function CreateScreen() {
   const { currentClient, currentProfile } = useSession();
+  const { setDailyCalories } = useCreateMealPlanContext();
+
   const weeksToGoal = calculateWeeksToGoal(currentClient);
   const weightGoal = displayWeight(
     currentClient?.target_weight_kg ?? null,
     currentProfile?.weight_unit || 'metric'
   );
+  const router = useRouter();
+
+  const onSubmit = () => {
+    setDailyCalories(calculateDailyCalories(currentClient));
+    router.push('/plans/create');
+  };
 
   return (
     <PageWrapper
@@ -23,12 +37,9 @@ export default function CreateScreen() {
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
-          <LinkField
-            href="/plans/create"
-            centered
-            value={t.t('common.continue')}
-            variant="default"
-          />
+          <Button onPress={onSubmit}>
+            <Text>{t.t('common.continue')}</Text>
+          </Button>
         </PageFooter>
       }
     >
