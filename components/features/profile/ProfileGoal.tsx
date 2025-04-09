@@ -50,7 +50,7 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
             <Text className="mt-2 text-center font-bold">
               {t.t('profile.achievableIn')}:{' '}
               <Text className="font-bold text-green-500">
-                {weeksToGoal} weeks
+                {weeksToGoal} {t.t('common.weeks')}
               </Text>
             </Text>
           ) : null}

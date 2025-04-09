@@ -26,6 +26,8 @@ export const commonEN = {
   language: 'Language',
   add: 'Add',
   save: 'Save',
+  day: 'day',
+  weeks: 'weeks',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -55,4 +57,6 @@ export const commonRO = {
   language: 'Limba',
   add: 'Adaugă',
   save: 'Salvează',
+  day: 'zi',
+  weeks: 'săptămâni',
 };

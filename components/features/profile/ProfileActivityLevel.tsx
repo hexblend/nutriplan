@@ -11,10 +11,14 @@ import { Animated, View } from 'react-native';
 
 interface ProfileActivityLevelProps {
   className?: string;
+  hideChangeActivity?: boolean;
+  additionalGoalText?: string;
 }
 
 export default function ProfileActivityLevel({
   className,
+  hideChangeActivity = false,
+  additionalGoalText,
 }: ProfileActivityLevelProps) {
   const [opacity] = useState(new Animated.Value(0));
   const { currentClient } = useSession();
@@ -46,7 +50,8 @@ export default function ProfileActivityLevel({
         <View className="mb-2 flex-row items-center justify-center gap-2">
           <Octicons name="flame" size={18} color="#ea580c" />
           <Text className="text-center text-3xl font-bold">
-            {targetCalories ? `${targetCalories} Kcal` : '--- Kcal'}
+            {targetCalories ? `${targetCalories} Kcal` : '--- Kcal'} /{' '}
+            {t.t('common.day')}
           </Text>
         </View>
 
@@ -54,21 +59,24 @@ export default function ProfileActivityLevel({
         <Text className="mt-1 w-2/3 self-center text-center text-xl">
           {t.t('profile.dailyIntake')}{' '}
           <Text className="lowercase">
-            {translateValue('goal', currentClient?.goal ?? '')}
+            {translateValue('goal', currentClient?.goal ?? '')}{' '}
+            {additionalGoalText ?? ''}
           </Text>
         </Text>
 
         {/*  Set Activity Level */}
-        <LinkField
-          href="/profile/edit-activity"
-          labelLeft={t.t('profile.activity')}
-          valueRight={translateValue(
-            'activity',
-            currentClient?.activity_level ?? ''
-          )}
-          hideEditIcon
-          className="mt-4"
-        />
+        {!hideChangeActivity && (
+          <LinkField
+            href="/profile/edit-activity"
+            labelLeft={t.t('profile.activity')}
+            valueRight={translateValue(
+              'activity',
+              currentClient?.activity_level ?? ''
+            )}
+            hideEditIcon
+            className="mt-4"
+          />
+        )}
       </View>
     </Animated.View>
   );
