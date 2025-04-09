@@ -1,5 +1,6 @@
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
+import { NutrientIcon } from '@/components/ui/NutrientIcon';
 import { Button } from '@/components/ui/button';
 import { Slider } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
@@ -94,7 +95,12 @@ export default function MacronutrientsScreen() {
       </Text>
       <View className="space-y-6 px-4">
         <Slider
-          label="Proteins"
+          label={
+            <View className="flex-row items-center">
+              <NutrientIcon type="proteins" size={20} />
+              <Text className="ml-2 text-lg font-bold">Proteins</Text>
+            </View>
+          }
           value={proteins}
           min={0}
           max={100}
@@ -103,7 +109,12 @@ export default function MacronutrientsScreen() {
           color={nutrientsColors.proteins}
         />
         <Slider
-          label="Carbohydrates"
+          label={
+            <View className="flex-row items-center">
+              <NutrientIcon type="carbohydrates" size={20} />
+              <Text className="ml-2 text-lg font-bold">Carbohydrates</Text>
+            </View>
+          }
           value={carbs}
           min={0}
           max={100}
@@ -112,7 +123,12 @@ export default function MacronutrientsScreen() {
           color={nutrientsColors.carbohydrates}
         />
         <Slider
-          label="Lipids"
+          label={
+            <View className="flex-row items-center">
+              <NutrientIcon type="lipids" size={20} />
+              <Text className="ml-2 text-lg font-bold">Lipids</Text>
+            </View>
+          }
           value={lipids}
           min={0}
           max={100}

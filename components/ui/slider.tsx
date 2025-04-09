@@ -5,7 +5,7 @@ import { View } from 'react-native';
 import { Text } from './text';
 
 interface SliderProps {
-  label: string;
+  label: string | React.ReactNode;
   value: number;
   min: number;
   max: number;
@@ -29,7 +29,13 @@ export function Slider({
   return (
     <View className={cn('space-y-2', className)}>
       <View className="flex-row items-center justify-between">
-        <Text className="text-lg font-bold">{label}</Text>
+        <View className="flex-row items-center">
+          {typeof label === 'string' ? (
+            <Text className="text-lg font-bold">{label}</Text>
+          ) : (
+            label
+          )}
+        </View>
         <Text className="text-lg">{Math.round(value)}%</Text>
       </View>
       <RNCSlider
