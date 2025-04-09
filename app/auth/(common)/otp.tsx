@@ -91,7 +91,6 @@ export default function OtpScreen() {
           },
         ])
         .select();
-
       if (clientError) {
         return throwError('[onboarding] Error creating client', clientError);
       }
