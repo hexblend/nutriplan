@@ -26,6 +26,14 @@ export const colors = {
   },
 } as const;
 
+export const nutrientsColors = {
+  quantity: '#60A5FA', // blue-400
+  calories: '#F59E0B', // amber-500
+  proteins: '#60A5FA', // blue-400
+  carbohydrates: '#F59E0B', // amber-500
+  lipids: '#F43F5E', // rose-500
+} as const;
+
 export const APP_THEME = {
   light: {
     background: colors.primary[900],

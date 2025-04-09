@@ -1,13 +1,80 @@
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
+import { Slider } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { colors } from '@/lib/constants';
+import { colors, nutrientsColors } from '@/lib/constants';
+import { useState } from 'react';
+import { View } from 'react-native';
 
 export default function MacronutrientsScreen() {
+  const [proteins, setProteins] = useState(30);
+  const [carbs, setCarbs] = useState(50);
+  const [lipids, setLipids] = useState(20);
+
+  const handleProteinsChange = (value: number) => {
+    // Calculate how much proteins increased/decreased
+    const proteinDiff = value - proteins;
+    // If proteins increased, decrease both carbs and lipids proportionally
+    if (proteinDiff > 0) {
+      const totalOther = carbs + lipids;
+      const newCarbs = Math.max(0, carbs - (proteinDiff * carbs) / totalOther);
+      const newLipids = Math.max(
+        0,
+        lipids - (proteinDiff * lipids) / totalOther
+      );
+      setProteins(value);
+      setCarbs(newCarbs);
+      setLipids(newLipids);
+    }
+    // If proteins decreased, increase both carbs and lipids proportionally
+    else {
+      const totalOther = carbs + lipids;
+      const newCarbs = carbs - (proteinDiff * carbs) / totalOther;
+      const newLipids = lipids - (proteinDiff * lipids) / totalOther;
+      setProteins(value);
+      setCarbs(newCarbs);
+      setLipids(newLipids);
+    }
+  };
+
+  const handleCarbsChange = (value: number) => {
+    // Calculate how much carbs increased/decreased
+    const carbsDiff = value - carbs;
+    // Adjust lipids inversely to carbs
+    const newLipids = Math.max(0, lipids - carbsDiff);
+    setCarbs(value);
+    setLipids(newLipids);
+  };
+
+  const handleLipidsChange = (value: number) => {
+    // Calculate the new total
+    const newTotal = proteins + carbs + value;
+    // If total exceeds 100%, adjust proteins and carbs
+    if (newTotal > 100) {
+      const excess = newTotal - 100;
+      const totalOther = proteins + carbs;
+      // Adjust proteins and carbs proportionally
+      const newProteins = Math.max(
+        0,
+        proteins - (excess * proteins) / totalOther
+      );
+      const newCarbs = Math.max(0, carbs - (excess * carbs) / totalOther);
+      setProteins(newProteins);
+      setCarbs(newCarbs);
+    }
+    setLipids(value);
+  };
+
+  const resetToRecommendedValues = () => {
+    setProteins(30);
+    setCarbs(50);
+    setLipids(20);
+  };
+
   const onSubmit = () => {
-    console.log('Submitted');
+    console.log('Submitted', { proteins, carbs, lipids });
   };
 
   return (
@@ -22,9 +89,45 @@ export default function MacronutrientsScreen() {
         </PageFooter>
       }
     >
-      <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
+      <Text className="mb-8 max-w-[300px] self-center text-center text-4xl font-bold">
         Macronutrients ratio
       </Text>
+      <View className="space-y-6 px-4">
+        <Slider
+          label="Proteins"
+          value={proteins}
+          min={0}
+          max={100}
+          step={1}
+          onChange={handleProteinsChange}
+          color={nutrientsColors.proteins}
+        />
+        <Slider
+          label="Carbohydrates"
+          value={carbs}
+          min={0}
+          max={100}
+          step={1}
+          onChange={handleCarbsChange}
+          color={nutrientsColors.carbohydrates}
+        />
+        <Slider
+          label="Lipids"
+          value={lipids}
+          min={0}
+          max={100}
+          step={1}
+          onChange={handleLipidsChange}
+          color={nutrientsColors.lipids}
+        />
+        <Button
+          onPress={resetToRecommendedValues}
+          className="mt-4"
+          variant="ghost"
+        >
+          <Text>Use recommended values</Text>
+        </Button>
+      </View>
     </PageWrapper>
   );
 }
