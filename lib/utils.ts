@@ -82,6 +82,43 @@ export const displayWeight = (
 /**
  * PROFILE CALCULATORS
  */
+/**
+ * Calculates Basal Metabolic Rate (BMR) using Mifflin-St Jeor Equation
+ */
+export const calculateBMR = (client: Tables<'clients'> | null): number => {
+  if (!client) return 0;
+
+  const weight = client.weight_kg ?? 0;
+  const height = client.height_cm ?? 0;
+  const age = client.age ?? 0;
+  const sex = client.sex ?? 'masculin';
+
+  const formula = 10 * weight + 6.25 * height - 5 * age;
+  return sex === 'masculin' ? formula + 5 : formula - 161;
+};
+
+/**
+ * Calculates Total Daily Energy Expenditure (TDEE) based on BMR and activity level
+ */
+export const calculateTDEE = (
+  bmr: number,
+  client: Tables<'clients'> | null
+): number => {
+  if (!client) return 0;
+
+  const activity = client.activity_level;
+
+  let activityFactor;
+  if (activity === 'Sedentary') activityFactor = 1.2;
+  else if (activity === 'Lightly active') activityFactor = 1.375;
+  else if (activity === 'Moderately active') activityFactor = 1.55;
+  else if (activity === 'Very active') activityFactor = 1.725;
+  else if (activity === 'Extremely active') activityFactor = 1.9;
+  else activityFactor = 1.2; // Default to sedentary if unknown
+
+  return Math.ceil(bmr * activityFactor);
+};
+
 export const calculateWeeksToGoal = (
   currentClient: Tables<'clients'> | null
 ) => {
@@ -100,30 +137,16 @@ export const calculateDailyCalories = (
 ): number | null => {
   if (!client) return null;
 
-  const weight = client.weight_kg ?? 0;
-  const height = client.height_cm ?? 0;
-  const age = client.age ?? 0;
-  const sex = client.sex ?? 'masculin';
   const goal = client.goal;
-  const activity = client.activity_level;
   const targetActivity = client.target_activity;
   const targetSport = client.target_sport;
   const targetMaintenance = client.target_maintenance;
 
   // Calculate BMR using Mifflin-St Jeor Equation
-  const formula = 10 * weight + 6.25 * height - 5 * age;
-  const baseRMB = sex === 'masculin' ? formula + 5 : formula - 161;
+  const bmr = calculateBMR(client);
 
   // Calculate TDEE based on activity level
-  let activityFactor;
-  if (activity === 'Sedentary') activityFactor = 1.2;
-  else if (activity === 'Lightly active') activityFactor = 1.375;
-  else if (activity === 'Moderately active') activityFactor = 1.55;
-  else if (activity === 'Very active') activityFactor = 1.725;
-  else if (activity === 'Extremely active') activityFactor = 1.9;
-  else activityFactor = 1.2; // Default to sedentary if unknown
-
-  const calculatedTdee = Math.ceil(baseRMB * activityFactor);
+  const tdee = calculateTDEE(bmr, client);
 
   // Variables for different goal calculations
   let deficitFactor = 300;
@@ -142,7 +165,7 @@ export const calculateDailyCalories = (
         else if (targetActivity === '3-4 times') deficitFactor = 400;
         else if (targetActivity === '5+ times') deficitFactor = 600;
       }
-      return Math.max(calculatedTdee - deficitFactor, 1200); // Minimum 1200 kcal
+      return Math.max(tdee - deficitFactor, 1200); // Minimum 1200 kcal
 
     case 'Increase muscle mass':
       surplusFactor = 300;
@@ -152,7 +175,7 @@ export const calculateDailyCalories = (
         else if (targetActivity === '3-4 times') surplusFactor = 400;
         else if (targetActivity === '5+ times') surplusFactor = 600; // More aggressive surplus
       }
-      return calculatedTdee + surplusFactor;
+      return tdee + surplusFactor;
 
     case 'Maintain weight in a healthy way':
       maintenanceAdjustment = 0;
@@ -170,12 +193,12 @@ export const calculateDailyCalories = (
           maintenanceAdjustment = 50; // Slightly higher for mental clarity
         }
       }
-      return calculatedTdee + maintenanceAdjustment;
+      return tdee + maintenanceAdjustment;
 
     case 'Diet for a health condition':
       // For health conditions, use TDEE as base with slight reduction
       conditionAdjustment = -100;
-      return Math.max(calculatedTdee + conditionAdjustment, 1200); // Minimum 1200 kcal
+      return Math.max(tdee + conditionAdjustment, 1200); // Minimum 1200 kcal
 
     case 'Performance for athletes':
       // For athletes, use TDEE as base with increase based on sport
@@ -196,10 +219,10 @@ export const calculateDailyCalories = (
           performanceAdjustment = 100; // Lower for yoga
         }
       }
-      return calculatedTdee + performanceAdjustment;
+      return tdee + performanceAdjustment;
 
     default:
       // For any other case, use TDEE
-      return calculatedTdee;
+      return tdee;
   }
 };
