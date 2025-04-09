@@ -6,6 +6,7 @@ import { Slider } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors, nutrientsColors } from '@/lib/constants';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { View } from 'react-native';
 
@@ -13,6 +14,10 @@ export default function MacronutrientsScreen() {
   const [proteins, setProteins] = useState(30);
   const [carbs, setCarbs] = useState(50);
   const [lipids, setLipids] = useState(20);
+
+  // Check if current values match recommended values
+  const isUsingRecommendedValues =
+    proteins === 30 && carbs === 50 && lipids === 20;
 
   const handleProteinsChange = (value: number) => {
     // Calculate how much proteins increased/decreased
@@ -93,6 +98,7 @@ export default function MacronutrientsScreen() {
       <Text className="mb-8 max-w-[300px] self-center text-center text-4xl font-bold">
         Macronutrients ratio
       </Text>
+
       <View className="space-y-6 px-4">
         <Slider
           label={
@@ -136,13 +142,44 @@ export default function MacronutrientsScreen() {
           onChange={handleLipidsChange}
           color={nutrientsColors.lipids}
         />
-        <Button
-          onPress={resetToRecommendedValues}
-          className="mt-4"
-          variant="ghost"
-        >
-          <Text>Use recommended values</Text>
-        </Button>
+        {/* Recommended values */}
+        <View className="mt-6">
+          {isUsingRecommendedValues ? (
+            <View className="flex-row items-center justify-center">
+              <MaterialCommunityIcons
+                name="check-circle"
+                size={16}
+                color="#22c55e"
+              />
+              <Text className="ml-1 text-sm text-green-500">
+                Using recommended values
+              </Text>
+            </View>
+          ) : (
+            <View>
+              <View className="flex-row items-center justify-center">
+                <MaterialCommunityIcons
+                  name="information-outline"
+                  size={16}
+                  color="#eab308"
+                />
+                <Text className="ml-1 text-sm text-yellow-500">
+                  Custom values - adjust with care
+                </Text>
+              </View>
+              <Text className="mt-2 text-center text-sm text-gray-400">
+                Recommended: Proteins 30%, Carbs 50%, Fats 20%
+              </Text>
+              <Button
+                onPress={resetToRecommendedValues}
+                variant="ghost"
+                className="mt-4"
+              >
+                <Text>Use recommended values</Text>
+              </Button>
+            </View>
+          )}
+        </View>
       </View>
     </PageWrapper>
   );
