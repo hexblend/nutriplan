@@ -20,43 +20,54 @@ export default function MacronutrientsScreen() {
     proteins === 30 && carbs === 50 && lipids === 20;
 
   const handleProteinsChange = (value: number) => {
-    // Calculate how much proteins increased/decreased
-    const proteinDiff = value - proteins;
+    // Round to nearest 5%
+    const roundedValue = Math.round(value / 5) * 5;
+    const proteinDiff = roundedValue - proteins;
+
     // If proteins increased, decrease both carbs and lipids proportionally
     if (proteinDiff > 0) {
       const totalOther = carbs + lipids;
-      const newCarbs = Math.max(0, carbs - (proteinDiff * carbs) / totalOther);
+      const newCarbs = Math.max(
+        0,
+        Math.round((carbs - (proteinDiff * carbs) / totalOther) / 5) * 5
+      );
       const newLipids = Math.max(
         0,
-        lipids - (proteinDiff * lipids) / totalOther
+        Math.round((lipids - (proteinDiff * lipids) / totalOther) / 5) * 5
       );
-      setProteins(value);
+      setProteins(roundedValue);
       setCarbs(newCarbs);
       setLipids(newLipids);
     }
     // If proteins decreased, increase both carbs and lipids proportionally
     else {
       const totalOther = carbs + lipids;
-      const newCarbs = carbs - (proteinDiff * carbs) / totalOther;
-      const newLipids = lipids - (proteinDiff * lipids) / totalOther;
-      setProteins(value);
+      const newCarbs =
+        Math.round((carbs - (proteinDiff * carbs) / totalOther) / 5) * 5;
+      const newLipids =
+        Math.round((lipids - (proteinDiff * lipids) / totalOther) / 5) * 5;
+      setProteins(roundedValue);
       setCarbs(newCarbs);
       setLipids(newLipids);
     }
   };
 
   const handleCarbsChange = (value: number) => {
-    // Calculate how much carbs increased/decreased
-    const carbsDiff = value - carbs;
+    // Round to nearest 5%
+    const roundedValue = Math.round(value / 5) * 5;
+    const carbsDiff = roundedValue - carbs;
+
     // Adjust lipids inversely to carbs
-    const newLipids = Math.max(0, lipids - carbsDiff);
-    setCarbs(value);
+    const newLipids = Math.max(0, Math.round((lipids - carbsDiff) / 5) * 5);
+    setCarbs(roundedValue);
     setLipids(newLipids);
   };
 
   const handleLipidsChange = (value: number) => {
-    // Calculate the new total
-    const newTotal = proteins + carbs + value;
+    // Round to nearest 5%
+    const roundedValue = Math.round(value / 5) * 5;
+    const newTotal = proteins + carbs + roundedValue;
+
     // If total exceeds 100%, adjust proteins and carbs
     if (newTotal > 100) {
       const excess = newTotal - 100;
@@ -64,13 +75,16 @@ export default function MacronutrientsScreen() {
       // Adjust proteins and carbs proportionally
       const newProteins = Math.max(
         0,
-        proteins - (excess * proteins) / totalOther
+        Math.round((proteins - (excess * proteins) / totalOther) / 5) * 5
       );
-      const newCarbs = Math.max(0, carbs - (excess * carbs) / totalOther);
+      const newCarbs = Math.max(
+        0,
+        Math.round((carbs - (excess * carbs) / totalOther) / 5) * 5
+      );
       setProteins(newProteins);
       setCarbs(newCarbs);
     }
-    setLipids(value);
+    setLipids(roundedValue);
   };
 
   const resetToRecommendedValues = () => {
@@ -110,7 +124,7 @@ export default function MacronutrientsScreen() {
           value={proteins}
           min={0}
           max={100}
-          step={1}
+          step={5}
           onChange={handleProteinsChange}
           color={nutrientsColors.proteins}
         />
@@ -124,7 +138,7 @@ export default function MacronutrientsScreen() {
           value={carbs}
           min={0}
           max={100}
-          step={1}
+          step={5}
           onChange={handleCarbsChange}
           color={nutrientsColors.carbohydrates}
         />
@@ -138,7 +152,7 @@ export default function MacronutrientsScreen() {
           value={lipids}
           min={0}
           max={100}
-          step={1}
+          step={5}
           onChange={handleLipidsChange}
           color={nutrientsColors.lipids}
         />
