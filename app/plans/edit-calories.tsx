@@ -81,7 +81,9 @@ export default function EditCaloriesScreen() {
         keyboardType="numeric"
         placeholder="Calories"
         error={errors?.calories}
-        rightIcon={<Text className="text-gray-300">Kcal / day</Text>}
+        rightIcon={
+          <Text className="text-gray-300">Kcal / {t.t('common.day')}</Text>
+        }
         label={t.t('plans.recommendedCalories')}
         containerClassName="mt-6"
         infoText={
