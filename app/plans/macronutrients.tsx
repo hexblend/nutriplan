@@ -110,6 +110,7 @@ export default function MacronutrientsScreen() {
             href="/plans/create"
             value={t.t('common.continue')}
             centered
+            variant="default"
           />
         </PageFooter>
       }
@@ -176,7 +177,7 @@ export default function MacronutrientsScreen() {
                 size={16}
                 color="#22c55e"
               />
-              <Text className="ml-1 text-sm text-green-500">
+              <Text className="ml-1 text-base text-green-500">
                 {t.t('plans.usingRecommendedValues')}
               </Text>
             </View>
@@ -188,7 +189,7 @@ export default function MacronutrientsScreen() {
                   size={16}
                   color="#eab308"
                 />
-                <Text className="ml-1 text-sm text-yellow-500">
+                <Text className="ml-1 text-base text-yellow-500">
                   {t.t('plans.customValues')}
                 </Text>
               </View>

@@ -20,7 +20,7 @@ export const plansEN = {
   recommendedValues: 'Recommended values: Proteins 30%, Carbs 50%, Fats 20%',
   useRecommendedValues: 'Reset values',
   usingRecommendedValues: 'Using recommended values',
-  customValues: 'Custom values - adjust with care',
+  customValues: 'Custom values',
 
   // Empty State
   noMealPlan: 'No meal plan this week',
@@ -50,7 +50,7 @@ export const plansRO = {
     'Valori recomandate: Proteine 30%, Carbohidrați 50%, Grăsimi 20%',
   useRecommendedValues: 'Resetează valorile',
   usingRecommendedValues: 'Folosești valori recomandate',
-  customValues: 'Valori personalizate - ajustează cu atenție',
+  customValues: 'Valori personalizate',
 
   // Empty State
   noMealPlan: 'Nu există un plan alimentar pentru această săptămână',
