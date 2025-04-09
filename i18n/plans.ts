@@ -1,8 +1,13 @@
 export const plansEN = {
+  // Create
   createTitle: "Create this weeks' meal plan",
+
+  // Edit Calories
   goalCannotBeReached:
     'Your goal cannot be reached with this daily calorie intake. Please use the recommended value.',
   editCalories: 'Edit calories',
+
+  // Macronutrients
   recommendedCalories: 'Recommended calories for your goal',
   caloriesRange: 'Range: 1200-5000 kcal/day. Recommended: ',
   yourBMR: 'Your BMR: ',
@@ -16,12 +21,22 @@ export const plansEN = {
   useRecommendedValues: 'Reset values',
   usingRecommendedValues: 'Using recommended values',
   customValues: 'Custom values - adjust with care',
+
+  // Empty State
+  noMealPlan: 'No meal plan this week',
+  createMealPlanPrompt: 'Continue your nutrition journey',
+  createMealPlan: 'Create Meal Plan',
 };
 export const plansRO = {
-  createTitle: 'Creează planul pe săptămâna curentă',
+  // Create
+  createTitle: 'Creează planul pe săptămâna aceasta',
+
+  // Edit Calories
   goalCannotBeReached:
     'Obiectivul tău nu poate fi atins cu acest aport caloric. Te rugăm să folosești valoarea recomandată.',
   editCalories: 'Modifică caloriile',
+
+  // Macronutrients
   recommendedCalories: 'Calorii recomandate pentru obiectivul tău',
   caloriesRange: 'Interval: 1200-5000 kcal/zi. Recomandat: ',
   yourBMR: 'BMR-ul tău: ',
@@ -36,4 +51,9 @@ export const plansRO = {
   useRecommendedValues: 'Resetează valorile',
   usingRecommendedValues: 'Folosești valori recomandate',
   customValues: 'Valori personalizate - ajustează cu atenție',
+
+  // Empty State
+  noMealPlan: 'Nu există un plan alimentar pentru această săptămână',
+  createMealPlanPrompt: 'Continua călătoria ta nutrițională',
+  createMealPlan: 'Creează plan alimentar',
 };
