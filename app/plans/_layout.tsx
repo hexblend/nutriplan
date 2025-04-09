@@ -1,4 +1,5 @@
 import SecondaryHeader from '@/components/layout/SecondaryHeader';
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { CreateMealPlanProvider } from '@/providers/CreateMealPlanProvider';
 import { Stack } from 'expo-router';
@@ -37,7 +38,7 @@ export default function PlansLayout() {
         <Stack.Screen
           name="edit-calories"
           options={{
-            title: 'Edit calories',
+            title: t.t('plans.editCalories'),
             headerStyle: {
               // @ts-ignore-next-line
               backgroundColor: colors.primary[700],

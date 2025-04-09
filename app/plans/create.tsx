@@ -49,14 +49,18 @@ export default function CreateScreen() {
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
-          <Button onPress={onSubmit} className="mt-3">
+          <Button
+            onPress={onSubmit}
+            className="mt-3"
+            disabled={weeksToGoal === null}
+          >
             <Text>{t.t('common.continue')}</Text>
           </Button>
           <LinkField
             href="/plans/edit-calories"
             centered
-            value="Schimba caloriile"
-            variant="tertiary"
+            value={t.t('plans.changeCalories')}
+            variant={weeksToGoal === null ? 'default' : 'tertiary'}
             className="mt-3"
           />
         </PageFooter>
@@ -72,8 +76,7 @@ export default function CreateScreen() {
           className="mt-6"
           customCalories={caloriesForCalculation}
         />
-
-        {weeksToGoal && (
+        {weeksToGoal ? (
           <View className="mt-6">
             <Text className="text-center">{t.t('profile.toGetTo')}</Text>
             <View className="mt-6 flex-row items-center justify-center gap-2">
@@ -87,6 +90,12 @@ export default function CreateScreen() {
                 {weeksToGoal} {t.t('common.weeks')}
               </Text>
             </View>
+          </View>
+        ) : (
+          <View className="mt-6 rounded-lg bg-red-100 p-2">
+            <Text className="text-center text-lg text-red-600">
+              {t.t('plans.goalCannotBeReached')}
+            </Text>
           </View>
         )}
       </View>

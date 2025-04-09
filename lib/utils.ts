@@ -126,6 +126,9 @@ export const calculateWeeksToGoal = (
   if (!currentClient?.target_weight_kg || !currentClient?.weight_kg)
     return null;
 
+  const minCalories = currentClient.sex === 'feminin' ? 1200 : 1500;
+  if (dailyCalories < minCalories || dailyCalories > 5000) return null;
+
   const weightDiff = Math.abs(
     currentClient.target_weight_kg - currentClient.weight_kg
   );
@@ -135,6 +138,23 @@ export const calculateWeeksToGoal = (
 
   // Determine if we're in a deficit or surplus
   const calorieDifference = dailyCalories - tdee;
+
+  const goal = currentClient.goal;
+  // Calories should be below TDEE
+  if (goal === 'Lose weight' && calorieDifference > 0) {
+    return null;
+  }
+  // Calories should be above TDEE
+  if (goal === 'Increase muscle mass' && calorieDifference < 0) {
+    return null;
+  }
+  // Calories should be close to TDEE (within 200 calories in either direction)
+  if (
+    goal === 'Maintain weight in a healthy way' &&
+    Math.abs(calorieDifference) > 200
+  ) {
+    return null;
+  }
 
   // Calculate weight change per week
   // 7700 calories = 1kg of fat (approximate)
