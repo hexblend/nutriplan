@@ -39,8 +39,10 @@ export default function CreateScreen() {
   const router = useRouter();
 
   const onSubmit = () => {
-    setDailyCalories(defaultDailyCalories);
-    router.push('/plans/create');
+    if (!isCustomCalories) {
+      setDailyCalories(defaultDailyCalories);
+    }
+    router.push('/plans/macronutrients');
   };
 
   return (
@@ -49,11 +51,7 @@ export default function CreateScreen() {
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
-          <Button
-            onPress={onSubmit}
-            className="mt-3"
-            disabled={weeksToGoal === null}
-          >
+          <Button onPress={onSubmit} disabled={weeksToGoal === null}>
             <Text>{t.t('common.continue')}</Text>
           </Button>
           <LinkField

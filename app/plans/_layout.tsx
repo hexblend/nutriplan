@@ -45,6 +45,18 @@ export default function PlansLayout() {
             },
           }}
         />
+
+        <Stack.Screen
+          name="macronutrients"
+          options={{
+            title: ' ',
+            headerStyle: {
+              // @ts-ignore-next-line
+              borderBottomWidth: 0,
+              backgroundColor: colors.primary[700],
+            },
+          }}
+        />
       </Stack>
     </CreateMealPlanProvider>
   );
