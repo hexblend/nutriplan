@@ -9,7 +9,7 @@ export const profileEN = {
   goal: 'Goal',
   achievableIn: 'Achievable in',
   targetWeight: 'Target weight',
-  toGetTo: 'and to get to',
+  toGetTo: 'and get to',
 
   // Activity Level
   dailyIntake: 'Intake needed to',
