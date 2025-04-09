@@ -24,7 +24,7 @@ export default function StartScreen() {
       footer={
         <PageFooter>
           <LinkField
-            href="/plans/start"
+            href="/plans/create"
             centered
             value={t.t('common.continue')}
             variant="default"
