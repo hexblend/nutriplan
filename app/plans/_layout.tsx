@@ -30,7 +30,7 @@ export default function PlansLayout() {
             headerStyle: {
               // @ts-ignore-next-line
               borderBottomWidth: 0,
-              backgroundColor: colors.primary[500],
+              backgroundColor: colors.primary[700],
             },
           }}
         />

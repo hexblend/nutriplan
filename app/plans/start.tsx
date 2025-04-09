@@ -20,7 +20,7 @@ export default function StartScreen() {
   return (
     <PageWrapper
       className="pt-6"
-      containerStyle={{ backgroundColor: colors.primary[500] }}
+      containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
           <LinkField
