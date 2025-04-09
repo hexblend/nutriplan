@@ -15,6 +15,7 @@ export default function OnboardingLayout() {
               showBackButton={navigation.canGoBack()}
               backButtonText={options.headerBackTitle}
               rightComponent={headerRight}
+              style={options.headerStyle}
             />
           );
         },

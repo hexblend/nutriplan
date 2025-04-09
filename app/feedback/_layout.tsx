@@ -14,6 +14,7 @@ export default function FeedbackLayout() {
               showBackButton={navigation.canGoBack()}
               backButtonText={options.headerBackTitle}
               rightComponent={headerRight}
+              style={options.headerStyle}
             />
           );
         },
