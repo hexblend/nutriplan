@@ -4,21 +4,19 @@ import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { calculateDailyCalories, cn } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
-import { Octicons } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
 import { useCallback, useEffect, useState } from 'react';
 import { Animated, View } from 'react-native';
+import ProfileCalories from './ProfileCalories';
 
 interface ProfileActivityLevelProps {
   className?: string;
   hideChangeActivity?: boolean;
-  additionalGoalText?: string;
 }
 
 export default function ProfileActivityLevel({
   className,
   hideChangeActivity = false,
-  additionalGoalText,
 }: ProfileActivityLevelProps) {
   const [opacity] = useState(new Animated.Value(0));
   const { currentClient } = useSession();
@@ -47,20 +45,13 @@ export default function ProfileActivityLevel({
     <Animated.View style={{ opacity }}>
       <View className={cn(className)}>
         {/*  Calories */}
-        <View className="mb-2 flex-row items-center justify-center gap-2">
-          <Octicons name="flame" size={18} color="#ea580c" />
-          <Text className="text-center text-3xl font-bold">
-            {targetCalories ? `${targetCalories} Kcal` : '--- Kcal'} /{' '}
-            {t.t('common.day')}
-          </Text>
-        </View>
+        <ProfileCalories calories={targetCalories ?? 0} />
 
         {/*  Daily intake for Goal */}
         <Text className="mt-1 w-2/3 self-center text-center text-xl">
           {t.t('profile.dailyIntake')}{' '}
           <Text className="lowercase">
             {translateValue('goal', currentClient?.goal ?? '')}{' '}
-            {additionalGoalText ?? ''}
           </Text>
         </Text>
 

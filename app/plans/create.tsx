@@ -1,5 +1,6 @@
 import LinkField from '@/components/blocks/LinkField';
 import ProfileActivityLevel from '@/components/features/profile/ProfileActivityLevel';
+import ProfileCalories from '@/components/features/profile/ProfileCalories';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
@@ -18,7 +19,8 @@ import { View } from 'react-native';
 
 export default function CreateScreen() {
   const { currentClient, currentProfile } = useSession();
-  const { setDailyCalories } = useCreateMealPlanContext();
+  const { setDailyCalories, isCustomCalories, dailyCalories } =
+    useCreateMealPlanContext();
 
   const weeksToGoal = calculateWeeksToGoal(currentClient);
   const weightGoal = displayWeight(
@@ -56,20 +58,30 @@ export default function CreateScreen() {
       </Text>
 
       <View className="mt-14">
-        <ProfileActivityLevel hideChangeActivity className="mt-6" />
-        <Text className="mt-6 text-center">{t.t('profile.toGetTo')}</Text>
+        {isCustomCalories ? (
+          // Show just calories - no calculations
+          <ProfileCalories calories={dailyCalories ?? 0} className="mt-12" />
+        ) : (
+          <ProfileActivityLevel hideChangeActivity className="mt-6" />
+        )}
 
-        <View className="mt-6 flex-row items-center justify-center gap-2">
-          <Text className="text-center text-2xl font-bold text-green-500">
-            {weightGoal}
-          </Text>
+        {/* TODO: Calulate time to get to goal on custom calories as well */}
+        {!isCustomCalories && (
+          <View className="mt-6">
+            <Text className="text-center">{t.t('profile.toGetTo')}</Text>
+            <View className="mt-6 flex-row items-center justify-center gap-2">
+              <Text className="text-center text-2xl font-bold text-green-500">
+                {weightGoal}
+              </Text>
 
-          <Text className="text-center">in</Text>
+              <Text className="text-center">in</Text>
 
-          <Text className="text-center text-2xl font-bold text-green-500">
-            {weeksToGoal} {t.t('common.weeks')}
-          </Text>
-        </View>
+              <Text className="text-center text-2xl font-bold text-green-500">
+                {weeksToGoal} {t.t('common.weeks')}
+              </Text>
+            </View>
+          </View>
+        )}
       </View>
     </PageWrapper>
   );

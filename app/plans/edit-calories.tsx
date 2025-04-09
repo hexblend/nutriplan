@@ -23,7 +23,7 @@ type FormValues = z.infer<typeof formSchema>;
 
 export default function EditCaloriesScreen() {
   const { currentClient } = useSession();
-  const { setDailyCalories } = useCreateMealPlanContext();
+  const { setDailyCalories, setIsCustomCalories } = useCreateMealPlanContext();
   const defaultCalories = calculateDailyCalories(currentClient) ?? 2000;
 
   const bmr = calculateBMR(currentClient);
@@ -42,6 +42,9 @@ export default function EditCaloriesScreen() {
 
   const onSubmit = (data: FormValues) => {
     setDailyCalories(parseInt(data.calories, 10));
+    if (parseInt(data.calories, 10) !== defaultCalories) {
+      setIsCustomCalories(true);
+    }
     router.back();
   };
 
@@ -50,12 +53,12 @@ export default function EditCaloriesScreen() {
       className="pt-6"
       containerStyle={{ backgroundColor: colors.primary[700] }}
     >
-      <View className="">
+      <View className="flex-col items-center">
         <Text className="text-lg">
-          BMR: <Text className="font-bold">{Math.round(bmr)} kcal</Text>
+          Your BMR: <Text className="font-bold">{Math.round(bmr)} kcal</Text>
         </Text>
         <Text className="text-lg">
-          TDEE: <Text className="font-bold">{tdee} kcal</Text>
+          Your TDEE: <Text className="font-bold">{tdee} kcal</Text>
         </Text>
       </View>
 
@@ -66,7 +69,7 @@ export default function EditCaloriesScreen() {
         placeholder="Calories"
         error={errors?.calories}
         rightIcon={<Text className="text-gray-300">Kcal / day</Text>}
-        label="Recommended daily calories"
+        label="Recommended calories for your goal"
         containerClassName="mt-6"
         autoFocus
       />
