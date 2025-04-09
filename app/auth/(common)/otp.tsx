@@ -61,9 +61,22 @@ export default function OtpScreen() {
       return throwError('Error! The code could not be verified. Try again.');
     }
     if (session) {
-      // Create a client from the user
       const userId = session.user.id;
-      const { data: clientData, error } = await supabase
+      const { error: profileError } = await supabase
+        .from('profiles')
+        .update({
+          height_unit: heightUnit,
+          weight_unit: weightUnit,
+        })
+        .eq('id', userId);
+      if (profileError) {
+        return throwError(
+          '[onboarding] Error updating profile height_unit and weight_unit',
+          profileError
+        );
+      }
+      // Create a client from the user
+      const { data: clientData, error: clientError } = await supabase
         .from('clients')
         .insert([
           {
@@ -72,17 +85,17 @@ export default function OtpScreen() {
             last_name: lastName,
             goal,
             height_cm: parseFloat(height.split(' ')[0]),
-            height_unit: heightUnit,
             weight_kg: parseFloat(weight.split(' ')[0]),
-            weight_unit: weightUnit,
             age,
             activity_level: activity,
           },
         ])
         .select();
-      if (error) {
-        return throwError('[onboarding] Error creating client', error);
+
+      if (clientError) {
+        return throwError('[onboarding] Error creating client', clientError);
       }
+
       if (clientData) {
         setClientId(clientData[0].id);
         // Go to next screen

@@ -15,7 +15,7 @@ export const progressScreensConfig: Record<
   height: { next: 'weight', progress: 14 },
   weight: { next: 'age', progress: 18 },
   age: { next: 'activity', progress: 22 },
-  activity: { next: 'goalsFiller', progress: 26 },
+  activity: { next: 'phone', progress: 26 }, // Change to 'goalsFiller' to skip phone
   accountFiller: { next: 'phone', progress: 30 },
   phone: { next: 'password', progress: 34 },
   password: { next: 'otp', progress: 38 },
