@@ -5,6 +5,12 @@ interface CreateMealPlanContextType {
   setDailyCalories: React.Dispatch<React.SetStateAction<number | null>>;
   isCustomCalories: boolean;
   setIsCustomCalories: React.Dispatch<React.SetStateAction<boolean>>;
+  proteins: number;
+  setProteins: React.Dispatch<React.SetStateAction<number>>;
+  carbs: number;
+  setCarbs: React.Dispatch<React.SetStateAction<number>>;
+  lipids: number;
+  setLipids: React.Dispatch<React.SetStateAction<number>>;
 }
 
 const CreateMealPlanContext = createContext<
@@ -19,6 +25,9 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
 }) => {
   const [dailyCalories, setDailyCalories] = useState<number | null>(null);
   const [isCustomCalories, setIsCustomCalories] = useState<boolean>(false);
+  const [proteins, setProteins] = useState<number>(30);
+  const [carbs, setCarbs] = useState<number>(50);
+  const [lipids, setLipids] = useState<number>(20);
 
   return (
     <CreateMealPlanContext.Provider
@@ -27,6 +36,12 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
         setDailyCalories,
         isCustomCalories,
         setIsCustomCalories,
+        proteins,
+        setProteins,
+        carbs,
+        setCarbs,
+        lipids,
+        setLipids,
       }}
     >
       {children}

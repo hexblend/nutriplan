@@ -8,6 +8,14 @@ export const plansEN = {
   yourBMR: 'Your BMR: ',
   yourTDEE: 'Your TDEE: ',
   changeCalories: 'Change calories',
+  macronutrientsRatio: 'Macronutrients ratio',
+  proteins: 'Proteins',
+  carbohydrates: 'Carbohydrates',
+  lipids: 'Fats',
+  recommendedValues: 'Recommended values: Proteins 30%, Carbs 50%, Fats 20%',
+  useRecommendedValues: 'Reset values',
+  usingRecommendedValues: 'Using recommended values',
+  customValues: 'Custom values - adjust with care',
 };
 export const plansRO = {
   createTitle: 'Creează planul pe săptămâna curentă',
@@ -19,4 +27,13 @@ export const plansRO = {
   yourBMR: 'BMR-ul tău: ',
   yourTDEE: 'TDEE-ul tău: ',
   changeCalories: 'Schimbă caloriile',
+  macronutrientsRatio: 'Raport macronutrienți',
+  proteins: 'Proteine',
+  carbohydrates: 'Carbohidrați',
+  lipids: 'Grăsimi',
+  recommendedValues:
+    'Valori recomandate: Proteine 30%, Carbohidrați 50%, Grăsimi 20%',
+  useRecommendedValues: 'Resetează valorile',
+  usingRecommendedValues: 'Folosești valori recomandate',
+  customValues: 'Valori personalizate - ajustează cu atenție',
 };

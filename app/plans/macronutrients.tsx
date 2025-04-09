@@ -1,3 +1,4 @@
+import LinkField from '@/components/blocks/LinkField';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { NutrientIcon } from '@/components/ui/NutrientIcon';
@@ -6,24 +7,26 @@ import { Slider } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors, nutrientsColors } from '@/lib/constants';
+import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useState } from 'react';
+import { useMemo } from 'react';
 import { View } from 'react-native';
 
 export default function MacronutrientsScreen() {
-  const [proteins, setProteins] = useState(30);
-  const [carbs, setCarbs] = useState(50);
-  const [lipids, setLipids] = useState(20);
+  const { proteins, setProteins, carbs, setCarbs, lipids, setLipids } =
+    useCreateMealPlanContext();
 
-  // Check if current values match recommended values
-  const isUsingRecommendedValues =
-    proteins === 30 && carbs === 50 && lipids === 20;
+  const isUsingRecommendedValues = useMemo(() => {
+    return proteins === 30 && carbs === 50 && lipids === 20;
+  }, [proteins, carbs, lipids]);
 
+  /**
+   * Proteins Change
+   */
   const handleProteinsChange = (value: number) => {
     // Round to nearest 5%
     const roundedValue = Math.round(value / 5) * 5;
     const proteinDiff = roundedValue - proteins;
-
     // If proteins increased, decrease both carbs and lipids proportionally
     if (proteinDiff > 0) {
       const totalOther = carbs + lipids;
@@ -52,22 +55,26 @@ export default function MacronutrientsScreen() {
     }
   };
 
+  /**
+   * Carbs Change
+   */
   const handleCarbsChange = (value: number) => {
     // Round to nearest 5%
     const roundedValue = Math.round(value / 5) * 5;
     const carbsDiff = roundedValue - carbs;
-
     // Adjust lipids inversely to carbs
     const newLipids = Math.max(0, Math.round((lipids - carbsDiff) / 5) * 5);
     setCarbs(roundedValue);
     setLipids(newLipids);
   };
 
+  /**
+   * Lipids Change
+   */
   const handleLipidsChange = (value: number) => {
     // Round to nearest 5%
     const roundedValue = Math.round(value / 5) * 5;
     const newTotal = proteins + carbs + roundedValue;
-
     // If total exceeds 100%, adjust proteins and carbs
     if (newTotal > 100) {
       const excess = newTotal - 100;
@@ -93,32 +100,32 @@ export default function MacronutrientsScreen() {
     setLipids(20);
   };
 
-  const onSubmit = () => {
-    console.log('Submitted', { proteins, carbs, lipids });
-  };
-
   return (
     <PageWrapper
       className="pt-6"
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
-          <Button onPress={onSubmit}>
-            <Text>{t.t('common.continue')}</Text>
-          </Button>
+          <LinkField
+            href="/plans/create"
+            value={t.t('common.continue')}
+            centered
+          />
         </PageFooter>
       }
     >
-      <Text className="mb-8 max-w-[300px] self-center text-center text-4xl font-bold">
-        Macronutrients ratio
+      <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
+        {t.t('plans.macronutrientsRatio')}
       </Text>
 
-      <View className="space-y-6 px-4">
+      <View className="mt-16 flex-col gap-6 px-4">
         <Slider
           label={
             <View className="flex-row items-center">
               <NutrientIcon type="proteins" size={20} />
-              <Text className="ml-2 text-lg font-bold">Proteins</Text>
+              <Text className="ml-2 text-lg font-bold">
+                {t.t('plans.proteins')}
+              </Text>
             </View>
           }
           value={proteins}
@@ -132,7 +139,9 @@ export default function MacronutrientsScreen() {
           label={
             <View className="flex-row items-center">
               <NutrientIcon type="carbohydrates" size={20} />
-              <Text className="ml-2 text-lg font-bold">Carbohydrates</Text>
+              <Text className="ml-2 text-lg font-bold">
+                {t.t('plans.carbohydrates')}
+              </Text>
             </View>
           }
           value={carbs}
@@ -146,7 +155,9 @@ export default function MacronutrientsScreen() {
           label={
             <View className="flex-row items-center">
               <NutrientIcon type="lipids" size={20} />
-              <Text className="ml-2 text-lg font-bold">Lipids</Text>
+              <Text className="ml-2 text-lg font-bold">
+                {t.t('plans.lipids')}
+              </Text>
             </View>
           }
           value={lipids}
@@ -156,17 +167,17 @@ export default function MacronutrientsScreen() {
           onChange={handleLipidsChange}
           color={nutrientsColors.lipids}
         />
-        {/* Recommended values */}
-        <View className="mt-6">
+
+        <View>
           {isUsingRecommendedValues ? (
-            <View className="flex-row items-center justify-center">
+            <View className="mt-2 flex-row items-center justify-center">
               <MaterialCommunityIcons
                 name="check-circle"
                 size={16}
                 color="#22c55e"
               />
               <Text className="ml-1 text-sm text-green-500">
-                Using recommended values
+                {t.t('plans.usingRecommendedValues')}
               </Text>
             </View>
           ) : (
@@ -178,18 +189,18 @@ export default function MacronutrientsScreen() {
                   color="#eab308"
                 />
                 <Text className="ml-1 text-sm text-yellow-500">
-                  Custom values - adjust with care
+                  {t.t('plans.customValues')}
                 </Text>
               </View>
-              <Text className="mt-2 text-center text-sm text-gray-400">
-                Recommended: Proteins 30%, Carbs 50%, Fats 20%
+              <Text className="mt-4 text-center text-sm text-gray-400">
+                {t.t('plans.recommendedValues')}
               </Text>
               <Button
                 onPress={resetToRecommendedValues}
                 variant="ghost"
-                className="mt-4"
+                className="mt-2"
               >
-                <Text>Use recommended values</Text>
+                <Text>{t.t('plans.useRecommendedValues')}</Text>
               </Button>
             </View>
           )}

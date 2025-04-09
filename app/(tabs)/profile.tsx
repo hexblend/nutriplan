@@ -7,6 +7,7 @@ import ProfileWeightChart from '@/components/features/profile/ProfileWeightChart
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Button } from '@/components/ui/button';
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
 import { useSession } from '@/providers/SessionProvider';
 import { View } from 'react-native';
 
@@ -14,7 +15,9 @@ export default function ProfileScreen() {
   const { signOut } = useSession();
   return (
     <PageWrapper className="pt-2">
-      <Text className="text-center text-2xl font-bold">Profile</Text>
+      <Text className="text-center text-2xl font-bold">
+        {t.t('common.profile')}
+      </Text>
       <ProfileAvatarCard className="mt-6" />
       <ProfileWeightChart className="mt-10" />
       <ProfileGoal className="mt-8" />
