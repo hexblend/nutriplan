@@ -32,6 +32,10 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
   );
 
   const weeksToGoal = calculateWeeksToGoal(currentClient);
+  const weightGoal = displayWeight(
+    currentClient?.target_weight_kg ?? null,
+    currentProfile?.weight_unit || 'metric'
+  );
 
   return (
     <Animated.View style={{ opacity }}>
@@ -39,10 +43,7 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
         <Text className="text-center text-2xl font-bold">
           {t.t('profile.goal')}:{' '}
           <Text className="text-2xl font-bold text-green-500">
-            {displayWeight(
-              currentClient?.target_weight_kg ?? null,
-              currentProfile?.weight_unit || 'metric'
-            )}
+            {weightGoal}
           </Text>
         </Text>
         <View>

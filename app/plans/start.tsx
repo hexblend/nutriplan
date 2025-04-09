@@ -11,6 +11,11 @@ import { View } from 'react-native';
 
 export default function StartScreen() {
   const { currentClient, currentProfile } = useSession();
+  const weeksToGoal = calculateWeeksToGoal(currentClient);
+  const weightGoal = displayWeight(
+    currentClient?.target_weight_kg ?? null,
+    currentProfile?.weight_unit || 'metric'
+  );
 
   return (
     <PageWrapper
@@ -37,16 +42,13 @@ export default function StartScreen() {
 
         <View className="mt-6 flex-row items-center justify-center gap-2">
           <Text className="text-center text-2xl font-bold text-green-500">
-            {displayWeight(
-              currentClient?.target_weight_kg ?? null,
-              currentProfile?.weight_unit || 'metric'
-            )}
+            {weightGoal}
           </Text>
 
           <Text className="text-center">in</Text>
 
           <Text className="text-center text-2xl font-bold text-green-500">
-            {calculateWeeksToGoal(currentClient)} {t.t('common.weeks')}
+            {weeksToGoal} {t.t('common.weeks')}
           </Text>
         </View>
       </View>
