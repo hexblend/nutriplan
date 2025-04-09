@@ -22,15 +22,19 @@ export default function CreateScreen() {
   const { setDailyCalories, isCustomCalories, dailyCalories } =
     useCreateMealPlanContext();
 
-  const weeksToGoal = calculateWeeksToGoal(currentClient);
+  const calculatedDailyCalories = calculateDailyCalories(currentClient);
+  const weeksToGoal = calculatedDailyCalories
+    ? calculateWeeksToGoal(currentClient, calculatedDailyCalories)
+    : null;
   const weightGoal = displayWeight(
     currentClient?.target_weight_kg ?? null,
     currentProfile?.weight_unit || 'metric'
   );
+
   const router = useRouter();
 
   const onSubmit = () => {
-    setDailyCalories(calculateDailyCalories(currentClient));
+    setDailyCalories(calculatedDailyCalories);
     router.push('/plans/create');
   };
 

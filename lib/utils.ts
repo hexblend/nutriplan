@@ -120,7 +120,8 @@ export const calculateTDEE = (
 };
 
 export const calculateWeeksToGoal = (
-  currentClient: Tables<'clients'> | null
+  currentClient: Tables<'clients'> | null,
+  dailyCalories: number
 ) => {
   if (!currentClient?.target_weight_kg || !currentClient?.weight_kg)
     return null;
@@ -128,8 +129,24 @@ export const calculateWeeksToGoal = (
   const weightDiff = Math.abs(
     currentClient.target_weight_kg - currentClient.weight_kg
   );
-  // Assuming 1kg per month = 4 weeks
-  return Math.ceil(weightDiff * 4);
+
+  const bmr = calculateBMR(currentClient);
+  const tdee = calculateTDEE(bmr, currentClient);
+
+  // Determine if we're in a deficit or surplus
+  const calorieDifference = dailyCalories - tdee;
+
+  // Calculate weight change per week
+  // 7700 calories = 1kg of fat (approximate)
+  const weeklyWeightChange = (calorieDifference * 7) / 7700;
+
+  // If the calorie difference is too small, return null
+  if (Math.abs(weeklyWeightChange) < 0.1) {
+    return null;
+  }
+
+  // Calculate weeks to goal based on the actual weight change rate
+  return Math.ceil(weightDiff / Math.abs(weeklyWeightChange));
 };
 
 export const calculateDailyCalories = (

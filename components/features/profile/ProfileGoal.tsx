@@ -2,7 +2,12 @@ import LinkField from '@/components/blocks/LinkField';
 import Frame from '@/components/ui/frame';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { calculateWeeksToGoal, cn, displayWeight } from '@/lib/utils';
+import {
+  calculateDailyCalories,
+  calculateWeeksToGoal,
+  cn,
+  displayWeight,
+} from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
@@ -31,7 +36,10 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
     }, [])
   );
 
-  const weeksToGoal = calculateWeeksToGoal(currentClient);
+  const dailyCalories = calculateDailyCalories(currentClient);
+  const weeksToGoal = dailyCalories
+    ? calculateWeeksToGoal(currentClient, dailyCalories)
+    : null;
   const weightGoal = displayWeight(
     currentClient?.target_weight_kg ?? null,
     currentProfile?.weight_unit || 'metric'
