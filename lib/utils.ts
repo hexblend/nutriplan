@@ -1,3 +1,4 @@
+import { Tables } from '@/supabase/database.types';
 import { clsx, type ClassValue } from 'clsx';
 import { Alert } from 'react-native';
 import { twMerge } from 'tailwind-merge';
@@ -76,4 +77,20 @@ export const displayWeight = (
     return `${kgToLbs(weight_kg)} lbs`;
   }
   return `${weight_kg} kg`;
+};
+
+/**
+ * PROFILE CALCULATORS
+ */
+export const calculateWeeksToGoal = (
+  currentClient: Tables<'clients'> | null
+) => {
+  if (!currentClient?.target_weight_kg || !currentClient?.weight_kg)
+    return null;
+
+  const weightDiff = Math.abs(
+    currentClient.target_weight_kg - currentClient.weight_kg
+  );
+  // Assuming 1kg per month = 4 weeks
+  return Math.ceil(weightDiff * 4);
 };

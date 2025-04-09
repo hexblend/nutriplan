@@ -2,7 +2,7 @@ import LinkField from '@/components/blocks/LinkField';
 import Frame from '@/components/ui/frame';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { cn } from '@/lib/utils';
+import { calculateWeeksToGoal, cn } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
@@ -25,17 +25,6 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
     return `${weight} kg`;
   };
 
-  const calculateWeeksToGoal = () => {
-    if (!currentClient?.target_weight_kg || !currentClient?.weight_kg)
-      return null;
-
-    const weightDiff = Math.abs(
-      currentClient.target_weight_kg - currentClient.weight_kg
-    );
-    // Assuming 1kg per month = 4 weeks
-    return Math.ceil(weightDiff * 4);
-  };
-
   useFocusEffect(
     useCallback(() => {
       Animated.timing(opacity, {
@@ -50,7 +39,7 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
     }, [])
   );
 
-  const weeksToGoal = calculateWeeksToGoal();
+  const weeksToGoal = calculateWeeksToGoal(currentClient);
 
   return (
     <Animated.View style={{ opacity }}>
