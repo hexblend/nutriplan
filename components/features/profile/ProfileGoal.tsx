@@ -2,7 +2,7 @@ import LinkField from '@/components/blocks/LinkField';
 import Frame from '@/components/ui/frame';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
-import { calculateWeeksToGoal, cn } from '@/lib/utils';
+import { calculateWeeksToGoal, cn, displayWeight } from '@/lib/utils';
 import { useSession } from '@/providers/SessionProvider';
 import { FontAwesome } from '@expo/vector-icons';
 import { useFocusEffect } from 'expo-router';
@@ -16,14 +16,6 @@ interface ProfileGoalProps {
 export default function ProfileGoal({ className }: ProfileGoalProps) {
   const [opacity] = useState(new Animated.Value(0));
   const { currentClient, currentProfile } = useSession();
-
-  const formatWeight = (weight: number | null | undefined) => {
-    if (weight === null || weight === undefined) return 'N/A';
-    if (currentProfile?.weight_unit === 'imperial') {
-      return `${Math.round(weight * 2.20462)} lbs`;
-    }
-    return `${weight} kg`;
-  };
 
   useFocusEffect(
     useCallback(() => {
@@ -47,7 +39,10 @@ export default function ProfileGoal({ className }: ProfileGoalProps) {
         <Text className="text-center text-2xl font-bold">
           {t.t('profile.goal')}:{' '}
           <Text className="text-2xl font-bold text-green-500">
-            {formatWeight(currentClient?.target_weight_kg)}
+            {displayWeight(
+              currentClient?.target_weight_kg ?? null,
+              currentProfile?.weight_unit || 'metric'
+            )}
           </Text>
         </Text>
         <View>
