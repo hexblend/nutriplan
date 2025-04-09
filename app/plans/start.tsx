@@ -19,7 +19,7 @@ export default function StartScreen() {
 
   return (
     <PageWrapper
-      className="pt-8"
+      className="pt-6"
       containerStyle={{ backgroundColor: colors.primary[500] }}
       footer={
         <PageFooter>
@@ -33,7 +33,7 @@ export default function StartScreen() {
       }
     >
       <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
-        Create this weeks' meal plan
+        {t.t('plans.createTitle')}
       </Text>
 
       <View className="mt-14">
