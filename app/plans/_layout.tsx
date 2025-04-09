@@ -24,7 +24,7 @@ export default function PlansLayout() {
         }}
       >
         <Stack.Screen
-          name="start"
+          name="create"
           options={{
             title: ' ',
             headerStyle: {
