@@ -34,6 +34,14 @@ export const commonEN = {
   lunch: 'Lunch',
   snack2: 'Snack 2',
   dinner: 'Dinner',
+  // Equipment
+  stove: 'Stove',
+  oven: 'Oven',
+  microwave: 'Microwave',
+  airFryer: 'Air Fryer',
+  grill: 'Grill',
+  blender: 'Blender',
+  sandwichMaker: 'Sandwich Maker',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -71,5 +79,12 @@ export const commonRO = {
   lunch: 'Prânz',
   snack2: 'Gustare 2',
   dinner: 'Cină',
-  selectMeals: 'Selectează Mesele',
+  // Equipment
+  stove: 'Plită/Aragaz',
+  oven: 'Cuptor',
+  microwave: 'Cuptor cu microunde',
+  airFryer: 'Air Fryer',
+  grill: 'Grătar',
+  blender: 'Blender',
+  sandwichMaker: 'Sandwich Maker',
 };

@@ -23,6 +23,9 @@ interface ContextType {
   setRestrictions: React.Dispatch<
     React.SetStateAction<OnboardingDietaryRestriction[]>
   >;
+  // Equipment
+  equipment: string[];
+  setEquipment: React.Dispatch<React.SetStateAction<string[]>>;
 }
 
 const CreateMealPlanContext = createContext<ContextType | undefined>(undefined);
@@ -48,6 +51,10 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   const [restrictions, setRestrictions] = useState<ContextType['restrictions']>(
     []
   );
+  // Equipment
+  const [equipment, setEquipment] = useState<ContextType['equipment']>([
+    'aragaz',
+  ]);
 
   return (
     <CreateMealPlanContext.Provider
@@ -70,6 +77,9 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
         // Restrictions
         restrictions,
         setRestrictions,
+        // Equipment
+        equipment,
+        setEquipment,
       }}
     >
       {children}

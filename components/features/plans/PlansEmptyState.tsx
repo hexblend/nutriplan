@@ -15,7 +15,7 @@ export default function PlansEmptyState() {
         {t.t('plans.createMealPlanPrompt')}
       </Text>
       <LinkField
-        href="/plans/restrictions"
+        href="/plans/equipment"
         className="w-full"
         value={t.t('plans.createMealPlan')}
         icon={<Octicons name="plus" size={20} color="white" />}

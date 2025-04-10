@@ -34,6 +34,10 @@ export const plansEN = {
   // Restrictions
   selectRestrictions: 'Dietary restrictions',
   recommendedRestrictions: 'Choose any dietary restrictions that apply to you',
+
+  // Equipment
+  selectEquipment: 'Cooking Equipment',
+  recommendedEquipment: 'Choose all your equipment',
 };
 
 export const plansRO = {
@@ -73,4 +77,8 @@ export const plansRO = {
   // Restrictions
   selectRestrictions: 'Restricții alimentare',
   recommendedRestrictions: 'Alege restricțiile alimentare care ți se aplică',
+
+  // Equipment
+  selectEquipment: 'Echipament de gătit',
+  recommendedEquipment: 'Alege tot echipamentul tău',
 };
