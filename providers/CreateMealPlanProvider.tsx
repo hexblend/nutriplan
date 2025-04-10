@@ -31,6 +31,11 @@ interface ContextType {
   // Workout days
   workoutDays: WorkoutDay[];
   setWorkoutDays: React.Dispatch<React.SetStateAction<WorkoutDay[]>>;
+  // Mentions
+  dislikedFoods: string;
+  setDislikedFoods: React.Dispatch<React.SetStateAction<string>>;
+  favoriteFoods: string;
+  setFavoriteFoods: React.Dispatch<React.SetStateAction<string>>;
 }
 
 const CreateMealPlanContext = createContext<ContextType | undefined>(undefined);
@@ -64,6 +69,11 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   const [workoutDays, setWorkoutDays] = useState<ContextType['workoutDays']>(
     []
   );
+  // Mentions
+  const [dislikedFoods, setDislikedFoods] =
+    useState<ContextType['dislikedFoods']>('');
+  const [favoriteFoods, setFavoriteFoods] =
+    useState<ContextType['favoriteFoods']>('');
 
   return (
     <CreateMealPlanContext.Provider
@@ -92,6 +102,11 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
         // Workout days
         workoutDays,
         setWorkoutDays,
+        // Mentions
+        dislikedFoods,
+        setDislikedFoods,
+        favoriteFoods,
+        setFavoriteFoods,
       }}
     >
       {children}

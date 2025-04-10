@@ -39,11 +39,14 @@ export default function RestrictionsScreen() {
     },
   });
 
-  const readyToSubmit = (isDirty && isValid) || restrictions.length > 0;
+  const readyToSubmit =
+    (isDirty && isValid) ||
+    defaultRestrictions.length > 0 ||
+    restrictions.length > 0;
 
   const onSubmit = (data: FormValues) => {
     setRestrictions(data.dietaryRestrictions as OnboardingDietaryRestriction[]);
-    router.push('/plans/meals');
+    router.push('/plans/workout-days');
   };
 
   return (

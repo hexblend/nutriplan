@@ -36,7 +36,7 @@ export default function EquipmentScreen() {
 
   const onSubmit = (data: FormValues) => {
     setEquipment(data.equipment);
-    router.push('/plans/meals');
+    router.push('/plans/restrictions');
   };
 
   return (

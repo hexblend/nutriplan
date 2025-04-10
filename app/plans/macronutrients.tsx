@@ -107,7 +107,7 @@ export default function MacronutrientsScreen() {
       footer={
         <PageFooter>
           <LinkField
-            href="/plans/meals"
+            href="/plans/equipment"
             value={t.t('common.continue')}
             centered
             variant="default"

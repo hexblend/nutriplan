@@ -42,7 +42,7 @@ export default function CreateScreen() {
     if (!isCustomCalories) {
       setDailyCalories(defaultDailyCalories);
     }
-    router.push('/plans/macronutrients');
+    router.push('/plans/meals');
   };
 
   return (
@@ -64,38 +64,43 @@ export default function CreateScreen() {
         </PageFooter>
       }
     >
-      <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
-        {t.t('plans.createTitle')}
-      </Text>
+      <View>
+        <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
+          {t.t('plans.createTitle')}
+        </Text>
 
-      <View className="mt-14">
-        <ProfileActivityLevel
-          hideChangeActivity
-          className="mt-6"
-          customCalories={caloriesForCalculation}
-        />
-        {weeksToGoal ? (
-          <View className="mt-6">
-            <Text className="text-center">{t.t('profile.toGetTo')}</Text>
-            <View className="mt-6 flex-row items-center justify-center gap-2">
-              <Text className="text-center text-2xl font-bold text-green-500">
-                {weightGoal}
-              </Text>
+        <View className="mt-16 flex-1">
+          <ProfileActivityLevel
+            hideChangeActivity
+            hideGoal
+            className="mt-6"
+            customCalories={caloriesForCalculation}
+          />
+          {weeksToGoal ? (
+            <View className="mt-4">
+              <Text className="text-center">{t.t('profile.toGetTo')}</Text>
+              <View className="mt-6 flex-row items-center justify-center gap-2">
+                <Text className="text-center text-2xl font-bold text-green-500">
+                  {weightGoal}
+                </Text>
 
-              <Text className="text-center">in</Text>
+                <Text className="text-center">in</Text>
 
-              <Text className="text-center text-2xl font-bold text-green-500">
-                {weeksToGoal} {t.t('common.weeks')}
+                <Text className="text-center text-2xl font-bold text-green-500">
+                  {weeksToGoal} {t.t('common.weeks')}
+                </Text>
+              </View>
+            </View>
+          ) : (
+            <View className="mt-6 rounded-lg bg-red-100 p-2">
+              <Text className="text-center text-lg text-red-600">
+                {t.t('plans.goalCannotBeReached')}
               </Text>
             </View>
-          </View>
-        ) : (
-          <View className="mt-6 rounded-lg bg-red-100 p-2">
-            <Text className="text-center text-lg text-red-600">
-              {t.t('plans.goalCannotBeReached')}
-            </Text>
-          </View>
-        )}
+          )}
+        </View>
+
+        <View />
       </View>
     </PageWrapper>
   );

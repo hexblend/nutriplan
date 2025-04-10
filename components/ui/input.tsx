@@ -26,8 +26,9 @@ const Input = React.forwardRef<React.ElementRef<typeof TextInput>, InputProps>(
           <TextInput
             ref={ref}
             className={cn(
-              'native:h-[54px] native:text-lg native:leading-[1.25] h-16 w-full rounded-lg border border-input bg-accent px-3 text-white file:border-0 file:bg-transparent file:font-medium placeholder:font-normal placeholder:text-gray-300 web:flex web:w-full web:py-2 web:ring-offset-background web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 lg:text-sm',
+              'native:text-lg native:leading-[1.25] w-full rounded-lg border border-input bg-accent px-3 text-white file:border-0 file:bg-transparent file:font-medium placeholder:font-normal placeholder:text-gray-300 web:flex web:w-full web:py-2 web:ring-offset-background web:focus-visible:outline-none web:focus-visible:ring-2 web:focus-visible:ring-ring web:focus-visible:ring-offset-2 lg:text-sm',
               props.editable === false && 'opacity-50 web:cursor-not-allowed',
+              props.multiline ? 'h-[80px]' : 'h-[54px]',
               rightIcon && 'pr-12',
               className
             )}

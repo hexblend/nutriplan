@@ -50,7 +50,7 @@ export default function WorkoutDaysScreen() {
 
   const onSubmit = (data: FormValues) => {
     setWorkoutDays(data.workoutDays as WorkoutDay[]);
-    router.push('/plans/equipment');
+    router.push('/plans/mentions');
   };
 
   return (
@@ -71,6 +71,10 @@ export default function WorkoutDaysScreen() {
     >
       <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
         {t.t('plans.selectWorkoutDays')}
+      </Text>
+
+      <Text className="mt-4 max-w-[300px] self-center text-center text-base text-gray-400">
+        {t.t('plans.selectWorkoutDaysDescription')}
       </Text>
 
       <View className="mt-10">

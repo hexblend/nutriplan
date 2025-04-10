@@ -13,12 +13,14 @@ interface ProfileActivityLevelProps {
   className?: string;
   hideChangeActivity?: boolean;
   customCalories?: number | null;
+  hideGoal?: boolean;
 }
 
 export default function ProfileActivityLevel({
   className,
   hideChangeActivity = false,
   customCalories,
+  hideGoal = false,
 }: ProfileActivityLevelProps) {
   const [opacity] = useState(new Animated.Value(0));
   const { currentClient } = useSession();
@@ -50,12 +52,14 @@ export default function ProfileActivityLevel({
         <ProfileCalories calories={customCalories ?? targetCalories ?? 0} />
 
         {/*  Daily intake for Goal */}
-        <Text className="mt-1 w-2/3 self-center text-center text-xl">
-          {t.t('profile.dailyIntake')}{' '}
-          <Text className="lowercase">
-            {translateValue('goal', currentClient?.goal ?? '')}{' '}
+        {!hideGoal && (
+          <Text className="mt-1 w-2/3 self-center text-center text-xl">
+            {t.t('profile.dailyIntake')}{' '}
+            <Text className="lowercase">
+              {translateValue('goal', currentClient?.goal ?? '')}{' '}
+            </Text>
           </Text>
-        </Text>
+        )}
 
         {/*  Set Activity Level */}
         {!hideChangeActivity && (

@@ -51,6 +51,7 @@ export const commonEN = {
   saturday: 'Saturday',
   sunday: 'Sunday',
   notWorkingOut: "I'm not working out",
+  optional: 'Optional',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -105,4 +106,5 @@ export const commonRO = {
   saturday: 'Sâmbătă',
   sunday: 'Duminică',
   notWorkingOut: 'Nu fac exerciții',
+  optional: 'Opțional',
 };

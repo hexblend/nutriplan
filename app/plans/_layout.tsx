@@ -76,6 +76,13 @@ export default function PlansLayout() {
             headerStyle: { ...noBorderHeader },
           }}
         />
+        <Stack.Screen
+          name="mentions"
+          options={{
+            title: ' ',
+            headerStyle: { ...noBorderHeader },
+          }}
+        />
       </Stack>
     </CreateMealPlanProvider>
   );

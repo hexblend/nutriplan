@@ -22,6 +22,7 @@ type FormValues = z.infer<typeof formSchema>;
 export default function MealsScreen() {
   const router = useRouter();
   const { meals, setMeals } = useCreateMealPlanContext();
+  const defaultMeals = ['breakfast', 'lunch', 'dinner', 'snack', 'snack-2'];
 
   const {
     control,
@@ -29,10 +30,11 @@ export default function MealsScreen() {
     formState: { isDirty, isValid },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { selectedMeals: ['Breakfast', 'Lunch', 'Dinner'] },
+    defaultValues: { selectedMeals: defaultMeals },
   });
 
-  const readyToSubmit = (isDirty && isValid) || meals.length > 0;
+  const readyToSubmit =
+    (isDirty && isValid) || meals.length > 0 || defaultMeals.length > 0;
 
   const onSubmit = (data: FormValues) => {
     setMeals(data.selectedMeals as DailyMeal[]);

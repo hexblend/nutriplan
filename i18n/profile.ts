@@ -9,7 +9,7 @@ export const profileEN = {
   goal: 'Goal',
   achievableIn: 'Achievable in',
   targetWeight: 'Target weight',
-  toGetTo: 'and get to',
+  toGetTo: 'to get to',
 
   // Activity Level
   dailyIntake: 'Intake needed to',
@@ -49,7 +49,7 @@ export const profileRO = {
   goal: 'Ideal',
   achievableIn: 'Realizabil în',
   targetWeight: 'Greutate țintă',
-  toGetTo: 'și să ajung la',
+  toGetTo: 'pentru a ajunge la',
 
   // Activity Level
   dailyIntake: 'Consum necesar ca',

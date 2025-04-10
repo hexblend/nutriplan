@@ -40,7 +40,14 @@ export const plansEN = {
   recommendedEquipment: 'Choose all your equipment',
 
   // Workout Days
-  selectWorkoutDays: 'Select workout days',
+  selectWorkoutDays: 'Workout days',
+  selectWorkoutDaysDescription: 'Choose the days you work out',
+  // Mentions
+  dontIncludeFood: "Don't include this food",
+  includeFood: 'Include this food',
+  mentionsDescription:
+    'Tell us about foods you want to avoid or include in your meal plan',
+  mentions: 'Mentions',
 };
 
 export const plansRO = {
@@ -79,12 +86,20 @@ export const plansRO = {
 
   // Restrictions
   selectRestrictions: 'Restricții alimentare',
-  recommendedRestrictions: 'Alege restricțiile alimentare care ți se aplică',
+  recommendedRestrictions: 'Alege restricțiile care ți se aplică',
 
   // Equipment
   selectEquipment: 'Echipament de gătit',
   recommendedEquipment: 'Alege tot echipamentul tău',
 
   // Workout Days
-  selectWorkoutDays: 'Selectează zilele de exerciții',
+  selectWorkoutDays: 'Zile cu exerciții',
+  selectWorkoutDaysDescription: 'Alege zilele în care faci sport',
+
+  // Mentions
+  dontIncludeFood: 'Nu include aceste alimente',
+  includeFood: 'Include aceste alimente',
+  mentions: 'Mențiuni',
+  mentionsDescription:
+    'Spune-ne alimentele pe care vrei să le eviți sau să le incluzi în planul tău alimentar',
 };
