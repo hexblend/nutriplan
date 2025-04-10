@@ -29,7 +29,7 @@ export default function MealsScreen() {
     formState: { isDirty, isValid },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { selectedMeals: meals },
+    defaultValues: { selectedMeals: ['Breakfast', 'Lunch', 'Dinner'] },
   });
 
   const readyToSubmit = (isDirty && isValid) || meals.length > 0;
