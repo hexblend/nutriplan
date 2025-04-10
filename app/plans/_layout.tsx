@@ -6,6 +6,8 @@ import { Stack } from 'expo-router';
 import { ReactNode } from 'react';
 
 export default function PlansLayout() {
+  const transparentHeader = { backgroundColor: colors.primary[700] };
+  const noBorderHeader = { ...transparentHeader, borderBottomWidth: 0 };
   return (
     <CreateMealPlanProvider>
       <Stack
@@ -28,21 +30,14 @@ export default function PlansLayout() {
           name="create"
           options={{
             title: ' ',
-            headerStyle: {
-              // @ts-ignore-next-line
-              borderBottomWidth: 0,
-              backgroundColor: colors.primary[700],
-            },
+            headerStyle: { ...noBorderHeader },
           }}
         />
         <Stack.Screen
           name="edit-calories"
           options={{
             title: t.t('plans.editCalories'),
-            headerStyle: {
-              // @ts-ignore-next-line
-              backgroundColor: colors.primary[700],
-            },
+            headerStyle: { ...transparentHeader },
           }}
         />
 
@@ -50,11 +45,14 @@ export default function PlansLayout() {
           name="macronutrients"
           options={{
             title: ' ',
-            headerStyle: {
-              // @ts-ignore-next-line
-              borderBottomWidth: 0,
-              backgroundColor: colors.primary[700],
-            },
+            headerStyle: { ...noBorderHeader },
+          }}
+        />
+        <Stack.Screen
+          name="meals"
+          options={{
+            title: ' ',
+            headerStyle: { ...noBorderHeader },
           }}
         />
       </Stack>
