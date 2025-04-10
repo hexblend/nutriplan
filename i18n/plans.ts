@@ -32,7 +32,7 @@ export const plansEN = {
   recommendedMeals: 'Healthy: All meals Recommended: Minimum 3 meals per day',
 
   // Restrictions
-  selectRestrictions: 'Select dietary restrictions',
+  selectRestrictions: 'Dietary restrictions',
   recommendedRestrictions: 'Choose any dietary restrictions that apply to you',
 };
 
@@ -71,6 +71,6 @@ export const plansRO = {
   recommendedMeals: 'Sanatos: Toate mesele Recomandat: Minimum 3 mese pe zi',
 
   // Restrictions
-  selectRestrictions: 'Selectează restricțiile alimentare',
+  selectRestrictions: 'Restricții alimentare',
   recommendedRestrictions: 'Alege restricțiile alimentare care ți se aplică',
 };

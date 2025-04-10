@@ -51,7 +51,7 @@ export default function RestrictionsScreen() {
       className="pt-6"
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
-        <PageFooter>
+        <PageFooter withBorder className="pt-4">
           <Button
             variant="default"
             onPress={handleSubmit(onSubmit)}
@@ -70,7 +70,7 @@ export default function RestrictionsScreen() {
         {t.t('plans.recommendedRestrictions')}
       </Text>
 
-      <View className="mt-12">
+      <View className="mt-10">
         <ControlledSelect
           control={control}
           name="dietaryRestrictions"
