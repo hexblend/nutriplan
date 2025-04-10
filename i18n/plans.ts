@@ -26,7 +26,12 @@ export const plansEN = {
   noMealPlan: 'No meal plan this week',
   createMealPlanPrompt: 'Continue your nutrition journey',
   createMealPlan: 'Create Meal Plan',
+
+  // Meals
+  selectMeals: 'Select daily meals',
+  recommendedMeals: 'Healthy: All meals Recommended: Minimum 3 meals per day',
 };
+
 export const plansRO = {
   // Create
   createTitle: 'Creează planul pe săptămâna aceasta',
@@ -56,4 +61,8 @@ export const plansRO = {
   noMealPlan: 'Nu există un plan alimentar pentru această săptămână',
   createMealPlanPrompt: 'Continua călătoria ta nutrițională',
   createMealPlan: 'Creează plan alimentar',
+
+  // Meals
+  selectMeals: 'Selectează mesele zilnice',
+  recommendedMeals: 'Sanatos: Toate mesele Recomandat: Minimum 3 mese pe zi',
 };

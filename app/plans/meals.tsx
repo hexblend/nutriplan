@@ -56,10 +56,14 @@ export default function MealsScreen() {
       }
     >
       <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
-        {t.t('common.selectMeals')}
+        {t.t('plans.selectMeals')}
       </Text>
 
-      <View className="mt-16 flex-col gap-6 px-4">
+      <Text className="mt-4 max-w-[260px] self-center text-center text-base text-gray-400">
+        {t.t('plans.recommendedMeals')}
+      </Text>
+
+      <View className="mt-16">
         <ControlledSelect
           control={control}
           name="selectedMeals"
@@ -67,7 +71,7 @@ export default function MealsScreen() {
             {
               label: t.t('common.breakfast'),
               value: 'Breakfast',
-              icon: 'coffee',
+              icon: 'silverware-fork-knife',
             },
             {
               label: t.t('common.snack'),

@@ -34,7 +34,6 @@ export const commonEN = {
   lunch: 'Lunch',
   snack2: 'Snack 2',
   dinner: 'Dinner',
-  selectMeals: 'Select Meals',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
