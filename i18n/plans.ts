@@ -36,11 +36,11 @@ export const plansEN = {
   recommendedRestrictions: 'Choose any dietary restrictions that apply to you',
 
   // Equipment
-  selectEquipment: 'Cooking Equipment',
+  selectEquipment: 'Cooking equipment',
   recommendedEquipment: 'Choose all your equipment',
 
   // Workout Days
-  selectWorkoutDays: 'Select Workout Days',
+  selectWorkoutDays: 'Select workout days',
 };
 
 export const plansRO = {
@@ -86,5 +86,5 @@ export const plansRO = {
   recommendedEquipment: 'Alege tot echipamentul tău',
 
   // Workout Days
-  selectWorkoutDays: 'Selectează Zilele de Exerciții',
+  selectWorkoutDays: 'Selectează zilele de exerciții',
 };

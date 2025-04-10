@@ -42,7 +42,7 @@ export default function WorkoutDaysScreen() {
     resolver: zodResolver(formSchema),
     defaultValues: {
       workoutDays:
-        currentClient?.activity_level === 'sedentary' ? ['notWorkingOut'] : [],
+        currentClient?.activity_level === 'Sedentary' ? ['notWorkingOut'] : [],
     },
   });
 
