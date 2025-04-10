@@ -63,7 +63,7 @@ export default function MealsScreen() {
         {t.t('plans.recommendedMeals')}
       </Text>
 
-      <View className="mt-16">
+      <View className="mt-12">
         <ControlledSelect
           control={control}
           name="selectedMeals"
