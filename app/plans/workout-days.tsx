@@ -37,6 +37,7 @@ export default function WorkoutDaysScreen() {
     control,
     handleSubmit,
     formState: { isDirty, isValid },
+    setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -111,6 +112,22 @@ export default function WorkoutDaysScreen() {
             },
           ]}
           multiple={true}
+          onValueChange={(newValue) => {
+            const lastAddedElement = newValue[newValue.length - 1];
+            if (lastAddedElement === 'notWorkingOut') {
+              return setValue('workoutDays', ['notWorkingOut']);
+            }
+            if (
+              lastAddedElement !== 'notWorkingOut' &&
+              newValue.includes('notWorkingOut') &&
+              typeof newValue !== 'string'
+            ) {
+              return setValue(
+                'workoutDays',
+                newValue.filter((value) => value !== 'notWorkingOut')
+              );
+            }
+          }}
         />
       </View>
     </PageWrapper>
