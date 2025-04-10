@@ -1,3 +1,4 @@
+import { OnboardingDietaryRestriction } from '@/app/auth/(onboarding)/restrictions';
 import { DailyMeal } from '@/app/plans/meals';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
@@ -17,6 +18,11 @@ interface ContextType {
   // Meals
   meals: DailyMeal[];
   setMeals: React.Dispatch<React.SetStateAction<DailyMeal[]>>;
+  // Restrictions
+  restrictions: OnboardingDietaryRestriction[];
+  setRestrictions: React.Dispatch<
+    React.SetStateAction<OnboardingDietaryRestriction[]>
+  >;
 }
 
 const CreateMealPlanContext = createContext<ContextType | undefined>(undefined);
@@ -38,6 +44,10 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   const [lipids, setLipids] = useState<ContextType['lipids']>(20);
   // Meals
   const [meals, setMeals] = useState<ContextType['meals']>([]);
+  // Restrictions
+  const [restrictions, setRestrictions] = useState<ContextType['restrictions']>(
+    []
+  );
 
   return (
     <CreateMealPlanContext.Provider
@@ -57,6 +67,9 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
         // Meals
         meals,
         setMeals,
+        // Restrictions
+        restrictions,
+        setRestrictions,
       }}
     >
       {children}
