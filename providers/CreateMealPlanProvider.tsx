@@ -1,6 +1,7 @@
+import { DailyMeal } from '@/app/plans/meals';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
-interface CreateMealPlanContextType {
+interface ContextType {
   // Calories
   dailyCalories: number | null;
   setDailyCalories: React.Dispatch<React.SetStateAction<number | null>>;
@@ -14,13 +15,11 @@ interface CreateMealPlanContextType {
   lipids: number;
   setLipids: React.Dispatch<React.SetStateAction<number>>;
   // Meals
-  meals: string[];
-  setMeals: React.Dispatch<React.SetStateAction<string[]>>;
+  meals: DailyMeal[];
+  setMeals: React.Dispatch<React.SetStateAction<DailyMeal[]>>;
 }
 
-const CreateMealPlanContext = createContext<
-  CreateMealPlanContextType | undefined
->(undefined);
+const CreateMealPlanContext = createContext<ContextType | undefined>(undefined);
 
 interface CreateMealPlanProviderProps {
   children: ReactNode;
@@ -29,14 +28,16 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   children,
 }) => {
   // Calories
-  const [dailyCalories, setDailyCalories] = useState<number | null>(null);
-  const [isCustomCalories, setIsCustomCalories] = useState<boolean>(false);
+  const [dailyCalories, setDailyCalories] =
+    useState<ContextType['dailyCalories']>(null);
+  const [isCustomCalories, setIsCustomCalories] =
+    useState<ContextType['isCustomCalories']>(false);
   // Macronutrients
-  const [proteins, setProteins] = useState<number>(30);
-  const [carbs, setCarbs] = useState<number>(50);
-  const [lipids, setLipids] = useState<number>(20);
+  const [proteins, setProteins] = useState<ContextType['proteins']>(30);
+  const [carbs, setCarbs] = useState<ContextType['carbs']>(50);
+  const [lipids, setLipids] = useState<ContextType['lipids']>(20);
   // Meals
-  const [meals, setMeals] = useState<string[]>([]);
+  const [meals, setMeals] = useState<ContextType['meals']>([]);
 
   return (
     <CreateMealPlanContext.Provider
@@ -63,7 +64,7 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   );
 };
 
-export const useCreateMealPlanContext = (): CreateMealPlanContextType => {
+export const useCreateMealPlanContext = (): ContextType => {
   const context = useContext(CreateMealPlanContext);
   if (context === undefined) {
     throw new Error(

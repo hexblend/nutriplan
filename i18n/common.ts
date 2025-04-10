@@ -28,6 +28,13 @@ export const commonEN = {
   save: 'Save',
   day: 'day',
   weeks: 'weeks',
+  // Meal types
+  breakfast: 'Breakfast',
+  snack: 'Snack',
+  lunch: 'Lunch',
+  snack2: 'Snack 2',
+  dinner: 'Dinner',
+  selectMeals: 'Select Meals',
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -59,4 +66,11 @@ export const commonRO = {
   save: 'Salvează',
   day: 'zi',
   weeks: 'săptămâni',
+  // Meal types
+  breakfast: 'Mic dejun',
+  snack: 'Gustare',
+  lunch: 'Prânz',
+  snack2: 'Gustare 2',
+  dinner: 'Cină',
+  selectMeals: 'Selectează Mesele',
 };
