@@ -6,22 +6,32 @@ import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
+import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
 
-export type DailyMeal = 'breakfast' | 'snack' | 'lunch' | 'snack-2' | 'dinner';
+export type WorkoutDay =
+  | 'monday'
+  | 'tuesday'
+  | 'wednesday'
+  | 'thursday'
+  | 'friday'
+  | 'saturday'
+  | 'sunday'
+  | 'notWorkingOut';
 
 const formSchema = z.object({
-  selectedMeals: z.array(z.string()).min(1, 'Required'),
+  workoutDays: z.array(z.string()).min(1, 'Required'),
 });
 type FormValues = z.infer<typeof formSchema>;
 
-export default function MealsScreen() {
+export default function WorkoutDaysScreen() {
   const router = useRouter();
-  const { meals, setMeals } = useCreateMealPlanContext();
+  const { workoutDays, setWorkoutDays } = useCreateMealPlanContext();
+  const { currentClient } = useSession();
 
   const {
     control,
@@ -29,14 +39,17 @@ export default function MealsScreen() {
     formState: { isDirty, isValid },
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: { selectedMeals: ['Breakfast', 'Lunch', 'Dinner'] },
+    defaultValues: {
+      workoutDays:
+        currentClient?.activity_level === 'sedentary' ? ['notWorkingOut'] : [],
+    },
   });
 
-  const readyToSubmit = (isDirty && isValid) || meals.length > 0;
+  const readyToSubmit = (isDirty && isValid) || workoutDays.length > 0;
 
   const onSubmit = (data: FormValues) => {
-    setMeals(data.selectedMeals as DailyMeal[]);
-    router.push('/plans/macronutrients');
+    setWorkoutDays(data.workoutDays as WorkoutDay[]);
+    router.push('/plans/equipment');
   };
 
   return (
@@ -44,7 +57,7 @@ export default function MealsScreen() {
       className="pt-6"
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
-        <PageFooter>
+        <PageFooter withBorder className="pt-4">
           <Button
             variant="default"
             onPress={handleSubmit(onSubmit)}
@@ -56,42 +69,45 @@ export default function MealsScreen() {
       }
     >
       <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
-        {t.t('plans.selectMeals')}
+        {t.t('plans.selectWorkoutDays')}
       </Text>
 
-      <Text className="mt-4 max-w-[260px] self-center text-center text-base text-gray-400">
-        {t.t('plans.recommendedMeals')}
-      </Text>
-
-      <View className="mt-12">
+      <View className="mt-10">
         <ControlledSelect
           control={control}
-          name="selectedMeals"
+          name="workoutDays"
           options={[
             {
-              label: t.t('common.breakfast'),
-              value: 'breakfast',
-              icon: 'silverware-fork-knife',
+              label: t.t('common.notWorkingOut'),
+              value: 'notWorkingOut',
             },
             {
-              label: t.t('common.snack'),
-              value: 'snack',
-              icon: 'food-apple',
+              label: t.t('common.monday'),
+              value: 'monday',
             },
             {
-              label: t.t('common.lunch'),
-              value: 'lunch',
-              icon: 'silverware-fork-knife',
+              label: t.t('common.tuesday'),
+              value: 'tuesday',
             },
             {
-              label: t.t('common.snack2'),
-              value: 'snack-2',
-              icon: 'food-apple',
+              label: t.t('common.wednesday'),
+              value: 'wednesday',
             },
             {
-              label: t.t('common.dinner'),
-              value: 'dinner',
-              icon: 'silverware-fork-knife',
+              label: t.t('common.thursday'),
+              value: 'thursday',
+            },
+            {
+              label: t.t('common.friday'),
+              value: 'friday',
+            },
+            {
+              label: t.t('common.saturday'),
+              value: 'saturday',
+            },
+            {
+              label: t.t('common.sunday'),
+              value: 'sunday',
             },
           ]}
           multiple={true}

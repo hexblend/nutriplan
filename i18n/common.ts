@@ -42,6 +42,15 @@ export const commonEN = {
   grill: 'Grill',
   blender: 'Blender',
   sandwichMaker: 'Sandwich Maker',
+  // Workout days
+  monday: 'Monday',
+  tuesday: 'Tuesday',
+  wednesday: 'Wednesday',
+  thursday: 'Thursday',
+  friday: 'Friday',
+  saturday: 'Saturday',
+  sunday: 'Sunday',
+  notWorkingOut: "I'm not working out",
 };
 export const commonRO = {
   welcome: 'Bine ai venit',
@@ -87,4 +96,13 @@ export const commonRO = {
   grill: 'Grătar',
   blender: 'Blender',
   sandwichMaker: 'Sandwich Maker',
+  // Workout days
+  monday: 'Luni',
+  tuesday: 'Marți',
+  wednesday: 'Miercuri',
+  thursday: 'Joi',
+  friday: 'Vineri',
+  saturday: 'Sâmbătă',
+  sunday: 'Duminică',
+  notWorkingOut: 'Nu fac exerciții',
 };

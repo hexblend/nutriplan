@@ -1,5 +1,7 @@
 import { OnboardingDietaryRestriction } from '@/app/auth/(onboarding)/restrictions';
+import { CookingEquipment } from '@/app/plans/equipment';
 import { DailyMeal } from '@/app/plans/meals';
+import { WorkoutDay } from '@/app/plans/workout-days';
 import React, { ReactNode, createContext, useContext, useState } from 'react';
 
 interface ContextType {
@@ -24,8 +26,11 @@ interface ContextType {
     React.SetStateAction<OnboardingDietaryRestriction[]>
   >;
   // Equipment
-  equipment: string[];
-  setEquipment: React.Dispatch<React.SetStateAction<string[]>>;
+  equipment: CookingEquipment[];
+  setEquipment: React.Dispatch<React.SetStateAction<CookingEquipment[]>>;
+  // Workout days
+  workoutDays: WorkoutDay[];
+  setWorkoutDays: React.Dispatch<React.SetStateAction<WorkoutDay[]>>;
 }
 
 const CreateMealPlanContext = createContext<ContextType | undefined>(undefined);
@@ -53,8 +58,12 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
   );
   // Equipment
   const [equipment, setEquipment] = useState<ContextType['equipment']>([
-    'aragaz',
+    'stove',
   ]);
+  // Workout days
+  const [workoutDays, setWorkoutDays] = useState<ContextType['workoutDays']>(
+    []
+  );
 
   return (
     <CreateMealPlanContext.Provider
@@ -80,6 +89,9 @@ export const CreateMealPlanProvider: React.FC<CreateMealPlanProviderProps> = ({
         // Equipment
         equipment,
         setEquipment,
+        // Workout days
+        workoutDays,
+        setWorkoutDays,
       }}
     >
       {children}

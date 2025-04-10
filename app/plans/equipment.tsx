@@ -85,9 +85,10 @@ export default function EquipmentScreen() {
             },
             {
               label: t.t('common.airFryer'),
-              value: 'air fryer',
+              value: 'air-fryer',
               icon: 'fan',
             },
+
             {
               label: t.t('common.blender'),
               value: 'blender',
@@ -95,7 +96,7 @@ export default function EquipmentScreen() {
             },
             {
               label: t.t('common.sandwichMaker'),
-              value: 'sandwich maker',
+              value: 'sandwich-maker',
               icon: 'bread-slice',
             },
             {

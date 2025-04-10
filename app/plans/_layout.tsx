@@ -69,6 +69,13 @@ export default function PlansLayout() {
             headerStyle: { ...noBorderHeader },
           }}
         />
+        <Stack.Screen
+          name="workout-days"
+          options={{
+            title: ' ',
+            headerStyle: { ...noBorderHeader },
+          }}
+        />
       </Stack>
     </CreateMealPlanProvider>
   );

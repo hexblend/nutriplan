@@ -38,6 +38,9 @@ export const plansEN = {
   // Equipment
   selectEquipment: 'Cooking Equipment',
   recommendedEquipment: 'Choose all your equipment',
+
+  // Workout Days
+  selectWorkoutDays: 'Select Workout Days',
 };
 
 export const plansRO = {
@@ -81,4 +84,7 @@ export const plansRO = {
   // Equipment
   selectEquipment: 'Echipament de gătit',
   recommendedEquipment: 'Alege tot echipamentul tău',
+
+  // Workout Days
+  selectWorkoutDays: 'Selectează Zilele de Exerciții',
 };
