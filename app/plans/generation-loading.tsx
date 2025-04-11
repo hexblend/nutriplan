@@ -7,7 +7,7 @@ import { colors } from '@/lib/constants';
 import { formatTime } from '@/lib/utils';
 import LottieView from 'lottie-react-native';
 import { useEffect, useState } from 'react';
-import { Animated, View, useWindowDimensions } from 'react-native';
+import { Animated, View } from 'react-native';
 
 const LOADING_STEPS = [
   'Inițiere...',
@@ -32,19 +32,28 @@ export default function GenerationLoadingScreen() {
   const [timeLeft, setTimeLeft] = useState(TOTAL_TIME);
   const [loading, setLoading] = useState(true);
   const pulseAnim = useState(new Animated.Value(1))[0];
+  const fadeAnim = useState(new Animated.Value(0))[0];
 
   useEffect(() => {
     if (!loading) return;
+
+    // Start fade-in animation
+    Animated.timing(fadeAnim, {
+      toValue: 1,
+      duration: 500,
+      useNativeDriver: true,
+    }).start();
+
     const pulse = Animated.loop(
       Animated.sequence([
         Animated.timing(pulseAnim, {
-          toValue: 1.2,
-          duration: 1500,
+          toValue: 1.15,
+          duration: 1300,
           useNativeDriver: true,
         }),
         Animated.timing(pulseAnim, {
           toValue: 1,
-          duration: 1000,
+          duration: 1300,
           useNativeDriver: true,
         }),
       ])
@@ -76,17 +85,16 @@ export default function GenerationLoadingScreen() {
   }, [loading]);
 
   const progressValue = ((TOTAL_TIME - timeLeft) / TOTAL_TIME) * 100;
-  const screenHeight = useWindowDimensions().height;
 
   return (
     <PageWrapper
-      className="-mb-24 pt-6"
+      className="pt-6"
       containerStyle={{
         backgroundColor: colors.primary[700],
       }}
       footer={
         <PageFooter>
-          <View className="mb-8 w-full px-4">
+          <View className="mb-12 w-full px-4">
             <Progress
               value={progressValue}
               className="mt-3 h-3"
@@ -96,39 +104,50 @@ export default function GenerationLoadingScreen() {
         </PageFooter>
       }
     >
-      <View
-        className="flex-1 items-center justify-center"
-        style={{ marginTop: screenHeight / 10 }}
-      >
+      <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
+        Generare plan pe 1 saptamana...
+      </Text>
+      <View className="mt-24 flex-1 items-center justify-center">
         {/* Lottie + Logo */}
-        <View className="relative">
-          <Animated.View
-            className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[22px] flex items-center justify-center"
-            style={{
-              zIndex: 10,
-              transform: [{ scale: pulseAnim }],
-            }}
-          >
-            <Logo width={40} height={40} color={colors.primary[700]} />
-          </Animated.View>
-          <LottieView
-            autoPlay
-            style={{
-              width: 200,
-              height: 200,
-            }}
-            // eslint-disable-next-line
-            source={require('../../assets/images/lottie/ai-loading.json')}
-          />
-        </View>
-        {/* Step */}
-        <Text className="mt-8 max-w-[300px] text-center text-white">
-          {LOADING_STEPS[currentStep]}
-        </Text>
-        {/* Time */}
-        <Text className="mt-14 text-center text-2xl font-bold text-white">
-          {formatTime(timeLeft)}
-        </Text>
+        <Animated.View style={{ opacity: fadeAnim }}>
+          <View className="relative">
+            <Animated.View
+              className="absolute left-1/2 top-1/2 -ml-[23px] -mt-[24px] flex items-center justify-center"
+              style={{
+                zIndex: 10,
+                transform: [{ scale: pulseAnim }],
+              }}
+            >
+              <Logo width={47} height={47} color={colors.primary[700]} />
+            </Animated.View>
+            <Animated.View
+              style={{
+                transform: [{ scale: pulseAnim }],
+              }}
+            >
+              <LottieView
+                autoPlay
+                style={{
+                  width: 200,
+                  height: 200,
+                }}
+                // eslint-disable-next-line
+                source={require('../../assets/images/lottie/ai-loading.json')}
+              />
+            </Animated.View>
+          </View>
+        </Animated.View>
+
+        <Animated.View style={{ opacity: fadeAnim }}>
+          {/* Step */}
+          <Text className="mt-12 max-w-[300px] text-center font-bold text-white">
+            {LOADING_STEPS[currentStep]}
+          </Text>
+          {/* Time */}
+          <Text className="mt-8 text-center text-2xl font-bold text-white">
+            {formatTime(timeLeft)}
+          </Text>
+        </Animated.View>
       </View>
     </PageWrapper>
   );
