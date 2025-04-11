@@ -5,6 +5,8 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -32,6 +34,7 @@ export default function RestrictionsScreen() {
     control,
     handleSubmit,
     formState: { isDirty, isValid },
+    setValue,
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -44,9 +47,22 @@ export default function RestrictionsScreen() {
     defaultRestrictions.length > 0 ||
     restrictions.length > 0;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    // Optimistic update
     setRestrictions(data.dietaryRestrictions as OnboardingDietaryRestriction[]);
     router.push('/plans/workout-days');
+
+    const { error } = await supabase
+      .from('clients')
+      .update({ food_restrictions: JSON.stringify(data.dietaryRestrictions) })
+      .eq('id', currentClient?.id);
+    if (error) {
+      setRestrictions(defaultRestrictions as OnboardingDietaryRestriction[]);
+      return throwError(
+        '[create-meal] Error updating client food restrictions',
+        error
+      );
+    }
   };
 
   return (
@@ -120,6 +136,22 @@ export default function RestrictionsScreen() {
             },
           ]}
           multiple={true}
+          onValueChange={(newValue) => {
+            const lastAddedElement = newValue[newValue.length - 1];
+            if (lastAddedElement === 'No restrictions') {
+              return setValue('dietaryRestrictions', ['No restrictions']);
+            }
+            if (
+              lastAddedElement !== 'No restrictions' &&
+              newValue.includes('No restrictions') &&
+              typeof newValue !== 'string'
+            ) {
+              return setValue(
+                'dietaryRestrictions',
+                newValue.filter((value) => value !== 'No restrictions')
+              );
+            }
+          }}
         />
       </View>
     </PageWrapper>

@@ -5,9 +5,13 @@ import { ControlledInput } from '@/components/ui/form/ControlledInput';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
+import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
+import { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { View } from 'react-native';
 import { z } from 'zod';
@@ -23,19 +27,41 @@ export default function MentionsScreen() {
   const router = useRouter();
   const { dislikedFoods, setDislikedFoods, favoriteFoods, setFavoriteFoods } =
     useCreateMealPlanContext();
+  const { currentClient } = useSession();
+
+  useEffect(() => {
+    if (currentClient) {
+      setDislikedFoods(currentClient?.disliked_food || '');
+      setFavoriteFoods(currentClient?.favourite_food || '');
+    }
+  }, [currentClient]);
 
   const { control, handleSubmit } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
-    defaultValues: {
-      dislikedFoods: dislikedFoods,
-      favoriteFoods: favoriteFoods,
-    },
+    defaultValues: { dislikedFoods, favoriteFoods },
   });
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    // Optimistic update
     setDislikedFoods(data.dislikedFoods);
     setFavoriteFoods(data.favoriteFoods);
     router.push('/plans/equipment');
+
+    const { error } = await supabase
+      .from('clients')
+      .update({
+        disliked_food: data.dislikedFoods,
+        favourite_food: data.favoriteFoods,
+      })
+      .eq('id', currentClient?.id);
+    if (error) {
+      setDislikedFoods(currentClient?.disliked_food || '');
+      setFavoriteFoods(currentClient?.favourite_food || '');
+      return throwError(
+        '[create-meal] Error updating client food mentions',
+        error
+      );
+    }
   };
 
   return (

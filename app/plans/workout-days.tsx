@@ -5,6 +5,8 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
 import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
@@ -33,6 +35,12 @@ export default function WorkoutDaysScreen() {
   const { workoutDays, setWorkoutDays } = useCreateMealPlanContext();
   const { currentClient } = useSession();
 
+  const defaultWorkoutDays = currentClient?.workout_days
+    ? (JSON.parse(currentClient.workout_days) as string[])
+    : currentClient?.activity_level === 'Sedentary'
+      ? ['notWorkingOut']
+      : [];
+
   const {
     control,
     handleSubmit,
@@ -41,16 +49,31 @@ export default function WorkoutDaysScreen() {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      workoutDays:
-        currentClient?.activity_level === 'Sedentary' ? ['notWorkingOut'] : [],
+      workoutDays: defaultWorkoutDays,
     },
   });
 
-  const readyToSubmit = (isDirty && isValid) || workoutDays.length > 0;
+  const readyToSubmit =
+    (isDirty && isValid) ||
+    workoutDays.length > 0 ||
+    defaultWorkoutDays.length > 0;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    // Optimistic update
     setWorkoutDays(data.workoutDays as WorkoutDay[]);
     router.push('/plans/mentions');
+
+    const { error } = await supabase
+      .from('clients')
+      .update({ workout_days: JSON.stringify(data.workoutDays) })
+      .eq('id', currentClient?.id);
+    if (error) {
+      setWorkoutDays(defaultWorkoutDays as WorkoutDay[]);
+      return throwError(
+        '[create-meal] Error updating client workout days',
+        error
+      );
+    }
   };
 
   return (

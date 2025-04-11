@@ -5,7 +5,10 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
+import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
@@ -20,6 +23,11 @@ type FormValues = z.infer<typeof formSchema>;
 export default function EquipmentScreen() {
   const router = useRouter();
   const { equipment, setEquipment } = useCreateMealPlanContext();
+  const { currentClient } = useSession();
+
+  const defaultEquipment = currentClient?.cooking_equipment
+    ? (JSON.parse(currentClient.cooking_equipment) as string[])
+    : ['stove'];
 
   const {
     control,
@@ -28,15 +36,29 @@ export default function EquipmentScreen() {
   } = useForm<FormValues>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      equipment: ['stove'],
+      equipment: defaultEquipment,
     },
   });
 
-  const readyToSubmit = (isDirty && isValid) || equipment.length > 0;
+  const readyToSubmit =
+    (isDirty && isValid) || equipment.length > 0 || defaultEquipment.length > 0;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    // Optimistic update
     setEquipment(data.equipment);
     router.push('/plans/restrictions');
+
+    const { error } = await supabase
+      .from('clients')
+      .update({ cooking_equipment: JSON.stringify(data.equipment) })
+      .eq('id', currentClient?.id);
+    if (error) {
+      setEquipment(defaultEquipment);
+      return throwError(
+        '[create-meal] Error updating client cooking equipment',
+        error
+      );
+    }
   };
 
   return (
@@ -88,7 +110,6 @@ export default function EquipmentScreen() {
               value: 'air-fryer',
               icon: 'fan',
             },
-
             {
               label: t.t('common.blender'),
               value: 'blender',
