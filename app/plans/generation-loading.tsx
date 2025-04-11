@@ -1,10 +1,13 @@
+import Logo from '@/assets/images/svg/logo-icon.svg';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
+import { formatTime } from '@/lib/utils';
+import LottieView from 'lottie-react-native';
 import { useEffect, useState } from 'react';
-import { Animated, Image, View, useWindowDimensions } from 'react-native';
+import { Animated, View, useWindowDimensions } from 'react-native';
 
 const LOADING_STEPS = [
   'Inițiere...',
@@ -36,7 +39,7 @@ export default function GenerationLoadingScreen() {
       Animated.sequence([
         Animated.timing(pulseAnim, {
           toValue: 1.2,
-          duration: 1000,
+          duration: 1500,
           useNativeDriver: true,
         }),
         Animated.timing(pulseAnim, {
@@ -48,7 +51,6 @@ export default function GenerationLoadingScreen() {
     );
     pulse.start();
 
-    // Countdown timer and step progression
     const timerInterval = setInterval(() => {
       setTimeLeft((prev) => {
         if (prev <= 0) {
@@ -56,7 +58,6 @@ export default function GenerationLoadingScreen() {
           setLoading(false);
           return 0;
         }
-
         // Update step based on elapsed time
         const elapsedTime = TOTAL_TIME - (prev - 1);
         const newStep = Math.min(
@@ -64,7 +65,6 @@ export default function GenerationLoadingScreen() {
           LOADING_STEPS.length - 1
         );
         setCurrentStep(newStep);
-
         return prev - 1;
       });
     }, 1000);
@@ -75,14 +75,7 @@ export default function GenerationLoadingScreen() {
     };
   }, [loading]);
 
-  const formatTime = (seconds: number) => {
-    const mins = Math.floor(seconds / 60);
-    const secs = seconds % 60;
-    return `${mins}:${secs.toString().padStart(2, '0')}`;
-  };
-
   const progressValue = ((TOTAL_TIME - timeLeft) / TOTAL_TIME) * 100;
-
   const screenHeight = useWindowDimensions().height;
 
   return (
@@ -93,9 +86,6 @@ export default function GenerationLoadingScreen() {
       }}
       footer={
         <PageFooter>
-          {/* <Button variant="default" onPress={onSubmit}>
-            <Text>{t.t('common.continue')}</Text>
-          </Button> */}
           <View className="mb-8 w-full px-4">
             <Progress
               value={progressValue}
@@ -110,17 +100,34 @@ export default function GenerationLoadingScreen() {
         className="flex-1 items-center justify-center"
         style={{ marginTop: screenHeight / 10 }}
       >
-        <Image
-          // eslint-disable-next-line
-          source={require('../../assets/images/gif/bla.gif')}
-          style={{ width: 200, height: 200 }}
-        />
-
-        <Text className="mt-14 text-center text-2xl font-bold text-white">
-          {formatTime(timeLeft)}
-        </Text>
+        {/* Lottie + Logo */}
+        <View className="relative">
+          <Animated.View
+            className="absolute left-1/2 top-1/2 -ml-[100px] -mt-[22px] flex items-center justify-center"
+            style={{
+              zIndex: 10,
+              transform: [{ scale: pulseAnim }],
+            }}
+          >
+            <Logo width={40} height={40} color={colors.primary[700]} />
+          </Animated.View>
+          <LottieView
+            autoPlay
+            style={{
+              width: 200,
+              height: 200,
+            }}
+            // eslint-disable-next-line
+            source={require('../../assets/images/lottie/ai-loading.json')}
+          />
+        </View>
+        {/* Step */}
         <Text className="mt-8 max-w-[300px] text-center text-white">
           {LOADING_STEPS[currentStep]}
+        </Text>
+        {/* Time */}
+        <Text className="mt-14 text-center text-2xl font-bold text-white">
+          {formatTime(timeLeft)}
         </Text>
       </View>
     </PageWrapper>
