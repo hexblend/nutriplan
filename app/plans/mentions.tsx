@@ -45,7 +45,7 @@ export default function MentionsScreen() {
     // Optimistic update
     setDislikedFoods(data.dislikedFoods);
     setFavoriteFoods(data.favoriteFoods);
-    router.push('/plans/equipment');
+    router.push('/plans/generation-loading');
 
     const { error } = await supabase
       .from('clients')

@@ -3,6 +3,7 @@ import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
+import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
 import { formatTime } from '@/lib/utils';
 import LottieView from 'lottie-react-native';
@@ -10,18 +11,18 @@ import { useEffect, useState } from 'react';
 import { Animated, View } from 'react-native';
 
 const LOADING_STEPS = [
-  'Inițiere...',
-  'Analizam datele introduse...',
-  'Se genereaza ingredientele...',
-  'Se calculeaza necesarul caloric...',
-  'Se adapteaza conform restricțiilor...',
-  'Se personalizeaza meniurile...',
-  'Se calculeaza portiile...',
-  'Se ajusteaza programul zilnic...',
-  'Se adauga nutrientii pentru mese...',
-  'Se adauga alternative pentru mese...',
-  'Se ajusteaza procentele meselor...',
-  'Finalizare plan alimentar...',
+  'loadingSteps.initializing',
+  'loadingSteps.analyzingData',
+  'loadingSteps.generatingIngredients',
+  'loadingSteps.calculatingCalories',
+  'loadingSteps.adaptingRestrictions',
+  'loadingSteps.personalizingMenus',
+  'loadingSteps.calculatingPortions',
+  'loadingSteps.adjustingDailySchedule',
+  'loadingSteps.addingNutrients',
+  'loadingSteps.addingAlternatives',
+  'loadingSteps.adjustingMealPercentages',
+  'loadingSteps.finalizing',
 ];
 
 const TOTAL_TIME = 90; // 1:30 in seconds
@@ -105,7 +106,7 @@ export default function GenerationLoadingScreen() {
       }
     >
       <Text className="max-w-[300px] self-center text-center text-4xl font-bold">
-        Generare plan pe 1 saptamana...
+        {t.t('plans.generatingPlan')}
       </Text>
       <View className="mt-24 flex-1 items-center justify-center">
         {/* Lottie + Logo */}
@@ -141,7 +142,7 @@ export default function GenerationLoadingScreen() {
         <Animated.View style={{ opacity: fadeAnim }}>
           {/* Step */}
           <Text className="mt-12 max-w-[300px] text-center font-bold text-white">
-            {LOADING_STEPS[currentStep]}
+            {t.t(`plans.${LOADING_STEPS[currentStep]}`)}
           </Text>
           {/* Time */}
           <Text className="mt-8 text-center text-2xl font-bold text-white">

@@ -48,6 +48,23 @@ export const plansEN = {
   mentionsDescription:
     'Tell us about foods you want to avoid or include in your meal plan',
   mentions: 'Mentions',
+
+  // Loading Screen
+  generatingPlan: 'Generating this week Meal plan...',
+  loadingSteps: {
+    initializing: 'Initializing...',
+    analyzingData: 'Analyzing your details...',
+    generatingIngredients: 'Generating ingredients...',
+    calculatingCalories: 'Calculating caloric needs...',
+    adaptingRestrictions: 'Adapting to restrictions...',
+    personalizingMenus: 'Personalizing menus...',
+    calculatingPortions: 'Calculating portions...',
+    adjustingDailySchedule: 'Adjusting daily schedule...',
+    addingNutrients: 'Adding nutrients for meals...',
+    addingAlternatives: 'Adding meal alternatives...',
+    adjustingMealPercentages: 'Adjusting meal percentages...',
+    finalizing: 'Finalizing meal plan...',
+  },
 };
 
 export const plansRO = {
@@ -102,4 +119,21 @@ export const plansRO = {
   mentions: 'Mențiuni',
   mentionsDescription:
     'Spune-ne alimentele pe care vrei să le eviți sau să le incluzi în planul tău alimentar',
+
+  // Loading Screen
+  generatingPlan: 'Generare plan pe 1 săptămână...',
+  loadingSteps: {
+    initializing: 'Inițiere...',
+    analyzingData: 'Analizăm datele tale...',
+    generatingIngredients: 'Se generează ingredientele...',
+    calculatingCalories: 'Se calculează necesarul caloric...',
+    adaptingRestrictions: 'Se adaptează conform restricțiilor...',
+    personalizingMenus: 'Se personalizează meniurile...',
+    calculatingPortions: 'Se calculează portiile...',
+    adjustingDailySchedule: 'Se ajustează programul zilnic...',
+    addingNutrients: 'Se adaugă nutrienții pentru mese...',
+    addingAlternatives: 'Se adaugă alternative pentru mese...',
+    adjustingMealPercentages: 'Se ajustează procentele meselor...',
+    finalizing: 'Finalizare plan alimentar...',
+  },
 };
