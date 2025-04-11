@@ -44,18 +44,21 @@ export default function MealsScreen() {
     (isDirty && isValid) || meals.length > 0 || defaultMeals.length > 0;
 
   const onSubmit = async (data: FormValues) => {
+    // Optimistic update
+    setMeals(data.selectedMeals as DailyMeal[]);
+    router.push('/plans/macronutrients');
+
     const { error } = await supabase
       .from('clients')
       .update({ daily_meals: JSON.stringify(data.selectedMeals) })
       .eq('id', currentClient?.id);
     if (error) {
+      setMeals(defaultMeals as DailyMeal[]);
       return throwError(
         '[create-meal] Error updating client daily meals',
         error
       );
     }
-    setMeals(data.selectedMeals as DailyMeal[]);
-    router.push('/plans/macronutrients');
   };
 
   return (

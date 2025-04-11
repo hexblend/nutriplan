@@ -1,4 +1,3 @@
-import LinkField from '@/components/blocks/LinkField';
 import PageFooter from '@/components/layout/PageFooter';
 import PageWrapper from '@/components/layout/PageWrapper';
 import { NutrientIcon } from '@/components/ui/NutrientIcon';
@@ -7,14 +6,27 @@ import { Slider } from '@/components/ui/slider';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors, nutrientsColors } from '@/lib/constants';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
+import { useSession } from '@/providers/SessionProvider';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { useMemo } from 'react';
+import { router } from 'expo-router';
+import { useEffect, useMemo } from 'react';
 import { View } from 'react-native';
 
 export default function MacronutrientsScreen() {
   const { proteins, setProteins, carbs, setCarbs, lipids, setLipids } =
     useCreateMealPlanContext();
+  const { currentClient } = useSession();
+
+  useEffect(() => {
+    if (currentClient) {
+      setProteins(currentClient?.proteins_percentage ?? 30);
+      setCarbs(currentClient?.carbohydrates_percentage ?? 50);
+      setLipids(currentClient?.lipids_percentage ?? 20);
+    }
+  }, [currentClient]);
 
   const isUsingRecommendedValues = useMemo(() => {
     return proteins === 30 && carbs === 50 && lipids === 20;
@@ -100,18 +112,33 @@ export default function MacronutrientsScreen() {
     setLipids(20);
   };
 
+  const onSubmit = async () => {
+    router.push('/plans/equipment');
+    const { error } = await supabase
+      .from('clients')
+      .update({
+        proteins_percentage: proteins,
+        carbohydrates_percentage: carbs,
+        lipids_percentage: lipids,
+      })
+      .eq('id', currentClient?.id);
+    if (error) {
+      return throwError(
+        '[create-plan] Error updating client macronutrients',
+        error
+      );
+    }
+  };
+
   return (
     <PageWrapper
       className="pt-6"
       containerStyle={{ backgroundColor: colors.primary[700] }}
       footer={
         <PageFooter>
-          <LinkField
-            href="/plans/equipment"
-            value={t.t('common.continue')}
-            centered
-            variant="default"
-          />
+          <Button variant="default" onPress={onSubmit}>
+            <Text>{t.t('common.continue')}</Text>
+          </Button>
         </PageFooter>
       }
     >

@@ -48,7 +48,7 @@ export type Database = {
           biggest_challenge: string | null;
           breakfast_percentage: string | null;
           calories: number | null;
-          carbohydrates_percentage: string | null;
+          carbohydrates_percentage: number | null;
           cooking_equipment: string | null;
           created_at: string;
           daily_meals: string | null;
@@ -61,9 +61,9 @@ export type Database = {
           height_cm: number | null;
           id: string;
           last_name: string;
-          lipids_percentage: string | null;
+          lipids_percentage: number | null;
           lunch_percentage: string | null;
-          proteins_percentage: string | null;
+          proteins_percentage: number | null;
           sex: string | null;
           snacks_percentage: string | null;
           target_activity: string | null;
@@ -82,7 +82,7 @@ export type Database = {
           biggest_challenge?: string | null;
           breakfast_percentage?: string | null;
           calories?: number | null;
-          carbohydrates_percentage?: string | null;
+          carbohydrates_percentage?: number | null;
           cooking_equipment?: string | null;
           created_at?: string;
           daily_meals?: string | null;
@@ -95,9 +95,9 @@ export type Database = {
           height_cm?: number | null;
           id?: string;
           last_name: string;
-          lipids_percentage?: string | null;
+          lipids_percentage?: number | null;
           lunch_percentage?: string | null;
-          proteins_percentage?: string | null;
+          proteins_percentage?: number | null;
           sex?: string | null;
           snacks_percentage?: string | null;
           target_activity?: string | null;
@@ -116,7 +116,7 @@ export type Database = {
           biggest_challenge?: string | null;
           breakfast_percentage?: string | null;
           calories?: number | null;
-          carbohydrates_percentage?: string | null;
+          carbohydrates_percentage?: number | null;
           cooking_equipment?: string | null;
           created_at?: string;
           daily_meals?: string | null;
@@ -129,9 +129,9 @@ export type Database = {
           height_cm?: number | null;
           id?: string;
           last_name?: string;
-          lipids_percentage?: string | null;
+          lipids_percentage?: number | null;
           lunch_percentage?: string | null;
-          proteins_percentage?: string | null;
+          proteins_percentage?: number | null;
           sex?: string | null;
           snacks_percentage?: string | null;
           target_activity?: string | null;
