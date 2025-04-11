@@ -3,7 +3,6 @@ import PageWrapper from '@/components/layout/PageWrapper';
 import { Progress } from '@/components/ui/progress';
 import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
-import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
 import { Animated, Image, View, useWindowDimensions } from 'react-native';
 
@@ -91,7 +90,6 @@ export default function GenerationLoadingScreen() {
       className="-mb-24 pt-6"
       containerStyle={{
         backgroundColor: colors.primary[700],
-        paddingTop: screenHeight / 8,
       }}
       footer={
         <PageFooter>
@@ -108,19 +106,14 @@ export default function GenerationLoadingScreen() {
         </PageFooter>
       }
     >
-      <View className="flex-1 items-center justify-center">
-        <Animated.View
-          style={{
-            transform: [{ scale: pulseAnim }],
-          }}
-        >
-          <Ionicons name="sparkles" size={80} color={colors.primary[350]} />
-        </Animated.View>
+      <View
+        className="flex-1 items-center justify-center"
+        style={{ marginTop: screenHeight / 10 }}
+      >
         <Image
           // eslint-disable-next-line
-          source={require('../../assets/images/gif/loading.gif')}
-          style={{ width: 50, height: 50 }}
-          className="mt-10"
+          source={require('../../assets/images/gif/bla.gif')}
+          style={{ width: 200, height: 200 }}
         />
 
         <Text className="mt-14 text-center text-2xl font-bold text-white">
