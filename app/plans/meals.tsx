@@ -5,7 +5,10 @@ import { ControlledSelect } from '@/components/ui/form/ControlledSelect';
 import { Text } from '@/components/ui/text';
 import { t } from '@/i18n/translations';
 import { colors } from '@/lib/constants';
+import { supabase } from '@/lib/supabase/client';
+import { throwError } from '@/lib/utils';
 import { useCreateMealPlanContext } from '@/providers/CreateMealPlanProvider';
+import { useSession } from '@/providers/SessionProvider';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { useRouter } from 'expo-router';
 import { useForm } from 'react-hook-form';
@@ -22,7 +25,11 @@ type FormValues = z.infer<typeof formSchema>;
 export default function MealsScreen() {
   const router = useRouter();
   const { meals, setMeals } = useCreateMealPlanContext();
-  const defaultMeals = ['breakfast', 'lunch', 'dinner', 'snack', 'snack-2'];
+  const { currentClient } = useSession();
+
+  const defaultMeals = currentClient?.daily_meals
+    ? (JSON.parse(currentClient.daily_meals) as string[])
+    : ['breakfast', 'lunch', 'dinner', 'snack', 'snack-2'];
 
   const {
     control,
@@ -36,7 +43,17 @@ export default function MealsScreen() {
   const readyToSubmit =
     (isDirty && isValid) || meals.length > 0 || defaultMeals.length > 0;
 
-  const onSubmit = (data: FormValues) => {
+  const onSubmit = async (data: FormValues) => {
+    const { error } = await supabase
+      .from('clients')
+      .update({ daily_meals: JSON.stringify(data.selectedMeals) })
+      .eq('id', currentClient?.id);
+    if (error) {
+      return throwError(
+        '[create-meal] Error updating client daily meals',
+        error
+      );
+    }
     setMeals(data.selectedMeals as DailyMeal[]);
     router.push('/plans/macronutrients');
   };
