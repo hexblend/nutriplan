@@ -83,6 +83,13 @@ export default function PlansLayout() {
             headerStyle: { ...noBorderHeader },
           }}
         />
+        <Stack.Screen
+          name="generation-loading"
+          options={{
+            title: ' ',
+            headerStyle: { ...noBorderHeader },
+          }}
+        />
       </Stack>
     </CreateMealPlanProvider>
   );
