@@ -86,7 +86,7 @@ export default function PlansLayout() {
         <Stack.Screen
           name="generation-loading"
           options={{
-            title: ' ',
+            title: 'Plan pe 1 Saptamana',
             headerStyle: { ...noBorderHeader },
           }}
         />
