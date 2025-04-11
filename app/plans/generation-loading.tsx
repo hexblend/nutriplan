@@ -5,7 +5,7 @@ import { Text } from '@/components/ui/text';
 import { colors } from '@/lib/constants';
 import { Ionicons } from '@expo/vector-icons';
 import { useEffect, useState } from 'react';
-import { Animated, View, useWindowDimensions } from 'react-native';
+import { Animated, Image, View, useWindowDimensions } from 'react-native';
 
 const LOADING_STEPS = [
   'Inițiere...',
@@ -116,6 +116,13 @@ export default function GenerationLoadingScreen() {
         >
           <Ionicons name="sparkles" size={80} color={colors.primary[350]} />
         </Animated.View>
+        <Image
+          // eslint-disable-next-line
+          source={require('../../assets/images/gif/loading.gif')}
+          style={{ width: 50, height: 50 }}
+          className="mt-10"
+        />
+
         <Text className="mt-14 text-center text-2xl font-bold text-white">
           {formatTime(timeLeft)}
         </Text>
